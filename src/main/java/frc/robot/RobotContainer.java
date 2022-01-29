@@ -12,6 +12,8 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.Drive;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.IntakePivot;
+import frc.robot.commands.intake.IntakeDown;
 import frc.robot.commands.intake.IntakeIntake;
 import frc.robot.commands.intake.IntakeStop;
 
@@ -27,6 +29,7 @@ public class RobotContainer {
   // Subsystems
   private final Drivetrain drivetrain = new Drivetrain();
   private final Intake intake = new Intake();
+  private final IntakePivot intakePivot = new IntakePivot();
 
 
 
@@ -35,6 +38,7 @@ public class RobotContainer {
   private final Joystick rightJoystick = new Joystick(1);
 
   public JoystickButton intakeIntakeButton;
+  public JoystickButton intakeDownButton;
 
   // Commands
   private final Drive driveCommand = new Drive(drivetrain, leftJoystick, rightJoystick);
@@ -42,7 +46,7 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Set default commands
-    drivetrain.setDefaultCommand(driveCommand);
+    //drivetrain.setDefaultCommand(driveCommand);
     intake.setDefaultCommand(new IntakeStop(intake));
 
     // Configure the button bindings
@@ -58,6 +62,9 @@ public class RobotContainer {
   private void configureButtonBindings() {
     intakeIntakeButton = new JoystickButton(leftJoystick, 1);
     intakeIntakeButton.whileHeld(new IntakeIntake(intake));
+
+    intakeDownButton = new JoystickButton(leftJoystick, 3);
+    intakeDownButton.whileHeld(new IntakeDown(intakePivot));
   }
 
   /**
