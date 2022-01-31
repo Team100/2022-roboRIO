@@ -19,7 +19,7 @@ public final class Constants {
     public static final class DrivetrainConstants {
         public static final class DrivetrainMotors {
             public static final class LeftMaster {
-                public static final int CAN_ID = 0;
+                public static final int CAN_ID = 18;
                 public static final double KP = 0;
                 public static final double KI = 0;
                 public static final double KD = 0;
@@ -32,7 +32,7 @@ public final class Constants {
             }
 
             public static final class LeftFollower {
-                public static final int CAN_ID = 1;
+                public static final int CAN_ID = 19;
                 public static final double KP = 0;
                 public static final double KI = 0;
                 public static final double KD = 0;
@@ -45,7 +45,7 @@ public final class Constants {
             }
 
             public static final class RightMaster {
-                public static final int CAN_ID = 18;
+                public static final int CAN_ID = 10;
                 public static final double KP = 0;
                 public static final double KI = 0;
                 public static final double KD = 0;
@@ -58,7 +58,7 @@ public final class Constants {
             }
 
             public static final class RightFollower {
-                public static final int CAN_ID = 19;
+                public static final int CAN_ID = 11;
                 public static final double KP = 0;
                 public static final double KI = 0;
                 public static final double KD = 0;
