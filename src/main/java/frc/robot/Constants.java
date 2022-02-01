@@ -71,4 +71,63 @@ public final class Constants {
             }
         }
     }
+    public static final class IndexerConstants {
+        public static final class IndexerSensors {
+            public static final class FrontSensor {
+                public static final int ID = 3;
+            }
+
+            public static final class RearSensor {
+                public static final int ID = 0;
+            }
+        }
+
+        public static final class IndexerMotionParameters {
+            public static final double STAGE_ONE_PERCENT_OUTPUT_FORWARD = 0.5;
+            public static final double STAGE_TWO_PERCENT_OUTPUT_FORWARD = 0.5;
+
+            public static final double STAGE_ONE_PERCENT_OUTPUT_BACKWARD = -0.5;
+            public static final double STAGE_TWO_PERCENT_OUTPUT_BACKWARD = -0.5;
+        }
+
+        public static final class IndexerMotors {
+            public static final class IndexerStageOne {
+                public static final int CAN_ID = 8;
+
+                public static final boolean INVERT = false;
+                public static final int FEEDBACK_PORT = 0;
+                public static final boolean SENSOR_PHASE = false;
+
+                public static final int TIMEOUT = 10;
+
+                public static final boolean ENABLE_CURRENT_LIMIT = true;
+                public static final int CURRENT_LIMIT = 25;
+                public static final double OPEN_LOOP_RAMP = 0.1;
+                public static final double PEAK_OUTPUT_FORWARD = .5;
+                public static final double PEAK_OUTPUT_REVERSE = -.5;
+
+                public static final double NOMINAL_OUTPUT_FORWARD = 0;
+                public static final double NOMINAL_OUTPUT_REVERSE = 0;
+            }
+
+            public static final class IndexerStageTwo {
+                public static final int CAN_ID = 7;
+              
+                public static final boolean INVERT = true;
+                public static final int FEEDBACK_PORT = 0;
+                public static final boolean SENSOR_PHASE = true;
+
+                public static final int TIMEOUT = 10;
+
+                public static final boolean ENABLE_CURRENT_LIMIT = true;
+                public static final int CURRENT_LIMIT = 25;
+                public static final double OPEN_LOOP_RAMP = 0.1;
+                public static final double PEAK_OUTPUT_FORWARD = .5;
+                public static final double PEAK_OUTPUT_REVERSE = -.5;
+
+                public static final double NOMINAL_OUTPUT_FORWARD = 0;
+                public static final double NOMINAL_OUTPUT_REVERSE = 0;
+            }
+        }
+    }
 }

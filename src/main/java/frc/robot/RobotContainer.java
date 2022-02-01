@@ -3,13 +3,23 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
+import java.util.List;
+
+import frc.robot.commands.IndexerStageOne.*;
+import frc.robot.commands.IndexerStageTwo.*;
+import frc.robot.commands.Drive;
+
+import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.IndexerStageOne;
+import frc.robot.subsystems.IndexerStageTwo;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.commands.Drive;
-import frc.robot.subsystems.Drivetrain;
+
+
+
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -20,8 +30,12 @@ import frc.robot.subsystems.Drivetrain;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
 
+
   // Subsystems
   private final Drivetrain drivetrain = new Drivetrain();
+  private final IndexerStageOne stageOne = new IndexerStageOne();
+  private final IndexerStageTwo stageTwo = new IndexerStageTwo();
+
 
   // OI Devices
   private final Joystick leftJoystick = new Joystick(0);
@@ -34,6 +48,10 @@ public class RobotContainer {
   public RobotContainer() {
     // Set default commands
     drivetrain.setDefaultCommand(driveCommand);
+    stageOne.setDefaultCommand(new IndexerStageOneStop(stageOne));
+    stageTwo.setDefaultCommand(new IndexerStageTwoStop(stageTwo));
+    
+
 
     // Configure the button bindings
     configureButtonBindings();
