@@ -71,4 +71,66 @@ public final class Constants {
             }
         }
     }
+
+    public static final class ClimberConstants {
+        public static final class ClimberMotionParameters {
+            public static final double CLIMBER_PERCENT_OUTPUT = 0.7;
+            public static final double CLIMBER_ZERO = 0;
+        }
+
+        public static final class ClimberMotors {
+            public static final class RightWinch {
+                public static final int CAN_ID = 7;
+    
+                public static final boolean INVERT = false;
+                public static final int FEEDBACK_PORT = 0;
+                public static final boolean SENSOR_PHASE = false;
+    
+                public static final int TIMEOUT = 10;
+    
+                public static final boolean ENABLE_CURRENT_LIMIT = true;
+                public static final int CURRENT_LIMIT = 25;
+                public static final double OPEN_LOOP_RAMP = 0;
+                public static final double PEAK_OUTPUT_FORWARD = 1;
+                public static final double PEAK_OUTPUT_REVERSE = -1;
+                
+                public static final NeutralMode NEUTRAL_MODE = NeutralMode.Coast;
+            }
+    
+            public static final class LeftWinch {
+                public static final int CAN_ID = 6;
+    
+                public static final boolean INVERT = false;
+                public static final int FEEDBACK_PORT = 0;
+                public static final boolean SENSOR_PHASE = false;
+    
+                public static final int TIMEOUT = 10;
+    
+                public static final boolean ENABLE_CURRENT_LIMIT = true;
+                public static final int CURRENT_LIMIT = 25;
+                public static final double OPEN_LOOP_RAMP = 0.1;
+                public static final double PEAK_OUTPUT_FORWARD = .5;
+                public static final double PEAK_OUTPUT_REVERSE = -.5;
+    
+                public static final NeutralMode NEUTRAL_MODE = NeutralMode.Coast;
+            }
+            public static final class Elbow {
+                public static final int CAN_ID = 5;
+    
+                public static final boolean INVERT = false;
+                public static final int FEEDBACK_PORT = 0;
+                public static final boolean SENSOR_PHASE = false;
+    
+                public static final int TIMEOUT = 10;
+    
+                public static final boolean ENABLE_CURRENT_LIMIT = true;
+                public static final int CURRENT_LIMIT = 25;
+                public static final double OPEN_LOOP_RAMP = 0.1;
+                public static final double PEAK_OUTPUT_FORWARD = .5;
+                public static final double PEAK_OUTPUT_REVERSE = -.5;
+    
+                public static final NeutralMode NEUTRAL_MODE = NeutralMode.Coast;
+            }
+        }
+    }
 }
