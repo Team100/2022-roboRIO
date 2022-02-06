@@ -31,8 +31,7 @@ public class Drive extends CommandBase {
     public void execute() {
         double left = -leftJoystick.getY() + rightJoystick.getX();
         double right = -leftJoystick.getY() - rightJoystick.getX();
-        double limiter = (-rightJoystick.getZ()+1)/2;
-        drivetrain.set((left*limiter), (right*limiter));
+        drivetrain.set(left, right);
     }
 
     // Called once the command ends or is interrupted.
