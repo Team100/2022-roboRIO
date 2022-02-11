@@ -2,19 +2,19 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands;
+package frc.robot.commands.climb.winch;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Climber;
 import frc.robot.Constants;
-public class Climb extends CommandBase {
+import frc.robot.subsystems.climber.ClimberWinch;
+public class WinchStop extends CommandBase {
   /** Creates a new Climb. */
-  private final Climber climber;
+  private final ClimberWinch climberWinch;
 
-  public Climb(Climber climber) {
+  public WinchStop(ClimberWinch climberWinch) {
     // Use addRequirements() here to declare subsystem dependencies.
-    this.climber = climber;
-    addRequirements(climber);
+    this.climberWinch = climberWinch;
+    addRequirements(climberWinch);
   }
 
   // Called when the command is initially scheduled.
