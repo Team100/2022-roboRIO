@@ -31,7 +31,7 @@ public class DriveFurious extends CommandBase {
     public void execute() {
         double left = leftJoystick.getY() - rightJoystick.getX();
         double right = leftJoystick.getY() + rightJoystick.getX();
-        drivetrain.set(left, right);
+        drivetrain.driveWithoutRamp(left, right);
     }
 
     // Called once the command ends or is interrupted.
