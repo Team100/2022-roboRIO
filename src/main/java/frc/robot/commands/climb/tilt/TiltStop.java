@@ -19,7 +19,9 @@ public class TiltStop extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    climberTilt.setTilt(0);
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override

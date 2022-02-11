@@ -19,7 +19,9 @@ public class TiltBackward extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    climberTilt.setTilt(-Constants.ClimberConstants.ClimberMotors.Tilt.TILT_PERCENT_OUTPUT);
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override

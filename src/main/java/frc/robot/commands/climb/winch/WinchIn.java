@@ -19,7 +19,9 @@ public class WinchIn extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    climberWinch.setWinch(Constants.ClimberConstants.ClimberMotors.Winch.WINCH_PERCENT_OUTPUT);
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override

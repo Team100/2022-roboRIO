@@ -95,6 +95,8 @@ public final class Constants {
                 public static final double PEAK_OUTPUT_REVERSE = -1;
                 
                 public static final NeutralMode NEUTRAL_MODE = NeutralMode.Brake;
+
+                public static final double WINCH_PERCENT_OUTPUT = 0.8;
             }
     
             public static final class Tilt {
@@ -109,10 +111,12 @@ public final class Constants {
                 public static final boolean ENABLE_CURRENT_LIMIT = true;
                 public static final int CURRENT_LIMIT = 25;
                 public static final double OPEN_LOOP_RAMP = 0.1;
-                public static final double PEAK_OUTPUT_FORWARD = .5;
-                public static final double PEAK_OUTPUT_REVERSE = -.5;
-    
+                public static final double PEAK_OUTPUT_FORWARD = 1;
+                public static final double PEAK_OUTPUT_REVERSE = 1;
+
                 public static final NeutralMode NEUTRAL_MODE = NeutralMode.Brake;
+
+                public static final double TILT_PERCENT_OUTPUT = 0.8;
             }
         }
     }
