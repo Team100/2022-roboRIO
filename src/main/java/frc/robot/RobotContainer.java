@@ -53,9 +53,9 @@ public class RobotContainer {
   private final TiltForward tiltForward = new TiltForward(climberTilt);
   private final TiltBackward tiltBackward = new TiltBackward(climberTilt);
 
-  private final WinchStop winchStop = new WinchStop(climberWinch);
-  private final WinchIn winchIn = new WinchIn(climberWinch);
-  private final WinchOut winchOut = new WinchOut(climberWinch);
+  private final WinchStop winchStop = new WinchStop(climberWinch, gamepad);
+  //private final WinchIn winchIn = new WinchIn(climberWinch);
+  //private final WinchOut winchOut = new WinchOut(climberWinch);
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Set default commands
@@ -79,10 +79,10 @@ public class RobotContainer {
     tiltForwardButton.whileHeld(tiltForward);
     tiltBackwardButton = new JoystickButton(gamepad, 2);
     tiltBackwardButton.whileHeld(tiltBackward);
-    winchInButton = new JoystickButton(gamepad, 3);
-    winchInButton.whileHeld(winchIn);
-    winchOutButton = new JoystickButton(gamepad, 4);
-    winchOutButton.whileHeld(winchOut);
+    // winchInButton = new JoystickButton(gamepad, 3);
+    // winchInButton.whileHeld(winchIn);
+    // winchOutButton = new JoystickButton(gamepad, 4);
+    // winchOutButton.whileHeld(winchOut);
 
 
   }

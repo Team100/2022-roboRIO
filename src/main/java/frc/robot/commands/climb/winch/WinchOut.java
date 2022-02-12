@@ -20,12 +20,12 @@ public class WinchOut extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    climberWinch.setWinch(Constants.ClimberConstants.ClimberMotors.Winch.WINCH_PERCENT_OUTPUT);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    climberWinch.setWinch(Constants.ClimberConstants.ClimberMotors.Winch.WINCH_PERCENT_OUTPUT);
     System.out.println("WinchOut @ " + Constants.ClimberConstants.ClimberMotors.Winch.WINCH_PERCENT_OUTPUT );
   }
 

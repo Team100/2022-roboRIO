@@ -6,13 +6,13 @@ package frc.robot.subsystems.climber;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.FRCLib.Motors.FRCNEO;
+import frc.robot.FRCLib.Motors.FRCTalonFX;
 
 public class ClimberTilt extends SubsystemBase {
-  private FRCNEO tilt;
+  private FRCTalonFX tilt;
   /** Creates a new Climber. */
   public ClimberTilt() {
-    tilt = new FRCNEO.FRCNEOBuilder(Constants.ClimberConstants.ClimberMotors.Tilt.CAN_ID)
+    tilt = new FRCTalonFX.FRCTalonFXBuilder(Constants.ClimberConstants.ClimberMotors.Tilt.CAN_ID)
     .withInverted(Constants.ClimberConstants.ClimberMotors.Tilt.INVERT)
     .withFeedbackPort(Constants.ClimberConstants.ClimberMotors.Tilt.FEEDBACK_PORT)
     .withSensorPhase(Constants.ClimberConstants.ClimberMotors.Tilt.SENSOR_PHASE)

@@ -4,28 +4,36 @@
 
 package frc.robot.commands.climb.winch;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.climber.ClimberWinch;
 public class WinchStop extends CommandBase {
   /** Creates a new Climb. */
   private final ClimberWinch climberWinch;
+  private final Joystick gamepad;
 
-  public WinchStop(ClimberWinch climberWinch) {
+  public WinchStop(ClimberWinch climberWinch, Joystick gamepad) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.climberWinch = climberWinch;
+    this.gamepad = gamepad;
     addRequirements(climberWinch);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    climberWinch.setWinch(0);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    if(Math.abs(gamepad.getRawAxis(3)) < 0.05){
+      climberWinch.setWinch(0);
+    }else{
+      climberWinch.setWinch(-gamepad.getRawAxis(3));
+    }
+  }
 
   // Called once the command ends or is interrupted.
   @Override
