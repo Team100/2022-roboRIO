@@ -5,7 +5,9 @@
 package frc.robot.commands.indexer;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Indexer;  
+import frc.robot.subsystems.Indexer; 
+
+import frc.robot.Constants;
 
 public class Intake extends CommandBase {
     private Indexer indexer;
@@ -23,22 +25,30 @@ public class Intake extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
+        System.out.println("SensorOne: " + indexer.getSensorOne());
+        System.out.println("SensorTwo: " + indexer.getSensorTwo());
         if (indexer.getSensorOne() && indexer.getSensorTwo()) {
+            System.out.println("Stopped");
             done = true;
             return;
         }
         if (indexer.getSensorTwo()) {
-            indexer.stopMotor(2);
-            indexer.runMotor(1);
+            System.out.println("Running Stage One");
+            indexer.runMotorOne(Constants.IndexerConstants.IndexerMotionParameters.STAGE_ONE_PERCENT_OUTPUT_FORWARD);
+            indexer.runMotorTwo(0);
         } else {
-            indexer.runMotor(1);
-            indexer.runMotor(2);
+            System.out.println("Running Both Stages");
+            indexer.runMotorOne(Constants.IndexerConstants.IndexerMotionParameters.STAGE_ONE_PERCENT_OUTPUT_FORWARD);
+            indexer.runMotorTwo(Constants.IndexerConstants.IndexerMotionParameters.STAGE_TWO_PERCENT_OUTPUT_FORWARD);
         }
     }
 
     // Called once the command ends or is interrupted.
     @Override
-    public void end(boolean interrupted) {}
+    public void end(boolean interrupted) {
+        indexer.runMotorOne(0);
+        indexer.runMotorTwo(0);
+    }
 
     // Returns true when the command should end.
     @Override

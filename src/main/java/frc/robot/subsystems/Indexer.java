@@ -12,6 +12,7 @@ import frc.robot.FRCLib.Motors.FRCTalonFX;
 public class Indexer extends SubsystemBase {
     public FRCTalonFX stageOneMotor, stageTwoMotor;
     public DigitalInput sensor1, sensor2;
+    public double stageOneSetpoint, stageTwoSetpoint;
 
     /**
     * Creates a new Indexer.
@@ -50,13 +51,6 @@ public class Indexer extends SubsystemBase {
         addChild("stageTwoMotor", stageTwoMotor);
     }
 
-    /**
-    * Update any states
-    */
-    public void updateState() {
-
-    }
-
     public boolean getSensorOne() {
       return sensor1.get();
     }
@@ -65,11 +59,18 @@ public class Indexer extends SubsystemBase {
       return sensor2.get();
     }
 
-    public void runMotorOne(double percen)
+    public void runMotorOne(double percentOutput) {
+        stageOneSetpoint = percentOutput;
+    }
+
+    public void runMotorTwo(double percentOutput) {
+        stageTwoSetpoint = percentOutput;
+    }
     
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
-        //updateState();
+        stageOneMotor.drivePercentOutput(stageOneSetpoint);
+        stageTwoMotor.drivePercentOutput(stageTwoSetpoint);
     }
 }
