@@ -42,7 +42,7 @@ public class RobotContainer {
     private final Drive driveCommand = new Drive(drivetrain, leftJoystick, rightJoystick);
     
     private final Stop indexerStopCommand = new Stop(indexer);
-     private final Intake intakeCommand = new Intake(indexer);
+    private final Intake intakeCommand = new Intake(indexer);
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {

@@ -15,31 +15,36 @@ public class Intake extends CommandBase {
 
     /** Creates a new Indexer. */
     public Intake(Indexer indexer) {
+        this.indexer = indexer;
+
         // Use addRequirements() here to declare subsystem dependencies.
+        addRequirements(indexer);
     }
 
     // Called when the command is initially scheduled.
     @Override
-    public void initialize() {}
+    public void initialize() {
+    }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
+        System.out.println("-----------------------made it--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
         System.out.println("SensorOne: " + indexer.getSensorOne());
         System.out.println("SensorTwo: " + indexer.getSensorTwo());
         if (indexer.getSensorOne() && indexer.getSensorTwo()) {
             System.out.println("Stopped");
             done = true;
-            return;
-        }
-        if (indexer.getSensorTwo()) {
-            System.out.println("Running Stage One");
-            indexer.runMotorOne(Constants.IndexerConstants.IndexerMotionParameters.STAGE_ONE_PERCENT_OUTPUT_FORWARD);
-            indexer.runMotorTwo(0);
         } else {
-            System.out.println("Running Both Stages");
-            indexer.runMotorOne(Constants.IndexerConstants.IndexerMotionParameters.STAGE_ONE_PERCENT_OUTPUT_FORWARD);
-            indexer.runMotorTwo(Constants.IndexerConstants.IndexerMotionParameters.STAGE_TWO_PERCENT_OUTPUT_FORWARD);
+            if (indexer.getSensorTwo()) {
+                System.out.println("Running Stage One");
+                indexer.runMotorOne(Constants.IndexerConstants.IndexerMotionParameters.STAGE_ONE_PERCENT_OUTPUT_FORWARD);
+                indexer.runMotorTwo(0);
+            } else {
+                System.out.println("Running Both Stages");
+                indexer.runMotorOne(Constants.IndexerConstants.IndexerMotionParameters.STAGE_ONE_PERCENT_OUTPUT_FORWARD);
+                indexer.runMotorTwo(Constants.IndexerConstants.IndexerMotionParameters.STAGE_TWO_PERCENT_OUTPUT_FORWARD);
+            }
         }
     }
 
