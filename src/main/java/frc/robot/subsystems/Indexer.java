@@ -57,10 +57,16 @@ public class Indexer extends SubsystemBase {
 
     }
 
-    //public boolean getSensorValue() {
-        //return true; //sensor.get();
-    //}
+    public boolean getSensorOne() {
+      return sensor1.get();
+    }
 
+    public boolean getSensorTwo() {
+      return sensor2.get();
+    }
+
+    public void runMotorOne(double percen)
+    
     @Override
     public void periodic() {
         // This method will be called once per scheduler run

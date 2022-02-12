@@ -83,11 +83,11 @@ public final class Constants {
         }
 
         public static final class IndexerMotionParameters {
-            public static final double STAGE_ONE_PERCENT_OUTPUT_FORWARD = 0.5;
-            public static final double STAGE_TWO_PERCENT_OUTPUT_FORWARD = 0.5;
+            public static final double STAGE_ONE_PERCENT_OUTPUT_FORWARD = 0.05;
+            public static final double STAGE_TWO_PERCENT_OUTPUT_FORWARD = 0.05;
 
-            public static final double STAGE_ONE_PERCENT_OUTPUT_BACKWARD = -0.5;
-            public static final double STAGE_TWO_PERCENT_OUTPUT_BACKWARD = -0.5;
+            public static final double STAGE_ONE_PERCENT_OUTPUT_BACKWARD = -0.05;
+            public static final double STAGE_TWO_PERCENT_OUTPUT_BACKWARD = -0.05;
         }
 
         public static final class IndexerMotors {
