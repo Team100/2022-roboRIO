@@ -96,7 +96,7 @@ public final class Constants {
                 
                 public static final NeutralMode NEUTRAL_MODE = NeutralMode.Brake;
 
-                public static final double WINCH_PERCENT_OUTPUT = 0.8;
+                public static final double WINCH_PERCENT_OUTPUT = 0.15;
             }
     
             public static final class Tilt {

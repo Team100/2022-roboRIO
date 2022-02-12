@@ -79,9 +79,9 @@ public class RobotContainer {
     tiltForwardButton.whileHeld(tiltForward);
     tiltBackwardButton = new JoystickButton(gamepad, 2);
     tiltBackwardButton.whileHeld(tiltBackward);
-    winchInButton = new JoystickButton(gamepad, 1);
+    winchInButton = new JoystickButton(gamepad, 3);
     winchInButton.whileHeld(winchIn);
-    winchOutButton = new JoystickButton(gamepad, 1);
+    winchOutButton = new JoystickButton(gamepad, 4);
     winchOutButton.whileHeld(winchOut);
 
 
