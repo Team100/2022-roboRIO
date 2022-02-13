@@ -12,10 +12,8 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.Drive;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.IntakePivot;
-import frc.robot.commands.intake.IntakeDown;
-import frc.robot.commands.intake.IntakeIntake;
-import frc.robot.commands.intake.IntakeStop;
+import frc.robot.commands.intake.PivotDown;
+import frc.robot.commands.intake.SpinnerStop;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -24,56 +22,56 @@ import frc.robot.commands.intake.IntakeStop;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  // The robot's subsystems and commands are defined here...
+    // The robot's subsystems and commands are defined here...
 
-  // Subsystems
-  private final Drivetrain drivetrain = new Drivetrain();
-  private final Intake intake = new Intake();
-  private final IntakePivot intakePivot = new IntakePivot();
-
+    // Subsystems
+    private final Drivetrain drivetrain = new Drivetrain();
+    private final Intake intake = new Intake();
 
 
-  // OI Devices
-  private final Joystick leftJoystick = new Joystick(0);
-  private final Joystick rightJoystick = new Joystick(1);
 
-  public JoystickButton intakeIntakeButton;
-  public JoystickButton intakeDownButton;
+    // OI Devices
+    private final Joystick leftJoystick = new Joystick(0);
+    private final Joystick rightJoystick = new Joystick(1);
 
-  // Commands
-  private final Drive driveCommand = new Drive(drivetrain, leftJoystick, rightJoystick);
+    public JoystickButton intakeIntakeButton;
+    public JoystickButton intakeDownButton;
 
-  /** The container for the robot. Contains subsystems, OI devices, and commands. */
-  public RobotContainer() {
-    // Set default commands
-    //drivetrain.setDefaultCommand(driveCommand);
-    intake.setDefaultCommand(new IntakeStop(intake));
+    // Commands
+    private final Drive driveCommand = new Drive(drivetrain, leftJoystick, rightJoystick);
+    private final frc.robot.commands.intake.SpinnerStop intakeSpinnerStopCommand = new frc.robot.commands.intake.SpinnerStop(intake);
 
-    // Configure the button bindings
-    configureButtonBindings();
-  }
+    /** The container for the robot. Contains subsystems, OI devices, and commands. */
+    public RobotContainer() {
+        // Set default commands
+        drivetrain.setDefaultCommand(driveCommand);
+        intake.setDefaultCommand(new SpinnerStop(intake));
 
-  /**
-   * Use this method to define your button->command mappings. Buttons can be created by
-   * instantiating a {@link GenericHID} or one of its subclasses ({@link
-   * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
-   * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
-   */
-  private void configureButtonBindings() {
-    intakeIntakeButton = new JoystickButton(leftJoystick, 1);
-    intakeIntakeButton.whileHeld(new IntakeIntake(intake));
+        // Configure the button bindings
+        configureButtonBindings();
+    }
 
-    intakeDownButton = new JoystickButton(leftJoystick, 3);
-    intakeDownButton.whileHeld(new IntakeDown(intakePivot));
-  }
+    /**
+     * Use this method to define your button->command mappings. Buttons can be created by
+     * instantiating a {@link GenericHID} or one of its subclasses ({@link
+     * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
+     * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
+     */
+    private void configureButtonBindings() {
+        intakeIntakeButton = new JoystickButton(leftJoystick, 1);
+        intakeIntakeButton.whileHeld(intakeSpinnerStopCommand);
 
-  /**
-   * Use this to pass the autonomous command to the main {@link Robot} class.
-   *
-   * @return the command to run in autonomous
-   */
-  public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
-    return null;
-  }
+        intakeDownButton = new JoystickButton(leftJoystick, 3);
+        intakeDownButton.whileHeld(new PivotDown(intake));
+    }
+
+    /**
+     * Use this to pass the autonomous command to the main {@link Robot} class.
+     *
+     * @return the command to run in autonomous
+     */
+    public Command getAutonomousCommand() {
+        // An ExampleCommand will run in autonomous
+        return null;
+    }
 }

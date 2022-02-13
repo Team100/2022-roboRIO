@@ -109,6 +109,8 @@ public final class Constants {
 
                 public static final double NOMINAL_OUTPUT_FORWARD = 0;
                 public static final double NOMINAL_OUTPUT_REVERSE = 0;
+
+                public static final NeutralMode NEUTRAL_MODE = NeutralMode.Coast;
             }
 
             public static final class IntakePivot {
