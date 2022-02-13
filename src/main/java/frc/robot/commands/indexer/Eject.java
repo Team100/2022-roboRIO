@@ -4,35 +4,36 @@
 
 package frc.robot.commands.indexer;
 
+import frc.robot.Constants.IndexerConstants.*;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Indexer; 
+import frc.robot.subsystems.Indexer;
 
-public class Stop extends CommandBase {
+public class Eject extends CommandBase {
+    /** Creates a new Eject. */
     private Indexer indexer;
 
-    /** Creates a new Indexer. */
-    public Stop(Indexer indexer) {
+    public Eject(Indexer indexer) {
         // Use addRequirements() here to declare subsystem dependencies.
         this.indexer = indexer;
-
         addRequirements(indexer);
     }
 
     // Called when the command is initially scheduled.
     @Override
-    public void initialize() {
-        indexer.runMotorOne(0);
-        indexer.runMotorTwo(0);
-    }
+    public void initialize() {}
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
+        indexer.runMotorOne(IndexerMotionParameters.STAGE_ONE_PERCENT_OUTPUT_BACKWARD);
+        indexer.runMotorTwo(IndexerMotionParameters.STAGE_TWO_PERCENT_OUTPUT_BACKWARD);  
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
+        indexer.runMotorOne(0);
+        indexer.runMotorTwo(0);  
     }
 
     // Returns true when the command should end.

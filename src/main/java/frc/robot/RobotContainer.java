@@ -5,10 +5,7 @@
 package frc.robot;
 
 import frc.robot.commands.Drive;
-import frc.robot.commands.indexer.Intake;
-import frc.robot.commands.indexer.Stop;
-
-
+import frc.robot.commands.indexer.*;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Indexer;
 import edu.wpi.first.wpilibj.GenericHID;
@@ -38,11 +35,15 @@ public class RobotContainer {
     private final Joystick gamepad = new Joystick(2);
 
     public JoystickButton intakeButton;
+    public JoystickButton ejectButton;
+    public JoystickButton feedButton;
+
     // Commands
     private final Drive driveCommand = new Drive(drivetrain, leftJoystick, rightJoystick);
-    
     private final Stop indexerStopCommand = new Stop(indexer);
     private final Intake intakeCommand = new Intake(indexer);
+    private final Eject ejectCommand = new Eject(indexer);
+    private final Feed feedCommand = new Feed(indexer);
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
@@ -64,6 +65,12 @@ public class RobotContainer {
     private void configureButtonBindings() {
         intakeButton = new JoystickButton(gamepad, 6);
         intakeButton.whileHeld(intakeCommand);
+
+        ejectButton = new JoystickButton(gamepad, 5);
+        ejectButton.whileHeld(ejectCommand);
+
+        feedButton = new JoystickButton(gamepad, 1);
+        feedButton.whenPressed(feedCommand);
     }
 
     /**
