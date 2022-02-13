@@ -3,50 +3,43 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.subsystems;
-
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
-import frc.robot.FRCLib.Motors.FRCNEO;
+import frc.robot.Constants.ShooterConstants.*;
+import frc.robot.FRCLib.Motors.FRCTalonFX;
 
 
 public class Shooter extends SubsystemBase {
-  /** Creates a new Shooter. */
-  public FRCNEO shootleft;
-  public FRCNEO shootright;
-  public Shooter() {
-    shootleft = new FRCNEO.FRCNEOBuilder(Constants.ShooterConstants.ShooterMotors.ShooterLeft.CAN_ID)
-          .withInverted(Constants.ShooterConstants.ShooterMotors.ShooterLeft.INVERT)
-          .withFeedbackPort(Constants.ShooterConstants.ShooterMotors.ShooterLeft.FEEDBACK_PORT)
-          .withSensorPhase(Constants.ShooterConstants.ShooterMotors.ShooterLeft.SENSOR_PHASE)
-          .withTimeout(Constants.ShooterConstants.ShooterMotors.ShooterLeft.TIMEOUT)
-          .withCurrentLimitEnabled(Constants.ShooterConstants.ShooterMotors.ShooterLeft.ENABLE_CURRENT_LIMIT)
-          .withCurrentLimit(Constants.ShooterConstants.ShooterMotors.ShooterLeft.CURRENT_LIMIT)
-          .withOpenLoopRampRate(Constants.ShooterConstants.ShooterMotors.ShooterLeft.OPEN_LOOP_RAMP)
-          .withPeakOutputForward(Constants.ShooterConstants.ShooterMotors.ShooterLeft.PEAK_OUTPUT_FORWARD)
-          .withPeakOutputReverse(Constants.ShooterConstants.ShooterMotors.ShooterLeft.PEAK_OUTPUT_REVERSE).build();
+    private FRCTalonFX shootMotor;
 
-    shootright = new FRCNEO.FRCNEOBuilder(Constants.ShooterConstants.ShooterMotors.ShooterRight.CAN_ID)
-          .withInverted(Constants.ShooterConstants.ShooterMotors.ShooterRight.INVERT)
-          .withFeedbackPort(Constants.ShooterConstants.ShooterMotors.ShooterRight.FEEDBACK_PORT)
-          .withSensorPhase(Constants.ShooterConstants.ShooterMotors.ShooterRight.SENSOR_PHASE)
-          .withTimeout(Constants.ShooterConstants.ShooterMotors.ShooterRight.TIMEOUT)
-          .withCurrentLimitEnabled(Constants.ShooterConstants.ShooterMotors.ShooterRight.ENABLE_CURRENT_LIMIT)
-          .withCurrentLimit(Constants.ShooterConstants.ShooterMotors.ShooterRight.CURRENT_LIMIT)
-          .withOpenLoopRampRate(Constants.ShooterConstants.ShooterMotors.ShooterRight.OPEN_LOOP_RAMP)
-          .withPeakOutputForward(Constants.ShooterConstants.ShooterMotors.ShooterRight.PEAK_OUTPUT_FORWARD)
-          .withPeakOutputReverse(Constants.ShooterConstants.ShooterMotors.ShooterRight.PEAK_OUTPUT_REVERSE).build();
-          
-          addChild("ShooterLeft", shootleft); 
-          addChild("ShooterRight", shootleft);  
-  }
-  public void set(double left, double right) {
-    this.shootleft.drivePercentOutput(left);
-    this.shootright.drivePercentOutput(right);
-}
+    private boolean atSpeed = false;
+    public boolean isAtSpeed() { return atSpeed; }
 
+    /** Creates a new Shooter. */
+    public Shooter() {
+        shootMotor = new FRCTalonFX.FRCTalonFXBuilder(ShooterMotors.Shooter.CAN_ID)
+            .withInverted(ShooterMotors.Shooter.INVERT)
+            .withFeedbackPort(ShooterMotors.Shooter.FEEDBACK_PORT)
+            .withSensorPhase(ShooterMotors.Shooter.SENSOR_PHASE)
+            .withTimeout(ShooterMotors.Shooter.TIMEOUT)
+            .withCurrentLimitEnabled(ShooterMotors.Shooter.ENABLE_CURRENT_LIMIT)
+            .withCurrentLimit(ShooterMotors.Shooter.CURRENT_LIMIT)
+            .withOpenLoopRampRate(ShooterMotors.Shooter.OPEN_LOOP_RAMP)
+            .withPeakOutputForward(ShooterMotors.Shooter.PEAK_OUTPUT_FORWARD)
+            .withPeakOutputReverse(ShooterMotors.Shooter.PEAK_OUTPUT_REVERSE)
+            .withNeutralMode(ShooterMotors.Shooter.NEUTRAL_MODE)
+            .build();
+            
+        addChild("Shooter", shootMotor); 
+    }
 
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
-  }
+    public void set(double speed) {
+        this.shootMotor.drivePercentOutput(speed);
+    }
+    
+    @Override
+    public void periodic() {
+        // This method will be called once per scheduler run
+
+        atSpeed = (shootMotor.getSensorVelocity() >= ShooterMotionParameters.NOMINAL_VELOCITY);
+    }
 }
