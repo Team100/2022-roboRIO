@@ -45,6 +45,8 @@ public class Shooter extends SubsystemBase {
         atSpeed = (shootMotor.getSensorVelocity() >= ShooterMotionParameters.NOMINAL_VELOCITY);
         //if(atSpeed) System.out.println("MOTOR GO BRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR");
         SmartDashboard.putBoolean("MOTOR GO BRRRRR?", atSpeed);
+        SmartDashboard.putNumber("HOW  MUC H MOTOR  MOT ORBRRR  RR?", shootMotor.getSensorVelocity());
+
 
     }
 }

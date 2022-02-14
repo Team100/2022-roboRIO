@@ -73,9 +73,9 @@ public final class Constants {
     }
     public static final class ShooterConstants {
         public static final class ShooterMotionParameters {
-            public static final double SHOOTER_PERCENT_OUTPUT = 0.7;
+            public static final double SHOOTER_PERCENT_OUTPUT = 0.1;
             public static final double SHOOTER_ZERO = 0;
-			public static final double NOMINAL_VELOCITY = 10;
+			public static final double NOMINAL_VELOCITY = 100;
         }
 
         public static final class ShooterMotors {
