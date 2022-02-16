@@ -18,7 +18,6 @@ public class Drivetrain extends SubsystemBase {
         sensorLeft = new DigitalInput(Constants.DrivetrainConstants.DrivetrainSensors.LeftSensor.ID);
         sensorRight = new DigitalInput(Constants.DrivetrainConstants.DrivetrainSensors.RightSensor.ID);
 
-
         leftMaster = new FRCTalonFX.FRCTalonFXBuilder(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.CAN_ID)
             .withKP(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.KP)
             .withKI(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.KI)
