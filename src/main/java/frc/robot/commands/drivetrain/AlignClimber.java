@@ -31,6 +31,8 @@ public class AlignClimber extends CommandBase {
   public void execute() {
     SmartDashboard.putBoolean("sensorLeft", drivetrain.getSensorLeft());
     SmartDashboard.putBoolean("sensorRight", drivetrain.getSensorRight());
+    SmartDashboard.putString("Port and Starboard status:", "we are not using port and starboad :(");
+
 
     if(drivetrain.getSensorLeft()&&!drivetrain.getSensorRight()){
       drivetrain.set(0,Constants.DrivetrainConstants.DrivetrainMotion.AlignSpeed);
