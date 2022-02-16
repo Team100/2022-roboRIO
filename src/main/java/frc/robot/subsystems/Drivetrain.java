@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.FRCLib.Motors.FRCTalonFX;
@@ -11,8 +12,13 @@ import frc.robot.FRCLib.Motors.FRCTalonFX;
 
 public class Drivetrain extends SubsystemBase {
     private FRCTalonFX leftMaster, leftFollower, rightMaster, rightFollower;
+    public DigitalInput sensorLeft, sensorRight;
     /** Creates a new Drivetrain. */
     public Drivetrain() {
+        sensorLeft = new DigitalInput(Constants.DrivetrainConstants.DrivetrainSensors.LeftSensor.ID);
+        sensorRight = new DigitalInput(Constants.DrivetrainConstants.DrivetrainSensors.RightSensor.ID);
+
+
         leftMaster = new FRCTalonFX.FRCTalonFXBuilder(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.CAN_ID)
             .withKP(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.KP)
             .withKI(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.KI)
@@ -74,6 +80,14 @@ public class Drivetrain extends SubsystemBase {
     public void periodic() {
         // This method will be called once per scheduler run
     }
+
+    public boolean getSensorLeft() {
+        return sensorLeft.get();
+      }
+    
+      public boolean getSensorRight() {
+        return sensorRight.get();
+      }
 
     @Override
     public void simulationPeriodic() {

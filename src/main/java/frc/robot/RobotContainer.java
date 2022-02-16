@@ -8,7 +8,9 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.commands.Drive;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.drivetrain.Drive;
+import frc.robot.commands.drivetrain.AlignClimber;
 import frc.robot.subsystems.Drivetrain;
 
 /**
@@ -26,9 +28,14 @@ public class RobotContainer {
   // OI Devices
   private final Joystick leftJoystick = new Joystick(0);
   private final Joystick rightJoystick = new Joystick(1);
+  private final Joystick gamepad = new Joystick(2);
+
+  public JoystickButton alignButton;
 
   // Commands
   private final Drive driveCommand = new Drive(drivetrain, leftJoystick, rightJoystick);
+  private final AlignClimber alignCommand = new AlignClimber(drivetrain);
+
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -45,7 +52,10 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
-  private void configureButtonBindings() {}
+  private void configureButtonBindings() {
+    alignButton = new JoystickButton(gamepad, 7);
+    alignButton.whileHeld(alignCommand);
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
