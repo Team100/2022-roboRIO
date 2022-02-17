@@ -247,4 +247,56 @@ public final class Constants {
             }
         }
     }
+
+    public static final class ClimberConstants {
+        public static final class ClimberMotionParameters {
+            public static final double CLIMBER_PERCENT_OUTPUT = 0.7;
+            public static final double CLIMBER_ZERO = 0;
+
+            public static final double TILT_PERCENT_OUTPUT = 1;
+        }
+
+        public static final class ClimberControls {
+            public static final int TILT_FORWARD_GAMEPAD_BUTTON = 1;
+            public static final int TILT_REVERSE_GAMEPAD_BUTTON = 2;
+        };
+
+        public static final class ClimberMotors {
+            public static final class Winch {
+                public static final int CAN_ID = 12;
+    
+                public static final InvertType INVERT = InvertType.None;
+                public static final int FEEDBACK_PORT = 0;
+                public static final boolean SENSOR_PHASE = false;
+    
+                public static final int TIMEOUT = 10;
+    
+                public static final boolean ENABLE_CURRENT_LIMIT = true;
+                public static final int CURRENT_LIMIT = 25;
+                public static final double OPEN_LOOP_RAMP = 0;
+                public static final double PEAK_OUTPUT_FORWARD = 1;
+                public static final double PEAK_OUTPUT_REVERSE = -1;
+                
+                public static final NeutralMode NEUTRAL_MODE = NeutralMode.Brake;
+            }
+    
+            public static final class Tilt {
+                public static final int CAN_ID = 13;
+    
+                public static final InvertType INVERT = InvertType.None;
+                public static final int FEEDBACK_PORT = 0;
+                public static final boolean SENSOR_PHASE = false;
+    
+                public static final int TIMEOUT = 10;
+    
+                public static final boolean ENABLE_CURRENT_LIMIT = true;
+                public static final int CURRENT_LIMIT = 25;
+                public static final double OPEN_LOOP_RAMP = 0.1;
+                public static final double PEAK_OUTPUT_FORWARD = 1;
+                public static final double PEAK_OUTPUT_REVERSE = 1;
+
+                public static final NeutralMode NEUTRAL_MODE = NeutralMode.Brake;
+            }
+        }
+    }
 }
