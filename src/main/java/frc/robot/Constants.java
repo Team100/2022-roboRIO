@@ -76,7 +76,14 @@ public final class Constants {
         public static final class ClimberMotionParameters {
             public static final double CLIMBER_PERCENT_OUTPUT = 0.7;
             public static final double CLIMBER_ZERO = 0;
+
+            public static final double TILT_PERCENT_OUTPUT = 1;
         }
+
+        public static final class ClimberControls {
+            public static final int TILT_FORWARD_GAMEPAD_BUTTON = 1;
+            public static final int TILT_REVERSE_GAMEPAD_BUTTON = 2;
+        };
 
         public static final class ClimberMotors {
             public static final class Winch {
@@ -95,8 +102,6 @@ public final class Constants {
                 public static final double PEAK_OUTPUT_REVERSE = -1;
                 
                 public static final NeutralMode NEUTRAL_MODE = NeutralMode.Brake;
-
-                public static final double WINCH_PERCENT_OUTPUT = 1;
             }
     
             public static final class Tilt {
@@ -115,8 +120,6 @@ public final class Constants {
                 public static final double PEAK_OUTPUT_REVERSE = 1;
 
                 public static final NeutralMode NEUTRAL_MODE = NeutralMode.Brake;
-
-                public static final double TILT_PERCENT_OUTPUT = 0.8;
             }
         }
     }
