@@ -12,7 +12,9 @@ import frc.robot.FRCLib.Motors.FRCTalonFX;
 
 public class Drivetrain extends SubsystemBase {
     private FRCTalonFX leftMaster, leftFollower, rightMaster, rightFollower;
-    public DigitalInput sensorLeft, sensorRight;
+    private DigitalInput sensorLeft, sensorRight;
+    private double leftSetpoint, rightSetpoint;
+    
     /** Creates a new Drivetrain. */
     public Drivetrain() {
         sensorLeft = new DigitalInput(Constants.DrivetrainConstants.DrivetrainSensors.LeftSensor.ID);
@@ -70,9 +72,37 @@ public class Drivetrain extends SubsystemBase {
         addChild("drivetrainRightFollower", rightFollower);
     }
 
-    public void set(double left, double right) {
+    public void driveWithoutRamp(double left, double right) {
         this.leftMaster.drivePercentOutput(left);
         this.rightMaster.drivePercentOutput(right);
+        this.leftSetpoint = left;
+        this.rightSetpoint = right;
+    }
+
+    public void driveWithRamp(double left, double right) {
+        double rampLeft = ramp(left, leftSetpoint);
+        double rampRight = ramp(right, rightSetpoint);
+
+        this.leftMaster.drivePercentOutput(rampLeft);
+        this.rightMaster.drivePercentOutput(rampRight);
+        this.leftSetpoint = rampLeft;
+        this.rightSetpoint = rampRight;
+    }
+
+    private double ramp(double input, double currentSpeed) {
+        double dv = input - currentSpeed;
+        if (dv > 0) {
+            // forwards, speeding up
+            if (dv > Constants.DrivetrainConstants.DrivetrainControls.RAMP_LIMIT) {
+                return currentSpeed + Constants.DrivetrainConstants.DrivetrainControls.RAMP_LIMIT;
+            }
+        } else if (dv < 0) {
+            // forwards, slowing down
+            if (dv < -Constants.DrivetrainConstants.DrivetrainControls.RAMP_LIMIT) {
+                return currentSpeed - Constants.DrivetrainConstants.DrivetrainControls.RAMP_LIMIT;
+            }
+        }
+        return input;
     }
 
     @Override
