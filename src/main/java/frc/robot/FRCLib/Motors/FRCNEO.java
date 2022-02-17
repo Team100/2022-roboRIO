@@ -8,6 +8,7 @@
 package frc.robot.FRCLib.Motors;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.SparkMaxAnalogSensor;
 import com.revrobotics.SparkMaxLimitSwitch;
 import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMax.ControlType;
@@ -70,6 +71,10 @@ public class FRCNEO implements Sendable {
         return (int)this.motor.getEncoder().getVelocity();
     }
 
+    public double getAnalogSensorPosition() {
+        return this.motor.getAnalog(this.analogMode).getPosition();
+    }
+
     public int getSelectedSensorPosition() {
         return (int)this.motor.getEncoder().getPosition();
     }
@@ -118,6 +123,7 @@ public class FRCNEO implements Sendable {
             SmartDashboard.putNumber(this.getSmartDashboardPath() + "/reverseSoftLimitThreshold",
                     this.getReverseSoftLimitThreshold());
             SmartDashboard.putBoolean(this.getSmartDashboardPath() + "/sensorPhase", this.isSensorPhase());
+            SmartDashboard.putString(this.getSmartDashboardPath() + "/analogMode", this.getAnalogMode().toString());
             SmartDashboard.putString(this.getSmartDashboardPath() + "/SmartDashboardPath",
                     this.getSmartDashboardPath());
             if (Robot.isReal()) {
@@ -185,6 +191,13 @@ public class FRCNEO implements Sendable {
      * true inverts the encoder signal
      */
     private boolean sensorPhase;
+
+    /**
+     * The mode of the analog senor
+     *
+     * Can be Absolute or Relative
+     */
+    private SparkMaxAnalogSensor.Mode analogMode;
 
     /**
      * The kP value of the motor's PID controller
@@ -451,6 +464,14 @@ public class FRCNEO implements Sendable {
         this.sensorPhase = sensorPhase;
     }
 
+    public SparkMaxAnalogSensor.Mode getAnalogMode() {
+        return this.analogMode;
+    }
+
+    public void setAnalogMode(SparkMaxAnalogSensor.Mode analogMode) {
+        this.analogMode = analogMode;
+    }
+
     public double getkP() {
         return kP;
     }
@@ -673,6 +694,7 @@ public class FRCNEO implements Sendable {
         private int feedbackPort = 0;
         private int timeout = 10;
         private boolean sensorPhase = false;
+        private SparkMaxAnalogSensor.Mode analogMode = SparkMaxAnalogSensor.Mode.kAbsolute;
         private double kP = 0.0;
         private double kI = 0.0;
         private double kD = 0.0;
@@ -732,6 +754,11 @@ public class FRCNEO implements Sendable {
 
         public FRCNEOBuilder withSensorPhase(boolean sensorPhase) {
             this.sensorPhase = sensorPhase;
+            return this;
+        }
+
+        public FRCNEOBuilder withAnalogSensorMode(SparkMaxAnalogSensor.Mode analogMode) {
+            this.analogMode = analogMode;
             return this;
         }
 
@@ -877,6 +904,7 @@ public class FRCNEO implements Sendable {
             fRCNEO.setFeedbackPort(feedbackPort);
             fRCNEO.setTimeout(timeout);
             fRCNEO.setSensorPhase(sensorPhase);
+            fRCNEO.setAnalogMode(analogMode);
             fRCNEO.setAllowableClosedLoopError(allowableClosedLoopError);
             fRCNEO.setCurrentLimitEnabled(currentLimitEnabled);
             fRCNEO.setCurrentLimit(currentLimit);

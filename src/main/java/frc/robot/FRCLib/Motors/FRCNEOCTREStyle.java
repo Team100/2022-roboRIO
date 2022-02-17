@@ -9,7 +9,7 @@ package frc.robot.FRCLib.Motors;
 
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.VelocityMeasPeriod;
+import com.ctre.phoenix.sensors.SensorVelocityMeasPeriod;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.SparkMaxLimitSwitch;
 import com.revrobotics.SparkMaxPIDController;
@@ -273,7 +273,7 @@ public class FRCNEOCTREStyle implements Sendable {
     /**
      * The measurement period (in ms) for velocity control
      */
-    private VelocityMeasPeriod velocityMeasurementPeriod;
+    private SensorVelocityMeasPeriod velocityMeasurementPeriod;
 
     /**
      * The measurement window for the velocity control
@@ -600,11 +600,11 @@ public class FRCNEOCTREStyle implements Sendable {
         this.neutralDeadband = neutralDeadband;
     }
 
-    public VelocityMeasPeriod getVelocityMeasurementPeriod() {
+    public SensorVelocityMeasPeriod getVelocityMeasurementPeriod() {
         return velocityMeasurementPeriod;
     }
 
-    public void setVelocityMeasurementPeriod(VelocityMeasPeriod velocityMeasurementPeriod) {
+    public void setVelocityMeasurementPeriod(SensorVelocityMeasPeriod velocityMeasurementPeriod) {
         this.velocityMeasurementPeriod = velocityMeasurementPeriod;
     }
 
@@ -713,7 +713,7 @@ public class FRCNEOCTREStyle implements Sendable {
         private double peakOutputForward = 1.0;
         private double peakOutputReverse = -1.0;
         private double neutralDeadband = 0.04;
-        private VelocityMeasPeriod velocityMeasurementPeriod = VelocityMeasPeriod.Period_100Ms;// ??
+        private SensorVelocityMeasPeriod velocityMeasurementPeriod = SensorVelocityMeasPeriod.Period_100Ms;// ??
         private int velocityMeasurementWindow = 64;
         private boolean forwardSoftLimitEnabled = false;
         private int forwardSoftLimitThreshold = 0;
@@ -835,7 +835,7 @@ public class FRCNEOCTREStyle implements Sendable {
             return this;
         }
 
-        public FRCNEOCTREStyleBuilder withVelocityMeasurementPeriod(VelocityMeasPeriod velocityMeasurementPeriod) {
+        public FRCNEOCTREStyleBuilder withVelocityMeasurementPeriod(SensorVelocityMeasPeriod velocityMeasurementPeriod) {
             this.velocityMeasurementPeriod = velocityMeasurementPeriod;
             return this;
         }
