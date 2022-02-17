@@ -9,6 +9,7 @@ package frc.robot.FRCLib.Motors;
 
 import com.ctre.phoenix.motorcontrol.*;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.sensors.SensorVelocityMeasPeriod;
 
 import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.util.sendable.SendableBuilder;
@@ -300,7 +301,7 @@ public class FRCTalonSRX implements Sendable {
     /**
      * The measurement period for velocity control
      */
-    private VelocityMeasPeriod velocityMeasurementPeriod;
+    private SensorVelocityMeasPeriod velocityMeasurementPeriod;
 
     /**
      * The measurement window for the velocity control
@@ -687,11 +688,11 @@ public class FRCTalonSRX implements Sendable {
         this.voltageCompensationSaturation = voltageCompensationSaturation;
     }
 
-    public VelocityMeasPeriod getVelocityMeasurementPeriod() {
+    public SensorVelocityMeasPeriod getVelocityMeasurementPeriod() {
         return velocityMeasurementPeriod;
     }
 
-    public void setVelocityMeasurementPeriod(VelocityMeasPeriod velocityMeasurementPeriod) {
+    public void setVelocityMeasurementPeriod(SensorVelocityMeasPeriod velocityMeasurementPeriod) {
         this.velocityMeasurementPeriod = velocityMeasurementPeriod;
     }
 
@@ -815,7 +816,7 @@ public class FRCTalonSRX implements Sendable {
         private double peakOutputReverse = -1.0;
         private double neutralDeadband = 0.04;
         private double voltageCompensationSaturation = 0;
-        private VelocityMeasPeriod velocityMeasurementPeriod = VelocityMeasPeriod.Period_100Ms;// ??
+        private SensorVelocityMeasPeriod velocityMeasurementPeriod = SensorVelocityMeasPeriod.Period_100Ms;// ??
         private int velocityMeasurementWindow = 64;
         private boolean forwardSoftLimitEnabled = false;
         private int forwardSoftLimitThreshold = 0;
@@ -966,7 +967,7 @@ public class FRCTalonSRX implements Sendable {
             return this;
         }
 
-        public FRCTalonSRXBuilder withVelocityMeasurementPeriod(VelocityMeasPeriod velocityMeasurementPeriod) {
+        public FRCTalonSRXBuilder withVelocityMeasurementPeriod(SensorVelocityMeasPeriod velocityMeasurementPeriod) {
             this.velocityMeasurementPeriod = velocityMeasurementPeriod;
             return this;
         }
