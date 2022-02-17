@@ -2,7 +2,6 @@ package frc.robot.commands.intake;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.Intake.ActionState;
 
 public class SpinnerStop extends CommandBase {
     public Intake intake;
@@ -20,7 +19,6 @@ public class SpinnerStop extends CommandBase {
     @Override
     public void initialize() {
         this.intake.runSpinner(0);
-        this.intake.setActionState(ActionState.NOT_INTAKING);
     }
 
     // Called every time the scheduler runs while the command is scheduled.

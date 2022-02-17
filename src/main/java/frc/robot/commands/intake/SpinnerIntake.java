@@ -1,10 +1,10 @@
 package frc.robot.commands.intake;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.Intake.ActionState;
-import frc.robot.subsystems.Intake.ValidAngles;
+import frc.robot.Constants;
 
 public class SpinnerIntake extends CommandBase {
     public boolean done;
@@ -29,8 +29,8 @@ public class SpinnerIntake extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        if (intake.getCurrentAngle() == ValidAngles.DOWN) {
-            intake.setActionState(ActionState.INTAKING);
+        if (intake.getCurrentAngle() == Constants.IntakeConstants.PivotConstants.DOWN_ANGLE) {
+            SmartDashboard.putString("State Machine Status:", "DELETED :)");
             intake.runSpinner(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_PERCENT_OUTPUT);
             done = true;
             return;

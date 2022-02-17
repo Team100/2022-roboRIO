@@ -6,6 +6,7 @@ package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.revrobotics.CANSparkMax.IdleMode;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -72,6 +73,9 @@ public final class Constants {
         }
     }
     public static final class IntakeConstants {
+        public static final class PivotConstants {
+            public static final int DOWN_ANGLE = 30;
+        }
         public static final class IntakeMotionParameters {
             public static final double INTAKE_PERCENT_OUTPUT = 0.7;
             public static final double INTAKE_ZERO = 0;
@@ -131,7 +135,7 @@ public final class Constants {
                 public static final double NOMINAL_OUTPUT_FORWARD = 0;
                 public static final double NOMINAL_OUTPUT_REVERSE = 0;
 
-                public static final NeutralMode NEUTRAL_MODE = NeutralMode.Coast;
+                public static final IdleMode NEUTRAL_MODE = IdleMode.kBrake;
             }
         }
     }
