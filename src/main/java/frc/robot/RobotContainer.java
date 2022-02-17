@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.shooter.Shoot;
+import frc.robot.subsystems.Shooter;
 import frc.robot.commands.drivetrain.Drive;
 import frc.robot.commands.drivetrain.AlignClimber;
 import frc.robot.commands.drivetrain.DriveFurious;
@@ -28,17 +30,18 @@ public class RobotContainer {
 
     // Subsystems
     private final Drivetrain drivetrain = new Drivetrain();
+    private final Shooter shooter = new Shooter();
     private final Intake intake = new Intake();
 
     // OI Devices
     private final Joystick leftJoystick = new Joystick(0);
     private final Joystick rightJoystick = new Joystick(1);
     private final Joystick gamepad = new Joystick(2);
-
-    public JoystickButton turboButton;
-    public JoystickButton intakeIntakeButton;
-    public JoystickButton intakeDownButton;
-    public JoystickButton alignButton;
+  
+    private final JoystickButton turboButton = new JoystickButton(rightJoystick, 1);
+    private final JoystickButton intakeIntakeButton = new JoystickButton(leftJoystick, 3);
+    private final JoystickButton alignButton = new JoystickButton(gamepad, 7);
+    private final JoystickButton shootButton = new JoystickButton(rightJoystick, 1);
 
     // Commands
     private final Drive driveCommand = new Drive(drivetrain, leftJoystick, rightJoystick);
@@ -46,6 +49,7 @@ public class RobotContainer {
     private final AlignClimber alignCommand = new AlignClimber(drivetrain);
     private final IntakeIntake intakeIntakeCommand = new IntakeIntake(intake);
     private final IntakeStop intakeStopCommand = new IntakeStop(intake);
+    private final Shoot shootCommand = new Shoot(shooter);
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
@@ -64,13 +68,9 @@ public class RobotContainer {
      * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
      */
     private void configureButtonBindings() {
-        turboButton = new JoystickButton(rightJoystick, 1);
+        shootButton.whileHeld(shootCommand);
         turboButton.whileHeld(driveFuriousCommand);
-        
-        intakeIntakeButton = new JoystickButton(leftJoystick, 3);
         intakeIntakeButton.whileHeld(intakeIntakeCommand);
-        
-        alignButton = new JoystickButton(gamepad, 7);
         alignButton.whileHeld(alignCommand);
     }
 
