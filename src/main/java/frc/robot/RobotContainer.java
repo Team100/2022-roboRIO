@@ -39,7 +39,7 @@ public class RobotContainer {
     private final JoystickButton turboButton = new JoystickButton(rightJoystick, 1);
     private final JoystickButton intakeIntakeButton = new JoystickButton(leftJoystick, 3);
     private final JoystickButton alignButton = new JoystickButton(gamepad, 7);
-    private final JoystickButton shootButton = new JoystickButton(rightJoystick, 1);
+    private final JoystickButton shootButton = new JoystickButton(leftJoystick, 1);
     private final JoystickButton indexerIntakeButton = new JoystickButton(gamepad, 6);
     private final JoystickButton ejectButton = new JoystickButton(gamepad, 5);
     private final JoystickButton feedButton = new JoystickButton(gamepad, 1);
