@@ -9,10 +9,15 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.Drive;
 import frc.robot.commands.shooter.Shoot;
-import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Shooter;
+import frc.robot.commands.drivetrain.Drive;
+import frc.robot.commands.drivetrain.AlignClimber;
+import frc.robot.commands.drivetrain.DriveFurious;
+import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Intake;
+import frc.robot.commands.intake.IntakeIntake;
+import frc.robot.commands.intake.IntakeStop;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -26,20 +31,31 @@ public class RobotContainer {
     // Subsystems
     private final Drivetrain drivetrain = new Drivetrain();
     private final Shooter shooter = new Shooter();
+    private final Intake intake = new Intake();
 
     // OI Devices
     private final Joystick leftJoystick = new Joystick(0);
     private final Joystick rightJoystick = new Joystick(1);
+    private final Joystick gamepad = new Joystick(2);
+  
+    private final JoystickButton turboButton = new JoystickButton(rightJoystick, 1);
+    private final JoystickButton intakeIntakeButton = new JoystickButton(leftJoystick, 3);
+    private final JoystickButton alignButton = new JoystickButton(gamepad, 7);
     private final JoystickButton shootButton = new JoystickButton(rightJoystick, 1);
 
     // Commands
     private final Drive driveCommand = new Drive(drivetrain, leftJoystick, rightJoystick);
+    private final DriveFurious driveFuriousCommand = new DriveFurious(drivetrain, leftJoystick, rightJoystick);
+    private final AlignClimber alignCommand = new AlignClimber(drivetrain);
+    private final IntakeIntake intakeIntakeCommand = new IntakeIntake(intake);
+    private final IntakeStop intakeStopCommand = new IntakeStop(intake);
     private final Shoot shootCommand = new Shoot(shooter);
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
         // Set default commands
         drivetrain.setDefaultCommand(driveCommand);
+        intake.setDefaultCommand(intakeStopCommand);
 
         // Configure the button bindings
         configureButtonBindings();
@@ -53,6 +69,9 @@ public class RobotContainer {
      */
     private void configureButtonBindings() {
         shootButton.whileHeld(shootCommand);
+        turboButton.whileHeld(driveFuriousCommand);
+        intakeIntakeButton.whileHeld(intakeIntakeCommand);
+        alignButton.whileHeld(alignCommand);
     }
 
     /**
