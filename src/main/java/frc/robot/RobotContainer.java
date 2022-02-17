@@ -4,26 +4,17 @@
 
 package frc.robot;
 
-import frc.robot.commands.indexer.*;
-import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.Indexer;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.subsystems.Climber;
-import frc.robot.commands.climb.ClimberControl;
-import frc.robot.commands.climb.ClimberStop
-import frc.robot.commands.shooter.Shoot;
-import frc.robot.subsystems.Shooter;
-import frc.robot.commands.drivetrain.Drive;
-import frc.robot.commands.drivetrain.AlignClimber;
-import frc.robot.commands.drivetrain.DriveFurious;
-import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.Intake;
-import frc.robot.commands.intake.IntakeIntake;
-import frc.robot.commands.intake.IntakeStop;
+import frc.robot.subsystems.*;
+import frc.robot.commands.drivetrain.*;
+import frc.robot.commands.intake.*;
+import frc.robot.commands.indexer.*;
+import frc.robot.commands.climber.*;
+import frc.robot.commands.shooter.*;
 
 /**
 * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -45,7 +36,6 @@ public class RobotContainer {
     private final Joystick leftJoystick = new Joystick(0);
     private final Joystick rightJoystick = new Joystick(1);
     private final Joystick gamepad = new Joystick(2);
-
     private final JoystickButton turboButton = new JoystickButton(rightJoystick, 1);
     private final JoystickButton intakeIntakeButton = new JoystickButton(leftJoystick, 3);
     private final JoystickButton alignButton = new JoystickButton(gamepad, 7);
@@ -62,10 +52,10 @@ public class RobotContainer {
     private final IntakeIntake intakeIntakeCommand = new IntakeIntake(intake);
     private final IntakeStop intakeStopCommand = new IntakeStop(intake);
     private final Shoot shootCommand = new Shoot(shooter);
-    private final Stop indexerStopCommand = new Stop(indexer);
-    private final Intake intakeCommand = new Intake(indexer);
-    private final Eject ejectCommand = new Eject(indexer);
-    private final Feed feedCommand = new Feed(indexer);
+    private final IndexerStop indexerStopCommand = new IndexerStop(indexer);
+    private final IndexerIntake intakeCommand = new IndexerIntake(indexer);
+    private final IndexerEject ejectCommand = new IndexerEject(indexer);
+    private final IndexerFeed feedCommand = new IndexerFeed(indexer);
     private final ClimberStop climberStopCommand = new ClimberStop(climber);
     private final ClimberControl climberControl = new ClimberControl(climber, gamepad);
 
@@ -76,6 +66,7 @@ public class RobotContainer {
         climber.setDefaultCommand(climberStopCommand);
         indexer.setDefaultCommand(indexerStopCommand);
         intake.setDefaultCommand(intakeStopCommand);
+
         //Sanjan.setDefaultCommand(STOP)
 
         // Configure the button bindings

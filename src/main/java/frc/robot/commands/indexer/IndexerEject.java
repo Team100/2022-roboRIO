@@ -8,11 +8,11 @@ import frc.robot.Constants.IndexerConstants.*;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Indexer;
 
-public class Eject extends CommandBase {
-    /** Creates a new Eject. */
+public class IndexerEject extends CommandBase {
+    /** Creates a new IndexerEject. */
     private Indexer indexer;
 
-    public Eject(Indexer indexer) {
+    public IndexerEject(Indexer indexer) {
         // Use addRequirements() here to declare subsystem dependencies.
         this.indexer = indexer;
         addRequirements(indexer);

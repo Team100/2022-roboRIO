@@ -33,13 +33,13 @@ public class AlignClimber extends CommandBase {
         SmartDashboard.putString("Port and Starboard status:", "we are not using port and starboad :(");
 
         if(!drivetrain.getSensorLeft() && !drivetrain.getSensorRight()){
-            drivetrain.set(Constants.DrivetrainConstants.DrivetrainMotion.AlignSpeed, Constants.DrivetrainConstants.DrivetrainMotion.AlignSpeed);
+            drivetrain.driveWithoutRamp(Constants.DrivetrainConstants.DrivetrainMotion.AlignSpeed, Constants.DrivetrainConstants.DrivetrainMotion.AlignSpeed);
         } else if (drivetrain.getSensorLeft() && !drivetrain.getSensorRight()){
-            drivetrain.set(0, Constants.DrivetrainConstants.DrivetrainMotion.AlignSpeed);
+            drivetrain.driveWithoutRamp(0, Constants.DrivetrainConstants.DrivetrainMotion.AlignSpeed);
         } else if (drivetrain.getSensorRight() && !drivetrain.getSensorLeft()){
-            drivetrain.set(Constants.DrivetrainConstants.DrivetrainMotion.AlignSpeed, 0);
+            drivetrain.driveWithoutRamp(Constants.DrivetrainConstants.DrivetrainMotion.AlignSpeed, 0);
         } else if (drivetrain.getSensorLeft() && drivetrain.getSensorRight()){
-            drivetrain.set(0, 0);
+            drivetrain.driveWithoutRamp(0, 0);
             done = true;
         }
         SmartDashboard.putBoolean("climber allgined?", done);
@@ -48,7 +48,7 @@ public class AlignClimber extends CommandBase {
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        drivetrain.set(0, 0);
+        drivetrain.driveWithoutRamp(0, 0);
     }
 
     // Returns true when the command should end.

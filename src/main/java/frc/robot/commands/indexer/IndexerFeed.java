@@ -8,14 +8,14 @@ import static frc.robot.Constants.IndexerConstants.IndexerMotionParameters.*;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Indexer;
 
-public class Feed extends CommandBase {
+public class IndexerFeed extends CommandBase {
     private Indexer indexer;
     private boolean wasFalse;
     private boolean done = false;
     private boolean shouldCheckRefill;
 
-    /** Creates a new Feed. */
-    public Feed(Indexer indexer) {
+    /** Creates a new IndexerFeed. */
+    public IndexerFeed(Indexer indexer) {
         this.indexer = indexer;
 
         // Use addRequirements() here to declare subsystem dependencies.

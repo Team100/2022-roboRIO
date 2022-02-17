@@ -9,12 +9,12 @@ import frc.robot.subsystems.Indexer;
 
 import frc.robot.Constants;
 
-public class Intake extends CommandBase {
+public class IndexerIntake extends CommandBase {
     private Indexer indexer;
     private boolean done = false;
 
-    /** Creates a new Indexer. */
-    public Intake(Indexer indexer) {
+    /** Creates a new IndexerIntake. */
+    public IndexerIntake(Indexer indexer) {
         this.indexer = indexer;
 
         // Use addRequirements() here to declare subsystem dependencies.
