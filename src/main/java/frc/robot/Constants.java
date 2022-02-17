@@ -6,6 +6,7 @@ package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.revrobotics.SparkMaxAnalogSensor;
 import com.revrobotics.CANSparkMax.IdleMode;
 
 /**
@@ -74,10 +75,11 @@ public final class Constants {
     }
     public static final class IntakeConstants {
         public static final class PivotConstants {
-            public static final int DOWN_ANGLE = 30;
+            public static final int DOWN_POSITION = 30;
         }
         public static final class IntakeMotionParameters {
-            public static final double INTAKE_PERCENT_OUTPUT = 0.7;
+            public static final double INTAKE_SPINNER_PERCENT_OUTPUT = 0.7;
+            public static final double INTAKE_PIVOT_PERCENT_OUTPUT = 0.1;
             public static final double INTAKE_ZERO = 0;
 
             public static final int ZEROED_ENCODER_TICKS = 65;
@@ -114,7 +116,7 @@ public final class Constants {
                 public static final double NOMINAL_OUTPUT_FORWARD = 0;
                 public static final double NOMINAL_OUTPUT_REVERSE = 0;
 
-                public static final NeutralMode NEUTRAL_MODE = NeutralMode.Coast;
+                public static final IdleMode NEUTRAL_MODE = IdleMode.kCoast;
             }
 
             public static final class IntakePivot {
@@ -134,6 +136,8 @@ public final class Constants {
 
                 public static final double NOMINAL_OUTPUT_FORWARD = 0;
                 public static final double NOMINAL_OUTPUT_REVERSE = 0;
+
+                public static final SparkMaxAnalogSensor.Mode ANALOG_MODE = SparkMaxAnalogSensor.Mode.kAbsolute;
 
                 public static final IdleMode NEUTRAL_MODE = IdleMode.kBrake;
             }

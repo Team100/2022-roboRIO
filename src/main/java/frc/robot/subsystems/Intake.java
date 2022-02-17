@@ -28,6 +28,7 @@ public class Intake extends SubsystemBase {
             .withOpenLoopRampRate(Constants.IntakeConstants.IntakeMotors.IntakeSpin.OPEN_LOOP_RAMP)
             .withPeakOutputForward(Constants.IntakeConstants.IntakeMotors.IntakeSpin.PEAK_OUTPUT_FORWARD)
             .withPeakOutputReverse(Constants.IntakeConstants.IntakeMotors.IntakeSpin.PEAK_OUTPUT_REVERSE)
+            .withNeutralMode(Constants.IntakeConstants.IntakeMotors.IntakeSpin.NEUTRAL_MODE)
             .build();
     
 
@@ -42,6 +43,7 @@ public class Intake extends SubsystemBase {
             .withPeakOutputForward(Constants.IntakeConstants.IntakeMotors.IntakePivot.PEAK_OUTPUT_FORWARD)
             .withPeakOutputReverse(Constants.IntakeConstants.IntakeMotors.IntakePivot.PEAK_OUTPUT_REVERSE)
             .withNeutralMode(Constants.IntakeConstants.IntakeMotors.IntakePivot.NEUTRAL_MODE)
+            .withAnalogSensorMode(Constants.IntakeConstants.IntakeMotors.IntakePivot.ANALOG_MODE)
             .build();
 
             addChild("intakePivot", pivot);
@@ -53,8 +55,8 @@ public class Intake extends SubsystemBase {
             // This method will be called once per scheduler run
         }
 
-        public int getCurrentAngle(){
-            pivot.
+        public double getCurrentPosition(){
+            return pivot.getAnalogSensorPosition();
         }
 
         public void runPivot(double percentOutput) {

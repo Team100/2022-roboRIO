@@ -12,8 +12,8 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.Drive;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Intake;
-import frc.robot.commands.intake.PivotDown;
-import frc.robot.commands.intake.SpinnerStop;
+import frc.robot.commands.intake.IntakeIntake;
+import frc.robot.commands.intake.IntakeStop;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -28,8 +28,6 @@ public class RobotContainer {
     private final Drivetrain drivetrain = new Drivetrain();
     private final Intake intake = new Intake();
 
-
-
     // OI Devices
     private final Joystick leftJoystick = new Joystick(0);
     private final Joystick rightJoystick = new Joystick(1);
@@ -39,13 +37,14 @@ public class RobotContainer {
 
     // Commands
     private final Drive driveCommand = new Drive(drivetrain, leftJoystick, rightJoystick);
-    private final frc.robot.commands.intake.SpinnerStop intakeSpinnerStopCommand = new frc.robot.commands.intake.SpinnerStop(intake);
+    private final IntakeIntake intakeIntakeCommand = new IntakeIntake(intake);
+    private final IntakeStop intakeStopCommand = new IntakeStop(intake);
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
         // Set default commands
         drivetrain.setDefaultCommand(driveCommand);
-        intake.setDefaultCommand(new SpinnerStop(intake));
+        intake.setDefaultCommand(intakeStopCommand);
 
         // Configure the button bindings
         configureButtonBindings();
@@ -58,11 +57,8 @@ public class RobotContainer {
      * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
      */
     private void configureButtonBindings() {
-        intakeIntakeButton = new JoystickButton(leftJoystick, 1);
-        intakeIntakeButton.whileHeld(intakeSpinnerStopCommand);
-
-        intakeDownButton = new JoystickButton(leftJoystick, 3);
-        intakeDownButton.whileHeld(new PivotDown(intake));
+        intakeIntakeButton = new JoystickButton(leftJoystick, 3);
+        intakeIntakeButton.whileHeld(intakeIntakeCommand);
     }
 
     /**
