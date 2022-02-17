@@ -9,15 +9,12 @@ import frc.robot.Constants;
 import frc.robot.FRCLib.Motors.FRCNEO;
 
 public class Intake extends SubsystemBase {
-
     private FRCNEO spin, pivot;
-
 
     /**
      * Creates a new Intake.
      */
     public Intake() {
-    
         spin = new FRCNEO.FRCNEOBuilder(Constants.IntakeConstants.IntakeMotors.IntakeSpin.CAN_ID)
             .withInverted(Constants.IntakeConstants.IntakeMotors.IntakeSpin.INVERT)
             .withFeedbackPort(Constants.IntakeConstants.IntakeMotors.IntakeSpin.FEEDBACK_PORT)
@@ -46,25 +43,25 @@ public class Intake extends SubsystemBase {
             .withAnalogSensorMode(Constants.IntakeConstants.IntakeMotors.IntakePivot.ANALOG_MODE)
             .build();
 
-            addChild("intakePivot", pivot);
-            addChild("intakeSpin", spin);
-        }
-
-        @Override
-        public void periodic() {
-            // This method will be called once per scheduler run
-        }
-
-        public double getCurrentPosition(){
-            return pivot.getAnalogSensorPosition();
-        }
-
-        public void runPivot(double percentOutput) {
-            pivot.drivePercentOutput(percentOutput);
-        }
-
-        public void runSpinner(double percentOutput) {
-            spin.drivePercentOutput(percentOutput);
-        }
+        addChild("intakePivot", pivot);
+        addChild("intakeSpin", spin);
     }
+
+    @Override
+    public void periodic() {
+        // This method will be called once per scheduler run
+    }
+
+    public double getCurrentPosition(){
+        return pivot.getAnalogSensorPosition();
+    }
+
+    public void runPivot(double percentOutput) {
+        pivot.drivePercentOutput(percentOutput);
+    }
+
+    public void runSpinner(double percentOutput) {
+        spin.drivePercentOutput(percentOutput);
+    }
+}
     

@@ -5,16 +5,16 @@ import frc.robot.Constants;
 import frc.robot.subsystems.Intake;
 
 public class IntakeIntake extends CommandBase {
-    public boolean done;
-
-    public Intake intake;
+    private Intake intake;
+    private boolean done;
 
     /**
      * Creates a new IntakeIntake.
      */
     public IntakeIntake(Intake intake) {
-        // Use addRequirements() here to declare subsystem dependencies.
         this.intake = intake;
+
+        // Use addRequirements() here to declare subsystem dependencies.
         addRequirements(this.intake);
     }
 

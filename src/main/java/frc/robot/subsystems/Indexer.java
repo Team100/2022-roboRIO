@@ -10,9 +10,9 @@ import frc.robot.Constants;
 import frc.robot.FRCLib.Motors.FRCTalonFX;
 
 public class Indexer extends SubsystemBase {
-    public FRCTalonFX stageOneMotor, stageTwoMotor;
-    public DigitalInput sensor1, sensor2;
-    public double stageOneSetpoint, stageTwoSetpoint;
+    private FRCTalonFX stageOneMotor, stageTwoMotor;
+    private DigitalInput sensor1, sensor2;
+    private double stageOneSetpoint, stageTwoSetpoint;
 
     /**
     * Creates a new Indexer.
@@ -20,7 +20,7 @@ public class Indexer extends SubsystemBase {
     public Indexer() {
         sensor1 = new DigitalInput(Constants.IndexerConstants.IndexerSensors.FrontSensor.ID);
         sensor2 = new DigitalInput(Constants.IndexerConstants.IndexerSensors.RearSensor.ID);
-        // Construct Motor Objects
+        
         stageOneMotor = new FRCTalonFX.FRCTalonFXBuilder(Constants.IndexerConstants.IndexerMotors.IndexerStageOne.CAN_ID)
             .withInverted(Constants.IndexerConstants.IndexerMotors.IndexerStageOne.INVERT)
             .withFeedbackPort(Constants.IndexerConstants.IndexerMotors.IndexerStageOne.FEEDBACK_PORT)

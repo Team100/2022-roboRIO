@@ -29,7 +29,8 @@ public class Drivetrain extends SubsystemBase {
             .withSensorPhase(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.SENSOR_PHASE)
             .withPeakOutputForward(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.PEAK_OUTPUT_FORWARD)
             .withPeakOutputReverse(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.PEAK_OUTPUT_REVERSE)
-            .withNeutralMode(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.NEUTRAL_MODE).build();
+            .withNeutralMode(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.NEUTRAL_MODE)
+            .build();
 
         leftFollower = new FRCTalonFX.FRCTalonFXBuilder(Constants.DrivetrainConstants.DrivetrainMotors.LeftFollower.CAN_ID)
             .withKP(Constants.DrivetrainConstants.DrivetrainMotors.LeftFollower.KP)
@@ -41,7 +42,8 @@ public class Drivetrain extends SubsystemBase {
             .withPeakOutputForward(Constants.DrivetrainConstants.DrivetrainMotors.LeftFollower.PEAK_OUTPUT_FORWARD)
             .withPeakOutputReverse(Constants.DrivetrainConstants.DrivetrainMotors.LeftFollower.PEAK_OUTPUT_REVERSE)
             .withNeutralMode(Constants.DrivetrainConstants.DrivetrainMotors.LeftFollower.NEUTRAL_MODE)
-            .withMaster(leftMaster).build();
+            .withMaster(leftMaster)
+            .build();
 
         rightMaster = new FRCTalonFX.FRCTalonFXBuilder(Constants.DrivetrainConstants.DrivetrainMotors.RightMaster.CAN_ID)
             .withKP(Constants.DrivetrainConstants.DrivetrainMotors.RightMaster.KP)
@@ -52,7 +54,8 @@ public class Drivetrain extends SubsystemBase {
             .withSensorPhase(Constants.DrivetrainConstants.DrivetrainMotors.RightMaster.SENSOR_PHASE)
             .withPeakOutputForward(Constants.DrivetrainConstants.DrivetrainMotors.RightMaster.PEAK_OUTPUT_FORWARD)
             .withPeakOutputReverse(Constants.DrivetrainConstants.DrivetrainMotors.RightMaster.PEAK_OUTPUT_REVERSE)
-            .withNeutralMode(Constants.DrivetrainConstants.DrivetrainMotors.RightMaster.NEUTRAL_MODE).build();
+            .withNeutralMode(Constants.DrivetrainConstants.DrivetrainMotors.RightMaster.NEUTRAL_MODE)
+            .build();
 
         rightFollower = new FRCTalonFX.FRCTalonFXBuilder(Constants.DrivetrainConstants.DrivetrainMotors.RightFollower.CAN_ID)
             .withKP(Constants.DrivetrainConstants.DrivetrainMotors.RightFollower.KP)
@@ -64,7 +67,8 @@ public class Drivetrain extends SubsystemBase {
             .withPeakOutputForward(Constants.DrivetrainConstants.DrivetrainMotors.RightFollower.PEAK_OUTPUT_FORWARD)
             .withPeakOutputReverse(Constants.DrivetrainConstants.DrivetrainMotors.RightFollower.PEAK_OUTPUT_REVERSE)
             .withNeutralMode(Constants.DrivetrainConstants.DrivetrainMotors.RightFollower.NEUTRAL_MODE)
-            .withMaster(rightMaster).build();
+            .withMaster(rightMaster)
+            .build();
 
         addChild("drivetrainLeftMaster", leftMaster);
         addChild("drivetrainRightMaster", rightMaster);
@@ -93,13 +97,13 @@ public class Drivetrain extends SubsystemBase {
         double dv = input - currentSpeed;
         if (dv > 0) {
             // forwards, speeding up
-            if (dv > Constants.DrivetrainConstants.DrivetrainControls.RAMP_LIMIT) {
-                return currentSpeed + Constants.DrivetrainConstants.DrivetrainControls.RAMP_LIMIT;
+            if (dv > Constants.DrivetrainConstants.DrivetrainMotion.RAMP_LIMIT) {
+                return currentSpeed + Constants.DrivetrainConstants.DrivetrainMotion.RAMP_LIMIT;
             }
         } else if (dv < 0) {
             // forwards, slowing down
-            if (dv < -Constants.DrivetrainConstants.DrivetrainControls.RAMP_LIMIT) {
-                return currentSpeed - Constants.DrivetrainConstants.DrivetrainControls.RAMP_LIMIT;
+            if (dv < -Constants.DrivetrainConstants.DrivetrainMotion.RAMP_LIMIT) {
+                return currentSpeed - Constants.DrivetrainConstants.DrivetrainMotion.RAMP_LIMIT;
             }
         }
         return input;

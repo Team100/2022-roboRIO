@@ -3,11 +3,11 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.subsystems;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ShooterConstants.*;
 import frc.robot.FRCLib.Motors.FRCTalonFX;
-
 
 public class Shooter extends SubsystemBase {
     private FRCTalonFX shootMotor;
@@ -42,7 +42,8 @@ public class Shooter extends SubsystemBase {
         // This method will be called once per scheduler run
 
         atSpeed = (shootMotor.getSensorVelocity() >= ShooterMotionParameters.NOMINAL_VELOCITY);
-        //if(atSpeed) System.out.println("MOTOR GO BRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR");
-        SmartDashboard.putNumber("ShooterRPM", (shootMotor.getSensorVelocity()/2048)*600);
+        // if(atSpeed) System.out.println("MOTOR GO BRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR");
+        // TODO: Implement Encoder conversion utilities
+        SmartDashboard.putNumber("ShooterRPM", (shootMotor.getSensorVelocity()/2048)*(1000/100)*60);
     }
 }

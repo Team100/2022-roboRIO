@@ -4,7 +4,7 @@
 
 package frc.robot.commands.indexer;
 
-import static frc.robot.Constants.IndexerConstants.IndexerMotionParameters.*;
+import frc.robot.Constants;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Indexer;
 
@@ -40,8 +40,8 @@ public class IndexerFeed extends CommandBase {
                 return;
             }
 
-            indexer.runMotorOne(STAGE_ONE_PERCENT_OUTPUT_FORWARD);
-            indexer.runMotorTwo(STAGE_TWO_PERCENT_OUTPUT_FORWARD);
+            indexer.runMotorOne(Constants.IndexerConstants.IndexerMotionParameters.STAGE_ONE_PERCENT_OUTPUT_FORWARD);
+            indexer.runMotorTwo(Constants.IndexerConstants.IndexerMotionParameters.STAGE_TWO_PERCENT_OUTPUT_FORWARD);
 
             if (!indexer.getSensorTwo()) {
                 wasFalse = true;
@@ -52,8 +52,8 @@ public class IndexerFeed extends CommandBase {
                 return;
             }
 
-            indexer.runMotorOne(STAGE_ONE_PERCENT_OUTPUT_FORWARD);
-            indexer.runMotorTwo(STAGE_TWO_PERCENT_OUTPUT_FORWARD);
+            indexer.runMotorOne(Constants.IndexerConstants.IndexerMotionParameters.STAGE_ONE_PERCENT_OUTPUT_FORWARD);
+            indexer.runMotorTwo(Constants.IndexerConstants.IndexerMotionParameters.STAGE_TWO_PERCENT_OUTPUT_FORWARD);
         }
     }
         
