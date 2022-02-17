@@ -39,7 +39,7 @@ public class RobotContainer {
     private final JoystickButton turboButton          = new JoystickButton(rightJoystick, Constants.OI.RightJoystick.DRIVE_TURBO);
     private final JoystickButton intakeIntakeButton   = new JoystickButton(leftJoystick, Constants.OI.LeftJoystick.INTAKE_INTAKE);
     private final JoystickButton alignButton          = new JoystickButton(gamepad, Constants.OI.Gamepad.ALIGN_CLIMBER);
-    private final JoystickButton shootButton          = new JoystickButton(rightJoystick, Constants.OI.RightJoystick.SHOOTER_SHOOT);
+    private final JoystickButton shootButton          = new JoystickButton(leftJoystick, Constants.OI.LeftJoystick.SHOOTER_SHOOT);
     private final JoystickButton indexerIntakeButton  = new JoystickButton(gamepad, Constants.OI.Gamepad.INDEXER_INTAKE);
     private final JoystickButton ejectButton          = new JoystickButton(gamepad, Constants.OI.Gamepad.INDEXER_EJECT);
     private final JoystickButton feedButton           = new JoystickButton(gamepad, Constants.OI.Gamepad.INDEXER_FEED);

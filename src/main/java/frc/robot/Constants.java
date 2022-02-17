@@ -22,6 +22,7 @@ public final class Constants {
         public static final class LeftJoystick {
             public static final int PORT = 0;
 
+            public static final int SHOOTER_SHOOT = 1;
             public static final int INTAKE_INTAKE = 3;
         }
 
@@ -29,7 +30,6 @@ public final class Constants {
             public static final int PORT = 1;
 
             public static final int DRIVE_TURBO = 1;
-            public static final int SHOOTER_SHOOT = 1;
         }
 
         public static final class Gamepad {
@@ -39,7 +39,7 @@ public final class Constants {
             public static final int ALIGN_CLIMBER = 7;
             public static final int INDEXER_INTAKE = 6;
             public static final int INDEXER_EJECT = 5;
-            public static final int INDEXER_FEED = 1;
+            public static final int INDEXER_FEED = 4;
             public static final int CLIMBER_CONTROL = 3;
             public static final int CLIMBER_TILT_FORWARD = 1;
             public static final int CLIMBER_TILT_REVERSE = 2;
