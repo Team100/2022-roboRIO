@@ -70,5 +70,8 @@ public final class Constants {
                 public static final NeutralMode NEUTRAL_MODE = NeutralMode.Coast;
             }
         }
+        public static final class DrivetrainControls {
+            public static final double RAMP_LIMIT = 0.01;
+        }
     }
 }
