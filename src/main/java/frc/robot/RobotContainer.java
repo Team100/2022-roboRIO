@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.drivetrain.Drive;
+import frc.robot.commands.drivetrain.AlignClimber;
 import frc.robot.commands.drivetrain.DriveFurious;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Intake;
@@ -32,14 +33,17 @@ public class RobotContainer {
     // OI Devices
     private final Joystick leftJoystick = new Joystick(0);
     private final Joystick rightJoystick = new Joystick(1);
+    private final Joystick gamepad = new Joystick(2);
 
     public JoystickButton turboButton;
     public JoystickButton intakeIntakeButton;
     public JoystickButton intakeDownButton;
+    public JoystickButton alignButton;
 
     // Commands
     private final Drive driveCommand = new Drive(drivetrain, leftJoystick, rightJoystick);
     private final DriveFurious driveFuriousCommand = new DriveFurious(drivetrain, leftJoystick, rightJoystick);
+    private final AlignClimber alignCommand = new AlignClimber(drivetrain);
     private final IntakeIntake intakeIntakeCommand = new IntakeIntake(intake);
     private final IntakeStop intakeStopCommand = new IntakeStop(intake);
 
@@ -65,6 +69,9 @@ public class RobotContainer {
         
         intakeIntakeButton = new JoystickButton(leftJoystick, 3);
         intakeIntakeButton.whileHeld(intakeIntakeCommand);
+        
+        alignButton = new JoystickButton(gamepad, 7);
+        alignButton.whileHeld(alignCommand);
     }
 
     /**

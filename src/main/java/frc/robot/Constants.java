@@ -19,6 +19,17 @@ import com.revrobotics.CANSparkMax.IdleMode;
  */
 public final class Constants {
     public static final class DrivetrainConstants {
+        public static final class DrivetrainMotion{
+            public static final double AlignSpeed = 0.05;
+        }
+        public static final class DrivetrainSensors{
+            public static final class LeftSensor{
+                public static final int ID = 1;
+            }
+            public static final class RightSensor{
+                public static final int ID = 2;
+            }
+        }
         public static final class DrivetrainMotors {
             public static final class LeftMaster {
                 public static final int CAN_ID = 18;
