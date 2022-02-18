@@ -19,6 +19,16 @@ import com.revrobotics.CANSparkMax.IdleMode;
  */
 public final class Constants {
     public static final class OI {
+        public static final class Xbox {
+            public static final int PORT = 3;
+
+            public static final int DRIVE_TURBO = 1;
+
+            public static final int DRIVE_FORWARD_AXIS = 3;
+            public static final int DRIVE_REVERSE_AXIS = 2;
+            public static final int DRIVE_TURN_AXIS = 0;
+        }
+
         public static final class LeftJoystick {
             public static final int PORT = 0;
 

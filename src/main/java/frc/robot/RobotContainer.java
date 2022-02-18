@@ -33,21 +33,22 @@ public class RobotContainer {
     private final Indexer        indexer              = new Indexer       ();
 
     // OI Devices
-    private final Joystick       leftJoystick         = new Joystick      (Constants.OI.LeftJoystick.PORT);
-    private final Joystick       rightJoystick        = new Joystick      (Constants.OI.RightJoystick.PORT);
+    private final XboxController xboxController       = new XboxController(Constants.OI.Xbox.PORT);
+    // private final Joystick       leftJoystick         = new Joystick      (Constants.OI.LeftJoystick.PORT);
+    // private final Joystick       rightJoystick        = new Joystick      (Constants.OI.RightJoystick.PORT);
     private final Joystick       gamepad              = new Joystick      (Constants.OI.Gamepad.PORT);
-    private final JoystickButton turboButton          = new JoystickButton(rightJoystick, Constants.OI.RightJoystick.DRIVE_TURBO);
-    private final JoystickButton intakeIntakeButton   = new JoystickButton(leftJoystick, Constants.OI.LeftJoystick.INTAKE_INTAKE);
+    private final JoystickButton turboButton          = new JoystickButton(xboxController, Constants.OI.Xbox.DRIVE_TURBO);
+    // private final JoystickButton intakeIntakeButton   = new JoystickButton(leftJoystick, Constants.OI.LeftJoystick.INTAKE_INTAKE);
     private final JoystickButton alignButton          = new JoystickButton(gamepad, Constants.OI.Gamepad.ALIGN_CLIMBER);
-    private final JoystickButton shootButton          = new JoystickButton(leftJoystick, Constants.OI.LeftJoystick.SHOOTER_SHOOT);
+    // private final JoystickButton shootButton          = new JoystickButton(leftJoystick, Constants.OI.LeftJoystick.SHOOTER_SHOOT);
     private final JoystickButton indexerIntakeButton  = new JoystickButton(gamepad, Constants.OI.Gamepad.INDEXER_INTAKE);
     private final JoystickButton ejectButton          = new JoystickButton(gamepad, Constants.OI.Gamepad.INDEXER_EJECT);
     private final JoystickButton feedButton           = new JoystickButton(gamepad, Constants.OI.Gamepad.INDEXER_FEED);
     private final JoystickButton climberControlButton = new JoystickButton(gamepad, Constants.OI.Gamepad.CLIMBER_CONTROL);
 
     // Commands
-    private final Drive          driveCommand         = new Drive         (drivetrain, leftJoystick, rightJoystick);
-    private final DriveFurious   driveFuriousCommand  = new DriveFurious  (drivetrain, leftJoystick, rightJoystick);
+    private final Drive          driveCommand         = new Drive         (drivetrain, xboxController);
+    private final DriveFurious   driveFuriousCommand  = new DriveFurious  (drivetrain, xboxController);
     private final AlignClimber   alignCommand         = new AlignClimber  (drivetrain);
     private final IntakeIntake   intakeIntakeCommand  = new IntakeIntake  (intake);
     private final IntakeStop     intakeStopCommand    = new IntakeStop    (intake);
@@ -80,9 +81,9 @@ public class RobotContainer {
     * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
     */
     private void configureButtonBindings() {
-        shootButton         .whileHeld  (shootCommand);
+        // shootButton         .whileHeld  (shootCommand);
         turboButton         .whileHeld  (driveFuriousCommand);
-        intakeIntakeButton  .whileHeld  (intakeIntakeCommand);
+        // intakeIntakeButton  .whileHeld  (intakeIntakeCommand);
         alignButton         .whileHeld  (alignCommand);
         indexerIntakeButton .whileHeld  (intakeCommand);
         ejectButton         .whileHeld  (ejectCommand);

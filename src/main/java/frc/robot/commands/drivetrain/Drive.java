@@ -6,17 +6,15 @@ package frc.robot.commands.drivetrain;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Drivetrain;
-import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
 
 public class Drive extends CommandBase {
     private final Drivetrain drivetrain;
-    private final Joystick leftJoystick;
-    private final Joystick rightJoystick;
+    private final XboxController xboxController;
 
-    public Drive(Drivetrain dt, Joystick l, Joystick r) {
+    public Drive(Drivetrain dt, XboxController x) {
         drivetrain = dt;
-        leftJoystick = l;
-        rightJoystick = r;
+        xboxController = x;
         
         // Use addRequirements() here to declare subsystem dependencies.
         addRequirements(drivetrain);
@@ -29,10 +27,12 @@ public class Drive extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        double left = leftJoystick.getY() - rightJoystick.getX();
-        double right = leftJoystick.getY() + rightJoystick.getX();
-        double limiter = (-rightJoystick.getZ()+1)/2;
-        drivetrain.driveWithRamp((left*limiter), (right*limiter));
+        double longVel = xboxController.getRightTriggerAxis() - xboxController.getLeftTriggerAxis();
+
+        double left = longVel - xboxController.getLeftX();
+        double right = longVel + xboxController.getLeftX();
+        System.out.println(left + "-----" + right);
+        drivetrain.driveWithRamp(left*0.5, right*0.5);
     }
 
     // Called once the command ends or is interrupted.
