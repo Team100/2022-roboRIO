@@ -13,6 +13,7 @@ import frc.robot.subsystems.*;
 import frc.robot.commands.drivetrain.*;
 import frc.robot.commands.intake.*;
 import frc.robot.commands.indexer.*;
+import frc.robot.commands.autonomous.AutonProcedure;
 import frc.robot.commands.climber.*;
 import frc.robot.commands.shooter.*;
 
@@ -58,6 +59,7 @@ public class RobotContainer {
     private final IndexerFeed    feedCommand          = new IndexerFeed   (indexer);
     private final ClimberStop    climberStopCommand   = new ClimberStop   (climber);
     private final ClimberControl climberControl       = new ClimberControl(climber, gamepad);
+    private final AutonProcedure autonProcedure       = new AutonProcedure(drivetrain, intake, indexer, shooter);
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
@@ -97,6 +99,6 @@ public class RobotContainer {
      */
     public Command getAutonomousCommand() {
         // An ExampleCommand will run in autonomous
-        return null;
+        return autonProcedure;
     }
 }

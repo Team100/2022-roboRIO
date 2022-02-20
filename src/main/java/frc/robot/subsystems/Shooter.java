@@ -7,43 +7,62 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ShooterConstants.*;
-import frc.robot.FRCLib.Motors.FRCTalonFX;
+import frc.robot.FRCLib.Motors.FRCNEO;
 
 public class Shooter extends SubsystemBase {
-    private FRCTalonFX shootMotor;
+    private FRCNEO portMotor, starboardMotor;
 
     private boolean atSpeed = false;
     public boolean isAtSpeed() { return atSpeed; }
 
     /** Creates a new Shooter. */
     public Shooter() {
-        shootMotor = new FRCTalonFX.FRCTalonFXBuilder(ShooterMotors.Shooter.CAN_ID)
-            .withInverted(ShooterMotors.Shooter.INVERT)
-            .withFeedbackPort(ShooterMotors.Shooter.FEEDBACK_PORT)
-            .withSensorPhase(ShooterMotors.Shooter.SENSOR_PHASE)
-            .withTimeout(ShooterMotors.Shooter.TIMEOUT)
-            .withCurrentLimitEnabled(ShooterMotors.Shooter.ENABLE_CURRENT_LIMIT)
-            .withCurrentLimit(ShooterMotors.Shooter.CURRENT_LIMIT)
-            .withOpenLoopRampRate(ShooterMotors.Shooter.OPEN_LOOP_RAMP)
-            .withPeakOutputForward(ShooterMotors.Shooter.PEAK_OUTPUT_FORWARD)
-            .withPeakOutputReverse(ShooterMotors.Shooter.PEAK_OUTPUT_REVERSE)
-            .withNeutralMode(ShooterMotors.Shooter.NEUTRAL_MODE)
+        portMotor = new FRCNEO.FRCNEOBuilder(ShooterMotors.PortShooter.CAN_ID)
+            .withInverted(ShooterMotors.PortShooter.INVERT)
+            .withFeedbackPort(ShooterMotors.PortShooter.FEEDBACK_PORT)
+            .withSensorPhase(ShooterMotors.PortShooter.SENSOR_PHASE)
+            .withTimeout(ShooterMotors.PortShooter.TIMEOUT)
+            .withCurrentLimitEnabled(ShooterMotors.PortShooter.ENABLE_CURRENT_LIMIT)
+            .withCurrentLimit(ShooterMotors.PortShooter.CURRENT_LIMIT)
+            .withOpenLoopRampRate(ShooterMotors.PortShooter.OPEN_LOOP_RAMP)
+            .withPeakOutputForward(ShooterMotors.PortShooter.PEAK_OUTPUT_FORWARD)
+            .withPeakOutputReverse(ShooterMotors.PortShooter.PEAK_OUTPUT_REVERSE)
+            .withNeutralMode(ShooterMotors.PortShooter.NEUTRAL_MODE)
+            .build();
+
+        starboardMotor = new FRCNEO.FRCNEOBuilder(ShooterMotors.StarboardShooter.CAN_ID)
+            .withInverted(ShooterMotors.StarboardShooter.INVERT)
+            .withFeedbackPort(ShooterMotors.StarboardShooter.FEEDBACK_PORT)
+            .withSensorPhase(ShooterMotors.StarboardShooter.SENSOR_PHASE)
+            .withTimeout(ShooterMotors.StarboardShooter.TIMEOUT)
+            .withCurrentLimitEnabled(ShooterMotors.StarboardShooter.ENABLE_CURRENT_LIMIT)
+            .withCurrentLimit(ShooterMotors.StarboardShooter.CURRENT_LIMIT)
+            .withOpenLoopRampRate(ShooterMotors.StarboardShooter.OPEN_LOOP_RAMP)
+            .withPeakOutputForward(ShooterMotors.StarboardShooter.PEAK_OUTPUT_FORWARD)
+            .withPeakOutputReverse(ShooterMotors.StarboardShooter.PEAK_OUTPUT_REVERSE)
+            .withNeutralMode(ShooterMotors.StarboardShooter.NEUTRAL_MODE)
+            .withMaster(portMotor)
             .build();
             
-        addChild("Shooter", shootMotor); 
+        addChild("PortShooter", portMotor);
+        addChild("StarboardShooter", starboardMotor);
     }
 
     public void set(double speed) {
-        this.shootMotor.drivePercentOutput(speed);
+        this.portMotor.drivePercentOutput(speed);
+    }
+
+    public double getCurrentCurrent() {
+        return portMotor.motor.getOutputCurrent() + starboardMotor.motor.getOutputCurrent();
     }
     
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
 
-        atSpeed = (shootMotor.getSensorVelocity() >= ShooterMotionParameters.NOMINAL_VELOCITY);
+        atSpeed = (portMotor.getSensorVelocity() >= ShooterMotionParameters.NOMINAL_VELOCITY);
         // if(atSpeed) System.out.println("MOTOR GO BRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR");
         // TODO: Implement Encoder conversion utilities
-        SmartDashboard.putNumber("ShooterRPM", (shootMotor.getSensorVelocity()/2048)*(1000/100)*60);
+        SmartDashboard.putNumber("ShooterRPM", (portMotor.getSensorVelocity()/2048)*(1000/100)*60);
     }
 }

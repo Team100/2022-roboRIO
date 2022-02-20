@@ -160,12 +160,13 @@ public final class Constants {
         public static final class ShooterMotionParameters {
             public static final double SHOOTER_PERCENT_OUTPUT = 0.1;
             public static final double NOMINAL_VELOCITY = 100;
+            public static final double IDLE_CURRENT_THRESHOLD = 5;
         }
 
         public static final class ShooterMotors {
-            public static final class Shooter {
+            public static final class PortShooter {
                 public static final int CAN_ID = 4;
-                public static final InvertType INVERT = InvertType.None;
+                public static final boolean INVERT = false;
                 public static final int FEEDBACK_PORT = 0;
                 public static final boolean SENSOR_PHASE = false;
                 public static final int TIMEOUT = 10;
@@ -174,7 +175,20 @@ public final class Constants {
                 public static final double OPEN_LOOP_RAMP = 0;
                 public static final double PEAK_OUTPUT_FORWARD = 1;
                 public static final double PEAK_OUTPUT_REVERSE = -1;
-                public static final NeutralMode NEUTRAL_MODE = NeutralMode.Coast;
+                public static final IdleMode NEUTRAL_MODE = IdleMode.kCoast;
+            }
+            public static final class StarboardShooter {
+                public static final int CAN_ID = 5;
+                public static final boolean INVERT = true;
+                public static final int FEEDBACK_PORT = 0;
+                public static final boolean SENSOR_PHASE = false;
+                public static final int TIMEOUT = 10;
+                public static final boolean ENABLE_CURRENT_LIMIT = true;
+                public static final int CURRENT_LIMIT = 25;
+                public static final double OPEN_LOOP_RAMP = 0;
+                public static final double PEAK_OUTPUT_FORWARD = 1;
+                public static final double PEAK_OUTPUT_REVERSE = -1;
+                public static final IdleMode NEUTRAL_MODE = IdleMode.kCoast;
             }
         }
     }

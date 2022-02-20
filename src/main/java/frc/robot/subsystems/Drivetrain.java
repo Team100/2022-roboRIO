@@ -109,6 +109,10 @@ public class Drivetrain extends SubsystemBase {
         return input;
     }
 
+    public double getCurrentEncoderPosition() {
+        return leftMaster.getSelectedSensorPosition();
+    }
+
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
