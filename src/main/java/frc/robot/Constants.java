@@ -77,10 +77,6 @@ public final class Constants {
 
             public static final class LeftFollower {
                 public static final int CAN_ID = 19;
-                public static final double KP = 0;
-                public static final double KI = 0;
-                public static final double KD = 0;
-                public static final double KF = 0;
                 public static final InvertType INVERTED = InvertType.FollowMaster;
                 public static final boolean SENSOR_PHASE = false;
                 public static final double PEAK_OUTPUT_FORWARD = 1;
@@ -103,10 +99,6 @@ public final class Constants {
  
             public static final class RightFollower {
                 public static final int CAN_ID = 11;
-                public static final double KP = 0;
-                public static final double KI = 0;
-                public static final double KD = 0;
-                public static final double KF = 0;
                 public static final InvertType INVERTED = InvertType.FollowMaster;
                 public static final boolean SENSOR_PHASE = false;
                 public static final double PEAK_OUTPUT_FORWARD = 1;
@@ -144,10 +136,10 @@ public final class Constants {
 
             public static final class IntakePivot {
                 public static final int CAN_ID = 5;
-                public static final double kP = 0;
-                public static final double kI = 0;
-                public static final double kD = 0;
-                public static final double kF = 0;
+                public static final double KP = 0;
+                public static final double KI = 0;
+                public static final double KD = 0;
+                public static final double KF = 0;
                 public static final boolean INVERT = false;
                 public static final int FEEDBACK_PORT = 0;
                 public static final boolean SENSOR_PHASE = false;
@@ -172,10 +164,10 @@ public final class Constants {
         public static final class ShooterMotors {
             public static final class PortShooter {
                 public static final int CAN_ID = 4;
-                public static final double kP = 0;
-                public static final double kI = 0;
-                public static final double kD = 0;
-                public static final double kF = 0;
+                public static final double KP = 0;
+                public static final double KI = 0;
+                public static final double KD = 0;
+                public static final double KF = 0;
                 public static final boolean INVERT = false;
                 public static final int FEEDBACK_PORT = 0;
                 public static final boolean SENSOR_PHASE = false;
@@ -261,6 +253,10 @@ public final class Constants {
         public static final class ClimberMotors {
             public static final class Winch {
                 public static final int CAN_ID = 12;
+                public static final double KP = 0;
+                public static final double KI = 0;
+                public static final double KD = 0;
+                public static final double KF = 0;
                 public static final InvertType INVERT = InvertType.None;
                 public static final int FEEDBACK_PORT = 0;
                 public static final boolean SENSOR_PHASE = false;
@@ -275,6 +271,10 @@ public final class Constants {
     
             public static final class Tilt {
                 public static final int CAN_ID = 13;
+                public static final double KP = 0;
+                public static final double KI = 0;
+                public static final double KD = 0;
+                public static final double KF = 0;
                 public static final InvertType INVERT = InvertType.None;
                 public static final int FEEDBACK_PORT = 0;
                 public static final boolean SENSOR_PHASE = false;

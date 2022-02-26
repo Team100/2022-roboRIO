@@ -33,10 +33,6 @@ public class Drivetrain extends SubsystemBase {
             .build();
 
         leftFollower = new FRCTalonFX.FRCTalonFXBuilder(Constants.DrivetrainConstants.DrivetrainMotors.LeftFollower.CAN_ID)
-            .withKP(Constants.DrivetrainConstants.DrivetrainMotors.LeftFollower.KP)
-            .withKI(Constants.DrivetrainConstants.DrivetrainMotors.LeftFollower.KI)
-            .withKD(Constants.DrivetrainConstants.DrivetrainMotors.LeftFollower.KD)
-            .withKF(Constants.DrivetrainConstants.DrivetrainMotors.LeftFollower.KF)
             .withInverted(Constants.DrivetrainConstants.DrivetrainMotors.LeftFollower.INVERTED)
             .withSensorPhase(Constants.DrivetrainConstants.DrivetrainMotors.LeftFollower.SENSOR_PHASE)
             .withPeakOutputForward(Constants.DrivetrainConstants.DrivetrainMotors.LeftFollower.PEAK_OUTPUT_FORWARD)
@@ -58,10 +54,6 @@ public class Drivetrain extends SubsystemBase {
             .build();
 
         rightFollower = new FRCTalonFX.FRCTalonFXBuilder(Constants.DrivetrainConstants.DrivetrainMotors.RightFollower.CAN_ID)
-            .withKP(Constants.DrivetrainConstants.DrivetrainMotors.RightFollower.KP)
-            .withKI(Constants.DrivetrainConstants.DrivetrainMotors.RightFollower.KI)
-            .withKD(Constants.DrivetrainConstants.DrivetrainMotors.RightFollower.KD)
-            .withKF(Constants.DrivetrainConstants.DrivetrainMotors.RightFollower.KF)
             .withInverted(Constants.DrivetrainConstants.DrivetrainMotors.RightFollower.INVERTED)
             .withSensorPhase(Constants.DrivetrainConstants.DrivetrainMotors.RightFollower.SENSOR_PHASE)
             .withPeakOutputForward(Constants.DrivetrainConstants.DrivetrainMotors.RightFollower.PEAK_OUTPUT_FORWARD)
