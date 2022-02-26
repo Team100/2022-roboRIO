@@ -27,10 +27,10 @@ public class IntakeIntake extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        if (intake.getCurrentPosition() >= Constants.IntakeConstants.PivotConstants.DOWN_POSITION) {
-            intake.runPivot(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_PIVOT_PERCENT_OUTPUT);
+        if (intake.getCurrentPosition() >= intake.getDownPosition()) {
+            intake.setPivotPosition(intake.getDownPosition());
         }
-        if(intake.getCurrentPosition() <= Constants.IntakeConstants.PivotConstants.DOWN_POSITION){
+        if (intake.getCurrentPosition() <= intake.getDownPosition()){
             intake.runSpinner(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_SPINNER_PERCENT_OUTPUT);
         }
     }

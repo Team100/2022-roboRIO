@@ -13,9 +13,11 @@ import frc.robot.subsystems.*;
 import frc.robot.commands.drivetrain.*;
 import frc.robot.commands.intake.*;
 import frc.robot.commands.indexer.*;
-import frc.robot.commands.autonomous.AutonProcedure;
 import frc.robot.commands.climber.*;
-import frc.robot.commands.shooter.*;
+// import frc.robot.commands.shooter.*;
+import frc.robot.commands.automatic.AutoShoot;
+import frc.robot.commands.automatic.IntakeCargo;
+import frc.robot.commands.autonomous.AutonProcedure;
 
 /**
 * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -38,12 +40,10 @@ public class RobotContainer {
     private final Joystick       rightJoystick        = new Joystick      (Constants.OI.RightJoystick.PORT);
     private final Joystick       gamepad              = new Joystick      (Constants.OI.Gamepad.PORT);
     private final JoystickButton turboButton          = new JoystickButton(rightJoystick, Constants.OI.RightJoystick.DRIVE_TURBO);
-    private final JoystickButton intakeIntakeButton   = new JoystickButton(leftJoystick, Constants.OI.LeftJoystick.INTAKE_INTAKE);
+    private final JoystickButton intakeButton         = new JoystickButton(leftJoystick, Constants.OI.LeftJoystick.INTAKE_CARGO);
     private final JoystickButton alignButton          = new JoystickButton(gamepad, Constants.OI.Gamepad.ALIGN_CLIMBER);
     private final JoystickButton shootButton          = new JoystickButton(leftJoystick, Constants.OI.LeftJoystick.SHOOTER_SHOOT);
-    private final JoystickButton indexerIntakeButton  = new JoystickButton(gamepad, Constants.OI.Gamepad.INDEXER_INTAKE);
     private final JoystickButton ejectButton          = new JoystickButton(gamepad, Constants.OI.Gamepad.INDEXER_EJECT);
-    private final JoystickButton feedButton           = new JoystickButton(gamepad, Constants.OI.Gamepad.INDEXER_FEED);
     private final JoystickButton climberControlButton = new JoystickButton(gamepad, Constants.OI.Gamepad.CLIMBER_CONTROL);
 
     // Commands
@@ -52,14 +52,15 @@ public class RobotContainer {
     private final AlignClimber   alignCommand         = new AlignClimber  (drivetrain);
     private final IntakeIntake   intakeIntakeCommand  = new IntakeIntake  (intake);
     private final IntakeStop     intakeStopCommand    = new IntakeStop    (intake);
-    private final Shoot          shootCommand         = new Shoot         (shooter);
     private final IndexerStop    indexerStopCommand   = new IndexerStop   (indexer);
-    private final IndexerIntake  intakeCommand        = new IndexerIntake (indexer);
+    private final IndexerIntake  indexerIntakeCommand = new IndexerIntake (indexer);
     private final IndexerEject   ejectCommand         = new IndexerEject  (indexer);
-    private final IndexerFeed    feedCommand          = new IndexerFeed   (indexer);
     private final ClimberStop    climberStopCommand   = new ClimberStop   (climber);
     private final ClimberControl climberControl       = new ClimberControl(climber, gamepad);
+    // Command Groups
     private final AutonProcedure autonProcedure       = new AutonProcedure(drivetrain, intake, indexer, shooter);
+    private final IntakeCargo    intakeCargo          = new IntakeCargo   (intakeIntakeCommand, indexerIntakeCommand);
+    private final AutoShoot      autoShoot            = new AutoShoot     (indexer, shooter);
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
@@ -67,7 +68,7 @@ public class RobotContainer {
         drivetrain.setDefaultCommand(driveCommand);
         climber   .setDefaultCommand(climberStopCommand);
         indexer   .setDefaultCommand(indexerStopCommand);
-        intake    .setDefaultCommand(intakeStopCommand);
+        intake    .setDefaultCommand(intakeStopCommand);  
 
         //Sanjan.setDefaultCommand(STOP)
 
@@ -82,13 +83,11 @@ public class RobotContainer {
     * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
     */
     private void configureButtonBindings() {
-        shootButton         .whileHeld  (shootCommand);
+        shootButton         .whileHeld  (autoShoot);
         turboButton         .whileHeld  (driveFuriousCommand);
-        intakeIntakeButton  .whileHeld  (intakeIntakeCommand);
+        intakeButton        .whileHeld  (intakeCargo);
         alignButton         .whileHeld  (alignCommand);
-        indexerIntakeButton .whileHeld  (intakeCommand);
         ejectButton         .whileHeld  (ejectCommand);
-        feedButton          .whenPressed(feedCommand);
         climberControlButton.whenPressed(climberControl);
     }
 
@@ -100,5 +99,9 @@ public class RobotContainer {
     public Command getAutonomousCommand() {
         // An ExampleCommand will run in autonomous
         return autonProcedure;
+    }
+
+    public void calibrateIntakePivotZeroPosition() {
+        intake.calibrateZeroPosition();
     }
 }

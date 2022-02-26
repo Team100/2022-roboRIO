@@ -23,7 +23,7 @@ public final class Constants {
             public static final int PORT = 0;
 
             public static final int SHOOTER_SHOOT = 1;
-            public static final int INTAKE_INTAKE = 3;
+            public static final int INTAKE_CARGO = 3;
         }
 
         public static final class RightJoystick {
@@ -123,6 +123,8 @@ public final class Constants {
         public static final class IntakeMotionParameters {
             public static final double INTAKE_SPINNER_PERCENT_OUTPUT = 0.7;
             public static final double INTAKE_PIVOT_PERCENT_OUTPUT   = 0.1;
+
+            public static final double INTAKE_PIVOT_RANGE_TICKS = 512;
         }
 
         public static final class IntakeMotors {
@@ -142,6 +144,10 @@ public final class Constants {
 
             public static final class IntakePivot {
                 public static final int CAN_ID = 5;
+                public static final double kP = 0;
+                public static final double kI = 0;
+                public static final double kD = 0;
+                public static final double kF = 0;
                 public static final boolean INVERT = false;
                 public static final int FEEDBACK_PORT = 0;
                 public static final boolean SENSOR_PHASE = false;
@@ -166,6 +172,10 @@ public final class Constants {
         public static final class ShooterMotors {
             public static final class PortShooter {
                 public static final int CAN_ID = 4;
+                public static final double kP = 0;
+                public static final double kI = 0;
+                public static final double kD = 0;
+                public static final double kF = 0;
                 public static final boolean INVERT = false;
                 public static final int FEEDBACK_PORT = 0;
                 public static final boolean SENSOR_PHASE = false;

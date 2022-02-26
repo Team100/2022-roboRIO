@@ -10,6 +10,7 @@ import frc.robot.FRCLib.Motors.FRCNEO;
 
 public class Intake extends SubsystemBase {
     private FRCNEO spin, pivot;
+    private double downPosition;
 
     /**
      * Creates a new Intake.
@@ -52,8 +53,21 @@ public class Intake extends SubsystemBase {
         // This method will be called once per scheduler run
     }
 
+    public void calibrateZeroPosition() {
+        double zeroPos = pivot.getAnalogSensorPosition();
+        downPosition = zeroPos + Constants.IntakeConstants.IntakeMotionParameters.INTAKE_PIVOT_RANGE_TICKS;
+    }
+
     public double getCurrentPosition(){
         return pivot.getAnalogSensorPosition();
+    }
+
+    public double getDownPosition() {
+        return downPosition;
+    }
+
+    public void setPivotPosition(double position) {
+        pivot.drivePosition(position);
     }
 
     public void runPivot(double percentOutput) {
