@@ -5,6 +5,7 @@
 package frc.robot.commands.automatic;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.automatic.criteria.ShootEndCriteria;
 import frc.robot.commands.automatic.criteria.ShootStartCriteria;
 import frc.robot.commands.indexer.IndexerFeed;
@@ -21,6 +22,7 @@ public class FeedOnCriteria extends SequentialCommandGroup {
         // addCommands(new FooCommand(), new BarCommand());
         addCommands(new ShootStartCriteria(shooter));
         addCommands(new IndexerFeed(indexer));
+        addCommands(new WaitCommand(1)); // no
         addCommands(new ShootEndCriteria(shooter));
     }
 }
