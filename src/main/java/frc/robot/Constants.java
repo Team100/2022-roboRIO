@@ -134,7 +134,7 @@ public final class Constants {
             }
 
             public static final class IntakePivot {
-                public static final int CAN_ID = 5;
+                public static final int CAN_ID = 0;
 
                 public static final boolean INVERT = false;
                 public static final int FEEDBACK_PORT = 0;
