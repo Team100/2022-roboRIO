@@ -6,18 +6,18 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ShooterConstants.*;
-import frc.robot.FRCLib.Motors.FRCTalonFX;
+import frc.robot.FRCLib.Motors.FRCNEO;
 
 
 public class Shooter extends SubsystemBase {
-    private FRCTalonFX shootMotor;
+    private FRCNEO shootMotor,shootMotorFollower;
 
     private boolean atSpeed = false;
     public boolean isAtSpeed() { return atSpeed; }
 
     /** Creates a new Shooter. */
     public Shooter() {
-        shootMotor = new FRCTalonFX.FRCTalonFXBuilder(ShooterMotors.Shooter.CAN_ID)
+        shootMotor = new FRCNEO.FRCNEOBuilder(ShooterMotors.Shooter.CAN_ID)
             .withInverted(ShooterMotors.Shooter.INVERT)
             .withFeedbackPort(ShooterMotors.Shooter.FEEDBACK_PORT)
             .withSensorPhase(ShooterMotors.Shooter.SENSOR_PHASE)
@@ -29,8 +29,23 @@ public class Shooter extends SubsystemBase {
             .withPeakOutputReverse(ShooterMotors.Shooter.PEAK_OUTPUT_REVERSE)
             .withNeutralMode(ShooterMotors.Shooter.NEUTRAL_MODE)
             .build();
+
+        shootMotorFollower = new FRCNEO.FRCNEOBuilder(ShooterMotors.ShooterFollower.CAN_ID)
+            .withInverted(ShooterMotors.ShooterFollower.INVERT)
+            .withFeedbackPort(ShooterMotors.ShooterFollower.FEEDBACK_PORT)
+            .withSensorPhase(ShooterMotors.ShooterFollower.SENSOR_PHASE)
+            .withTimeout(ShooterMotors.ShooterFollower.TIMEOUT)
+            .withCurrentLimitEnabled(ShooterMotors.ShooterFollower.ENABLE_CURRENT_LIMIT)
+            .withCurrentLimit(ShooterMotors.ShooterFollower.CURRENT_LIMIT)
+            .withOpenLoopRampRate(ShooterMotors.ShooterFollower.OPEN_LOOP_RAMP)
+            .withPeakOutputForward(ShooterMotors.ShooterFollower.PEAK_OUTPUT_FORWARD)
+            .withPeakOutputReverse(ShooterMotors.ShooterFollower.PEAK_OUTPUT_REVERSE)
+            .withNeutralMode(ShooterMotors.ShooterFollower.NEUTRAL_MODE)
+            .withMaster(shootMotor).build();
+            
             
         addChild("Shooter", shootMotor); 
+        addChild("ShooterFollower", shootMotorFollower); 
     }
 
     public void set(double speed) {
