@@ -31,8 +31,6 @@ public class IndexerIntake extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        SmartDashboard.putBoolean("Indexer SensorOne", indexer.getSensorOne());
-        SmartDashboard.putBoolean("Indexer SensorTwo", indexer.getSensorTwo());
         if (indexer.getSensorOne() && indexer.getSensorTwo()) {
             SmartDashboard.putString("Indexer command", "Stopped");
             done = true;

@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.FRCLib.Motors.FRCTalonFX;
@@ -72,5 +73,7 @@ public class Indexer extends SubsystemBase {
         // This method will be called once per scheduler run
         stageOneMotor.drivePercentOutput(stageOneSetpoint);
         stageTwoMotor.drivePercentOutput(stageTwoSetpoint);
+        SmartDashboard.putBoolean("Indexer SensorOne", getSensorOne());
+        SmartDashboard.putBoolean("Indexer SensorTwo", getSensorTwo());
     }
 }
