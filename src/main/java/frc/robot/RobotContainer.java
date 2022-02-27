@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.*;
 import frc.robot.commands.drivetrain.*;
@@ -44,6 +46,7 @@ public class RobotContainer {
     private final JoystickButton ejectButton = new JoystickButton(gamepad, 5);
     private final JoystickButton feedButton = new JoystickButton(gamepad, 1);
     private final JoystickButton climberControlButton = new JoystickButton(gamepad, 3);
+    private final JoystickButton controlBallButton = new JoystickButton(gamepad, 2);
 
     // Commands
     private final Drive driveCommand = new Drive(drivetrain, leftJoystick, rightJoystick);
@@ -58,6 +61,8 @@ public class RobotContainer {
     private final IndexerFeed feedCommand = new IndexerFeed(indexer);
     private final ClimberStop climberStopCommand = new ClimberStop(climber);
     private final ClimberControl climberControl = new ClimberControl(climber, gamepad);
+    private final ParallelCommandGroup controlBall = new ParallelCommandGroup(intakeIntakeCommand,indexerStopCommand);
+
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
@@ -88,6 +93,7 @@ public class RobotContainer {
         ejectButton.whileHeld(ejectCommand);
         feedButton.whenPressed(feedCommand);
         climberControlButton.whenPressed(climberControl);
+        controlBallButton.whenPressed(controlBall);
     }
 
     /**
