@@ -38,15 +38,16 @@ public class RobotContainer {
     private final Joystick leftJoystick = new Joystick(0);
     private final Joystick rightJoystick = new Joystick(1);
     private final Joystick gamepad = new Joystick(2);
+    private final Joystick buttonBoard = new Joystick(3);
     private final JoystickButton turboButton = new JoystickButton(rightJoystick, 1);
-    private final JoystickButton intakeIntakeButton = new JoystickButton(leftJoystick, 3);
+    private final JoystickButton intakeIntakeButton = new JoystickButton(buttonBoard, 2);
     private final JoystickButton alignButton = new JoystickButton(gamepad, 7);
-    private final JoystickButton shootButton = new JoystickButton(leftJoystick, 1);
-    private final JoystickButton indexerIntakeButton = new JoystickButton(gamepad, 6);
-    private final JoystickButton ejectButton = new JoystickButton(gamepad, 5);
-    private final JoystickButton feedButton = new JoystickButton(gamepad, 1);
+    private final JoystickButton shootButton = new JoystickButton(buttonBoard, 16);
+    private final JoystickButton indexerIntakeButton = new JoystickButton(buttonBoard, 12);
+    private final JoystickButton ejectButton = new JoystickButton(buttonBoard, 4);
+    private final JoystickButton feedButton = new JoystickButton(buttonBoard, 5);
     private final JoystickButton climberControlButton = new JoystickButton(gamepad, 3);
-    private final JoystickButton controlBallButton = new JoystickButton(gamepad, 2);
+    private final JoystickButton controlBallButton = new JoystickButton(buttonBoard, 14);
 
     // Commands
     private final Drive driveCommand = new Drive(drivetrain, leftJoystick, rightJoystick);
