@@ -166,7 +166,7 @@ public final class Constants {
 
         public static final class ShooterMotors {
             public static final class Shooter {
-                public static final int CAN_ID = 4;
+                public static final int CAN_ID = 3;
     
                 public static final boolean INVERT = false;
                 public static final int FEEDBACK_PORT = 0;
@@ -183,7 +183,7 @@ public final class Constants {
                 public static final IdleMode NEUTRAL_MODE = IdleMode.kCoast;
             }
             public static final class ShooterFollower {
-                public static final int CAN_ID = 4;
+                public static final int CAN_ID = 6;
     
                 public static final boolean INVERT = true;
                 public static final int FEEDBACK_PORT = 0;
