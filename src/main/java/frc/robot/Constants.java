@@ -159,7 +159,7 @@ public final class Constants {
     }
     public static final class ShooterConstants {
         public static final class ShooterMotionParameters {
-            public static final double SHOOTER_PERCENT_OUTPUT = 0.1;
+            public static final double SHOOTER_PERCENT_OUTPUT = 0.17;
             public static final double SHOOTER_ZERO = 0;
 			public static final double NOMINAL_VELOCITY = 100;
         }
@@ -185,7 +185,7 @@ public final class Constants {
             public static final class ShooterFollower {
                 public static final int CAN_ID = 6;
     
-                public static final boolean INVERT = true;
+                public static final boolean INVERT = false;
                 public static final int FEEDBACK_PORT = 0;
                 public static final boolean SENSOR_PHASE = false;
     
@@ -222,7 +222,7 @@ public final class Constants {
 
         public static final class IndexerMotors {
             public static final class IndexerStageOne {
-                public static final int CAN_ID = 2;
+                public static final int CAN_ID = 5;
 
                 public static final InvertType INVERT = InvertType.None;
                 public static final int FEEDBACK_PORT = 0;
@@ -243,7 +243,7 @@ public final class Constants {
             }
 
             public static final class IndexerStageTwo {
-                public static final int CAN_ID = 3;
+                public static final int CAN_ID = 4;
               
                 public static final InvertType INVERT = InvertType.None;
                 public static final int FEEDBACK_PORT = 0;

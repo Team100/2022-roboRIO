@@ -41,7 +41,7 @@ public class Shooter extends SubsystemBase {
             .withPeakOutputForward(ShooterMotors.ShooterFollower.PEAK_OUTPUT_FORWARD)
             .withPeakOutputReverse(ShooterMotors.ShooterFollower.PEAK_OUTPUT_REVERSE)
             .withNeutralMode(ShooterMotors.ShooterFollower.NEUTRAL_MODE)
-            .withMaster(shootMotor).build();
+            .build();
             
             
         addChild("Shooter", shootMotor); 
@@ -49,7 +49,8 @@ public class Shooter extends SubsystemBase {
     }
 
     public void set(double speed) {
-        this.shootMotor.drivePercentOutput(speed);
+        this.shootMotor.drivePercentOutput(-speed);
+        this.shootMotorFollower.drivePercentOutput(speed);
     }
     
     @Override

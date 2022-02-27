@@ -9,11 +9,11 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Shooter;
 
-public class Shoot extends CommandBase {
+public class ShootStop extends CommandBase {
     /** Creates a new Shoot. */
     public Shooter shooter;
 
-    public Shoot(Shooter shooter) {
+    public ShootStop(Shooter shooter) {
         this.shooter = shooter;
         
         // Use addRequirements() here to declare subsystem dependencies.
@@ -23,7 +23,7 @@ public class Shoot extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        shooter.set(Constants.ShooterConstants.ShooterMotionParameters.SHOOTER_PERCENT_OUTPUT);
+        shooter.set(0);
     }
 
     // Called every time the scheduler runs while the command is scheduled.
