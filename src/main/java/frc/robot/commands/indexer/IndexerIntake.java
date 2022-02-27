@@ -4,6 +4,7 @@
 
 package frc.robot.commands.indexer;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Indexer; 
 
@@ -30,18 +31,18 @@ public class IndexerIntake extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        System.out.println("SensorOne: " + indexer.getSensorOne());
-        System.out.println("SensorTwo: " + indexer.getSensorTwo());
+        SmartDashboard.putBoolean("Indexer SensorOne", indexer.getSensorOne());
+        SmartDashboard.putBoolean("Indexer SensorTwo", indexer.getSensorTwo());
         if (indexer.getSensorOne() && indexer.getSensorTwo()) {
-            System.out.println("Stopped");
+            SmartDashboard.putString("Indexer command", "Stopped");
             done = true;
         } else {
             if (indexer.getSensorTwo()) {
-                System.out.println("Running Stage One");
+                SmartDashboard.putString("Indexer command","Running Stage One");
                 indexer.runMotorOne(Constants.IndexerConstants.IndexerMotionParameters.STAGE_ONE_PERCENT_OUTPUT_FORWARD);
                 indexer.runMotorTwo(0);
             } else {
-                System.out.println("Running Both Stages");
+                SmartDashboard.putString("Indexer command","Running Both Stages");
                 indexer.runMotorOne(Constants.IndexerConstants.IndexerMotionParameters.STAGE_ONE_PERCENT_OUTPUT_FORWARD);
                 indexer.runMotorTwo(Constants.IndexerConstants.IndexerMotionParameters.STAGE_TWO_PERCENT_OUTPUT_FORWARD);
             }

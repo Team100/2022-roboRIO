@@ -92,7 +92,7 @@ public final class Constants {
             public static final int DOWN_POSITION = 30;
         }
         public static final class IntakeMotionParameters {
-            public static final double INTAKE_SPINNER_PERCENT_OUTPUT = 0.7;
+            public static final double INTAKE_SPINNER_PERCENT_OUTPUT = 0.2;
             public static final double INTAKE_PIVOT_PERCENT_OUTPUT = 0.1;
             public static final double INTAKE_ZERO = 0;
 
@@ -216,8 +216,8 @@ public final class Constants {
                 public static final boolean ENABLE_CURRENT_LIMIT = false;
                 public static final int CURRENT_LIMIT = 25;
                 public static final double OPEN_LOOP_RAMP = 0.1;
-                public static final double PEAK_OUTPUT_FORWARD = .5;
-                public static final double PEAK_OUTPUT_REVERSE = -.5;
+                public static final double PEAK_OUTPUT_FORWARD = .1;
+                public static final double PEAK_OUTPUT_REVERSE = -.1;
 
                 public static final double NOMINAL_OUTPUT_FORWARD = 0;
                 public static final double NOMINAL_OUTPUT_REVERSE = 0;
@@ -237,8 +237,8 @@ public final class Constants {
                 public static final boolean ENABLE_CURRENT_LIMIT = false;
                 public static final int CURRENT_LIMIT = 25;
                 public static final double OPEN_LOOP_RAMP = 0.1;
-                public static final double PEAK_OUTPUT_FORWARD = .5;
-                public static final double PEAK_OUTPUT_REVERSE = -.5;
+                public static final double PEAK_OUTPUT_FORWARD = .1;
+                public static final double PEAK_OUTPUT_REVERSE = -.1;
 
                 public static final double NOMINAL_OUTPUT_FORWARD = 0;
                 public static final double NOMINAL_OUTPUT_REVERSE = 0;
