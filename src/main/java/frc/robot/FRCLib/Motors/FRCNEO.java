@@ -397,7 +397,7 @@ public class FRCNEO implements Sendable {
         }
 
         if (this.master != null) {
-            motor.follow(master.motor);
+            motor.follow(master.motor, this.getInverted());
         }
 
         return this;
