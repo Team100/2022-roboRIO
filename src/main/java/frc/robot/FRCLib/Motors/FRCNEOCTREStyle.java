@@ -418,7 +418,7 @@ public class FRCNEOCTREStyle implements Sendable {
         }
 
         if (this.master != null) {
-            motor.follow(master.motor);
+            motor.follow(master.motor, motor.getInverted());
         }
 
         return this;
