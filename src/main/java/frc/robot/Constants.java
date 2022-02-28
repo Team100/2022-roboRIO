@@ -185,7 +185,7 @@ public final class Constants {
             public static final class ShooterFollower {
                 public static final int CAN_ID = 6;
     
-                public static final boolean INVERT = false;
+                public static final boolean INVERT = true;
                 public static final int FEEDBACK_PORT = 0;
                 public static final boolean SENSOR_PHASE = false;
     
@@ -224,7 +224,7 @@ public final class Constants {
             public static final class IndexerStageOne {
                 public static final int CAN_ID = 5;
 
-                public static final InvertType INVERT = InvertType.None;
+                public static final InvertType INVERT = false;
                 public static final int FEEDBACK_PORT = 0;
                 public static final boolean SENSOR_PHASE = false;
 
@@ -239,13 +239,13 @@ public final class Constants {
                 public static final double NOMINAL_OUTPUT_FORWARD = 0;
                 public static final double NOMINAL_OUTPUT_REVERSE = 0;
 
-                public static final NeutralMode NEUTRAL_MODE = NeutralMode.Brake;
+                public static final NeutralMode NEUTRAL_MODE = IdleMode.kBrake;
             }
 
             public static final class IndexerStageTwo {
                 public static final int CAN_ID = 4;
               
-                public static final InvertType INVERT = InvertType.None;
+                public static final InvertType INVERT = false;
                 public static final int FEEDBACK_PORT = 0;
                 public static final boolean SENSOR_PHASE = true;
 
@@ -260,7 +260,7 @@ public final class Constants {
                 public static final double NOMINAL_OUTPUT_FORWARD = 0;
                 public static final double NOMINAL_OUTPUT_REVERSE = 0;
 
-                public static final NeutralMode NEUTRAL_MODE = NeutralMode.Brake;
+                public static final NeutralMode NEUTRAL_MODE = IdleMode.kBrake;
             }
         }
     }
