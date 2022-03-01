@@ -14,6 +14,7 @@ import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMax.SoftLimitDirection;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.SparkMaxAnalogSensor.Mode;
 
 import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.util.sendable.SendableBuilder;
@@ -117,7 +118,7 @@ public class FRCNEO implements Sendable {
                     this.isReverseSoftLimitEnabled());
             SmartDashboard.putNumber(this.getSmartDashboardPath() + "/reverseSoftLimitThreshold",
                     this.getReverseSoftLimitThreshold());
-            SmartDashboard.putBoolean(this.getSmartDashboardPath() + "/sensorPhase", this.isSensorPhase());
+            SmartDashboard.putBoolean(this.getSmartDashboardPath() + "/sensorPhase", this.isAnalogSensorPhase());
             SmartDashboard.putString(this.getSmartDashboardPath() + "/SmartDashboardPath",
                     this.getSmartDashboardPath());
             if (Robot.isReal()) {
@@ -378,8 +379,8 @@ public class FRCNEO implements Sendable {
             System.out.println("setting reverse soft limit enabled");
         }
 
-        if (this.isSensorPhase()) {
-            motor.getEncoder().setInverted(this.isSensorPhase());
+        if (this.isAnalogSensorPhase()) {
+            motor.getAnalog(Mode.kAbsolute).setInverted(this.isAnalogSensorPhase());
             System.out.println("setting sensor phase");
         }
 
@@ -443,11 +444,11 @@ public class FRCNEO implements Sendable {
         this.timeout = timeout;
     }
 
-    public boolean isSensorPhase() {
+    public boolean isAnalogSensorPhase() {
         return sensorPhase;
     }
 
-    public void setSensorPhase(boolean sensorPhase) {
+    public void setAnalogSensorPhase(boolean sensorPhase) {
         this.sensorPhase = sensorPhase;
     }
 
@@ -876,7 +877,7 @@ public class FRCNEO implements Sendable {
             fRCNEO.setInverted(isInverted);
             fRCNEO.setFeedbackPort(feedbackPort);
             fRCNEO.setTimeout(timeout);
-            fRCNEO.setSensorPhase(sensorPhase);
+            fRCNEO.setAnalogSensorPhase(sensorPhase);
             fRCNEO.setAllowableClosedLoopError(allowableClosedLoopError);
             fRCNEO.setCurrentLimitEnabled(currentLimitEnabled);
             fRCNEO.setCurrentLimit(currentLimit);
