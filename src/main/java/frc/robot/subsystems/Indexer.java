@@ -23,7 +23,6 @@ public class Indexer extends SubsystemBase {
         sensor2 = new DigitalInput(Constants.IndexerConstants.IndexerSensors.RearSensor.ID);
         // Construct Motor Objects
         stageOneMotor = new FRCNEO.FRCNEOBuilder(Constants.IndexerConstants.IndexerMotors.IndexerStageOne.CAN_ID)
-            .withInverted(Constants.IndexerConstants.IndexerMotors.IndexerStageOne.INVERT)
             .withFeedbackPort(Constants.IndexerConstants.IndexerMotors.IndexerStageOne.FEEDBACK_PORT)
             .withSensorPhase(Constants.IndexerConstants.IndexerMotors.IndexerStageOne.SENSOR_PHASE)
             .withTimeout(Constants.IndexerConstants.IndexerMotors.IndexerStageOne.TIMEOUT)
@@ -36,7 +35,6 @@ public class Indexer extends SubsystemBase {
             .build();
 
         stageTwoMotor = new FRCNEO.FRCNEOBuilder(Constants.IndexerConstants.IndexerMotors.IndexerStageTwo.CAN_ID)
-            .withInverted(Constants.IndexerConstants.IndexerMotors.IndexerStageTwo.INVERT)
             .withFeedbackPort(Constants.IndexerConstants.IndexerMotors.IndexerStageTwo.FEEDBACK_PORT)
             .withSensorPhase(Constants.IndexerConstants.IndexerMotors.IndexerStageTwo.SENSOR_PHASE)
             .withTimeout(Constants.IndexerConstants.IndexerMotors.IndexerStageTwo.TIMEOUT)

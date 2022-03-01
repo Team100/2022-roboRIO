@@ -18,7 +18,6 @@ public class Shooter extends SubsystemBase {
     /** Creates a new Shooter. */
     public Shooter() {
         shootMotor = new FRCNEO.FRCNEOBuilder(ShooterMotors.Shooter.CAN_ID)
-            .withInverted(ShooterMotors.Shooter.INVERT)
             .withFeedbackPort(ShooterMotors.Shooter.FEEDBACK_PORT)
             .withSensorPhase(ShooterMotors.Shooter.SENSOR_PHASE)
             .withTimeout(ShooterMotors.Shooter.TIMEOUT)
@@ -31,7 +30,6 @@ public class Shooter extends SubsystemBase {
             .build();
 
         shootMotorFollower = new FRCNEO.FRCNEOBuilder(ShooterMotors.ShooterFollower.CAN_ID)
-            .withInverted(ShooterMotors.ShooterFollower.INVERT)
             .withFeedbackPort(ShooterMotors.ShooterFollower.FEEDBACK_PORT)
             .withSensorPhase(ShooterMotors.ShooterFollower.SENSOR_PHASE)
             .withTimeout(ShooterMotors.ShooterFollower.TIMEOUT)

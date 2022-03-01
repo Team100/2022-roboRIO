@@ -20,7 +20,6 @@ public class Intake extends SubsystemBase {
     public Intake() {
     
         spin = new FRCNEO.FRCNEOBuilder(Constants.IntakeConstants.IntakeMotors.IntakeSpin.CAN_ID)
-            .withInverted(Constants.IntakeConstants.IntakeMotors.IntakeSpin.INVERT)
             .withFeedbackPort(Constants.IntakeConstants.IntakeMotors.IntakeSpin.FEEDBACK_PORT)
             .withSensorPhase(Constants.IntakeConstants.IntakeMotors.IntakeSpin.SENSOR_PHASE)
             .withTimeout(Constants.IntakeConstants.IntakeMotors.IntakeSpin.TIMEOUT)
@@ -34,7 +33,6 @@ public class Intake extends SubsystemBase {
     
 
         pivot = new FRCNEO.FRCNEOBuilder(Constants.IntakeConstants.IntakeMotors.IntakePivot.CAN_ID)
-            .withInverted(Constants.IntakeConstants.IntakeMotors.IntakePivot.INVERT)
             .withFeedbackPort(Constants.IntakeConstants.IntakeMotors.IntakePivot.FEEDBACK_PORT)
             .withSensorPhase(Constants.IntakeConstants.IntakeMotors.IntakePivot.SENSOR_PHASE)
             .withTimeout(Constants.IntakeConstants.IntakeMotors.IntakePivot.TIMEOUT)

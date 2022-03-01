@@ -392,7 +392,7 @@ public class FRCNEO implements Sendable {
         }
 
         if (this.isSensorPhase()) {
-            motor.getEncoder().setInverted(this.isSensorPhase());
+            //motor.getEncoder().setInverted(false);
             System.out.println("setting sensor phase");
         }
 
