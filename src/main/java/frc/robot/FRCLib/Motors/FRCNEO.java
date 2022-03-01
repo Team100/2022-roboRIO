@@ -15,6 +15,7 @@ import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMax.SoftLimitDirection;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.SparkMaxAnalogSensor.Mode;
 
 import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.util.sendable.SendableBuilder;
@@ -392,7 +393,7 @@ public class FRCNEO implements Sendable {
         }
 
         if (this.isSensorPhase()) {
-            //motor.getEncoder().setInverted(this.isSensorPhase());
+            motor.getAnalog(Mode.kAbsolute);
             System.out.println("setting sensor phase");
         }
 
