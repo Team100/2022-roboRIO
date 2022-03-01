@@ -53,26 +53,26 @@ public class Indexer extends SubsystemBase {
     }
 
     public boolean getSensorOne() {
-      return !sensor1.get();
+      return sensor1.get();
     }
 
     public boolean getSensorTwo() {
-      return !sensor2.get();
+      return sensor2.get();
     }
 
     public void runMotorOne(double percentOutput) {
-        stageOneSetpoint = percentOutput;
+        stageOneMotor.drivePercentOutput(percentOutput);
     }
 
     public void runMotorTwo(double percentOutput) {
-        stageTwoSetpoint = percentOutput;
+        stageTwoMotor.drivePercentOutput(percentOutput);
     }
     
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
-        stageOneMotor.drivePercentOutput(stageOneSetpoint);
-        stageTwoMotor.drivePercentOutput(stageTwoSetpoint);
+        // stageOneMotor.drivePercentOutput(stageOneSetpoint);
+        // stageTwoMotor.drivePercentOutput(stageTwoSetpoint);
         SmartDashboard.putBoolean("Indexer SensorOne", getSensorOne());
         SmartDashboard.putBoolean("Indexer SensorTwo", getSensorTwo());
     }
