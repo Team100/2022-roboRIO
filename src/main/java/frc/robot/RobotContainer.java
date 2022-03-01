@@ -69,11 +69,11 @@ public class RobotContainer {
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
         // Set default commands
-        drivetrain.setDefaultCommand(driveCommand);
-        climber.setDefaultCommand(climberStopCommand);
-        indexer.setDefaultCommand(indexerStopCommand);
-        intake.setDefaultCommand(intakeStopCommand);
-        shooter.setDefaultCommand(shootStopCommand);
+        // drivetrain.setDefaultCommand(driveCommand);
+        // climber.setDefaultCommand(climberStopCommand);
+        // indexer.setDefaultCommand(indexerStopCommand);
+        // intake.setDefaultCommand(intakeStopCommand);
+        // shooter.setDefaultCommand(shootStopCommand);
 
 
         //Sanjan.setDefaultCommand(STOP)
