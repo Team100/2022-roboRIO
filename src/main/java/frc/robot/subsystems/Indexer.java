@@ -8,10 +8,10 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.FRCLib.Motors.FRCTalonFX;
+import frc.robot.FRCLib.Motors.FRCNEO;
 
 public class Indexer extends SubsystemBase {
-    public FRCTalonFX stageOneMotor, stageTwoMotor;
+    public FRCNEO stageOneMotor, stageTwoMotor;
     public DigitalInput sensor1, sensor2;
     public double stageOneSetpoint, stageTwoSetpoint;
 
@@ -22,7 +22,7 @@ public class Indexer extends SubsystemBase {
         sensor1 = new DigitalInput(Constants.IndexerConstants.IndexerSensors.FrontSensor.ID);
         sensor2 = new DigitalInput(Constants.IndexerConstants.IndexerSensors.RearSensor.ID);
         // Construct Motor Objects
-        stageOneMotor = new FRCTalonFX.FRCTalonFXBuilder(Constants.IndexerConstants.IndexerMotors.IndexerStageOne.CAN_ID)
+        stageOneMotor = new FRCNEO.FRCNEOBuilder(Constants.IndexerConstants.IndexerMotors.IndexerStageOne.CAN_ID)
             .withInverted(Constants.IndexerConstants.IndexerMotors.IndexerStageOne.INVERT)
             .withFeedbackPort(Constants.IndexerConstants.IndexerMotors.IndexerStageOne.FEEDBACK_PORT)
             .withSensorPhase(Constants.IndexerConstants.IndexerMotors.IndexerStageOne.SENSOR_PHASE)
@@ -35,7 +35,7 @@ public class Indexer extends SubsystemBase {
             .withNeutralMode(Constants.IndexerConstants.IndexerMotors.IndexerStageOne.NEUTRAL_MODE)
             .build();
 
-        stageTwoMotor = new FRCTalonFX.FRCTalonFXBuilder(Constants.IndexerConstants.IndexerMotors.IndexerStageTwo.CAN_ID)
+        stageTwoMotor = new FRCNEO.FRCNEOBuilder(Constants.IndexerConstants.IndexerMotors.IndexerStageTwo.CAN_ID)
             .withInverted(Constants.IndexerConstants.IndexerMotors.IndexerStageTwo.INVERT)
             .withFeedbackPort(Constants.IndexerConstants.IndexerMotors.IndexerStageTwo.FEEDBACK_PORT)
             .withSensorPhase(Constants.IndexerConstants.IndexerMotors.IndexerStageTwo.SENSOR_PHASE)
@@ -53,26 +53,27 @@ public class Indexer extends SubsystemBase {
     }
 
     public boolean getSensorOne() {
-      return !sensor1.get();
+      return sensor1.get();
     }
 
     public boolean getSensorTwo() {
-      return !sensor2.get();
+      return sensor2.get();
     }
 
     public void runMotorOne(double percentOutput) {
-        stageOneSetpoint = percentOutput;
+        SmartDashboard.putNumber("motor one output", percentOutput);
+        stageOneMotor.drivePercentOutput(percentOutput);
     }
 
     public void runMotorTwo(double percentOutput) {
-        stageTwoSetpoint = percentOutput;
+        SmartDashboard.putNumber("motor two output", percentOutput);
+        stageTwoMotor.drivePercentOutput(percentOutput);
     }
     
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
-        stageOneMotor.drivePercentOutput(stageOneSetpoint);
-        stageTwoMotor.drivePercentOutput(stageTwoSetpoint);
+        // stageOneMotor.drivePercentOutput(stageOneSetpoint);
         SmartDashboard.putBoolean("Indexer SensorOne", getSensorOne());
         SmartDashboard.putBoolean("Indexer SensorTwo", getSensorTwo());
     }
