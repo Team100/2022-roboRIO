@@ -57,7 +57,7 @@ public class Indexer extends SubsystemBase {
     }
 
     public boolean getSensorTwo() {
-      return sensor2.get();
+      return !sensor2.get();
     }
 
     public void runMotorOne(double percentOutput) {
