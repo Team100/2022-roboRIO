@@ -24,10 +24,10 @@ public final class Constants {
         }
         public static final class DrivetrainSensors{
             public static final class LeftSensor{
-                public static final int ID = 1;
+                public static final int ID = 0;
             }
             public static final class RightSensor{
-                public static final int ID = 2;
+                public static final int ID = 1;
             }
         }
         public static final class DrivetrainMotors {
@@ -204,11 +204,11 @@ public final class Constants {
     public static final class IndexerConstants {
         public static final class IndexerSensors {
             public static final class FrontSensor {
-                public static final int ID = 5;
+                public static final int ID = 2;
             }
 
             public static final class RearSensor {
-                public static final int ID = 4;
+                public static final int ID = 3;
             }
         }
 

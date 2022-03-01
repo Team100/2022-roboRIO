@@ -53,7 +53,7 @@ public class Indexer extends SubsystemBase {
     }
 
     public boolean getSensorOne() {
-      return sensor1.get();
+      return !sensor1.get();
     }
 
     public boolean getSensorTwo() {
