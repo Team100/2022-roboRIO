@@ -231,13 +231,10 @@ public final class Constants {
                 public static final int TIMEOUT = 10;
 
                 public static final boolean ENABLE_CURRENT_LIMIT = false;
-                public static final int CURRENT_LIMIT = 25;
+                public static final int CURRENT_LIMIT = 80;
                 public static final double OPEN_LOOP_RAMP = 0.1;
                 public static final double PEAK_OUTPUT_FORWARD = .1;
                 public static final double PEAK_OUTPUT_REVERSE = -.1;
-
-                public static final double NOMINAL_OUTPUT_FORWARD = 0;
-                public static final double NOMINAL_OUTPUT_REVERSE = 0;
 
                 public static final IdleMode NEUTRAL_MODE = IdleMode.kBrake;
             }
@@ -247,18 +244,15 @@ public final class Constants {
               
                 public static final boolean INVERT = false;
                 public static final int FEEDBACK_PORT = 0;
-                public static final boolean SENSOR_PHASE = true;
+                public static final boolean SENSOR_PHASE = false;
 
                 public static final int TIMEOUT = 10;
 
                 public static final boolean ENABLE_CURRENT_LIMIT = false;
-                public static final int CURRENT_LIMIT = 25;
+                public static final int CURRENT_LIMIT = 80;
                 public static final double OPEN_LOOP_RAMP = 0.1;
                 public static final double PEAK_OUTPUT_FORWARD = .1;
                 public static final double PEAK_OUTPUT_REVERSE = -.1;
-
-                public static final double NOMINAL_OUTPUT_FORWARD = 0;
-                public static final double NOMINAL_OUTPUT_REVERSE = 0;
 
                 public static final IdleMode NEUTRAL_MODE = IdleMode.kBrake;
             }
