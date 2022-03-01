@@ -4,14 +4,22 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.FRCLib.Motors.FRCTalonFX;
 
 public class Climber extends SubsystemBase {
   private FRCTalonFX tilt, winch;
+  private DigitalInput leftStationaryHook, rightStationaryHook, leftMainHook, rightMainHook;
   /** Creates a new Climber. */
   public Climber() {
+    leftStationaryHook = new DigitalInput(Constants.DrivetrainConstants.DrivetrainSensors.LeftSensor.ID);
+    rightStationaryHook = new DigitalInput(Constants.DrivetrainConstants.DrivetrainSensors.RightSensor.ID);
+    leftMainHook = new DigitalInput(Constants.DrivetrainConstants.DrivetrainSensors.LeftSensor.ID);
+    rightMainHook = new DigitalInput(Constants.DrivetrainConstants.DrivetrainSensors.RightSensor.ID);
+
+
     tilt = new FRCTalonFX.FRCTalonFXBuilder(Constants.ClimberConstants.ClimberMotors.Tilt.CAN_ID)
     .withInverted(Constants.ClimberConstants.ClimberMotors.Tilt.INVERT)
     .withFeedbackPort(Constants.ClimberConstants.ClimberMotors.Tilt.FEEDBACK_PORT)
@@ -47,7 +55,21 @@ public class Climber extends SubsystemBase {
     winch.drivePercentOutput(percentOutput);
   }
 
+  public boolean stationaryLocked(){
+    return leftStationaryHook.get()&&rightStationaryHook.get();
+  }
 
+  public boolean mainLocked(){
+    return leftMainHook.get()&&rightMainHook.get();
+  }
+
+  public double mainPosition(){
+    return winch.getSelectedSensorPosition();
+  }
+
+  public double tiltAngle(){
+    return (winch.getSelectedSensorPosition());
+  }
 
   @Override
   public void periodic() {
