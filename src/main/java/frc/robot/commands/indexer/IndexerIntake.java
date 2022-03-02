@@ -31,20 +31,22 @@ public class IndexerIntake extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        if (indexer.getSensorOne() && indexer.getSensorTwo()) {
-            SmartDashboard.putString("Indexer command", "Stopped");
-            done = true;
-        } else {
-            if (indexer.getSensorTwo()) {
-                SmartDashboard.putString("Indexer command","Running Stage One");
-                indexer.runMotorOne(Constants.IndexerConstants.IndexerMotionParameters.STAGE_ONE_PERCENT_OUTPUT_FORWARD);
-                indexer.runMotorTwo(0);
-            } else {
-                SmartDashboard.putString("Indexer command","Running Both Stages");
-                indexer.runMotorOne(Constants.IndexerConstants.IndexerMotionParameters.STAGE_ONE_PERCENT_OUTPUT_FORWARD);
-                indexer.runMotorTwo(Constants.IndexerConstants.IndexerMotionParameters.STAGE_TWO_PERCENT_OUTPUT_FORWARD);
-            }
-        }
+        // if (indexer.getSensorOne() && indexer.getSensorTwo()) {
+        //     SmartDashboard.putString("Indexer command", "Stopped");
+        //     done = true;
+        // } else {
+        //     if (indexer.getSensorTwo()) {
+        //         SmartDashboard.putString("Indexer command","Running Stage One");
+        //         indexer.runMotorOne(Constants.IndexerConstants.IndexerMotionParameters.STAGE_ONE_PERCENT_OUTPUT_FORWARD);
+        //         indexer.runMotorTwo(0);
+        //     } else {
+        //         SmartDashboard.putString("Indexer command","Running Both Stages");
+        //         indexer.runMotorOne(Constants.IndexerConstants.IndexerMotionParameters.STAGE_ONE_PERCENT_OUTPUT_FORWARD);
+        //         indexer.runMotorTwo(Constants.IndexerConstants.IndexerMotionParameters.STAGE_TWO_PERCENT_OUTPUT_FORWARD);
+        //     }
+        // }
+        indexer.runMotorOne(Constants.IndexerConstants.IndexerMotionParameters.STAGE_ONE_PERCENT_OUTPUT_FORWARD);
+        indexer.runMotorTwo(Constants.IndexerConstants.IndexerMotionParameters.STAGE_TWO_PERCENT_OUTPUT_FORWARD);
     }
 
     // Called once the command ends or is interrupted.
