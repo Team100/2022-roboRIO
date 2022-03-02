@@ -38,7 +38,7 @@ public class Climber extends SubsystemBase {
   }
   public void setTilt(double percentOutput) {
     tilt.drivePercentOutput(percentOutput);
-    //System.out.println("driving tilt " + percentOutput);
+    System.out.println("driving tilt " + percentOutput);
   }
   
 
