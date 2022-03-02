@@ -222,7 +222,7 @@ public final class Constants {
 
         public static final class IndexerMotors {
             public static final class IndexerStageOne {
-                public static final int CAN_ID = 4;
+                public static final int CAN_ID = 8;
 
                 public static final boolean INVERT = false;
                 public static final int FEEDBACK_PORT = 0;
@@ -240,7 +240,7 @@ public final class Constants {
             }
 
             public static final class IndexerStageTwo {
-                public static final int CAN_ID = 5;
+                public static final int CAN_ID = 13;
               
                 public static final boolean INVERT = false;
                 public static final int FEEDBACK_PORT = 0;
