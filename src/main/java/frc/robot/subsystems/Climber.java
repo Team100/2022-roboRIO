@@ -48,6 +48,7 @@ public class Climber extends SubsystemBase {
     //System.out.println("driving winch " + percentOutput);
 
     winch.drivePercentOutput(percentOutput);
+    System.out.println("driving winchz " + percentOutput);
 
   }
 
