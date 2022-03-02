@@ -38,19 +38,25 @@ public class Climber extends SubsystemBase {
   }
   public void setTilt(double percentOutput) {
     tilt.drivePercentOutput(percentOutput);
+    //System.out.println("driving tilt " + percentOutput);
   }
   
 
   public void setWinch(double percentOutput) {
     // double limiter = (-joystick.getZ() + 1) / 2;
     // winch.drivePercentOutput(percentOutput*limiter);
+    //System.out.println("driving winch " + percentOutput);
+
     winch.drivePercentOutput(percentOutput);
+
   }
 
 
 
   @Override
   public void periodic() {
+    // /System.out.println("well at least periodic works");
+
     // This method will be called once per scheduler run
   }
 }

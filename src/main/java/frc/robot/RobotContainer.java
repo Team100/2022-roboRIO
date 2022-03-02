@@ -50,9 +50,9 @@ public class RobotContainer {
     //private final JoystickButton controlBallButton = new JoystickButton(buttonBoard, 14);
 
     // Commands
-    private final Drive driveCommand = new Drive(drivetrain, leftJoystick, rightJoystick);
-    private final DriveFurious driveFuriousCommand = new DriveFurious(drivetrain, leftJoystick, rightJoystick);
-    private final AlignClimber alignCommand = new AlignClimber(drivetrain);
+    //private final Drive driveCommand = new Drive(drivetrain, leftJoystick, rightJoystick);
+    //private final DriveFurious driveFuriousCommand = new DriveFurious(drivetrain, leftJoystick, rightJoystick);
+    //private final AlignClimber alignCommand = new AlignClimber(drivetrain);
     private final IntakeIntake intakeIntakeCommand = new IntakeIntake(intake);
     private final IntakeStop intakeStopCommand = new IntakeStop(intake);
     private final Shoot shootCommand = new Shoot(shooter);
@@ -62,7 +62,7 @@ public class RobotContainer {
     private final IndexerEject ejectCommand = new IndexerEject(indexer);
     private final IndexerFeed feedCommand = new IndexerFeed(indexer);
     private final ClimberStop climberStopCommand = new ClimberStop(climber);
-    private final ClimberControl climberControl = new ClimberControl(climber, gamepad);
+    private final ClimberControl climberControl = new ClimberControl(climber, leftJoystick, rightJoystick);
     //private final ParallelCommandGroup controlBall = new ParallelCommandGroup(intakeIntakeCommand,indexerStopCommand);
 
 
@@ -70,7 +70,7 @@ public class RobotContainer {
     public RobotContainer() {
         // Set default commands
         // drivetrain.setDefaultCommand(driveCommand);
-        // climber.setDefaultCommand(climberStopCommand);
+        climber.setDefaultCommand(climberControl);
         // indexer.setDefaultCommand(indexerStopCommand);
         // intake.setDefaultCommand(intakeStopCommand);
         // shooter.setDefaultCommand(shootStopCommand);
@@ -89,14 +89,14 @@ public class RobotContainer {
     * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
     */
     private void configureButtonBindings() {
-        shootButton.whileHeld(shootCommand);
-        turboButton.whileHeld(driveFuriousCommand);
-        intakeIntakeButton.whileHeld(intakeIntakeCommand);
-        alignButton.whileHeld(alignCommand);
-        indexerIntakeButton.whileHeld(intakeCommand);
-        ejectButton.whileHeld(ejectCommand);
-        feedButton.whenPressed(feedCommand);
-        climberControlButton.whenPressed(climberControl);
+        // shootButton.whileHeld(shootCommand);
+        // turboButton.whileHeld(driveFuriousCommand);
+        // intakeIntakeButton.whileHeld(intakeIntakeCommand);
+        // alignButton.whileHeld(alignCommand);
+        // indexerIntakeButton.whileHeld(intakeCommand);
+        // ejectButton.whileHeld(ejectCommand);
+        // feedButton.whenPressed(feedCommand);
+        climberControlButton.whileHeld(climberControl);
         //controlBallButton.whileHeld(controlBall);
     }
 
