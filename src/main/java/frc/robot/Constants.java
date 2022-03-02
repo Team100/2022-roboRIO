@@ -274,7 +274,7 @@ public final class Constants {
 
         public static final class ClimberMotors {
             public static final class Winch {
-                public static final int CAN_ID = 12;
+                public static final int CAN_ID = 17;
     
                 public static final InvertType INVERT = InvertType.None;
                 public static final int FEEDBACK_PORT = 0;
