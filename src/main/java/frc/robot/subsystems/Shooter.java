@@ -41,7 +41,8 @@ public class Shooter extends SubsystemBase {
             .withPeakOutputForward(ShooterMotors.ShooterFollower.PEAK_OUTPUT_FORWARD)
             .withPeakOutputReverse(ShooterMotors.ShooterFollower.PEAK_OUTPUT_REVERSE)
             .withNeutralMode(ShooterMotors.ShooterFollower.NEUTRAL_MODE)
-            .withMaster(shootMotor).build();
+            .withMaster(shootMotor)
+            .build();
             
             
         addChild("Shooter", shootMotor); 
