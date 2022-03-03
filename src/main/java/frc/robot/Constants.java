@@ -84,7 +84,7 @@ public final class Constants {
             }
         }
         public static final class DrivetrainControls {
-            public static final double RAMP_LIMIT = 0.01;
+            public static final double RAMP_LIMIT = 0.1;
         }
     }
     public static final class IntakeConstants {
