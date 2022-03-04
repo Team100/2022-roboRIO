@@ -4,15 +4,15 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Intake;
 
-public class IntakeIntake extends CommandBase {
+public class IntakeEject extends CommandBase {
     public boolean done;
 
     public Intake intake;
 
     /**
-     * Creates a new IntakeIntake.
+     * Creates a new IntakeEject.
      */
-    public IntakeIntake(Intake intake) {
+    public IntakeEject(Intake intake) {
         // Use addRequirements() here to declare subsystem dependencies.
         this.intake = intake;
         addRequirements(this.intake);
@@ -22,7 +22,7 @@ public class IntakeIntake extends CommandBase {
     @Override
     public void initialize() {
         done = false;
-        intake.runSpinner(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_SPINNER_PERCENT_OUTPUT);
+        intake.runSpinner(-Constants.IntakeConstants.IntakeMotionParameters.INTAKE_SPINNER_PERCENT_OUTPUT);
 
     }
 

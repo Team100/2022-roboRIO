@@ -36,7 +36,8 @@ public class IndexerFeed extends CommandBase {
     public void execute() {
         if (shouldCheckRefill) {
             if (indexer.getSensorTwo() && wasFalse) {
-                shouldCheckRefill = false;
+                // shouldCheckRefill = false;
+                done = true;
                 return;
             }
 

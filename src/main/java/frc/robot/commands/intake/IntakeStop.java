@@ -19,6 +19,7 @@ public class IntakeStop extends CommandBase {
     @Override
     public void initialize() {
         this.intake.runSpinner(0);
+        this.intake.runPivot(0);
     }
 
     // Called every time the scheduler runs while the command is scheduled.

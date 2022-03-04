@@ -4,9 +4,7 @@
 
 package frc.robot.commands.shooter;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
 import frc.robot.subsystems.Shooter;
 
 public class ShootStop extends CommandBase {
@@ -29,7 +27,6 @@ public class ShootStop extends CommandBase {
     @Override
     public void execute() {
         shooter.set(0);
-
     }
 
     // Called once the command ends or is interrupted.

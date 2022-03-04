@@ -32,7 +32,7 @@ public final class Constants {
         }
         public static final class DrivetrainMotors {
             public static final class LeftMaster {
-                public static final int CAN_ID = 18;
+                public static final int CAN_ID = 38; //18
                 public static final double KP = 0;
                 public static final double KI = 0;
                 public static final double KD = 0;
@@ -45,7 +45,7 @@ public final class Constants {
             }
 
             public static final class LeftFollower {
-                public static final int CAN_ID = 19;
+                public static final int CAN_ID = 39; //19
                 public static final double KP = 0;
                 public static final double KI = 0;
                 public static final double KD = 0;
@@ -58,7 +58,7 @@ public final class Constants {
             }
 
             public static final class RightMaster {
-                public static final int CAN_ID = 10;
+                public static final int CAN_ID = 30; //10
                 public static final double KP = 0;
                 public static final double KI = 0;
                 public static final double KD = 0;
@@ -71,7 +71,7 @@ public final class Constants {
             }
 
             public static final class RightFollower {
-                public static final int CAN_ID = 11;
+                public static final int CAN_ID = 31; //11
                 public static final double KP = 0;
                 public static final double KI = 0;
                 public static final double KD = 0;
@@ -92,7 +92,7 @@ public final class Constants {
             public static final int DOWN_POSITION = 30;
         }
         public static final class IntakeMotionParameters {
-            public static final double INTAKE_SPINNER_PERCENT_OUTPUT = 0.2;
+            public static final double INTAKE_SPINNER_PERCENT_OUTPUT = 0.4;
             public static final double INTAKE_PIVOT_PERCENT_OUTPUT = 0.1;
             public static final double INTAKE_ZERO = 0;
 
@@ -113,9 +113,9 @@ public final class Constants {
 
         public static final class IntakeMotors {
             public static final class IntakeSpin {
-                public static final int CAN_ID = 1;
+                public static final int CAN_ID = 1; //1
 
-                public static final boolean INVERT = true;
+                public static final boolean INVERT = false;
                 public static final int FEEDBACK_PORT = 0;
                 public static final boolean SENSOR_PHASE = false;
 
@@ -134,7 +134,7 @@ public final class Constants {
             }
 
             public static final class IntakePivot {
-                public static final int CAN_ID = 2;
+                public static final int CAN_ID = 2; //2
 
                 public static final boolean INVERT = false;
                 public static final int FEEDBACK_PORT = 0;
@@ -159,7 +159,7 @@ public final class Constants {
     }
     public static final class ShooterConstants {
         public static final class ShooterMotionParameters {
-            public static final double SHOOTER_PERCENT_OUTPUT = 0.17;
+            public static final double SHOOTER_PERCENT_OUTPUT = 0.1; //0.17
             public static final double SHOOTER_ZERO = 0;
 			public static final double NOMINAL_VELOCITY = 100;
         }
@@ -222,7 +222,7 @@ public final class Constants {
 
         public static final class IndexerMotors {
             public static final class IndexerStageOne {
-                public static final int CAN_ID = 4;
+                public static final int CAN_ID = 5;
 
                 public static final boolean INVERT = false;
                 public static final int FEEDBACK_PORT = 0;
@@ -240,7 +240,7 @@ public final class Constants {
             }
 
             public static final class IndexerStageTwo {
-                public static final int CAN_ID = 5;
+                public static final int CAN_ID = 4;
               
                 public static final boolean INVERT = false;
                 public static final int FEEDBACK_PORT = 0;
