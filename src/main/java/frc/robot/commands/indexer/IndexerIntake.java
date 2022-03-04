@@ -25,6 +25,8 @@ public class IndexerIntake extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
+        // indexer.runMotorOne(Constants.IndexerConstants.IndexerMotionParameters.STAGE_ONE_PERCENT_OUTPUT_FORWARD);
+        // indexer.runMotorTwo(Constants.IndexerConstants.IndexerMotionParameters.STAGE_TWO_PERCENT_OUTPUT_FORWARD);
         done = false;
     }
 
