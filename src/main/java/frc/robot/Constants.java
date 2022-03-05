@@ -95,11 +95,11 @@ public final class Constants {
             }
         }
         public static final class PivotConstants {
-            public static final int DOWN_POSITION = 30;
+            public static final int DOWN_POSITION = 3;
         }
         public static final class IntakeMotionParameters {
             public static final double INTAKE_SPINNER_PERCENT_OUTPUT = 0.4;
-            public static final double INTAKE_PIVOT_PERCENT_OUTPUT = 0.1;
+            public static final double INTAKE_PIVOT_PERCENT_OUTPUT = 0.05;
             public static final double INTAKE_ZERO = 0;
 
             public static final int ZEROED_ENCODER_TICKS = 65;

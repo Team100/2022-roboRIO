@@ -6,7 +6,9 @@ package frc.robot.subsystems;
 
 import com.revrobotics.AnalogInput;
 
+import edu.wpi.first.wpilibj.AnalogEncoder;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import edu.wpi.first.wpilibj.AnalogTrigger;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -17,16 +19,19 @@ public class Intake extends SubsystemBase {
     private FRCNEO spin, pivot;
 
     //public AnalogPotentiometer pot;
-    public AnalogPotentiometer pot;// = new AnalogPotentiometer(Constants.IntakeConstants.IntakeSensors.IntakePot.ID);
+    //public AnalogPotentiometer pot;// = new AnalogPotentiometer(Constants.IntakeConstants.IntakeSensors.IntakePot.ID);
     //pot.setAverageBits(2);
 
-
+    //edu.wpi.first.wpilibj.AnalogInput pot = new edu.wpi.first.wpilibj.AnalogInput(3);
 
     /**
      * Creates a new Intake.
      */
     public Intake() {        
-        pot = new AnalogPotentiometer(Constants.IntakeConstants.IntakeSensors.IntakePot.ID,100,-57);
+        //pot = new AnalogPotentiometer(Constants.IntakeConstants.IntakeSensors.IntakePot.ID,100,-57);
+
+    
+
 
         spin = new FRCNEO.FRCNEOBuilder(Constants.IntakeConstants.IntakeMotors.IntakeSpin.CAN_ID)
             .withInverted(Constants.IntakeConstants.IntakeMotors.IntakeSpin.INVERT)
@@ -58,6 +63,7 @@ public class Intake extends SubsystemBase {
 
             addChild("intakePivot", pivot);
             addChild("intakeSpin", spin);
+            //addChild("intakeArmPotentiometer", pot);
         }
 
         @Override
@@ -67,7 +73,7 @@ public class Intake extends SubsystemBase {
         }
 
         public double getPot(){
-            return pot.get();
+            return pivot.getSelectedSensorPosition();//pot.getVoltage();
         }
 
         public void runPivot(double percentOutput) {
