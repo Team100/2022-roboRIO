@@ -276,6 +276,9 @@ public final class Constants {
             public static final double CLIMBER_BOTTOM = 3000;
             public static final double TILT_START = 7000;
             public static final double STATIONARY_LOCK_ANGLE = 10;
+
+            public static final double EXTEND_START_ANGLE = 0;
+            public static final double NEXT_BAR_ANGLE = 10;
         }
 
         public static final class ClimberControls {
@@ -317,7 +320,7 @@ public final class Constants {
                 public static final double PEAK_OUTPUT_FORWARD = 1;
                 public static final double PEAK_OUTPUT_REVERSE = 1;
 
-                public static final NeutralMode NEUTRAL_MODE = NeutralMode.Brake;
+                public static final NeutralMode NEUTRAL_MODE = NeutralMode.Coast;
             }
         }
     }
