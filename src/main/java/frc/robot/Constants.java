@@ -279,6 +279,9 @@ public final class Constants {
 
             public static final double EXTEND_START_ANGLE = 0;
             public static final double NEXT_BAR_ANGLE = 10;
+            public static final double NEXT_BAR_DISTANCE = 9000;
+
+            public static final double NEXT_BAR_GRAB_ANGLE = 0;
         }
 
         public static final class ClimberControls {

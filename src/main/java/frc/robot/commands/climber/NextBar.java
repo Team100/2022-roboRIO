@@ -34,9 +34,28 @@ public class NextBar extends CommandBase {
   public void execute() {
     if(climber.tiltAngle()<ClimberConstants.ClimberMotionParameters.NEXT_BAR_ANGLE){
       climber.setTilt(-ClimberConstants.ClimberMotionParameters.TILT_PERCENT_OUTPUT);//tilt back until angled with the hooks behind the next bar
-      if(climber.tiltAngle()>ClimberConstants.ClimberMotionParameters.EXTEND_START_ANGLE){//if you are sufficiently tilted that you can start reaching back and still end up behind the next bar
+      if(climber.tiltAngle()>ClimberConstants.ClimberMotionParameters.EXTEND_START_ANGLE&&climber.mainPosition()>ClimberConstants.ClimberMotionParameters.NEXT_BAR_DISTANCE){//if you are sufficiently tilted that you can start reaching back and still end up behind the next bar and you haven't reached back enough
         climber.setWinch(-ClimberConstants.ClimberMotionParameters.CLIMBER_PERCENT_OUTPUT);//extend main hooks
       }
+    }
+    if(climber.mainPosition()>ClimberConstants.ClimberMotionParameters.NEXT_BAR_DISTANCE){//if main hooks are far back enough
+      climber.setWinch(0);//stop extending
+      behindBar = true;//you are now behind the bar
+    }
+    if(behindBar&&climber.tiltAngle()<=ClimberConstants.ClimberMotionParameters.NEXT_BAR_GRAB_ANGLE){//if you are behind the bar
+      climber.setTilt(ClimberConstants.ClimberMotionParameters.TILT_PERCENT_OUTPUT);//tilt forward until you can grab the bar
+    }
+    if(behindBar&&climber.tiltAngle()>=ClimberConstants.ClimberMotionParameters.NEXT_BAR_GRAB_ANGLE&&!climber.mainLocked()){//if you are in position to grab the bar and haven't yet
+      climber.setTilt(0);//stop tilting
+      climber.setWinch(ClimberConstants.ClimberMotionParameters.CLIMBER_PERCENT_OUTPUT);//retract main hooks
+    }
+    if(behindBar&&climber.mainLocked()&&climber.mainPosition()>=ClimberConstants.ClimberMotionParameters.CLIMBER_BOTTOM){//if locked on next bar and not retracted sufficiently
+      climber.setWinch(ClimberConstants.ClimberMotionParameters.CLIMBER_PERCENT_OUTPUT);//retract main hooks
+    }
+    if(behindBar&&climber.mainLocked()&&climber.mainPosition()<ClimberConstants.ClimberMotionParameters.CLIMBER_BOTTOM){//if locked on next bar and  retracted sufficiently
+      climber.setWinch(0);//stop winch
+      climber.setTilt(0);//stop tilting
+      done = true;
     }
   }
 
