@@ -68,7 +68,7 @@ public class Climber extends SubsystemBase {
   }
 
   public double tiltAngle(){
-    return tilt.getSelectedSensorPosition()/2048;
+    return 90-((tilt.getSelectedSensorPosition()/2048)+45);
   }
 
   @Override
