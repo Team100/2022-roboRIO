@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.AnalogEncoder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -13,12 +14,15 @@ public class Intake extends SubsystemBase {
 
     private FRCNEO spin, pivot;
 
+    public AnalogEncoder pot;
+
 
     /**
      * Creates a new Intake.
      */
-    public Intake() {
-    
+    public Intake() {        
+        pot = new AnalogEncoder(Constants.IntakeConstants.IntakeSensors.IntakePot.ID);
+
         spin = new FRCNEO.FRCNEOBuilder(Constants.IntakeConstants.IntakeMotors.IntakeSpin.CAN_ID)
             .withInverted(Constants.IntakeConstants.IntakeMotors.IntakeSpin.INVERT)
             .withFeedbackPort(Constants.IntakeConstants.IntakeMotors.IntakeSpin.FEEDBACK_PORT)
@@ -54,14 +58,15 @@ public class Intake extends SubsystemBase {
         @Override
         public void periodic() {
             // This method will be called once per scheduler run
-            SmartDashboard.putNumber("Intake Pivot Encoder Value", getCurrentPosition());
+            SmartDashboard.putNumber("Intake Pivot Encoder Value", getPot());
         }
 
-        public double getCurrentPosition(){
-            return pivot.getAnalogSensorPosition();
+        public double getPot(){
+            return pot.getAbsolutePosition();
         }
 
         public void runPivot(double percentOutput) {
+            //System.out.println(percentOutput);
             pivot.drivePercentOutput(percentOutput);
         }
 

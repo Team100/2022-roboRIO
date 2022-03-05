@@ -106,8 +106,8 @@ public class RobotContainer {
         climberControlButton.whenPressed(climberControl);
         //controlBallButton.whileHeld(controlBall);
 
-        intakePivotDown.whileHeld(new InstantCommand(() -> { intake.runPivot(0.15); }, intake));
-        intakePivotUp.whileHeld(new InstantCommand(() -> { intake.runPivot(-0.15); }, intake));
+        // intakePivotDown.whileHeld(new InstantCommand(() -> { intake.runPivot(0.2); }, intake));
+        // intakePivotUp.whileHeld(new InstantCommand(() -> { intake.runPivot(-0.2); }, intake));
     }
 
     /**

@@ -88,6 +88,12 @@ public final class Constants {
         }
     }
     public static final class IntakeConstants {
+        public static final class IntakeSensors{
+            public static final class IntakePot{
+                public static final int ID = 3;
+                public static final int DOWN = 15;
+            }
+        }
         public static final class PivotConstants {
             public static final int DOWN_POSITION = 30;
         }
