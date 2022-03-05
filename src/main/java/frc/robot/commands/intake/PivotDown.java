@@ -10,7 +10,7 @@ import frc.robot.Constants.IntakeConstants;
 
 public class PivotDown extends CommandBase {
   public Intake intake;
-  public     bool done;
+  //public bool done;
 
   /** Creates a new PivotDown. */
   public PivotDown(Intake intake) {

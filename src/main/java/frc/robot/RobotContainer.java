@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.ScheduleCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
@@ -42,12 +43,12 @@ public class RobotContainer {
     private final Joystick gamepad = new Joystick(2);
     private final Joystick buttonBoard = new Joystick(3);
     private final JoystickButton turboButton = new JoystickButton(rightJoystick, 1);
-    private final JoystickButton intakeIntakeButton = new JoystickButton(buttonBoard, 2);
-    private final JoystickButton intakeEjectButton = new JoystickButton(buttonBoard, 5);
+    private final JoystickButton intakeButton = new JoystickButton(buttonBoard, 2);
+    private final JoystickButton ejectButton = new JoystickButton(buttonBoard, 5);
     private final JoystickButton alignButton = new JoystickButton(gamepad, 7);
-    private final JoystickButton shootButton = new JoystickButton(buttonBoard, 16);
+    //private final JoystickButton shootButton = new JoystickButton(buttonBoard, 16);
     private final JoystickButton indexerIntakeButton = new JoystickButton(buttonBoard, 12);
-    private final JoystickButton ejectButton = new JoystickButton(buttonBoard, 4);
+    private final JoystickButton shootButton = new JoystickButton(buttonBoard, 4);
     private final JoystickButton feedButton = new JoystickButton(buttonBoard, 15);
     private final JoystickButton climberControlButton = new JoystickButton(gamepad, 3);
     private final JoystickButton intakePivotDown = new JoystickButton(buttonBoard, 13);
@@ -65,7 +66,7 @@ public class RobotContainer {
     private final ShootStop shootStopCommand = new ShootStop(shooter);
     private final IndexerStop indexerStopCommand = new IndexerStop(indexer);
     private final IndexerIntake intakeCommand = new IndexerIntake(indexer);
-    private final IndexerEject ejectCommand = new IndexerEject(indexer, intake);
+    private final IndexerEject indexerEjectCommand = new IndexerEject(indexer, intake);
     private final IndexerFeed feedCommand = new IndexerFeed(indexer);
     private final ClimberStop climberStopCommand = new ClimberStop(climber);
     private final ClimberControl climberControl = new ClimberControl(climber, gamepad);
@@ -95,15 +96,20 @@ public class RobotContainer {
     * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
     */
     private void configureButtonBindings() {
-        shootButton.whileHeld(shootCommand);
+        //shootButton.whileHeld(shootCommand);
         turboButton.whileHeld(driveFuriousCommand);
-        intakeIntakeButton.whileHeld(intakeIntakeCommand);
-        intakeEjectButton.whileHeld(intakeEjectCommand);
-        alignButton.whileHeld(alignCommand);
-        indexerIntakeButton.whenPressed(new ScheduleCommand(new SequentialCommandGroup(intakeCommand, new WaitCommand(0.3))));
-        ejectButton.whileHeld(ejectCommand);
-        feedButton.whenPressed(feedCommand);
-        climberControlButton.whenPressed(climberControl);
+        // intakeIntakeButton.whileHeld(intakeIntakeCommand);
+        //intakeEjectButton.whileHeld(intakeEjectCommand);
+        //alignButton.whileHeld(alignCommand);
+        //indexerIntakeButton.whenPressed(new ScheduleCommand(new SequentialCommandGroup(intakeCommand, new WaitCommand(0.3))));
+            //intakeButton.whenPressed(new ScheduleCommand(new SequentialCommandGroup((new ParallelCommandGroup(intakeIntakeCommand, intakeCommand)), new WaitCommand(0.3))));
+        intakeButton.whileHeld((new ParallelCommandGroup(intakeIntakeCommand, intakeCommand)));
+            shootButton.whileHeld(new ParallelCommandGroup(feedCommand, shootCommand));
+        ejectButton.whileHeld(new ParallelCommandGroup(intakeEjectCommand, indexerEjectCommand));
+
+        //ejectButton.whileHeld(ejectCommand);
+        //feedButton.whenPressed(feedCommand);
+        //climberControlButton.whenPressed(climberControl);
         //controlBallButton.whileHeld(controlBall);
 
         // intakePivotDown.whileHeld(intakeIntakeCommand);

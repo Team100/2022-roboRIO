@@ -34,28 +34,28 @@ public class IndexerFeed extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        if (shouldCheckRefill) {
-            if (indexer.getSensorTwo() && wasFalse) {
-                // shouldCheckRefill = false;
-                done = true;
-                return;
-            }
+        // if (shouldCheckRefill) {
+        //     if (indexer.getSensorTwo() && wasFalse) {
+        //         // shouldCheckRefill = false;
+        //         done = true;
+        //         return;
+        //     }
 
             indexer.runMotorOne(STAGE_ONE_PERCENT_OUTPUT_FORWARD);
             indexer.runMotorTwo(STAGE_TWO_PERCENT_OUTPUT_FORWARD);
 
-            if (!indexer.getSensorTwo()) {
-                wasFalse = true;
-            }
-        } else {
-            if (!indexer.getSensorTwo()) {
-                done = true;
-                return;
-            }
+        //     if (!indexer.getSensorTwo()) {
+        //         wasFalse = true;
+        //     }
+        // } else {
+        //     if (!indexer.getSensorTwo()) {
+        //         done = true;
+        //         return;
+        //     }
 
-            indexer.runMotorOne(STAGE_ONE_PERCENT_OUTPUT_FORWARD);
-            indexer.runMotorTwo(STAGE_TWO_PERCENT_OUTPUT_FORWARD);
-        }
+        //     indexer.runMotorOne(STAGE_ONE_PERCENT_OUTPUT_FORWARD);
+        //     indexer.runMotorTwo(STAGE_TWO_PERCENT_OUTPUT_FORWARD);
+        // }
     }
         
     

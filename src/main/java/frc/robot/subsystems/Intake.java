@@ -4,7 +4,9 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.AnalogEncoder;
+import com.revrobotics.AnalogInput;
+
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -14,14 +16,17 @@ public class Intake extends SubsystemBase {
 
     private FRCNEO spin, pivot;
 
-    public AnalogEncoder pot;
+    //public AnalogPotentiometer pot;
+    public AnalogPotentiometer pot;// = new AnalogPotentiometer(Constants.IntakeConstants.IntakeSensors.IntakePot.ID);
+    //pot.setAverageBits(2);
+
 
 
     /**
      * Creates a new Intake.
      */
     public Intake() {        
-        pot = new AnalogEncoder(Constants.IntakeConstants.IntakeSensors.IntakePot.ID);
+        pot = new AnalogPotentiometer(Constants.IntakeConstants.IntakeSensors.IntakePot.ID,100,-57);
 
         spin = new FRCNEO.FRCNEOBuilder(Constants.IntakeConstants.IntakeMotors.IntakeSpin.CAN_ID)
             .withInverted(Constants.IntakeConstants.IntakeMotors.IntakeSpin.INVERT)
@@ -62,7 +67,7 @@ public class Intake extends SubsystemBase {
         }
 
         public double getPot(){
-            return pot.getDistance();
+            return pot.get();
         }
 
         public void runPivot(double percentOutput) {

@@ -32,7 +32,7 @@ public final class Constants {
         }
         public static final class DrivetrainMotors {
             public static final class LeftMaster {
-                public static final int CAN_ID = 38; //18
+                public static final int CAN_ID = 18; //18
                 public static final double KP = 0;
                 public static final double KI = 0;
                 public static final double KD = 0;
@@ -45,7 +45,7 @@ public final class Constants {
             }
 
             public static final class LeftFollower {
-                public static final int CAN_ID = 39; //19
+                public static final int CAN_ID = 19; //19
                 public static final double KP = 0;
                 public static final double KI = 0;
                 public static final double KD = 0;
@@ -58,7 +58,7 @@ public final class Constants {
             }
 
             public static final class RightMaster {
-                public static final int CAN_ID = 30; //10
+                public static final int CAN_ID = 10; //10
                 public static final double KP = 0;
                 public static final double KI = 0;
                 public static final double KD = 0;
@@ -71,7 +71,7 @@ public final class Constants {
             }
 
             public static final class RightFollower {
-                public static final int CAN_ID = 31; //11
+                public static final int CAN_ID = 11; //11
                 public static final double KP = 0;
                 public static final double KI = 0;
                 public static final double KD = 0;
@@ -84,7 +84,7 @@ public final class Constants {
             }
         }
         public static final class DrivetrainControls {
-            public static final double RAMP_LIMIT = 0.01;
+            public static final double RAMP_LIMIT = 0.1;
         }
     }
     public static final class IntakeConstants {
@@ -165,7 +165,7 @@ public final class Constants {
     }
     public static final class ShooterConstants {
         public static final class ShooterMotionParameters {
-            public static final double SHOOTER_PERCENT_OUTPUT = 0.30; //0.17 //0.175
+            public static final double SHOOTER_PERCENT_OUTPUT = 0.17; //0.17 //0.175
             public static final double SHOOTER_ZERO = 0;
 			public static final double NOMINAL_VELOCITY = 100;
         }

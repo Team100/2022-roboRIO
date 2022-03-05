@@ -12,7 +12,7 @@ import frc.robot.Constants;
 
 public class IndexerIntake extends CommandBase {
     private Indexer indexer;
-    private boolean done = false;
+    private boolean done, secondBall;
 
     /** Creates a new IndexerIntake. */
     public IndexerIntake(Indexer indexer) {
@@ -27,25 +27,34 @@ public class IndexerIntake extends CommandBase {
     public void initialize() {
         // indexer.runMotorOne(Constants.IndexerConstants.IndexerMotionParameters.STAGE_ONE_PERCENT_OUTPUT_FORWARD);
         // indexer.runMotorTwo(Constants.IndexerConstants.IndexerMotionParameters.STAGE_TWO_PERCENT_OUTPUT_FORWARD);
+        secondBall = indexer.getSensorTwo();
         done = false;
+    }
+
+    public void stop(){
+        indexer.runMotorOne(0);
+        indexer.runMotorTwo(0);
+        SmartDashboard.putString("Indexer command", "Stopped");
+        done = true;
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        if (indexer.getSensorOne() && indexer.getSensorTwo()) {
-            SmartDashboard.putString("Indexer command", "Stopped");
-            done = true;
-        } else {
-            if (indexer.getSensorTwo()) {
-                SmartDashboard.putString("Indexer command","Running Stage One");
-                indexer.runMotorOne(Constants.IndexerConstants.IndexerMotionParameters.STAGE_ONE_PERCENT_OUTPUT_FORWARD);
-                indexer.runMotorTwo(0);
-            } else {
-                SmartDashboard.putString("Indexer command","Running Both Stages");
-                indexer.runMotorOne(Constants.IndexerConstants.IndexerMotionParameters.STAGE_ONE_PERCENT_OUTPUT_FORWARD);
-                indexer.runMotorTwo(Constants.IndexerConstants.IndexerMotionParameters.STAGE_TWO_PERCENT_OUTPUT_FORWARD);
+        if (secondBall) {
+            SmartDashboard.putString("Indexer command","Intaking Second Ball");
+            indexer.runMotorOne(Constants.IndexerConstants.IndexerMotionParameters.STAGE_ONE_PERCENT_OUTPUT_FORWARD);
+            indexer.runMotorTwo(0);
+        }else{
+            SmartDashboard.putString("Indexer command","Intaking First Ball");
+            indexer.runMotorOne(Constants.IndexerConstants.IndexerMotionParameters.STAGE_ONE_PERCENT_OUTPUT_FORWARD);
+            indexer.runMotorTwo(Constants.IndexerConstants.IndexerMotionParameters.STAGE_TWO_PERCENT_OUTPUT_FORWARD);
+            if(indexer.getSensorTwo()){
+                stop();
             }
+        }
+        if (indexer.getSensorOne() && indexer.getSensorTwo()) {
+            stop();
         }
     }
 
