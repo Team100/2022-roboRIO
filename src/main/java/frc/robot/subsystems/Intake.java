@@ -62,7 +62,7 @@ public class Intake extends SubsystemBase {
         }
 
         public double getPot(){
-            return pot.getAbsolutePosition();
+            return pot.getDistance();
         }
 
         public void runPivot(double percentOutput) {
