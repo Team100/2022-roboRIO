@@ -68,7 +68,7 @@ public class Climber extends SubsystemBase {
   }
 
   public double tiltAngle(){
-    return (winch.getSelectedSensorPosition());
+    return tilt.getSelectedSensorPosition()/2048;
   }
 
   @Override
