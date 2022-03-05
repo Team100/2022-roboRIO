@@ -10,6 +10,7 @@ import frc.robot.Constants.IntakeConstants;
 
 public class PivotDown extends CommandBase {
   public Intake intake;
+  public     bool done;
 
   /** Creates a new PivotDown. */
   public PivotDown(Intake intake) {
@@ -34,7 +35,9 @@ public class PivotDown extends CommandBase {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    intake.runPivot(0);
+  }
 
   // Returns true when the command should end.
   @Override
