@@ -29,8 +29,8 @@ public class DriveFurious extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        double left = leftJoystick.getY() - rightJoystick.getX();
-        double right = leftJoystick.getY() + rightJoystick.getX();
+        double left = -leftJoystick.getY() - rightJoystick.getX();
+        double right = -leftJoystick.getY() + rightJoystick.getX();
         drivetrain.driveWithoutRamp(left, right);
     }
 

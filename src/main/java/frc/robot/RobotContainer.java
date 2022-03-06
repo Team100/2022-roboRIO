@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
 import edu.wpi.first.wpilibj2.command.ScheduleCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
@@ -103,8 +104,13 @@ public class RobotContainer {
         //alignButton.whileHeld(alignCommand);
         //indexerIntakeButton.whenPressed(new ScheduleCommand(new SequentialCommandGroup(intakeCommand, new WaitCommand(0.3))));
             //intakeButton.whenPressed(new ScheduleCommand(new SequentialCommandGroup((new ParallelCommandGroup(intakeIntakeCommand, intakeCommand)), new WaitCommand(0.3))));
-        intakeButton.whileHeld((new ParallelCommandGroup(intakeIntakeCommand, intakeCommand)));
-            shootButton.whileHeld(new ParallelCommandGroup(feedCommand, shootCommand));
+        
+        
+        //    intakeButton.whenPressed(new ParallelDeadlineGroup(new SequentialCommandGroup(intakeIntakeCommand, new WaitCommand(0.3)), intakeCommand));
+       // intakeButton.whenPressed(new ParallelDeadlineGroup(new SequentialCommandGroup(new WaitCommand(0.3),intakeCommand),intakeIntakeCommand));
+        intakeButton.whenPressed(new ParallelDeadlineGroup(intakeCommand,intakeIntakeCommand));
+
+        shootButton.whileHeld(new ParallelCommandGroup(shootCommand, new SequentialCommandGroup(new WaitCommand(0.5), feedCommand)));
         ejectButton.whileHeld(new ParallelCommandGroup(intakeEjectCommand, indexerEjectCommand));
 
         //ejectButton.whileHeld(ejectCommand);

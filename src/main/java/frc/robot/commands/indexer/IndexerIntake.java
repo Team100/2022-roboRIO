@@ -6,13 +6,14 @@ package frc.robot.commands.indexer;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.subsystems.Indexer; 
 
 import frc.robot.Constants;
 
 public class IndexerIntake extends CommandBase {
     private Indexer indexer;
-    private boolean done, secondBall;
+    private boolean done, secondBall, B1C2T;
 
     /** Creates a new IndexerIntake. */
     public IndexerIntake(Indexer indexer) {
@@ -29,6 +30,8 @@ public class IndexerIntake extends CommandBase {
         // indexer.runMotorTwo(Constants.IndexerConstants.IndexerMotionParameters.STAGE_TWO_PERCENT_OUTPUT_FORWARD);
         secondBall = indexer.getSensorTwo();
         done = false;
+        //B1C2F= false;
+        B1C2T= false;
     }
 
     public void stop(){
@@ -54,8 +57,15 @@ public class IndexerIntake extends CommandBase {
             }
         }
         if (indexer.getSensorOne() && indexer.getSensorTwo()) {
+            indexer.runMotorOne(Constants.IndexerConstants.IndexerMotionParameters.STAGE_TWO_PERCENT_OUTPUT_FORWARD);
+            indexer.runMotorTwo(0);
+            B1C2T = true;
+        }
+        if(B1C2T && !indexer.getSensorOne()) {
             stop();
         }
+        SmartDashboard.putBoolean("B1C2T", B1C2T);
+
     }
 
     // Called once the command ends or is interrupted.
