@@ -42,11 +42,12 @@ public class RobotContainer {
     private final JoystickButton turboButton = new JoystickButton(rightJoystick, 1);
     private final JoystickButton intakeIntakeButton = new JoystickButton(buttonBoard, 2);
     private final JoystickButton alignButton = new JoystickButton(gamepad, 7);
-    private final JoystickButton shootButton = new JoystickButton(buttonBoard, 16);
+    private final JoystickButton lockStationaryButton = new JoystickButton(buttonBoard, 16);
+    private final JoystickButton nextBarButton = new JoystickButton(buttonBoard, 1);
     private final JoystickButton indexerIntakeButton = new JoystickButton(buttonBoard, 12);
     private final JoystickButton ejectButton = new JoystickButton(buttonBoard, 4);
     private final JoystickButton feedButton = new JoystickButton(buttonBoard, 5);
-    private final JoystickButton climberControlButton = new JoystickButton(gamepad, 3);
+    //private final JoystickButton climberControlButton = new JoystickButton(gamepad, 3);
     //private final JoystickButton controlBallButton = new JoystickButton(buttonBoard, 14);
 
     // Commands
@@ -62,7 +63,9 @@ public class RobotContainer {
     private final IndexerEject ejectCommand = new IndexerEject(indexer);
     private final IndexerFeed feedCommand = new IndexerFeed(indexer);
     private final ClimberStop climberStopCommand = new ClimberStop(climber);
-    private final ClimberControl climberControl = new ClimberControl(climber, gamepad);
+    // private final ClimberControl climberControl = new ClimberControl(climber, gamepad);
+    private final LockStationary lockStationaryCommand = new LockStationary(climber);
+    private final NextBar nextBarCommand = new NextBar(climber);
     //private final ParallelCommandGroup controlBall = new ParallelCommandGroup(intakeIntakeCommand,indexerStopCommand);
 
 
@@ -89,14 +92,16 @@ public class RobotContainer {
     * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
     */
     private void configureButtonBindings() {
-        shootButton.whileHeld(shootCommand);
+        //shootButton.whileHeld(shootCommand);
         turboButton.whileHeld(driveFuriousCommand);
         intakeIntakeButton.whileHeld(intakeIntakeCommand);
         alignButton.whileHeld(alignCommand);
         indexerIntakeButton.whileHeld(intakeCommand);
         ejectButton.whileHeld(ejectCommand);
         feedButton.whenPressed(feedCommand);
-        climberControlButton.whenPressed(climberControl);
+        lockStationaryButton.whenPressed(lockStationaryCommand);
+        nextBarButton.whenPressed(nextBarCommand);
+        //climberControlButton.whenPressed(climberControl);
         //controlBallButton.whileHeld(controlBall);
     }
 

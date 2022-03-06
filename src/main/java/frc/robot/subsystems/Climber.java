@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.FRCLib.Motors.FRCTalonFX;
@@ -56,11 +57,13 @@ public class Climber extends SubsystemBase {
   }
 
   public boolean stationaryLocked(){
-    return leftStationaryHook.get()&&rightStationaryHook.get();
+    //return leftStationaryHook.get()&&rightStationaryHook.get();
+    return SmartDashboard.getBoolean("Stationaries Locked?", false);
   }
 
   public boolean mainLocked(){
-    return leftMainHook.get()&&rightMainHook.get();
+    //return leftMainHook.get()&&rightMainHook.get();
+    return SmartDashboard.getBoolean("Main Hooks Locked?", false);
   }
 
   public double mainPosition(){

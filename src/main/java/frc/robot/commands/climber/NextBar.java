@@ -4,6 +4,7 @@
 
 package frc.robot.commands.climber;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.ClimberConstants;
 import frc.robot.subsystems.Climber;
@@ -26,7 +27,7 @@ public class NextBar extends CommandBase {
   public void initialize() {
     done = false;
     behindBar = false;
-
+    SmartDashboard.putString("Climber Command","Grabbing Next Bar");
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -55,13 +56,15 @@ public class NextBar extends CommandBase {
     if(behindBar&&climber.mainLocked()&&climber.mainPosition()<ClimberConstants.ClimberMotionParameters.CLIMBER_BOTTOM){//if locked on next bar and  retracted sufficiently
       climber.setWinch(0);//stop winch
       climber.setTilt(0);//stop tilting
+      SmartDashboard.putString("Climber Command","Next Bar Command finished");
       done = true;
     }
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+  }
 
   // Returns true when the command should end.
   @Override
