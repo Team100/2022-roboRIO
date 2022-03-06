@@ -34,6 +34,7 @@ public class LockStationary extends CommandBase {
   @Override
   public void execute() {                                                                                      //climber is hanging on a bar
     if(!(climber.mainPosition()>=ClimberConstants.ClimberMotionParameters.CLIMBER_TOP)&&climber.mainLocked()){//if climber is not all the way retracted the hooks are locked on
+      SmartDashboard.putString("Where?","Here");
       climber.setWinch(ClimberConstants.ClimberMotionParameters.CLIMBER_PERCENT_OUTPUT);                      //retract the hooks
       if(climber.mainPosition()>=ClimberConstants.ClimberMotionParameters.TILT_START&&!climber.stationaryLocked()){//while your doing that, if your close enough to the top
         climber.setTilt(ClimberConstants.ClimberMotionParameters.TILT_PERCENT_OUTPUT);                        //start tilting the stationary hooks into position

@@ -15,10 +15,10 @@ public class Climber extends SubsystemBase {
   private DigitalInput leftStationaryHook, rightStationaryHook, leftMainHook, rightMainHook;
   /** Creates a new Climber. */
   public Climber() {
-    leftStationaryHook = new DigitalInput(Constants.DrivetrainConstants.DrivetrainSensors.LeftSensor.ID);
-    rightStationaryHook = new DigitalInput(Constants.DrivetrainConstants.DrivetrainSensors.RightSensor.ID);
-    leftMainHook = new DigitalInput(Constants.DrivetrainConstants.DrivetrainSensors.LeftSensor.ID);
-    rightMainHook = new DigitalInput(Constants.DrivetrainConstants.DrivetrainSensors.RightSensor.ID);
+    leftStationaryHook = new DigitalInput(Constants.ClimberConstants.ClimberSensors.LEFT_STATIONARY_HOOK_SENSOR);
+    rightStationaryHook = new DigitalInput(Constants.ClimberConstants.ClimberSensors.RIGHT_STATIONARY_HOOK_SENSOR);
+    leftMainHook = new DigitalInput(Constants.ClimberConstants.ClimberSensors.LEFT_MAIN_HOOK_SENSOR);
+    rightMainHook = new DigitalInput(Constants.ClimberConstants.ClimberSensors.RIGHT_MAIN_HOOK_SENSOR);
 
 
     tilt = new FRCTalonFX.FRCTalonFXBuilder(Constants.ClimberConstants.ClimberMotors.Tilt.CAN_ID)
@@ -44,6 +44,11 @@ public class Climber extends SubsystemBase {
     .withPeakOutputReverse(Constants.ClimberConstants.ClimberMotors.Winch.PEAK_OUTPUT_REVERSE)
     .withNeutralMode(Constants.ClimberConstants.ClimberMotors.Winch.NEUTRAL_MODE).build();
 
+    addChild("tilt", tilt);
+    addChild("winch", winch);
+
+    SmartDashboard.putBoolean("Stationaries Locked?", false);
+    SmartDashboard.putBoolean("Main Hooks Locked?", false);
   }
   public void setTilt(double percentOutput) {
     tilt.drivePercentOutput(percentOutput);
@@ -77,5 +82,9 @@ public class Climber extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    SmartDashboard.putNumber("TiltAngle", tiltAngle());
+    SmartDashboard.putNumber("mainPosition", mainPosition());
+    SmartDashboard.putBoolean("mainLocked", mainLocked());
+    SmartDashboard.putBoolean("stationaryLocked", stationaryLocked());
   }
 }

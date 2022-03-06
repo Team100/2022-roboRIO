@@ -247,7 +247,7 @@ public final class Constants {
               
                 public static final boolean INVERT = false;
                 public static final int FEEDBACK_PORT = 0;
-                public static final boolean SENSOR_PHASE = true;
+                public static final boolean SENSOR_PHASE = false;
 
                 public static final int TIMEOUT = 10;
 
@@ -267,10 +267,10 @@ public final class Constants {
 
     public static final class ClimberConstants {
         public static final class ClimberMotionParameters {
-            public static final double CLIMBER_PERCENT_OUTPUT = 0.2;
+            public static final double CLIMBER_PERCENT_OUTPUT = 0.1;
             public static final double CLIMBER_ZERO = 0;
 
-            public static final double TILT_PERCENT_OUTPUT = 0.2;
+            public static final double TILT_PERCENT_OUTPUT = 0.1;
 
             public static final double CLIMBER_TOP = 8000;
             public static final double CLIMBER_BOTTOM = 3000;
@@ -287,7 +287,15 @@ public final class Constants {
         public static final class ClimberControls {
             public static final int TILT_FORWARD_GAMEPAD_BUTTON = 1;
             public static final int TILT_REVERSE_GAMEPAD_BUTTON = 2;
-        };
+        }
+
+        public static final class ClimberSensors {
+            public static final int LEFT_STATIONARY_HOOK_SENSOR = 7;
+            public static final int RIGHT_STATIONARY_HOOK_SENSOR = 4;
+            public static final int LEFT_MAIN_HOOK_SENSOR = 5;
+            public static final int RIGHT_MAIN_HOOK_SENSOR = 6;
+
+        }
 
         public static final class ClimberMotors {
             public static final class Winch {
