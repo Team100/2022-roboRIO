@@ -22,7 +22,7 @@ public class Shoot extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        shooter.set(Constants.ShooterConstants.ShooterMotionParameters.SHOOTER_PERCENT_OUTPUT);
+        shooter.setVelocity(Constants.ShooterConstants.ShooterMotionParameters.SHOOTER_PERCENT_OUTPUT);
     }
 
     // Called every time the scheduler runs while the command is scheduled.

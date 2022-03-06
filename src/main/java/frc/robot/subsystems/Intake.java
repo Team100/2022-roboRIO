@@ -73,7 +73,7 @@ public class Intake extends SubsystemBase {
         }
 
         public double getPot(){
-            return pivot.getSelectedSensorPosition();//pot.getVoltage();
+            return ((pivot.getAnalogSensorPosition()/3.3)*360);//pot.getVoltage();
         }
 
         public void runPivot(double percentOutput) {

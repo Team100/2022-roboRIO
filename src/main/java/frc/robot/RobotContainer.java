@@ -108,9 +108,10 @@ public class RobotContainer {
         
         //    intakeButton.whenPressed(new ParallelDeadlineGroup(new SequentialCommandGroup(intakeIntakeCommand, new WaitCommand(0.3)), intakeCommand));
        // intakeButton.whenPressed(new ParallelDeadlineGroup(new SequentialCommandGroup(new WaitCommand(0.3),intakeCommand),intakeIntakeCommand));
-        intakeButton.whenPressed(new SequentialCommandGroup(new ParallelDeadlineGroup(intakeCommand, intakeIntakeCommand), new WaitCommand(0.3)));
+        intakeButton.whenPressed(new SequentialCommandGroup(new ParallelDeadlineGroup(intakeCommand, intakeIntakeCommand), new WaitCommand(0.2)));
 
-        shootButton.whileHeld(new ParallelCommandGroup(shootCommand, new SequentialCommandGroup(new WaitCommand(0.5), feedCommand)));
+        //shootButton.whileHeld(new ParallelCommandGroup(shootCommand, new SequentialCommandGroup(new WaitCommand(0.5), feedCommand)));
+        shootButton.whileHeld(shootCommand);
         ejectButton.whileHeld(new ParallelCommandGroup(intakeEjectCommand, indexerEjectCommand));
 
         //ejectButton.whileHeld(ejectCommand);

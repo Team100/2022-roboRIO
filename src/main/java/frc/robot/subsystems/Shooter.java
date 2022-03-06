@@ -28,6 +28,10 @@ public class Shooter extends SubsystemBase {
             .withPeakOutputForward(ShooterMotors.Shooter.PEAK_OUTPUT_FORWARD)
             .withPeakOutputReverse(ShooterMotors.Shooter.PEAK_OUTPUT_REVERSE)
             .withNeutralMode(ShooterMotors.Shooter.NEUTRAL_MODE)
+            .withKP(ShooterMotionParameters.KP)
+            .withKI(ShooterMotionParameters.KI)
+            .withKF(ShooterMotionParameters.KF)
+            .withKD(ShooterMotionParameters.KD)
             .build();
 
         shootMotorFollower = new FRCNEO.FRCNEOBuilder(ShooterMotors.ShooterFollower.CAN_ID)
@@ -53,6 +57,10 @@ public class Shooter extends SubsystemBase {
         this.shootMotor.drivePercentOutput(-speed);
         // this.shootMotorFollower.drivePercentOutput(speed);
     }
+
+    public void setVelocity(double velocity){
+        this.shootMotor.driveVelocity(velocity);
+    }
     
     @Override
     public void periodic() {
@@ -62,7 +70,7 @@ public class Shooter extends SubsystemBase {
         //if(atSpeed) System.out.println("MOTOR GO BRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR");
         SmartDashboard.putNumber("shooter velocity", (shootMotor.getSensorVelocity()));
 
-        SmartDashboard.putNumber("ShooterRPM", ((Math.abs(shootMotor.getSensorVelocity())/2048))*600);
+        //SmartDashboard.putNumber("ShooterRPM", ((shootMotor.getSensorVelocity()/2048))*600);
         
     }
 }
