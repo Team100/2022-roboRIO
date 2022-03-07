@@ -7,16 +7,20 @@ package frc.robot.commands.indexer;
 import static frc.robot.Constants.IndexerConstants.IndexerMotionParameters.*;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Indexer;
+import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Shooter;
 
 public class IndexerFeed extends CommandBase {
     private Indexer indexer;
+    private Shooter shooter;
     private boolean wasFalse;
     private boolean done = false;
     private boolean shouldCheckRefill;
 
     /** Creates a new IndexerFeed. */
-    public IndexerFeed(Indexer indexer) {
+    public IndexerFeed(Indexer indexer, Shooter shooter) {
         this.indexer = indexer;
+        this.shooter = shooter;
 
         // Use addRequirements() here to declare subsystem dependencies.
         addRequirements(indexer);
@@ -40,9 +44,13 @@ public class IndexerFeed extends CommandBase {
         //         done = true;
         //         return;
         //     }
-
+        if (shooter.isAtSpeed()) {
             indexer.runMotorOne(STAGE_ONE_PERCENT_OUTPUT_FORWARD);
             indexer.runMotorTwo(STAGE_TWO_PERCENT_OUTPUT_FORWARD);
+        } else {
+            indexer.runMotorOne(0);
+            indexer.runMotorTwo(0);
+        }
 
         //     if (!indexer.getSensorTwo()) {
         //         wasFalse = true;

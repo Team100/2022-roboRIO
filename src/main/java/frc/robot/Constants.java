@@ -166,15 +166,15 @@ public final class Constants {
     public static final class ShooterConstants {
         public static final class ShooterMotionParameters {
             public static final double SHOOTER_PERCENT_OUTPUT = 0.17; //0.17 //0.175
-            public static final double SHOOTER_VELOCITY = 1000; //0.17 //0.175
+            public static final double SHOOTER_VELOCITY = -3850; //0.17 //0.175
             public static final double SHOOTER_ZERO = 0;
-			public static final double NOMINAL_VELOCITY = 100;
+			public static final double NOMINAL_VELOCITY = 3800;
 
             
-            public static final double KP = 0.1;
+            public static final double KP = 0.00008;
             public static final double KI = 0;
-            public static final double KD = 0.05;
-            public static final double KF = 0;
+            public static final double KD = 0;
+            public static final double KF = 0.00008947;
         }
 
         public static final class ShooterMotors {

@@ -68,7 +68,7 @@ public class RobotContainer {
     private final IndexerStop indexerStopCommand = new IndexerStop(indexer);
     private final BetterIndexerIntake intakeCommand = new BetterIndexerIntake(indexer);
     private final IndexerEject indexerEjectCommand = new IndexerEject(indexer, intake);
-    private final IndexerFeed feedCommand = new IndexerFeed(indexer);
+    private final IndexerFeed feedCommand = new IndexerFeed(indexer, shooter);
     private final ClimberStop climberStopCommand = new ClimberStop(climber);
     private final ClimberControl climberControl = new ClimberControl(climber, gamepad);
     //private final ParallelCommandGroup controlBall = new ParallelCommandGroup(intakeIntakeCommand,indexerStopCommand);
@@ -110,8 +110,8 @@ public class RobotContainer {
        // intakeButton.whenPressed(new ParallelDeadlineGroup(new SequentialCommandGroup(new WaitCommand(0.3),intakeCommand),intakeIntakeCommand));
         intakeButton.whenPressed(new SequentialCommandGroup(new ParallelDeadlineGroup(intakeCommand, intakeIntakeCommand), new WaitCommand(0.2)));
 
-        //shootButton.whileHeld(new ParallelCommandGroup(shootCommand, new SequentialCommandGroup(new WaitCommand(0.5), feedCommand)));
-        shootButton.whileHeld(shootCommand);
+        shootButton.whileHeld(new ParallelCommandGroup(shootCommand, feedCommand));
+        // shootButton.whileHeld(shootCommand);
         ejectButton.whileHeld(new ParallelCommandGroup(intakeEjectCommand, indexerEjectCommand));
 
         //ejectButton.whileHeld(ejectCommand);
