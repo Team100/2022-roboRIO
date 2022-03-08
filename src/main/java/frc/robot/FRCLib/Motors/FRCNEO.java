@@ -342,7 +342,7 @@ public class FRCNEO implements Sendable {
         closedLoop.setD(this.getkD());
         closedLoop.setFF(this.getkF());
 
-        System.out.println("Wrote PID TO " + canID + ", KF VALUE " + this.getkF());
+        System.out.println("Wrote PID TO " + canID + ", KP = " + this.getkP() + ", KF VALUE " + this.getkF());
     }
 
     public FRCNEO configure() {

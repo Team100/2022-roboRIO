@@ -1,5 +1,6 @@
 package frc.robot.commands.intake;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Intake;
@@ -33,7 +34,9 @@ public class IntakeIntake extends CommandBase {
         //      intake.runPivot(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_PIVOT_PERCENT_OUTPUT);
         // }
         // if(intake.getPot() >= Constants.IntakeConstants.PivotConstants.DOWN_POSITION){
-        intake.setPivot(Constants.IntakeConstants.PivotConstants.DOWN_ANGLE)
+        // intake.setPivot(Constants.IntakeConstants.PivotConstants.DOWN_POSITION);
+        // SmartDashboard.putNumber("intake setpoint", Constants.IntakeConstants.PivotConstants.DOWN_POSITION);
+        // SmartDashboard.putNumber("adshkuwej", 3);
         intake.runSpinner(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_SPINNER_PERCENT_OUTPUT);
         //     intake.runPivot(0);
         // }
@@ -44,6 +47,7 @@ public class IntakeIntake extends CommandBase {
     public void end(boolean interrupted) {
         intake.runPivot(0);
         intake.runSpinner(0);
+        // SmartDashboard.putNumber("intake setpoint", 0);
     }
 
     // Returns true when the command should end.

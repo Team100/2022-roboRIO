@@ -5,6 +5,8 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.AnalogInput;
+import com.revrobotics.MotorFeedbackSensor;
+import com.revrobotics.SparkMaxAnalogSensor.Mode;
 
 import edu.wpi.first.wpilibj.AnalogEncoder;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
@@ -48,6 +50,10 @@ public class Intake extends SubsystemBase {
     
 
         pivot = new FRCNEO.FRCNEOBuilder(Constants.IntakeConstants.IntakeMotors.IntakePivot.CAN_ID)
+            .withKP(Constants.IntakeConstants.IntakeMotionParameters.KP)
+            .withKI(Constants.IntakeConstants.IntakeMotionParameters.KI)
+            .withKD(Constants.IntakeConstants.IntakeMotionParameters.KD)
+            .withKF(Constants.IntakeConstants.IntakeMotionParameters.KF)
             .withInverted(Constants.IntakeConstants.IntakeMotors.IntakePivot.INVERT)
             .withFeedbackPort(Constants.IntakeConstants.IntakeMotors.IntakePivot.FEEDBACK_PORT)
             .withSensorPhase(Constants.IntakeConstants.IntakeMotors.IntakePivot.SENSOR_PHASE)
@@ -61,6 +67,10 @@ public class Intake extends SubsystemBase {
             .withAnalogSensorMode(Constants.IntakeConstants.IntakeMotors.IntakePivot.ANALOG_MODE)
             .build();
 
+            pivot.motor.getAnalog(Mode.kAbsolute).setInverted(true);
+            pivot.motor.getAnalog(Mode.kAbsolute).setPositionConversionFactor(1/3.3);
+            pivot.motor.getPIDController().setFeedbackDevice(pivot.motor.getAnalog(Mode.kAbsolute));
+
             addChild("intakePivot", pivot);
             addChild("intakeSpin", spin);
             //addChild("intakeArmPotentiometer", pot);
@@ -73,7 +83,7 @@ public class Intake extends SubsystemBase {
         }
 
         public double getPot(){
-            return ((pivot.getAnalogSensorPosition()/3.3)*360);//pot.getVoltage();
+            return ((pivot.getAnalogSensorPosition())*360);//pot.getVoltage();
         }
 
         public void runPivot(double percentOutput) {
@@ -83,6 +93,9 @@ public class Intake extends SubsystemBase {
 
         public void runSpinner(double percentOutput) {
             spin.drivePercentOutput(percentOutput);
+        }
+        public void setPivot(double setpoint) {
+            spin.drivePosition(setpoint);
         }
     }
     
