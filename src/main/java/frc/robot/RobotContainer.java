@@ -64,6 +64,7 @@ public class RobotContainer {
     private final IntakeEject intakeEjectCommand = new IntakeEject(intake);
     private final IntakeStop intakeStopCommand = new IntakeStop(intake);
     private final Shoot shootCommand = new Shoot(shooter);
+    private final ShootEject shootEjectCommand = new ShootEject(shooter);
     private final ShootStop shootStopCommand = new ShootStop(shooter);
     private final IndexerStop indexerStopCommand = new IndexerStop(indexer);
     private final BetterIndexerIntake intakeCommand = new BetterIndexerIntake(indexer);
@@ -112,7 +113,7 @@ public class RobotContainer {
 
         shootButton.whileHeld(new ParallelCommandGroup(shootCommand, feedCommand));
         // shootButton.whileHeld(shootCommand);
-        ejectButton.whileHeld(new ParallelCommandGroup(intakeEjectCommand, indexerEjectCommand));
+        ejectButton.whileHeld(new ParallelCommandGroup(intakeEjectCommand, indexerEjectCommand, shootEjectCommand));
 
         //ejectButton.whileHeld(ejectCommand);
         //feedButton.whenPressed(feedCommand);
