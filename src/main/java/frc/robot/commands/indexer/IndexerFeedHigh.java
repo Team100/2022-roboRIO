@@ -48,6 +48,9 @@ public class IndexerFeedHigh extends CommandBase {
         if (shooter.speed()>Constants.ShooterConstants.ShooterMotionParameters.NOMINAL_HIGH_VELOCITY) {
             indexer.runMotorOne(STAGE_ONE_PERCENT_OUTPUT_FORWARD);
             indexer.runMotorTwo(STAGE_TWO_PERCENT_OUTPUT_FORWARD);
+        } else if(!indexer.getSensorTwo()) {
+            indexer.runMotorOne(STAGE_ONE_PERCENT_OUTPUT_FORWARD);
+            indexer.runMotorTwo(STAGE_TWO_PERCENT_OUTPUT_FORWARD);
         } else {
             indexer.runMotorOne(0);
             indexer.runMotorTwo(0);

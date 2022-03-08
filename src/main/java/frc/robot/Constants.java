@@ -95,7 +95,7 @@ public final class Constants {
             }
         }
         public static final class PivotConstants {
-            public static final int DOWN_POSITION = 3;
+            public static final int DOWN_POSITION = 90;
         }
         public static final class IntakeMotionParameters {
             public static final double INTAKE_SPINNER_PERCENT_OUTPUT = 0.4;
@@ -103,6 +103,7 @@ public final class Constants {
             public static final double INTAKE_ZERO = 0;
 
             public static final int ZEROED_ENCODER_TICKS = 65;
+
 
             // public static final double INTAKE_DOWN_DEGREES = EncoderConversionFactors
             //         .CONVERT_ANGLE_TO_MA3_ENCODER_TICKS(-40);  //Ultimate down = 22ticks @ ~-15deg
@@ -167,10 +168,9 @@ public final class Constants {
         public static final class ShooterMotionParameters {
             public static final double SHOOTER_PERCENT_OUTPUT = 0.1; //0.17 //0.175
             public static final double SHOOTER_VELOCITY_HIGH = -3850; //0.17 //0.175
-            public static final double SHOOTER_VELOCITY_LOW = -1900; //0.17 //0.175
+            public static final double SHOOTER_VELOCITY_LOW = -2100; //0.17 //0.175
 
-            public static final double SHOOTER_ZERO = 0;
-			public static final double NOMINAL_LOW_VELOCITY = 1850;
+			public static final double NOMINAL_LOW_VELOCITY = 2080;
             public static final double NOMINAL_HIGH_VELOCITY = 3800;
 
             

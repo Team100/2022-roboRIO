@@ -33,7 +33,8 @@ public class IntakeIntake extends CommandBase {
         //      intake.runPivot(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_PIVOT_PERCENT_OUTPUT);
         // }
         // if(intake.getPot() >= Constants.IntakeConstants.PivotConstants.DOWN_POSITION){
-            intake.runSpinner(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_SPINNER_PERCENT_OUTPUT);
+        intake.setPivot(Constants.IntakeConstants.PivotConstants.DOWN_ANGLE)
+        intake.runSpinner(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_SPINNER_PERCENT_OUTPUT);
         //     intake.runPivot(0);
         // }
     }
