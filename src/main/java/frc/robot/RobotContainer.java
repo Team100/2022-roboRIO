@@ -49,10 +49,11 @@ public class RobotContainer {
     private final JoystickButton alignButton = new JoystickButton(gamepad, 7);
     //private final JoystickButton shootButton = new JoystickButton(buttonBoard, 16);
     private final JoystickButton indexerIntakeButton = new JoystickButton(buttonBoard, 12);
-    private final JoystickButton shootButton = new JoystickButton(buttonBoard, 4);
+    private final JoystickButton shootHighButton = new JoystickButton(buttonBoard, 14);
+    private final JoystickButton shootLowButton = new JoystickButton(buttonBoard, 13);
     private final JoystickButton feedButton = new JoystickButton(buttonBoard, 15);
     private final JoystickButton climberControlButton = new JoystickButton(gamepad, 3);
-    private final JoystickButton intakePivotDown = new JoystickButton(buttonBoard, 13);
+    //private final JoystickButton intakePivotDown = new JoystickButton(buttonBoard, 13);
     private final JoystickButton intakePivotUp = new JoystickButton(buttonBoard, 14);
     //private final JoystickButton controlBallButton = new JoystickButton(buttonBoard, 14);
 
@@ -63,7 +64,8 @@ public class RobotContainer {
     private final IntakeIntake intakeIntakeCommand = new IntakeIntake(intake);
     private final IntakeEject intakeEjectCommand = new IntakeEject(intake);
     private final IntakeStop intakeStopCommand = new IntakeStop(intake);
-    private final Shoot shootCommand = new Shoot(shooter);
+    private final ShootHigh shootHighCommand = new ShootHigh(shooter);
+    private final ShootLow shootLowCommand = new ShootLow(shooter);
     private final ShootEject shootEjectCommand = new ShootEject(shooter);
     private final ShootStop shootStopCommand = new ShootStop(shooter);
     private final IndexerStop indexerStopCommand = new IndexerStop(indexer);
@@ -111,7 +113,9 @@ public class RobotContainer {
        // intakeButton.whenPressed(new ParallelDeadlineGroup(new SequentialCommandGroup(new WaitCommand(0.3),intakeCommand),intakeIntakeCommand));
         intakeButton.whenPressed(new SequentialCommandGroup(new ParallelDeadlineGroup(intakeCommand, intakeIntakeCommand), new WaitCommand(0.2)));
 
-        shootButton.whileHeld(new ParallelCommandGroup(shootCommand, feedCommand));
+        shootHighButton.whileHeld(new ParallelCommandGroup(shootHighCommand, feedCommand));
+        shootLowButton.whileHeld(new ParallelCommandGroup(shootLowCommand, feedCommand));
+
         // shootButton.whileHeld(shootCommand);
         ejectButton.whileHeld(new ParallelCommandGroup(intakeEjectCommand, indexerEjectCommand, shootEjectCommand));
 
