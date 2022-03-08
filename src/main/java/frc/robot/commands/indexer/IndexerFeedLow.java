@@ -6,11 +6,12 @@ package frc.robot.commands.indexer;
 
 import static frc.robot.Constants.IndexerConstants.IndexerMotionParameters.*;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
 
-public class IndexerFeed extends CommandBase {
+public class IndexerFeedLow extends CommandBase {
     private Indexer indexer;
     private Shooter shooter;
     private boolean wasFalse;
@@ -18,7 +19,7 @@ public class IndexerFeed extends CommandBase {
     private boolean shouldCheckRefill;
 
     /** Creates a new IndexerFeed. */
-    public IndexerFeed(Indexer indexer, Shooter shooter) {
+    public IndexerFeedLow(Indexer indexer, Shooter shooter) {
         this.indexer = indexer;
         this.shooter = shooter;
 
@@ -29,10 +30,10 @@ public class IndexerFeed extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        wasFalse = false;
+        // wasFalse = false;
         done = false;
 
-        shouldCheckRefill = indexer.getSensorOne() && indexer.getSensorTwo();
+        // shouldCheckRefill = indexer.getSensorOne() && indexer.getSensorTwo();
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -44,7 +45,7 @@ public class IndexerFeed extends CommandBase {
         //         done = true;
         //         return;
         //     }
-        if (shooter.isAtSpeed()) {
+        if (shooter.speed()>Constants.ShooterConstants.ShooterMotionParameters.NOMINAL_LOW_VELOCITY) {
             indexer.runMotorOne(STAGE_ONE_PERCENT_OUTPUT_FORWARD);
             indexer.runMotorTwo(STAGE_TWO_PERCENT_OUTPUT_FORWARD);
         } else {

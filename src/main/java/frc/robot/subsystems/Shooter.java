@@ -13,7 +13,9 @@ public class Shooter extends SubsystemBase {
     private FRCNEO shootMotor,shootMotorFollower;
 
     private boolean atSpeed = false;
-    public boolean isAtSpeed() { return atSpeed; }
+    public int speed() { 
+        return Math.abs(shootMotor.getSensorVelocity()); 
+    }
 
     /** Creates a new Shooter. */
     public Shooter() {
@@ -66,8 +68,8 @@ public class Shooter extends SubsystemBase {
     public void periodic() {
         // This method will be called once per scheduler run
 
-        atSpeed = (Math.abs(shootMotor.getSensorVelocity()) >= ShooterMotionParameters.NOMINAL_VELOCITY);
-        //if(atSpeed) System.out.println("MOTOR GO BRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR");
+        //atSpeed = (Math.abs(shootMotor.getSensorVelocity()) >= ShooterMotionParameters.NOMINAL_VELOCITY);
+        //atSpeed = (Math.abs(shootMotor.getSensorVelocity()) >= ShooterMotionParameters.NOMINAL_VELOCITY);        //if(atSpeed) System.out.println("MOTOR GO BRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR");
         SmartDashboard.putNumber("shooter velocity", (shootMotor.getSensorVelocity()));
 
         //SmartDashboard.putNumber("ShooterRPM", ((shootMotor.getSensorVelocity()/2048))*600);
