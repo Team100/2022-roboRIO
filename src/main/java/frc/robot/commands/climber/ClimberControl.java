@@ -41,14 +41,14 @@ public class ClimberControl extends CommandBase {
         //System.out.println(-(leftJoystick.getY()*(-leftJoystick.getZ()+1)/2));
         //System.out.println("doing tilt of " + -(leftJoystick.getY()*(-leftJoystick.getZ()+1)/2));
 
-        climber.setWinch(-(leftJoystick.getY()*(-leftJoystick.getZ()+1)/2));
+        climber.setWinch((leftJoystick.getY()*(-leftJoystick.getZ()+1)/2));
         }  else {
             climber.setWinch(0);
         }  
     //}
     if ((rightJoystick.getY() > 0.05)||(rightJoystick.getY() < -0.05)){
         // System.out.println("doing tilt of " + -(rightJoystick.getY()*(-rightJoystick.getZ()+1)/2));
-        climber.setTilt(-(rightJoystick.getY()*(-rightJoystick.getZ()+1)/2));
+        climber.setTilt((rightJoystick.getY()*(-rightJoystick.getZ()+1)/2));
         } else {
             climber.setTilt(0);
             //System.out.println("not doing tilt");

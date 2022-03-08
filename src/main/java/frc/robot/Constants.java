@@ -292,7 +292,7 @@ public final class Constants {
             }
     
             public static final class Tilt {
-                public static final int CAN_ID = 11;//11
+                public static final int CAN_ID = 12;//11
     
                 public static final InvertType INVERT = InvertType.None;
                 public static final int FEEDBACK_PORT = 0;
