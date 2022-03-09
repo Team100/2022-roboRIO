@@ -95,7 +95,7 @@ public final class Constants {
             }
         }
         public static final class PivotConstants {
-            public static final double DOWN_POSITION = 0.69; // (250d / 360d) * 3.3;
+            public static final double DOWN_POSITION = 4; // (250d / 360d) * 3.3;
         }
         public static final class IntakeMotionParameters {
             public static final double INTAKE_SPINNER_PERCENT_OUTPUT = 0.4;
@@ -112,7 +112,7 @@ public final class Constants {
 
             public static final int ACCEPTABLE_ERROR_TICKS = 10;
 
-            public static final double KP = 0; //6;
+            public static final double KP = 0.3; //6;
             public static final double KI = 0;
             public static final double KD = 0;
             public static final double KF = 0;
@@ -174,7 +174,7 @@ public final class Constants {
             public static final double KP = 0.00008;
             public static final double KI = 0;
             public static final double KD = 0;
-            public static final double KF = 0.00008947;
+            public static final double KF = 0.00008947; // 0.17/1900
         }
 
         public static final class ShooterMotors {
