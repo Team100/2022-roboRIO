@@ -62,7 +62,7 @@ public class Intake extends SubsystemBase {
             .withPeakOutputForward(Constants.IntakeConstants.IntakeMotors.IntakePivot.PEAK_OUTPUT_FORWARD)
             .withPeakOutputReverse(Constants.IntakeConstants.IntakeMotors.IntakePivot.PEAK_OUTPUT_REVERSE)
             .withNeutralMode(Constants.IntakeConstants.IntakeMotors.IntakePivot.NEUTRAL_MODE)
-            .withAnalogSensorMode(Constants.IntakeConstants.IntakeMotors.IntakePivot.ANALOG_MODE, false)
+            .withAnalogSensorMode(Constants.IntakeConstants.IntakeMotors.IntakePivot.ANALOG_MODE, true)
             .build();
 
             addChild("intakePivot", pivot);
@@ -73,15 +73,15 @@ public class Intake extends SubsystemBase {
         @Override
         public void periodic() {
             // This method will be called once per scheduler run
-            SmartDashboard.putNumber("Intake Pivot Encoder Value", pivot.motor.getEncoder().getPosition());
+            SmartDashboard.putNumber("Intake Pivot Encoder Value", getPot());
             SmartDashboard.putNumber("Intake Pivot Output", pivot.motor.get());
             SmartDashboard.putNumber("Intake Pivot raw analog", pivot.getAnalogSensorPosition());
         }
 
         public void onInit() {
-            double analogPos = pivot.getAnalogSensorPosition();
-            pivot.motor.getEncoder().setPosition(analogPos * (-6.14346) + 10.1229);
-            pivot.motor.getPIDController().setFeedbackDevice(pivot.motor.getEncoder());
+            // double analogPos = pivot.getAnalogSensorPosition();
+            // pivot.motor.getEncoder().setPosition(analogPos * (-6.14346) + 10.1229);
+            // pivot.motor.getPIDController().setFeedbackDevice(pivot.motor.getEncoder());
         }
 
         public double getPot(){

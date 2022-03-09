@@ -357,7 +357,7 @@ public class FRCNEO implements Sendable {
 
         if (useAnalogForPID) {
             SparkMaxAnalogSensor analog = this.motor.getAnalog(analogMode);
-            analog.setInverted(true);
+            analog.setInverted(this.sensorPhase);
             analog.setPositionConversionFactor(1/3.3);
             closedLoop.setFeedbackDevice(analog);
         }
@@ -404,10 +404,10 @@ public class FRCNEO implements Sendable {
             System.out.println("setting reverse soft limit enabled");
         }
 
-        if (this.isSensorPhase()) {
-            motor.getAnalog(Mode.kAbsolute);
-            System.out.println("setting sensor phase");
-        }
+        // if (this.isSensorPhase()) {
+        //     motor.getAnalog(Mode.kAbsolute);
+        //     System.out.println("setting sensor phase");
+        // }
 
         if (this.getVelocityMeasurementPeriod() != 0 || this.getVelocityMeasurementWindow() != 0) {
             motor.getEncoder().setMeasurementPeriod(this.getVelocityMeasurementPeriod());
