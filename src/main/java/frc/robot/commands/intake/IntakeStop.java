@@ -1,6 +1,8 @@
 package frc.robot.commands.intake;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.subsystems.Intake;
 
 public class IntakeStop extends CommandBase {
@@ -19,7 +21,8 @@ public class IntakeStop extends CommandBase {
     @Override
     public void initialize() {
         this.intake.runSpinner(0);
-        this.intake.runPivot(0);
+        // this.intake.setPivot(Constants.IntakeConstants.PivotConstants.UP_POSITION);
+        // SmartDashboard.putNumber("intake setpoint", 0);
     }
 
     // Called every time the scheduler runs while the command is scheduled.

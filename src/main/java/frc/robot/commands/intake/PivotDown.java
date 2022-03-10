@@ -26,11 +26,11 @@ public class PivotDown extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(intake.getPot()>IntakeConstants.IntakeSensors.IntakePot.DOWN){
-      intake.runPivot(0);
-    }else{
-      intake.runPivot(IntakeConstants.IntakeMotionParameters.INTAKE_PIVOT_PERCENT_OUTPUT);
-    }
+    // if(intake.getPot()>IntakeConstants.IntakeSensors.IntakePot.DOWN){
+    //   intake.runPivot(0);
+    // }else{
+    //   intake.runPivot(IntakeConstants.IntakeMotionParameters.INTAKE_PIVOT_PERCENT_OUTPUT);
+    // }
   }
 
   // Called once the command ends or is interrupted.

@@ -95,7 +95,8 @@ public final class Constants {
             }
         }
         public static final class PivotConstants {
-            public static final double DOWN_POSITION = 4; // (250d / 360d) * 3.3;
+            public static final double UP_POSITION = 1.6;
+            public static final double DOWN_POSITION = 0.9; // (250d / 360d) * 3.3;
         }
         public static final class IntakeMotionParameters {
             public static final double INTAKE_SPINNER_PERCENT_OUTPUT = 0.4;
@@ -112,9 +113,9 @@ public final class Constants {
 
             public static final int ACCEPTABLE_ERROR_TICKS = 10;
 
-            public static final double KP = 1.5; //6;
+            public static final double KP = 2; //6;
             public static final double KI = 0;
-            public static final double KD = 0;
+            public static final double KD = 0.1;
             public static final double KF = 0;
         }
 
@@ -143,21 +144,24 @@ public final class Constants {
             public static final class IntakePivot {
                 public static final int CAN_ID = 2; //2
 
-                public static final boolean INVERT = false;
+                public static final boolean INVERT = true;
                 public static final int FEEDBACK_PORT = 0;
                 public static final boolean SENSOR_PHASE = true;
 
                 public static final int TIMEOUT = 10;
 
-                public static final boolean ENABLE_CURRENT_LIMIT = false;
+                public static final boolean ENABLE_CURRENT_LIMIT = true;
                 public static final int CURRENT_LIMIT = 25;
                 public static final double OPEN_LOOP_RAMP = 0.1;
-                public static final double PEAK_OUTPUT_FORWARD = .5;
-                public static final double PEAK_OUTPUT_REVERSE = -.5;
+                public static final double PEAK_OUTPUT_FORWARD = .25;
+                public static final double PEAK_OUTPUT_REVERSE = -.25;
+                public static final float SOFT_LIMIT_UPPER = 9.65f;
+                public static final float SOFT_LIMIT_LOWER = 4.85f;
 
                 public static final SparkMaxAnalogSensor.Mode ANALOG_MODE = SparkMaxAnalogSensor.Mode.kAbsolute;
 
-                public static final IdleMode NEUTRAL_MODE = IdleMode.kBrake;
+                public static final IdleMode 
+                NEUTRAL_MODE = IdleMode.kBrake;
             }
         }
     }

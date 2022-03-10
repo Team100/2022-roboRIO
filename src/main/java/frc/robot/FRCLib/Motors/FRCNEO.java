@@ -203,7 +203,7 @@ public class FRCNEO implements Sendable {
     /**
      * Whether or not we should use the Analog sensor for PID control
      */
-    private boolean useAnalogForPID = false;
+    private boolean useAnalogForPID;
 
     /**
      * The kP value of the motor's PID controller
@@ -358,6 +358,7 @@ public class FRCNEO implements Sendable {
         if (useAnalogForPID) {
             SparkMaxAnalogSensor analog = this.motor.getAnalog(analogMode);
             analog.setInverted(this.sensorPhase);
+            System.out.println("SET SENSOR PHASE");
             analog.setPositionConversionFactor(1/3.3);
             closedLoop.setFeedbackDevice(analog);
         }

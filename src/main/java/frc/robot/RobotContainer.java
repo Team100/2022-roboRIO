@@ -7,6 +7,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
@@ -109,7 +110,7 @@ public class RobotContainer {
         //alignButton.whileHeld(alignCommand);
         //indexerIntakeButton.whenPressed(new ScheduleCommand(new SequentialCommandGroup(intakeCommand, new WaitCommand(0.3))));
             //intakeButton.whenPressed(new ScheduleCommand(new SequentialCommandGroup((new ParallelCommandGroup(intakeIntakeCommand, intakeCommand)), new WaitCommand(0.3))));
-        stopAll.whenPressed(new ParallelCommandGroup(new ClimberStop(climber), new IndexerStop(indexer),new IntakeStop(intake),new ShootStop(shooter)));
+        stopAll.whenPressed(new ParallelCommandGroup(new ClimberStop(climber), new IndexerStop(indexer), new IntakeStop(intake), new ShootStop(shooter)));
         
         //    intakeButton.whenPressed(new ParallelDeadlineGroup(new SequentialCommandGroup(intakeIntakeCommand, new WaitCommand(0.3)), intakeCommand));
        // intakeButton.whenPressed(new ParallelDeadlineGroup(new SequentialCommandGroup(new WaitCommand(0.3),intakeCommand),intakeIntakeCommand));
@@ -121,6 +122,9 @@ public class RobotContainer {
         // shootButton.whileHeld(shootCommand);
         ejectButton.whileHeld(new ParallelCommandGroup(intakeEjectCommand, indexerEjectCommand, shootEjectCommand));
 
+
+    indexerIntakeButton.whenPressed(new InstantCommand(() -> { SmartDashboard.putString("Intake Command", "PivotUp");intake.runPivot(0.2);/*intake.setPivot(Constants.IntakeConstants.PivotConstants.UP_POSITION);*/ }, intake));
+    feedButton.whenPressed(new InstantCommand(() -> { SmartDashboard.putString("Intake Command", "PivotDown");intake.runPivot(-0.05);/*intake.setPivot(Constants.IntakeConstants.PivotConstants.DOWN_POSITION);*/ }, intake));
         //ejectButton.whileHeld(ejectCommand);
         //feedButton.whenPressed(feedCommand);
         //climberControlButton.whenPressed(climberControl);

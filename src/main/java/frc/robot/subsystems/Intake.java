@@ -6,6 +6,7 @@ package frc.robot.subsystems;
 
 import com.revrobotics.AnalogInput;
 import com.revrobotics.MotorFeedbackSensor;
+import com.revrobotics.CANSparkMax.SoftLimitDirection;
 import com.revrobotics.SparkMaxAnalogSensor.Mode;
 
 import edu.wpi.first.wpilibj.AnalogEncoder;
@@ -32,9 +33,6 @@ public class Intake extends SubsystemBase {
     public Intake() {        
         //pot = new AnalogPotentiometer(Constants.IntakeConstants.IntakeSensors.IntakePot.ID,100,-57);
 
-    
-
-
         spin = new FRCNEO.FRCNEOBuilder(Constants.IntakeConstants.IntakeMotors.IntakeSpin.CAN_ID)
             .withInverted(Constants.IntakeConstants.IntakeMotors.IntakeSpin.INVERT)
             .withFeedbackPort(Constants.IntakeConstants.IntakeMotors.IntakeSpin.FEEDBACK_PORT)
@@ -47,7 +45,7 @@ public class Intake extends SubsystemBase {
             .withPeakOutputReverse(Constants.IntakeConstants.IntakeMotors.IntakeSpin.PEAK_OUTPUT_REVERSE)
             .withNeutralMode(Constants.IntakeConstants.IntakeMotors.IntakeSpin.NEUTRAL_MODE)
             .build();
-    
+
 
         pivot = new FRCNEO.FRCNEOBuilder(Constants.IntakeConstants.IntakeMotors.IntakePivot.CAN_ID)
             .withKP(Constants.IntakeConstants.IntakeMotionParameters.KP)
@@ -55,6 +53,7 @@ public class Intake extends SubsystemBase {
             .withKD(Constants.IntakeConstants.IntakeMotionParameters.KD)
             .withKF(Constants.IntakeConstants.IntakeMotionParameters.KF)
             .withInverted(Constants.IntakeConstants.IntakeMotors.IntakePivot.INVERT)
+            .withSensorPhase(Constants.IntakeConstants.IntakeMotors.IntakePivot.SENSOR_PHASE)
             .withTimeout(Constants.IntakeConstants.IntakeMotors.IntakePivot.TIMEOUT)
             .withCurrentLimitEnabled(Constants.IntakeConstants.IntakeMotors.IntakePivot.ENABLE_CURRENT_LIMIT)
             .withCurrentLimit(Constants.IntakeConstants.IntakeMotors.IntakePivot.CURRENT_LIMIT)
@@ -65,40 +64,49 @@ public class Intake extends SubsystemBase {
             .withAnalogSensorMode(Constants.IntakeConstants.IntakeMotors.IntakePivot.ANALOG_MODE, true)
             .build();
 
-            addChild("intakePivot", pivot);
-            addChild("intakeSpin", spin);
-            //addChild("intakeArmPotentiometer", pot);
-        }
+            pivot.motor.enableSoftLimit(SoftLimitDirection.kForward, true);
+            pivot.motor.enableSoftLimit(SoftLimitDirection.kReverse, true);
+            pivot.motor.setSoftLimit(SoftLimitDirection.kForward, Constants.IntakeConstants.IntakeMotors.IntakePivot.SOFT_LIMIT_UPPER);
+            pivot.motor.setSoftLimit(SoftLimitDirection.kReverse, Constants.IntakeConstants.IntakeMotors.IntakePivot.SOFT_LIMIT_LOWER);
 
-        @Override
-        public void periodic() {
-            // This method will be called once per scheduler run
-            SmartDashboard.putNumber("Intake Pivot Encoder Value", getPot());
-            SmartDashboard.putNumber("Intake Pivot Output", pivot.motor.get());
-            SmartDashboard.putNumber("Intake Pivot raw analog", pivot.getAnalogSensorPosition());
-        }
-
-        public void onInit() {
-            // double analogPos = pivot.getAnalogSensorPosition();
-            // pivot.motor.getEncoder().setPosition(analogPos * (-6.14346) + 10.1229);
-            // pivot.motor.getPIDController().setFeedbackDevice(pivot.motor.getEncoder());
-        }
-
-        public double getPot(){
-            return ((pivot.getAnalogSensorPosition())*360);//pot.getVoltage();
-            // return pivot.motor.getEncoder().getPosition();
-        }
-
-        public void runPivot(double percentOutput) {
-            //System.out.println(percentOutput);
-            pivot.drivePercentOutput(percentOutput);
-        }
-
-        public void runSpinner(double percentOutput) {
-            spin.drivePercentOutput(percentOutput);
-        }
-        public void setPivot(double setpoint) {
-            pivot.drivePosition(setpoint);
-        }
+        addChild("intakePivot", pivot);
+        addChild("intakeSpin", spin);
+        //addChild("intakeArmPotentiometer", pot);
     }
+
+    @Override
+    public void periodic() {
+        onInit(); // Oh no no no no no
+        // This method will be called once per scheduler run
+        SmartDashboard.putNumber("Intake Pivot Encoder Value", pivot.motor.getEncoder().getPosition());
+        SmartDashboard.putNumber("Intake Pivot Output", pivot.motor.get());
+        SmartDashboard.putNumber("Intake Pivot raw analog", pivot.getAnalogSensorPosition());
+        SmartDashboard.putBoolean("Intake Pivot Upper Limit", pivot.motor.getEncoder().getPosition() >= pivot.motor.getSoftLimit(SoftLimitDirection.kForward));
+        SmartDashboard.putBoolean("Intake Pivot Lower Limit", pivot.motor.getEncoder().getPosition() <= pivot.motor.getSoftLimit(SoftLimitDirection.kReverse));
+        SmartDashboard.putNumber("Intake Pivot Motor Output", pivot.motor.getAppliedOutput());
+    }
+
+    public void onInit() {
+        double analogPos = pivot.getAnalogSensorPosition();
+        pivot.motor.getEncoder().setPosition(analogPos * (6.28141) - 0.939452);
+        pivot.motor.getPIDController().setFeedbackDevice(pivot.motor.getEncoder());
+    }
+
+    // public double getPot(){
+        // return ((pivot.getAnalogSensorPosition())*360);//pot.getVoltage();
+        // return pivot.motor.getEncoder().getPosition();
+    // }
+
+    public void runPivot(double percentOutput) {
+        //System.out.println(percentOutput);
+        pivot.drivePercentOutput(percentOutput);
+    }
+
+    public void runSpinner(double percentOutput) {
+        spin.drivePercentOutput(percentOutput);
+    }
+    public void setPivot(double setpoint) {
+        pivot.drivePosition(setpoint);
+    }
+}
     
