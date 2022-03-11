@@ -57,6 +57,10 @@ public class RobotContainer {
     private final JoystickButton climberControlButton = new JoystickButton(gamepad, 3);
     //private final JoystickButton intakePivotDown = new JoystickButton(buttonBoard, 13);
     private final JoystickButton intakePivotUp = new JoystickButton(buttonBoard, 14);
+
+    private final JoystickButton HookDownButton = new JoystickButton(buttonBoard, 1);
+    private final JoystickButton HookUpButton = new JoystickButton(buttonBoard, 16);
+
     private final JoystickButton stopAll = new JoystickButton(buttonBoard, 4);
     //private final JoystickButton controlBallButton = new JoystickButton(buttonBoard, 14);
 
@@ -77,6 +81,9 @@ public class RobotContainer {
     private final IndexerFeedHigh feedHighCommand = new IndexerFeedHigh(indexer, shooter);
     private final IndexerFeedLow feedLowCommand = new IndexerFeedLow(indexer, shooter);
     private final ClimberStop climberStopCommand = new ClimberStop(climber);
+
+    private final HookUp HookUpCommand = new HookUp(climber);
+    private final HookDown HookDownCommand = new HookDown(climber);
     //private final ClimberControl climberControl = new ClimberControl(climber, gamepad);
     //private final ParallelCommandGroup controlBall = new ParallelCommandGroup(intakeIntakeCommand,indexerStopCommand);
 
@@ -108,7 +115,20 @@ public class RobotContainer {
 
         // indexButton.whileHeld(new SequentialCommandGroup(new ParallelDeadlineGroup(intakeCommand, intakeIntakeCommand), new WaitCommand(0.2)));
         turboButton.whileHeld(driveFuriousCommand);
+
         alignButton.whileHeld(alignCommand);
+
+
+
+
+
+        // HookDownButton.whileHeld(HookDownCommand);
+        // HookUpButton.whileHeld(HookUpCommand);
+
+
+
+
+
         // intakeIntakeButton.whileHeld(intakeIntakeCommand);
         //intakeEjectButton.whileHeld(intakeEjectCommand);
         //alignButton.whileHeld(alignCommand);

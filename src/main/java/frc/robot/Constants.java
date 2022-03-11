@@ -169,7 +169,7 @@ public final class Constants {
         public static final class ShooterMotionParameters {
             public static final double SHOOTER_PERCENT_OUTPUT = 0.1; //0.17 //0.175
             public static final double SHOOTER_VELOCITY_HIGH = -4150; //0.17 //0.175
-            public static final double SHOOTER_VELOCITY_LOW = -3000; //0.17 //0.175 //-2500
+            public static final double SHOOTER_VELOCITY_LOW = -2500; //0.17 //0.175 //-2500
 
 			public static final double NOMINAL_LOW_VELOCITY = 2480;
             public static final double NOMINAL_HIGH_VELOCITY = 4100;
@@ -278,10 +278,19 @@ public final class Constants {
 
     public static final class ClimberConstants {
         public static final class ClimberMotionParameters {
-            public static final double CLIMBER_PERCENT_OUTPUT = 0.7;
+            public static final double CLIMBER_PERCENT_OUTPUT = 0.1;
             public static final double CLIMBER_ZERO = 0;
 
-            public static final double TILT_PERCENT_OUTPUT = 1;
+            public static final double TILT_PERCENT_OUTPUT = 0.1;
+
+            public static final double CLIMBER_TOP = 8000;
+            public static final double CLIMBER_BOTTOM = 3000;
+            public static final double TILT_START = 7000;
+            public static final double STATIONARY_LOCK_ANGLE = 10;
+
+            public static final double EXTEND_START_ANGLE = 0;
+            public static final double NEXT_BAR_ANGLE = 10;
+            public static final double NEXT_BAR_DISTANCE = 9000;
         }
 
         public static final class ClimberControls {
