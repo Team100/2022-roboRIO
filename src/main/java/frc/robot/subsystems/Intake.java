@@ -88,7 +88,7 @@ public class Intake extends SubsystemBase {
 
     public void onInit() {
         double analogPos = pivot.getAnalogSensorPosition();
-        pivot.motor.getEncoder().setPosition(analogPos * (6.28141) - 0.939452);
+        pivot.motor.getEncoder().setPosition(analogPos * (6.41026) - 1.31538);
         pivot.motor.getPIDController().setFeedbackDevice(pivot.motor.getEncoder());
     }
 
