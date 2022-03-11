@@ -4,6 +4,7 @@
 
 package frc.robot.commands.climber;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Climber;
 import frc.robot.Constants.ClimberConstants;
@@ -29,11 +30,14 @@ public class HookUp extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(climber.mainPosition()>=ClimberConstants.ClimberMotionParameters.CLIMBER_TOP){
+    if(climber.mainPosition()<=ClimberConstants.ClimberMotionParameters.CLIMBER_TOP){
+      SmartDashboard.putBoolean("we done boys?", true);
       climber.setWinch(0);
       done = true;
     }else{
-      climber.setWinch(ClimberConstants.ClimberMotionParameters.CLIMBER_PERCENT_OUTPUT);
+      climber.setWinch(-ClimberConstants.ClimberMotionParameters.CLIMBER_PERCENT_OUTPUT);
+      SmartDashboard.putBoolean("we done boys?", false);
+
     }
   }
 

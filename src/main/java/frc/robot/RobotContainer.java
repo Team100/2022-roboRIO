@@ -122,8 +122,8 @@ public class RobotContainer {
 
 
 
-        // HookDownButton.whileHeld(HookDownCommand);
-        // HookUpButton.whileHeld(HookUpCommand);
+         HookDownButton.whenPressed(HookDownCommand);
+         HookUpButton.whenPressed(HookUpCommand);
 
 
 
