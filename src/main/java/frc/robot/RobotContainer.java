@@ -43,12 +43,12 @@ public class RobotContainer {
     private final Joystick leftJoystick = new Joystick(0);
     private final Joystick rightJoystick = new Joystick(1);
     private final Joystick gamepad = new Joystick(2);
-    private final JoystickButton indexButton = new JoystickButton(leftJoystick, 1);
+    //private final JoystickButton indexButton = new JoystickButton(leftJoystick, 1);
     private final Joystick buttonBoard = new Joystick(3);
     private final JoystickButton turboButton = new JoystickButton(rightJoystick, 1);
     private final JoystickButton intakeButton = new JoystickButton(buttonBoard, 2);
     private final JoystickButton ejectButton = new JoystickButton(buttonBoard, 5);
-    private final JoystickButton alignButton = new JoystickButton(gamepad, 7);
+    private final JoystickButton alignButton = new JoystickButton(leftJoystick, 1);
     //private final JoystickButton shootButton = new JoystickButton(buttonBoard, 16);
     private final JoystickButton indexerIntakeButton = new JoystickButton(buttonBoard, 12);
     private final JoystickButton shootHighButton = new JoystickButton(buttonBoard, 14);
@@ -108,6 +108,7 @@ public class RobotContainer {
 
         // indexButton.whileHeld(new SequentialCommandGroup(new ParallelDeadlineGroup(intakeCommand, intakeIntakeCommand), new WaitCommand(0.2)));
         turboButton.whileHeld(driveFuriousCommand);
+        alignButton.whileHeld(alignCommand);
         // intakeIntakeButton.whileHeld(intakeIntakeCommand);
         //intakeEjectButton.whileHeld(intakeEjectCommand);
         //alignButton.whileHeld(alignCommand);
@@ -126,8 +127,8 @@ public class RobotContainer {
         ejectButton.whileHeld(new ParallelCommandGroup(intakeEjectCommand, indexerEjectCommand, shootEjectCommand));
 
 
-        indexerIntakeButton.whenPressed(new InstantCommand(() -> { SmartDashboard.putString("Intake Command", "PivotUp");intake.runPivot(0.2);/*intake.setPivot(Constants.IntakeConstants.PivotConstants.UP_POSITION);*/ }, intake));
-        feedButton.whenPressed(new InstantCommand(() -> { SmartDashboard.putString("Intake Command", "PivotDown");intake.runPivot(-0.05);/*intake.setPivot(Constants.IntakeConstants.PivotConstants.DOWN_POSITION);*/ }, intake));
+        // indexerIntakeButton.whenPressed(new InstantCommand(() -> { SmartDashboard.putString("Intake Command", "PivotUp");intake.runPivot(0.2);/*intake.setPivot(Constants.IntakeConstants.PivotConstants.UP_POSITION);*/ }, intake));
+        // feedButton.whenPressed(new InstantCommand(() -> { SmartDashboard.putString("Intake Command", "PivotDown");intake.runPivot(-0.05);/*intake.setPivot(Constants.IntakeConstants.PivotConstants.DOWN_POSITION);*/ }, intake));
         //ejectButton.whileHeld(ejectCommand);
         //feedButton.whenPressed(feedCommand);
         //climberControlButton.whenPressed(climberControl);
