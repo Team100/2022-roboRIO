@@ -35,7 +35,6 @@ boolean done;
     }else{
       climber.setWinch(ClimberConstants.ClimberMotionParameters.CLIMBER_PERCENT_OUTPUT);
       SmartDashboard.putBoolean("we done boys?", false);
-
     }
   }
 
