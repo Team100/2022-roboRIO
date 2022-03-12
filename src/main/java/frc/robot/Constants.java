@@ -20,7 +20,8 @@ import com.revrobotics.CANSparkMax.IdleMode;
 public final class Constants {
     public static final class DrivetrainConstants {
         public static final class DrivetrainMotion{
-            public static final double AlignSpeed = 0.05;
+            public static final double ALIGN_SPEED = 0.075;
+            public static final double SLOW_SPEED = 0.2;
         }
         public static final class DrivetrainSensors{
             public static final class LeftSensor{
@@ -96,11 +97,12 @@ public final class Constants {
         }
         public static final class PivotConstants {
             public static final double UP_POSITION = 2.65;
-            public static final double DOWN_POSITION = 1.9; // (250d / 360d) * 3.3;
+            public static final double DOWN_POSITION = 1.95; // (250d / 360d) * 3.3;
         }
         public static final class IntakeMotionParameters {
-            public static final double INTAKE_SPINNER_PERCENT_OUTPUT = 0.4;
-            public static final double INTAKE_PIVOT_PERCENT_OUTPUT = 0.05;
+            public static final double INTAKE_SPINNER_PERCENT_OUTPUT = 0.35;
+            public static final double INTAKE_PIVOT_PERCENT_OUTPUT = 0.08;
+            public static final double INTAKE_PIVOT_PERCENT_OUTPUT_UP = 2;
             public static final double INTAKE_ZERO = 0;
 
             public static final int ZEROED_ENCODER_TICKS = 65;
@@ -113,7 +115,7 @@ public final class Constants {
 
             public static final int ACCEPTABLE_ERROR_TICKS = 10;
 
-            public static final double KP = 2; //6;
+            public static final double KP = 2;//6;
             public static final double KI = 0;
             public static final double KD = 0.1;
             public static final double KF = 0;
@@ -156,12 +158,11 @@ public final class Constants {
                 public static final double PEAK_OUTPUT_FORWARD = .25;
                 public static final double PEAK_OUTPUT_REVERSE = -.25;
                 public static final float SOFT_LIMIT_UPPER = 15.8f;
-                public static final float SOFT_LIMIT_LOWER = 10.8f;
+                public static final float SOFT_LIMIT_LOWER = 11f;
 
                 public static final SparkMaxAnalogSensor.Mode ANALOG_MODE = SparkMaxAnalogSensor.Mode.kAbsolute;
 
-                public static final IdleMode 
-                NEUTRAL_MODE = IdleMode.kBrake;
+                public static final IdleMode NEUTRAL_MODE = IdleMode.kBrake;
             }
         }
     }
