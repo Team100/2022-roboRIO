@@ -29,6 +29,13 @@ public class IntakeStop extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
+        if (intake.getPot() <= 2.55) {
+            intake.runPivot(
+                Constants.IntakeConstants.IntakeMotionParameters.INTAKE_PIVOT_PERCENT_OUTPUT_UP
+                * (2.55 - intake.getPot()));
+        } else {
+            intake.runPivot(0);
+        }
     }
 
     // Called once the command ends or is interrupted.

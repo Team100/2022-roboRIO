@@ -18,8 +18,8 @@ import frc.robot.Constants;
 import frc.robot.FRCLib.Motors.FRCNEO;
 
 public class Intake extends SubsystemBase {
-
     private FRCNEO spin, pivot;
+    private double pivotSetpoint;
 
     //public AnalogPotentiometer pot;
     //public AnalogPotentiometer pot;// = new AnalogPotentiometer(Constants.IntakeConstants.IntakeSensors.IntakePot.ID);
@@ -96,6 +96,29 @@ public class Intake extends SubsystemBase {
         // return ((pivot.getAnalogSensorPosition())*360);//pot.getVoltage();
         // return pivot.motor.getEncoder().getPosition();
         return pivot.getAnalogSensorPosition();
+    }
+
+    public void pivotWithRamp(double pivot) {
+        double ramp = ramp(pivot, pivotSetpoint);
+
+        this.pivot.drivePercentOutput(ramp);
+        this.pivotSetpoint = ramp;
+    }
+
+    private double ramp(double input, double currentSpeed) {
+        double dv = input - currentSpeed;
+        if (dv > 0) {
+            // forwards, speeding up
+            if (dv > Constants.DrivetrainConstants.DrivetrainControls.RAMP_LIMIT) {
+                return currentSpeed + Constants.DrivetrainConstants.DrivetrainControls.RAMP_LIMIT;
+            }
+        } else if (dv < 0) {
+            // forwards, slowing down
+            if (dv < -Constants.DrivetrainConstants.DrivetrainControls.RAMP_LIMIT) {
+                return currentSpeed - Constants.DrivetrainConstants.DrivetrainControls.RAMP_LIMIT;
+            }
+        }
+        return input;
     }
 
     public void runPivot(double percentOutput) {

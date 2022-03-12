@@ -22,7 +22,7 @@ public class IntakeUp extends CommandBase {
     @Override
     public void initialize() {
         done = false;
-        intake.runSpinner(-Constants.IntakeConstants.IntakeMotionParameters.INTAKE_SPINNER_PERCENT_OUTPUT);
+        intake.runPivot(-Constants.IntakeConstants.IntakeMotionParameters.INTAKE_SPINNER_PERCENT_OUTPUT);
 
     }
 
