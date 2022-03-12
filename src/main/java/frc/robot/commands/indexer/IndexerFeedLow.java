@@ -6,17 +6,22 @@ package frc.robot.commands.indexer;
 
 import static frc.robot.Constants.IndexerConstants.IndexerMotionParameters.*;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.subsystems.Indexer;
+import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Shooter;
 
-public class IndexerFeed extends CommandBase {
+public class IndexerFeedLow extends CommandBase {
     private Indexer indexer;
+    private Shooter shooter;
     private boolean wasFalse;
     private boolean done = false;
     private boolean shouldCheckRefill;
 
     /** Creates a new IndexerFeed. */
-    public IndexerFeed(Indexer indexer) {
+    public IndexerFeedLow(Indexer indexer, Shooter shooter) {
         this.indexer = indexer;
+        this.shooter = shooter;
 
         // Use addRequirements() here to declare subsystem dependencies.
         addRequirements(indexer);
@@ -25,36 +30,41 @@ public class IndexerFeed extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        wasFalse = false;
+        // wasFalse = false;
         done = false;
 
-        shouldCheckRefill = indexer.getSensorOne() && indexer.getSensorTwo();
+        // shouldCheckRefill = indexer.getSensorOne() && indexer.getSensorTwo();
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        if (shouldCheckRefill) {
-            if (indexer.getSensorTwo() && wasFalse) {
-                shouldCheckRefill = false;
-                return;
-            }
-
+        // if (shouldCheckRefill) {
+        //     if (indexer.getSensorTwo() && wasFalse) {
+        //         // shouldCheckRefill = false;
+        //         done = true;
+        //         return;
+        //     }
+        if (shooter.speed()>Constants.ShooterConstants.ShooterMotionParameters.NOMINAL_LOW_VELOCITY) {
             indexer.runMotorOne(STAGE_ONE_PERCENT_OUTPUT_FORWARD);
             indexer.runMotorTwo(STAGE_TWO_PERCENT_OUTPUT_FORWARD);
-
-            if (!indexer.getSensorTwo()) {
-                wasFalse = true;
-            }
         } else {
-            if (!indexer.getSensorTwo()) {
-                done = true;
-                return;
-            }
-
-            indexer.runMotorOne(STAGE_ONE_PERCENT_OUTPUT_FORWARD);
-            indexer.runMotorTwo(STAGE_TWO_PERCENT_OUTPUT_FORWARD);
+            indexer.runMotorOne(0);
+            indexer.runMotorTwo(0);
         }
+
+        //     if (!indexer.getSensorTwo()) {
+        //         wasFalse = true;
+        //     }
+        // } else {
+        //     if (!indexer.getSensorTwo()) {
+        //         done = true;
+        //         return;
+        //     }
+
+        //     indexer.runMotorOne(STAGE_ONE_PERCENT_OUTPUT_FORWARD);
+        //     indexer.runMotorTwo(STAGE_TWO_PERCENT_OUTPUT_FORWARD);
+        // }
     }
         
     

@@ -13,7 +13,9 @@ public class Shooter extends SubsystemBase {
     private FRCNEO shootMotor,shootMotorFollower;
 
     private boolean atSpeed = false;
-    public boolean isAtSpeed() { return atSpeed; }
+    public int speed() { 
+        return Math.abs(shootMotor.getSensorVelocity()); 
+    }
 
     /** Creates a new Shooter. */
     public Shooter() {
@@ -28,6 +30,10 @@ public class Shooter extends SubsystemBase {
             .withPeakOutputForward(ShooterMotors.Shooter.PEAK_OUTPUT_FORWARD)
             .withPeakOutputReverse(ShooterMotors.Shooter.PEAK_OUTPUT_REVERSE)
             .withNeutralMode(ShooterMotors.Shooter.NEUTRAL_MODE)
+            .withKP(ShooterMotionParameters.KP)
+            .withKI(ShooterMotionParameters.KI)
+            .withKF(ShooterMotionParameters.KF)
+            .withKD(ShooterMotionParameters.KD)
             .build();
 
         shootMotorFollower = new FRCNEO.FRCNEOBuilder(ShooterMotors.ShooterFollower.CAN_ID)
@@ -53,13 +59,20 @@ public class Shooter extends SubsystemBase {
         this.shootMotor.drivePercentOutput(-speed);
         // this.shootMotorFollower.drivePercentOutput(speed);
     }
+
+    public void setVelocity(double velocity){
+        this.shootMotor.driveVelocity(velocity);
+    }
     
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
 
-        atSpeed = (shootMotor.getSensorVelocity() >= ShooterMotionParameters.NOMINAL_VELOCITY);
-        //if(atSpeed) System.out.println("MOTOR GO BRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR");
-        SmartDashboard.putNumber("ShooterRPM", (shootMotor.getSensorVelocity()/2048)*600);
+        //atSpeed = (Math.abs(shootMotor.getSensorVelocity()) >= ShooterMotionParameters.NOMINAL_VELOCITY);
+        //atSpeed = (Math.abs(shootMotor.getSensorVelocity()) >= ShooterMotionParameters.NOMINAL_VELOCITY);        //if(atSpeed) System.out.println("MOTOR GO BRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR");
+        SmartDashboard.putNumber("shooter velocity", (shootMotor.getSensorVelocity()));
+
+        //SmartDashboard.putNumber("ShooterRPM", ((shootMotor.getSensorVelocity()/2048))*600);
+        
     }
 }

@@ -53,20 +53,20 @@ public class Indexer extends SubsystemBase {
     }
 
     public boolean getSensorOne() {
-      return sensor1.get();
+      return !sensor1.get();
     }
 
     public boolean getSensorTwo() {
-      return sensor2.get();
+      return !sensor2.get();
     }
 
     public void runMotorOne(double percentOutput) {
-        SmartDashboard.putNumber("motor one output", percentOutput);
+        // SmartDashboard.putNumber("motor one output", percentOutput);
         stageOneMotor.drivePercentOutput(percentOutput);
     }
 
     public void runMotorTwo(double percentOutput) {
-        SmartDashboard.putNumber("motor two output", percentOutput);
+        // SmartDashboard.putNumber("motor two output", percentOutput);
         stageTwoMotor.drivePercentOutput(percentOutput);
     }
     
@@ -77,8 +77,8 @@ public class Indexer extends SubsystemBase {
         SmartDashboard.putBoolean("Indexer SensorOne", getSensorOne());
         SmartDashboard.putBoolean("Indexer SensorTwo", getSensorTwo());
 
-        SmartDashboard.putNumber("motor one received", stageOneMotor.motor.get());
+        // SmartDashboard.putNumber("motor one received", stageOneMotor.motor.get());
         
-        SmartDashboard.putNumber("motor two received", stageTwoMotor.motor.get());
+        // SmartDashboard.putNumber("motor two received", stageTwoMotor.motor.get());
     }
 }

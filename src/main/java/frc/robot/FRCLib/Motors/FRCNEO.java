@@ -19,7 +19,7 @@ import com.revrobotics.SparkMaxAnalogSensor.Mode;
 
 import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.util.sendable.SendableBuilder;
-
+import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
@@ -201,6 +201,11 @@ public class FRCNEO implements Sendable {
     private SparkMaxAnalogSensor.Mode analogMode;
 
     /**
+     * Whether or not we should use the Analog sensor for PID control
+     */
+    private boolean useAnalogForPID;
+
+    /**
      * The kP value of the motor's PID controller
      */
     private double kP;
@@ -342,13 +347,21 @@ public class FRCNEO implements Sendable {
         closedLoop.setD(this.getkD());
         closedLoop.setFF(this.getkF());
 
-        System.out.println("Wrote PID TO " + canID + ", KF VALUE " + this.getkF());
+        System.out.println("Wrote PID TO " + canID + ", KP = " + this.getkP() + ", KF VALUE " + this.getkF());
     }
 
     public FRCNEO configure() {
         motor = new CANSparkMax(this.getCanID(), MotorType.kBrushless);
 
         closedLoop = motor.getPIDController();
+
+        if (useAnalogForPID) {
+            SparkMaxAnalogSensor analog = this.motor.getAnalog(analogMode);
+            analog.setInverted(this.sensorPhase);
+            System.out.println("SET SENSOR PHASE");
+            analog.setPositionConversionFactor(1/3.3);
+            closedLoop.setFeedbackDevice(analog);
+        }
 
         fwdLimitSwitch = motor.getForwardLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyOpen);
         revLimitSwitch = motor.getReverseLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyOpen);
@@ -392,10 +405,10 @@ public class FRCNEO implements Sendable {
             System.out.println("setting reverse soft limit enabled");
         }
 
-        if (this.isSensorPhase()) {
-            motor.getAnalog(Mode.kAbsolute);
-            System.out.println("setting sensor phase");
-        }
+        // if (this.isSensorPhase()) {
+        //     motor.getAnalog(Mode.kAbsolute);
+        //     System.out.println("setting sensor phase");
+        // }
 
         if (this.getVelocityMeasurementPeriod() != 0 || this.getVelocityMeasurementWindow() != 0) {
             motor.getEncoder().setMeasurementPeriod(this.getVelocityMeasurementPeriod());
@@ -696,6 +709,7 @@ public class FRCNEO implements Sendable {
         private int timeout = 10;
         private boolean sensorPhase = false;
         private SparkMaxAnalogSensor.Mode analogMode = SparkMaxAnalogSensor.Mode.kAbsolute;
+        private boolean useAnalogForPID = false;
         private double kP = 0.0;
         private double kI = 0.0;
         private double kD = 0.0;
@@ -759,6 +773,11 @@ public class FRCNEO implements Sendable {
         }
 
         public FRCNEOBuilder withAnalogSensorMode(SparkMaxAnalogSensor.Mode analogMode) {
+            return withAnalogSensorMode(analogMode, false);
+        }
+
+        public FRCNEOBuilder withAnalogSensorMode(SparkMaxAnalogSensor.Mode analogMode, boolean useForPID) {
+            this.useAnalogForPID = useForPID;
             this.analogMode = analogMode;
             return this;
         }
@@ -906,6 +925,7 @@ public class FRCNEO implements Sendable {
             fRCNEO.setTimeout(timeout);
             fRCNEO.setSensorPhase(sensorPhase);
             fRCNEO.setAnalogMode(analogMode);
+            fRCNEO.useAnalogForPID = this.useAnalogForPID;
             fRCNEO.setAllowableClosedLoopError(allowableClosedLoopError);
             fRCNEO.setCurrentLimitEnabled(currentLimitEnabled);
             fRCNEO.setCurrentLimit(currentLimit);

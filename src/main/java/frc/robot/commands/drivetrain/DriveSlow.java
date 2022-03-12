@@ -5,15 +5,16 @@
 package frc.robot.commands.drivetrain;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj.Joystick;
 
-public class DriveFurious extends CommandBase {
+public class DriveSlow extends CommandBase {
     private final Drivetrain drivetrain;
     private final Joystick leftJoystick;
     private final Joystick rightJoystick;
 
-    public DriveFurious(Drivetrain dt, Joystick l, Joystick r) {
+    public DriveSlow(Drivetrain dt, Joystick l, Joystick r) {
         drivetrain = dt;
         leftJoystick = l;
         rightJoystick = r;
@@ -31,7 +32,8 @@ public class DriveFurious extends CommandBase {
     public void execute() {
         double left = -leftJoystick.getY() - rightJoystick.getX();
         double right = -leftJoystick.getY() + rightJoystick.getX();
-        drivetrain.driveWithoutRamp(left, right);
+        double limiter = Constants.DrivetrainConstants.DrivetrainMotion.SLOW_SPEED;
+        drivetrain.driveWithoutRamp((left*limiter), (right*limiter));
     }
 
     // Called once the command ends or is interrupted.

@@ -1,17 +1,18 @@
 package frc.robot.commands.intake;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Intake;
 
-public class IntakeStop extends CommandBase {
+public class IntakeUp extends CommandBase {
+    public boolean done;
+
     public Intake intake;
 
     /**
-     * Creates a new IntakeStop.
+     * Creates a new IntakeEject.
      */
-    public IntakeStop(Intake intake) {
+    public IntakeUp(Intake intake) {
         // Use addRequirements() here to declare subsystem dependencies.
         this.intake = intake;
         addRequirements(this.intake);
@@ -20,27 +21,29 @@ public class IntakeStop extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        this.intake.runSpinner(0);
-        this.intake.runPivot(0);
-        // this.intake.setPivot(Constants.IntakeConstants.PivotConstants.UP_POSITION);
-        // SmartDashboard.putNumber("intake setpoint", 0);
+        done = false;
+        intake.runPivot(-Constants.IntakeConstants.IntakeMotionParameters.INTAKE_SPINNER_PERCENT_OUTPUT);
+
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        if (intake.getPot() <= 2.55) {
-            intake.runPivot(
-                Constants.IntakeConstants.IntakeMotionParameters.INTAKE_PIVOT_PERCENT_OUTPUT_UP
-                * (2.55 - intake.getPot()));
-        } else {
-            intake.runPivot(0);
-        }
+        // if (intake.getCurrentPosition() >= Constants.IntakeConstants.PivotConstants.DOWN_POSITION) {
+        //     intake.runPivot(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_PIVOT_PERCENT_OUTPUT);
+        // }
+        // if(intake.getCurrentPosition() <= Constants.IntakeConstants.PivotConstants.DOWN_POSITION){
+        //     intake.runSpinner(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_SPINNER_PERCENT_OUTPUT);
+        // }
+
+
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
+        intake.runPivot(0);
+        intake.runSpinner(0);
     }
 
     // Returns true when the command should end.
@@ -49,4 +52,7 @@ public class IntakeStop extends CommandBase {
         return false;
     }
 }
+
+  
+    
 
