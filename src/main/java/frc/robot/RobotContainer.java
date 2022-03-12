@@ -44,14 +44,15 @@ public class RobotContainer {
     private final Joystick leftJoystick = new Joystick(0);
     private final Joystick rightJoystick = new Joystick(1);
     private final Joystick gamepad = new Joystick(2);
-    private final JoystickButton indexButton = new JoystickButton(leftJoystick, 1);
+    //private final JoystickButton indexButton = new JoystickButton(leftJoystick, 1);
     private final Joystick buttonBoard = new Joystick(3);
     private final JoystickButton turboButton = new JoystickButton(rightJoystick, 1);
     private final JoystickButton slowButton = new JoystickButton(rightJoystick, 3);
     private final JoystickButton intakeButton = new JoystickButton(buttonBoard, 2);
     private final JoystickButton ejectButton = new JoystickButton(buttonBoard, 5);
-    private final JoystickButton alignButton = new JoystickButton(gamepad, 7);
-    private final JoystickButton intakeUpButton = new JoystickButton(buttonBoard, 12);
+
+    private final JoystickButton alignButton = new JoystickButton(leftJoystick, 1);
+    private final JoystickButton indexUp = new JoystickButton(rightJoystick, 2);
     //private final JoystickButton shootButton = new JoystickButton(buttonBoard, 16);
     //private final JoystickButton indexerIntakeButton = new JoystickButton(buttonBoard, 12);
     private final JoystickButton shootHighButton = new JoystickButton(buttonBoard, 14);
@@ -60,6 +61,10 @@ public class RobotContainer {
     private final JoystickButton climberControlButton = new JoystickButton(gamepad, 3);
     //private final JoystickButton intakePivotDown = new JoystickButton(buttonBoard, 13);
     private final JoystickButton intakePivotUp = new JoystickButton(buttonBoard, 14);
+
+    private final JoystickButton HookDownButton = new JoystickButton(buttonBoard, 1);
+    private final JoystickButton HookUpButton = new JoystickButton(buttonBoard, 16);
+
     private final JoystickButton stopAll = new JoystickButton(buttonBoard, 4);
     //private final JoystickButton controlBallButton = new JoystickButton(buttonBoard, 14);
 
@@ -83,6 +88,9 @@ public class RobotContainer {
     private final IndexerFeedLow feedLowCommand = new IndexerFeedLow(indexer, shooter);
     private final ClimberStop climberStopCommand = new ClimberStop(climber);
     private final IntakeUp intakeUpCommand = new IntakeUp(intake);
+
+    private final HookUp HookUpCommand = new HookUp(climber);
+    private final HookDown HookDownCommand = new HookDown(climber);
     //private final ClimberControl climberControl = new ClimberControl(climber, gamepad);
     //private final ParallelCommandGroup controlBall = new ParallelCommandGroup(intakeIntakeCommand,indexerStopCommand);
 
@@ -114,6 +122,9 @@ public class RobotContainer {
 
         // indexButton.whileHeld(new SequentialCommandGroup(new ParallelDeadlineGroup(intakeCommand, intakeIntakeCommand), new WaitCommand(0.2)));
         turboButton.whileHeld(driveFuriousCommand);
+        alignButton.whileHeld(alignCommand);
+        HookDownButton.whenPressed(HookDownCommand);
+        HookUpButton.whenPressed(HookUpCommand);
         slowButton.whileHeld(driveSlowCommand);
         // intakeIntakeButton.whileHeld(intakeIntakeCommand);
         //intakeEjectButton.whileHeld(intakeEjectCommand);
@@ -123,7 +134,7 @@ public class RobotContainer {
         stopAll.whenPressed(new ParallelCommandGroup(new ClimberStop(climber), new IndexerStop(indexer), new IntakeStop(intake), new ShootStop(shooter)));
         
         //    intakeButton.whenPressed(new ParallelDeadlineGroup(new SequentialCommandGroup(intakeIntakeCommand, new WaitCommand(0.3)), intakeCommand));
-       // intakeButton.whenPressed(new ParallelDeadlineGroup(new SequentialCommandGroup(new WaitCommand(0.3),intakeCommand),intakeIntakeCommand));
+        // intakeButton.whenPressed(new ParallelDeadlineGroup(new SequentialCommandGroup(new WaitCommand(0.3),intakeCommand),intakeIntakeCommand));
         intakeButton.whenPressed(new SequentialCommandGroup(new ParallelDeadlineGroup(intakeCommand, intakeIntakeCommand), new WaitCommand(0.2)));
         //intakeButton.whileHeld(intakeIntakeCommand);
         shootHighButton.whileHeld(new ParallelCommandGroup(shootHighCommand, feedHighCommand));

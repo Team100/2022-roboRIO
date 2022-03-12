@@ -279,10 +279,19 @@ public final class Constants {
 
     public static final class ClimberConstants {
         public static final class ClimberMotionParameters {
-            public static final double CLIMBER_PERCENT_OUTPUT = 0.7;
+            public static final double CLIMBER_PERCENT_OUTPUT = 0.5;
             public static final double CLIMBER_ZERO = 0;
 
-            public static final double TILT_PERCENT_OUTPUT = 1;
+            public static final double TILT_PERCENT_OUTPUT = 0.1;
+
+            public static final int CLIMBER_TOP = -315000;
+            public static final int CLIMBER_BOTTOM = -10000;
+            public static final double TILT_START = 7000;
+            public static final double STATIONARY_LOCK_ANGLE = 10;
+
+            public static final double EXTEND_START_ANGLE = 0;
+            public static final double NEXT_BAR_ANGLE = 10;
+            public static final double NEXT_BAR_DISTANCE = 9000;
         }
 
         public static final class ClimberControls {
@@ -292,7 +301,7 @@ public final class Constants {
 
         public static final class ClimberMotors {
             public static final class Winch {
-                public static final int CAN_ID = 12;
+                public static final int CAN_ID = 17;
     
                 public static final InvertType INVERT = InvertType.None;
                 public static final int FEEDBACK_PORT = 0;
