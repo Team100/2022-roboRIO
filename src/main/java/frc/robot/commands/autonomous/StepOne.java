@@ -25,7 +25,7 @@ public class StepOne extends ParallelDeadlineGroup {
 
         addCommands(new IntakeCargo(new IntakeIntake(intake), new IndexerIntake(indexer)));
         addCommands(new InstantCommand(() -> {
-            drivetrain.driveWithRamp(-0.5, -0.5);
+            drivetrain.driveWithRamp(-0.3, -0.3);
         }));
     }
 }
