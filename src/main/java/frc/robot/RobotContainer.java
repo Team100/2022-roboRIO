@@ -60,7 +60,7 @@ public class RobotContainer {
     private final JoystickButton feedButton = new JoystickButton(buttonBoard, 15);
     private final JoystickButton climberControlButton = new JoystickButton(gamepad, 3);
     //private final JoystickButton intakePivotDown = new JoystickButton(buttonBoard, 13);
-    private final JoystickButton intakePivotUp = new JoystickButton(buttonBoard, 14);
+    private final JoystickButton intakeUpButton = new JoystickButton(buttonBoard, 14);
 
     private final JoystickButton HookDownButton = new JoystickButton(buttonBoard, 1);
     private final JoystickButton HookUpButton = new JoystickButton(buttonBoard, 16);
