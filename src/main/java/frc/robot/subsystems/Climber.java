@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.FRCLib.Motors.FRCTalonFX;
@@ -42,15 +43,15 @@ public class Climber extends SubsystemBase {
   
 
   public void setWinch(double percentOutput) {
-    // double limiter = (-joystick.getZ() + 1) / 2;
-    // winch.drivePercentOutput(percentOutput*limiter);
     winch.drivePercentOutput(percentOutput);
   }
 
-
+  public double mainPosition(){
+    return winch.getSelectedSensorPosition();
+  }
 
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
+    SmartDashboard.putNumber("main hooks position", mainPosition());
   }
 }
