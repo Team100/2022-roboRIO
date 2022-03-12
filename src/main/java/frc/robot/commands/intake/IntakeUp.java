@@ -22,13 +22,19 @@ public class IntakeUp extends CommandBase {
     @Override
     public void initialize() {
         done = false;
-        intake.runPivot(-Constants.IntakeConstants.IntakeMotionParameters.INTAKE_SPINNER_PERCENT_OUTPUT);
-
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
+        if (intake.getPot() <= 2.55) {
+            intake.runPivot(
+                Constants.IntakeConstants.IntakeMotionParameters.INTAKE_PIVOT_PERCENT_OUTPUT_UP
+                * (2.55 - intake.getPot()));
+        } else {
+            intake.runPivot(0);
+            done = true;
+        }
         // if (intake.getCurrentPosition() >= Constants.IntakeConstants.PivotConstants.DOWN_POSITION) {
         //     intake.runPivot(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_PIVOT_PERCENT_OUTPUT);
         // }
@@ -42,14 +48,14 @@ public class IntakeUp extends CommandBase {
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        intake.runPivot(0);
-        intake.runSpinner(0);
+        // intake.runPivot(0);
+        // intake.runSpinner(0);
     }
 
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return false;
+        return done;
     }
 }
 
