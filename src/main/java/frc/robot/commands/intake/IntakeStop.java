@@ -21,6 +21,7 @@ public class IntakeStop extends CommandBase {
     @Override
     public void initialize() {
         this.intake.runSpinner(0);
+        this.intake.runPivot(0);
         // this.intake.setPivot(Constants.IntakeConstants.PivotConstants.UP_POSITION);
         // SmartDashboard.putNumber("intake setpoint", 0);
     }

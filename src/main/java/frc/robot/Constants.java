@@ -20,8 +20,8 @@ import com.revrobotics.CANSparkMax.IdleMode;
 public final class Constants {
     public static final class DrivetrainConstants {
         public static final class DrivetrainMotion{
-            public static final double ALIGN_SPEED = 0.05;
-            public static final double SLOW_SPEED = 0.1;
+            public static final double ALIGN_SPEED = 0.075;
+            public static final double SLOW_SPEED = 0.2;
         }
         public static final class DrivetrainSensors{
             public static final class LeftSensor{
@@ -157,7 +157,7 @@ public final class Constants {
                 public static final double PEAK_OUTPUT_FORWARD = .25;
                 public static final double PEAK_OUTPUT_REVERSE = -.25;
                 public static final float SOFT_LIMIT_UPPER = 15.8f;
-                public static final float SOFT_LIMIT_LOWER = 10.8f;
+                public static final float SOFT_LIMIT_LOWER = 11f;
 
                 public static final SparkMaxAnalogSensor.Mode ANALOG_MODE = SparkMaxAnalogSensor.Mode.kAbsolute;
 

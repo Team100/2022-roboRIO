@@ -33,7 +33,7 @@ public class DriveSlow extends CommandBase {
         double left = -leftJoystick.getY() - rightJoystick.getX();
         double right = -leftJoystick.getY() + rightJoystick.getX();
         double limiter = Constants.DrivetrainConstants.DrivetrainMotion.SLOW_SPEED;
-        drivetrain.driveWithRamp((left*limiter), (right*limiter));
+        drivetrain.driveWithoutRamp((left*limiter), (right*limiter));
     }
 
     // Called once the command ends or is interrupted.

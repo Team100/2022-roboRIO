@@ -132,8 +132,9 @@ public class RobotContainer {
         ejectButton.whileHeld(new ParallelCommandGroup(intakeEjectCommand, indexerEjectCommand, shootEjectCommand));
 
 
-        //indexerIntakeButton.whileHeld(new InstantCommand(() -> { SmartDashboard.putString("Intake Command", "PivotUp");intake.setPivot(Constants.IntakeConstants.PivotConstants.UP_POSITION);/*intake.setPivot(Constants.IntakeConstants.PivotConstants.UP_POSITION);*/ }, intake));
-        //feedButton.whileHeld(new InstantCommand(() -> { SmartDashboard.putString("Intake Command", "PivotDown");intake.setPivot(Constants.IntakeConstants.PivotConstants.DOWN_POSITION);/*intake.setPivot(Constants.IntakeConstants.PivotConstants.DOWN_POSITION);*/ }, intake));
+        //indexerIntakeButton.whenPressed(new InstantCommand(() -> { SmartDashboard.putString("Intake Command", "PivotUp");intake.runPivot(0.15);/*intake.setPivot(Constants.IntakeConstants.PivotConstants.UP_POSITION);*/ }, intake));
+        // feedButton.whileHeld(new InstantCommand(() -> { SmartDashboard.putString("Intake Command", "PivotDown");intake.runPivot(-0.05);/*intake.setPivot(Constants.IntakeConstants.PivotConstants.DOWN_POSITION);*/ }, intake));
+        //feedButton.whenPressed(new PivotDown(intake));
         //ejectButton.whileHeld(ejectCommand);
         //feedButton.whenPressed(feedCommand);
         //climberControlButton.whenPressed(climberControl);

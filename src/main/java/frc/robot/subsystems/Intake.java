@@ -92,10 +92,11 @@ public class Intake extends SubsystemBase {
         pivot.motor.getPIDController().setFeedbackDevice(pivot.motor.getEncoder());
     }
 
-    // public double getPot(){
+    public double getPot(){
         // return ((pivot.getAnalogSensorPosition())*360);//pot.getVoltage();
         // return pivot.motor.getEncoder().getPosition();
-    // }
+        return pivot.getAnalogSensorPosition();
+    }
 
     public void runPivot(double percentOutput) {
         //System.out.println(percentOutput);
