@@ -33,11 +33,11 @@ public class AlignClimber extends CommandBase {
         SmartDashboard.putString("Port and Starboard status:", "we are not using port and starboad :(");
 
         if(!drivetrain.getSensorLeft() && !drivetrain.getSensorRight()){
-            drivetrain.driveWithoutRamp(Constants.DrivetrainConstants.DrivetrainMotion.AlignSpeed, Constants.DrivetrainConstants.DrivetrainMotion.AlignSpeed);
+            drivetrain.driveWithoutRamp(Constants.DrivetrainConstants.DrivetrainMotion.ALIGN_SPEED, Constants.DrivetrainConstants.DrivetrainMotion.ALIGN_SPEED);
         } else if (drivetrain.getSensorLeft() && !drivetrain.getSensorRight()){
-            drivetrain.driveWithoutRamp(0, Constants.DrivetrainConstants.DrivetrainMotion.AlignSpeed);
+            drivetrain.driveWithoutRamp(0, Constants.DrivetrainConstants.DrivetrainMotion.ALIGN_SPEED);
         } else if (drivetrain.getSensorRight() && !drivetrain.getSensorLeft()){
-            drivetrain.driveWithoutRamp(Constants.DrivetrainConstants.DrivetrainMotion.AlignSpeed, 0);
+            drivetrain.driveWithoutRamp(Constants.DrivetrainConstants.DrivetrainMotion.ALIGN_SPEED, 0);
         } else if (drivetrain.getSensorLeft() && drivetrain.getSensorRight()){
             drivetrain.driveWithoutRamp(0, 0);
             done = true;

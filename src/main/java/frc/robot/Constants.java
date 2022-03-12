@@ -20,7 +20,8 @@ import com.revrobotics.CANSparkMax.IdleMode;
 public final class Constants {
     public static final class DrivetrainConstants {
         public static final class DrivetrainMotion{
-            public static final double AlignSpeed = 0.05;
+            public static final double ALIGN_SPEED = 0.05;
+            public static final double SLOW_SPEED = 0.1;
         }
         public static final class DrivetrainSensors{
             public static final class LeftSensor{
@@ -168,7 +169,7 @@ public final class Constants {
         public static final class ShooterMotionParameters {
             public static final double SHOOTER_PERCENT_OUTPUT = 0.1; //0.17 //0.175
             public static final double SHOOTER_VELOCITY_HIGH = -4150; //0.17 //0.175
-            public static final double SHOOTER_VELOCITY_LOW = -3000; //0.17 //0.175 //-2500
+            public static final double SHOOTER_VELOCITY_LOW = -2500; //0.17 //0.175 //-2500
 
 			public static final double NOMINAL_LOW_VELOCITY = 2480;
             public static final double NOMINAL_HIGH_VELOCITY = 4100;

@@ -39,6 +39,7 @@ public class RobotContainer {
     private final Intake intake = new Intake();
     private final Indexer indexer = new Indexer();
 
+
     // OI Devices
     private final Joystick leftJoystick = new Joystick(0);
     private final Joystick rightJoystick = new Joystick(1);
@@ -46,9 +47,11 @@ public class RobotContainer {
     private final JoystickButton indexButton = new JoystickButton(leftJoystick, 1);
     private final Joystick buttonBoard = new Joystick(3);
     private final JoystickButton turboButton = new JoystickButton(rightJoystick, 1);
+    private final JoystickButton slowButton = new JoystickButton(rightJoystick, 3);
     private final JoystickButton intakeButton = new JoystickButton(buttonBoard, 2);
     private final JoystickButton ejectButton = new JoystickButton(buttonBoard, 5);
     private final JoystickButton alignButton = new JoystickButton(gamepad, 7);
+    private final JoystickButton indexUp = new JoystickButton(rightJoystick, 2);
     //private final JoystickButton shootButton = new JoystickButton(buttonBoard, 16);
     private final JoystickButton indexerIntakeButton = new JoystickButton(buttonBoard, 12);
     private final JoystickButton shootHighButton = new JoystickButton(buttonBoard, 14);
@@ -63,6 +66,8 @@ public class RobotContainer {
     // Commands
     private final Drive driveCommand = new Drive(drivetrain, leftJoystick, rightJoystick);
     private final DriveFurious driveFuriousCommand = new DriveFurious(drivetrain, leftJoystick, rightJoystick);
+    private final DriveSlow driveSlowCommand = new DriveSlow(drivetrain, leftJoystick, rightJoystick);
+    private final DriveFurious drive = new DriveFurious(drivetrain, leftJoystick, rightJoystick);
     private final AlignClimber alignCommand = new AlignClimber(drivetrain);
     private final IntakeIntake intakeIntakeCommand = new IntakeIntake(intake);
     private final IntakeEject intakeEjectCommand = new IntakeEject(intake);
@@ -108,6 +113,7 @@ public class RobotContainer {
 
         // indexButton.whileHeld(new SequentialCommandGroup(new ParallelDeadlineGroup(intakeCommand, intakeIntakeCommand), new WaitCommand(0.2)));
         turboButton.whileHeld(driveFuriousCommand);
+        slowButton.whileHeld(driveSlowCommand);
         // intakeIntakeButton.whileHeld(intakeIntakeCommand);
         //intakeEjectButton.whileHeld(intakeEjectCommand);
         //alignButton.whileHeld(alignCommand);
@@ -126,8 +132,8 @@ public class RobotContainer {
         ejectButton.whileHeld(new ParallelCommandGroup(intakeEjectCommand, indexerEjectCommand, shootEjectCommand));
 
 
-        indexerIntakeButton.whileHeld(new InstantCommand(() -> { SmartDashboard.putString("Intake Command", "PivotUp");intake.setPivot(Constants.IntakeConstants.PivotConstants.UP_POSITION);/*intake.setPivot(Constants.IntakeConstants.PivotConstants.UP_POSITION);*/ }, intake));
-        feedButton.whileHeld(new InstantCommand(() -> { SmartDashboard.putString("Intake Command", "PivotDown");intake.setPivot(Constants.IntakeConstants.PivotConstants.DOWN_POSITION);/*intake.setPivot(Constants.IntakeConstants.PivotConstants.DOWN_POSITION);*/ }, intake));
+        //indexerIntakeButton.whileHeld(new InstantCommand(() -> { SmartDashboard.putString("Intake Command", "PivotUp");intake.setPivot(Constants.IntakeConstants.PivotConstants.UP_POSITION);/*intake.setPivot(Constants.IntakeConstants.PivotConstants.UP_POSITION);*/ }, intake));
+        //feedButton.whileHeld(new InstantCommand(() -> { SmartDashboard.putString("Intake Command", "PivotDown");intake.setPivot(Constants.IntakeConstants.PivotConstants.DOWN_POSITION);/*intake.setPivot(Constants.IntakeConstants.PivotConstants.DOWN_POSITION);*/ }, intake));
         //ejectButton.whileHeld(ejectCommand);
         //feedButton.whenPressed(feedCommand);
         //climberControlButton.whenPressed(climberControl);
