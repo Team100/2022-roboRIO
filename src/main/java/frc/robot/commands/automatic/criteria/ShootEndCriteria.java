@@ -33,6 +33,7 @@ public class ShootEndCriteria extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return shooter.getCurrentCurrent() <= Constants.ShooterConstants.ShooterMotionParameters.IDLE_CURRENT_THRESHOLD;
+        return true;
+        //return shooter.getCurrentCurrent() <= Constants.ShooterConstants.ShooterMotionParameters.IDLE_CURRENT_THRESHOLD;
     }
 }

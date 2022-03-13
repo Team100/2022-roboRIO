@@ -32,16 +32,16 @@ public class AlignClimber extends CommandBase {
         SmartDashboard.putBoolean("sensorRight", drivetrain.getSensorRight());
         SmartDashboard.putString("Port and Starboard status:", "we are not using port and starboad :(");
 
-        if(!drivetrain.getSensorLeft() && !drivetrain.getSensorRight()){
-            drivetrain.driveWithoutRamp(Constants.DrivetrainConstants.DrivetrainMotion.AlignSpeed, Constants.DrivetrainConstants.DrivetrainMotion.AlignSpeed);
-        } else if (drivetrain.getSensorLeft() && !drivetrain.getSensorRight()){
-            drivetrain.driveWithoutRamp(0, Constants.DrivetrainConstants.DrivetrainMotion.AlignSpeed);
-        } else if (drivetrain.getSensorRight() && !drivetrain.getSensorLeft()){
-            drivetrain.driveWithoutRamp(Constants.DrivetrainConstants.DrivetrainMotion.AlignSpeed, 0);
-        } else if (drivetrain.getSensorLeft() && drivetrain.getSensorRight()){
-            drivetrain.driveWithoutRamp(0, 0);
-            done = true;
-        }
+        // if(!drivetrain.getSensorLeft() && !drivetrain.getSensorRight()){
+        //     drivetrain.driveWithoutRamp(Constants.DrivetrainConstants.DrivetrainMotion.AlignSpeed, Constants.DrivetrainConstants.DrivetrainMotion.AlignSpeed);
+        // } else if (drivetrain.getSensorLeft() && !drivetrain.getSensorRight()){
+        //     drivetrain.driveWithoutRamp(0, Constants.DrivetrainConstants.DrivetrainMotion.AlignSpeed);
+        // } else if (drivetrain.getSensorRight() && !drivetrain.getSensorLeft()){
+        //     drivetrain.driveWithoutRamp(Constants.DrivetrainConstants.DrivetrainMotion.AlignSpeed, 0);
+        // } else if (drivetrain.getSensorLeft() && drivetrain.getSensorRight()){
+        //     drivetrain.driveWithoutRamp(0, 0);
+        //     done = true;
+        // }
         SmartDashboard.putBoolean("climber allgined?", done);
     }
 

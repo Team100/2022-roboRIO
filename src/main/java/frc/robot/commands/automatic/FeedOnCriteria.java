@@ -22,7 +22,7 @@ public class FeedOnCriteria extends SequentialCommandGroup {
         // addCommands(new FooCommand(), new BarCommand());
         addCommands(new ShootStartCriteria(shooter));
         addCommands(new IndexerFeed(indexer));
-        addCommands(new WaitCommand(1)); // no
+        addCommands(new WaitCommand(2)); // no
         addCommands(new ShootEndCriteria(shooter));
     }
 }

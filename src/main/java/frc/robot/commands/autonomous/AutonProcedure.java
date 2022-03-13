@@ -4,6 +4,7 @@
 
 package frc.robot.commands.autonomous;
 
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.automatic.AutoShoot;
 import frc.robot.subsystems.Drivetrain;
@@ -19,6 +20,7 @@ public class AutonProcedure extends SequentialCommandGroup {
     public AutonProcedure(Drivetrain drivetrain, Intake intake, Indexer indexer, Shooter shooter) {
         // Add your commands in the addCommands() call, e.g.
         // addCommands(new FooCommand(), new BarCommand());
+        addCommands(new InstantCommand(() -> { drivetrain.zeroCurrentPosition(); }, drivetrain));
         addCommands(new StepOne(intake, indexer, drivetrain));
         addCommands(new StepTwo(drivetrain));
         addCommands(new AutoShoot(indexer, shooter));

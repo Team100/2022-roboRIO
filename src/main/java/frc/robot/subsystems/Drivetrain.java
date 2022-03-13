@@ -86,18 +86,18 @@ public class Drivetrain extends SubsystemBase {
     }
 
     private double ramp(double input, double currentSpeed) {
-        double dv = input - currentSpeed;
-        if (dv > 0) {
-            // forwards, speeding up
-            if (dv > Constants.DrivetrainConstants.DrivetrainMotion.RAMP_LIMIT) {
-                return currentSpeed + Constants.DrivetrainConstants.DrivetrainMotion.RAMP_LIMIT;
-            }
-        } else if (dv < 0) {
-            // forwards, slowing down
-            if (dv < -Constants.DrivetrainConstants.DrivetrainMotion.RAMP_LIMIT) {
-                return currentSpeed - Constants.DrivetrainConstants.DrivetrainMotion.RAMP_LIMIT;
-            }
-        }
+        // double dv = input - currentSpeed;
+        // if (dv > 0) {
+        //     // forwards, speeding up
+        //     if (dv > Constants.DrivetrainConstants.DrivetrainMotion.RAMP_LIMIT) {
+        //         return currentSpeed + Constants.DrivetrainConstants.DrivetrainMotion.RAMP_LIMIT;
+        //     }
+        // } else if (dv < 0) {
+        //     // forwards, slowing down
+        //     if (dv < -Constants.DrivetrainConstants.DrivetrainMotion.RAMP_LIMIT) {
+        //         return currentSpeed - Constants.DrivetrainConstants.DrivetrainMotion.RAMP_LIMIT;
+        //     }
+        // }
         return input;
     }
 
@@ -108,6 +108,13 @@ public class Drivetrain extends SubsystemBase {
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
+    }
+
+    public void zeroCurrentPosition() {
+        leftMaster.motor.setSelectedSensorPosition(0);
+        leftFollower.motor.setSelectedSensorPosition(0);
+        rightMaster.motor.setSelectedSensorPosition(0);
+        rightFollower.motor.setSelectedSensorPosition(0);
     }
 
     public boolean getSensorLeft() {

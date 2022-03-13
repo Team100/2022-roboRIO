@@ -54,8 +54,8 @@ public class Intake extends SubsystemBase {
     }
 
     public void calibrateZeroPosition() {
-        double zeroPos = pivot.getAnalogSensorPosition();
-        downPosition = zeroPos + Constants.IntakeConstants.IntakeMotionParameters.INTAKE_PIVOT_RANGE_TICKS;
+        // double zeroPos = pivot.getAnalogSensorPosition();
+        // downPosition = zeroPos + Constants.IntakeConstants.IntakeMotionParameters.INTAKE_PIVOT_RANGE_TICKS;
     }
 
     public double getCurrentPosition(){
