@@ -146,9 +146,9 @@ public final class Constants {
             public static final class IntakePivot {
                 public static final int CAN_ID = 2; //2
 
-                public static final boolean INVERT = true;
+                public static final boolean INVERT = false;
                 public static final int FEEDBACK_PORT = 0;
-                public static final boolean SENSOR_PHASE = true;
+                public static final boolean SENSOR_PHASE = false;
 
                 public static final int TIMEOUT = 10;
 
