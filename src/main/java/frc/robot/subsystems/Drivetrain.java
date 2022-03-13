@@ -4,6 +4,8 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -125,6 +127,20 @@ public class Drivetrain extends SubsystemBase {
         rightFollower.motor.setSelectedSensorPosition(0);
     }
 
+    public void setBrakeMode(boolean status){
+        if(status){
+            leftMaster.motor.setNeutralMode(NeutralMode.Brake);
+            leftFollower.motor.setNeutralMode(NeutralMode.Brake);
+            rightMaster.motor.setNeutralMode(NeutralMode.Brake);
+            rightFollower.motor.setNeutralMode(NeutralMode.Brake);
+        }else{
+            leftMaster.motor.setNeutralMode(NeutralMode.Coast);
+            leftFollower.motor.setNeutralMode(NeutralMode.Coast);
+            rightMaster.motor.setNeutralMode(NeutralMode.Coast);
+            rightFollower.motor.setNeutralMode(NeutralMode.Coast);
+        }
+    }
+
 
     @Override
     public void periodic() {
@@ -133,6 +149,7 @@ public class Drivetrain extends SubsystemBase {
         // SmartDashboard.putBoolean("allign sensor port", getSensorLeft());
         if(this.getCurrentCommand()!=null)SmartDashboard.putString("drivetrain command", this.getCurrentCommand().getName());
         SmartDashboard.putNumber("drivetrain average encoder value", getCurrentEncoderPosition());
+        SmartDashboard.putString("drivetrain brake mode", rightFollower.getNeutralMode().toString());
         //SmartDashboard.putNumber("left motor", leftMaster.get)
     }
 

@@ -21,7 +21,8 @@ public class StepTwo extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        drivetrain.driveWithRamp(0.4, 0.4);
+        drivetrain.setBrakeMode(true);
+        drivetrain.driveWithRamp(0.2, 0.2);
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -30,7 +31,9 @@ public class StepTwo extends CommandBase {
 
     // Called once the command ends or is interrupted.
     @Override
-    public void end(boolean interrupted) {}
+    public void end(boolean interrupted) {
+        drivetrain.setBrakeMode(false);
+    }
 
     // Returns true when the command should end.
     @Override
