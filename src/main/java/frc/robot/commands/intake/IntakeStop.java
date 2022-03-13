@@ -33,6 +33,7 @@ public class IntakeStop extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
+        intake.runSpinner(0);
         // if(shouldBeUp){
             if (intake.getPot() <= 40) {
                 intake.runPivot(
