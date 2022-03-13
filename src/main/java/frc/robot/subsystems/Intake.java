@@ -64,10 +64,10 @@ public class Intake extends SubsystemBase {
             // .withAnalogSensorMode(Constants.IntakeConstants.IntakeMotors.IntakePivot.ANALOG_MODE, true)
             .build();
 
-            pivot.motor.enableSoftLimit(SoftLimitDirection.kForward, true);
-            pivot.motor.enableSoftLimit(SoftLimitDirection.kReverse, true);
-            pivot.motor.setSoftLimit(SoftLimitDirection.kForward, Constants.IntakeConstants.IntakeMotors.IntakePivot.SOFT_LIMIT_UPPER);
-            pivot.motor.setSoftLimit(SoftLimitDirection.kReverse, Constants.IntakeConstants.IntakeMotors.IntakePivot.SOFT_LIMIT_LOWER);//set these
+            //pivot.motor.enableSoftLimit(SoftLimitDirection.kForward, true);
+            //pivot.motor.enableSoftLimit(SoftLimitDirection.kReverse, true);
+            //pivot.motor.setSoftLimit(SoftLimitDirection.kForward, Constants.IntakeConstants.IntakeMotors.IntakePivot.SOFT_LIMIT_UPPER);
+            //pivot.motor.setSoftLimit(SoftLimitDirection.kReverse, Constants.IntakeConstants.IntakeMotors.IntakePivot.SOFT_LIMIT_LOWER);//set these
 
         addChild("intakePivot", pivot);
         addChild("intakeSpin", spin);
@@ -82,8 +82,8 @@ public class Intake extends SubsystemBase {
         SmartDashboard.putNumber("Intake Pivot Encoder Value", pivot.motor.getEncoder().getPosition());
         SmartDashboard.putNumber("Intake Pivot Output", pivot.motor.get());
         SmartDashboard.putNumber("Intake Pivot raw analog", getPot());
-        SmartDashboard.putBoolean("Intake Pivot Upper Limit", pivot.motor.getEncoder().getPosition() >= pivot.motor.getSoftLimit(SoftLimitDirection.kForward));
-        SmartDashboard.putBoolean("Intake Pivot Lower Limit", pivot.motor.getEncoder().getPosition() <= pivot.motor.getSoftLimit(SoftLimitDirection.kReverse));
+        // SmartDashboard.putBoolean("Intake Pivot Upper Limit", pivot.motor.getEncoder().getPosition() >= pivot.motor.getSoftLimit(SoftLimitDirection.kForward));
+        // SmartDashboard.putBoolean("Intake Pivot Lower Limit", pivot.motor.getEncoder().getPosition() <= pivot.motor.getSoftLimit(SoftLimitDirection.kReverse));
         SmartDashboard.putNumber("Intake Pivot Motor Output", pivot.motor.getAppliedOutput());
     }
 

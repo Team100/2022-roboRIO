@@ -157,8 +157,8 @@ public final class Constants {
                 public static final double OPEN_LOOP_RAMP = 0.1;
                 public static final double PEAK_OUTPUT_FORWARD = .25;
                 public static final double PEAK_OUTPUT_REVERSE = -.25;
-                public static final float SOFT_LIMIT_UPPER = 15.8f;
-                public static final float SOFT_LIMIT_LOWER = 11f;
+                public static final float SOFT_LIMIT_UPPER = 4.8f;
+                public static final float SOFT_LIMIT_LOWER = 0.4f;
 
                 public static final SparkMaxAnalogSensor.Mode ANALOG_MODE = SparkMaxAnalogSensor.Mode.kAbsolute;
 
