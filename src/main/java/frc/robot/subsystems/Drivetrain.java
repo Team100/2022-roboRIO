@@ -18,8 +18,8 @@ public class Drivetrain extends SubsystemBase {
     
     /** Creates a new Drivetrain. */
     public Drivetrain() {
-        sensorLeft = new DigitalInput(Constants.DrivetrainConstants.DrivetrainSensors.LeftSensor.ID);
-        sensorRight = new DigitalInput(Constants.DrivetrainConstants.DrivetrainSensors.RightSensor.ID);
+        sensorLeft = new DigitalInput(Constants.DrivetrainConstants.DrivetrainSensors.LeftSensor.ID);//a
+        sensorRight = new DigitalInput(Constants.DrivetrainConstants.DrivetrainSensors.RightSensor.ID);//b
 
         leftMaster = new FRCTalonFX.FRCTalonFXBuilder(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.CAN_ID)
             .withKP(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.KP)
@@ -106,20 +106,23 @@ public class Drivetrain extends SubsystemBase {
         return input;
     }
 
-    @Override
-    public void periodic() {
-        // This method will be called once per scheduler run
-        SmartDashboard.putBoolean("allign sensor left", getSensorLeft());
-        SmartDashboard.putBoolean("allign sensor right", getSensorRight());
-    }
-
     public boolean getSensorLeft() {
-        return sensorLeft.get();
+        return !sensorLeft.get();
       }
     
       public boolean getSensorRight() {
-        return sensorRight.get();
+        return !sensorRight.get();
       }
+
+    @Override
+    public void periodic() {
+        // This method will be called once per scheduler run
+        SmartDashboard.putBoolean("allign sensor starboard", getSensorRight());
+        SmartDashboard.putBoolean("allign sensor port", getSensorLeft());
+        if(this.getCurrentCommand()!=null)SmartDashboard.putString("drivetrain command", this.getCurrentCommand().getName());
+        //SmartDashboard.putNumber("left motor", leftMaster.get)
+    }
+
 
     @Override
     public void simulationPeriodic() {
