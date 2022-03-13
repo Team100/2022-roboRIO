@@ -114,12 +114,25 @@ public class Drivetrain extends SubsystemBase {
         return !sensorRight.get();
       }
 
+      public double getCurrentEncoderPosition() {
+        return (leftMaster.getSelectedSensorPosition()+rightMaster.getSelectedSensorPosition())/2;
+    }
+
+      public void zeroCurrentPosition() {
+        leftMaster.motor.setSelectedSensorPosition(0);
+        leftFollower.motor.setSelectedSensorPosition(0);
+        rightMaster.motor.setSelectedSensorPosition(0);
+        rightFollower.motor.setSelectedSensorPosition(0);
+    }
+
+
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
-        SmartDashboard.putBoolean("allign sensor starboard", getSensorRight());
-        SmartDashboard.putBoolean("allign sensor port", getSensorLeft());
+        // SmartDashboard.putBoolean("allign sensor starboard", getSensorRight());
+        // SmartDashboard.putBoolean("allign sensor port", getSensorLeft());
         if(this.getCurrentCommand()!=null)SmartDashboard.putString("drivetrain command", this.getCurrentCommand().getName());
+        SmartDashboard.putNumber("drivetrain average encoder value", getCurrentEncoderPosition());
         //SmartDashboard.putNumber("left motor", leftMaster.get)
     }
 
