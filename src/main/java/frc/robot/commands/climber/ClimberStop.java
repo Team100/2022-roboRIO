@@ -22,7 +22,7 @@ public class ClimberStop extends CommandBase {
     @Override
     public void initialize() {
         climber.setWinch(0);
-        climber.setTilt(0);
+        //climber.setTilt(0);
     }
 
     // Called every time the scheduler runs while the command is scheduled.

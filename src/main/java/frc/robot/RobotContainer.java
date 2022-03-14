@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import javax.sql.rowset.spi.SyncProvider;
+
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -38,6 +40,7 @@ public class RobotContainer {
     private final Shooter shooter = new Shooter();
     private final Intake intake = new Intake();
     private final Indexer indexer = new Indexer();
+    private final Symphony symphony = new Symphony();
 
 
     // OI Devices
@@ -57,6 +60,7 @@ public class RobotContainer {
     private final JoystickButton shootHighButton = new JoystickButton(buttonBoard, 14);
     private final JoystickButton shootLowButton = new JoystickButton(buttonBoard, 13);
 
+    private final JoystickButton mediaControlButton = new JoystickButton(buttonBoard, 12);
 
     private final JoystickButton HookDownButton = new JoystickButton(buttonBoard, 1);
     private final JoystickButton HookUpButton = new JoystickButton(buttonBoard, 16);
@@ -85,9 +89,6 @@ public class RobotContainer {
 
     private final HookUp HookUpCommand = new HookUp(climber);
     private final HookDown HookDownCommand = new HookDown(climber);
-    //private final ClimberControl climberControl = new ClimberControl(climber, gamepad);
-    //private final ParallelCommandGroup controlBall = new ParallelCommandGroup(intakeIntakeCommand,indexerStopCommand);
-
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
@@ -112,42 +113,18 @@ public class RobotContainer {
     * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
     */
     private void configureButtonBindings() {
-        //shootButton.whileHeld(shootCommand);
-
-        // indexButton.whileHeld(new SequentialCommandGroup(new ParallelDeadlineGroup(intakeCommand, intakeIntakeCommand), new WaitCommand(0.2)));
         turboButton.whileHeld(driveFuriousCommand);
         alignButton.whileHeld(alignCommand);
         HookDownButton.whenPressed(HookDownCommand);
         HookUpButton.whenPressed(HookUpCommand);
         slowButton.whileHeld(driveSlowCommand);
-        // intakeIntakeButton.whileHeld(intakeIntakeCommand);
-        //intakeEjectButton.whileHeld(intakeEjectCommand);
-        //alignButton.whileHeld(alignCommand);
-        //indexerIntakeButton.whenPressed(new ScheduleCommand(new SequentialCommandGroup(intakeCommand, new WaitCommand(0.3))));
-            //intakeButton.whenPressed(new ScheduleCommand(new SequentialCommandGroup((new ParallelCommandGroup(intakeIntakeCommand, intakeCommand)), new WaitCommand(0.3))));
         stopAll.whenPressed(new ParallelCommandGroup(new ClimberStop(climber), new IndexerStop(indexer), new IntakeStop(intake), new ShootStop(shooter)));
-        
-        //    intakeButton.whenPressed(new ParallelDeadlineGroup(new SequentialCommandGroup(intakeIntakeCommand, new WaitCommand(0.3)), intakeCommand));
-        // intakeButton.whenPressed(new ParallelDeadlineGroup(new SequentialCommandGroup(new WaitCommand(0.3),intakeCommand),intakeIntakeCommand));
         intakeButton.whenPressed(new SequentialCommandGroup(new ParallelDeadlineGroup(intakeCommand, intakeIntakeCommand), new WaitCommand(0.2)));
-        //intakeButton.whileHeld(intakeIntakeCommand);
         shootHighButton.whileHeld(new ParallelCommandGroup(shootHighCommand, feedHighCommand));
         shootLowButton.whileHeld(new ParallelCommandGroup(shootLowCommand, feedLowCommand));
-        
-        // shootButton.whileHeld(shootCommand);
         ejectButton.whileHeld(new ParallelCommandGroup(intakeEjectCommand, indexerEjectCommand, shootEjectCommand));
 
-        //intakeUpButton.whenPressed(intakeUpCommand);
-        //indexerIntakeButton.whenPressed(new InstantCommand(() -> { SmartDashboard.putString("Intake Command", "PivotUp");intake.runPivot(0.15);/*intake.setPivot(Constants.IntakeConstants.PivotConstants.UP_POSITION);*/ }, intake));
-        // feedButton.whileHeld(new InstantCommand(() -> { SmartDashboard.putString("Intake Command", "PivotDown");intake.runPivot(-0.05);/*intake.setPivot(Constants.IntakeConstants.PivotConstants.DOWN_POSITION);*/ }, intake));
-        //feedButton.whenPressed(new PivotDown(intake));
-        //ejectButton.whileHeld(ejectCommand);
-        //feedButton.whenPressed(feedCommand);
-        //climberControlButton.whenPressed(climberControl);
-        //controlBallButton.whileHeld(controlBall);
-
-        // intakePivotDown.whileHeld(intakeIntakeCommand);
-        // intakePivotUp.whileHeld(new InstantCommand(() -> { intake.runPivot(-0.2); }, intake));
+        mediaControlButton.whenPressed(new InstantCommand(() -> { symphony.play();}, symphony));
     }
 
     public void onInit() {
