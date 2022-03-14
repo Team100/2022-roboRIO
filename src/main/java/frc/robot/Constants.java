@@ -146,23 +146,23 @@ public final class Constants {
             public static final class IntakePivot {
                 public static final int CAN_ID = 2; //2
 
-                public static final boolean INVERT = true;
+                public static final InvertType INVERT = InvertType.None;
                 public static final int FEEDBACK_PORT = 0;
-                public static final boolean SENSOR_PHASE = true;
+                public static final boolean SENSOR_PHASE = false;
 
                 public static final int TIMEOUT = 10;
 
                 public static final boolean ENABLE_CURRENT_LIMIT = true;
                 public static final int CURRENT_LIMIT = 25;
                 public static final double OPEN_LOOP_RAMP = 0.1;
-                public static final double PEAK_OUTPUT_FORWARD = .25;
-                public static final double PEAK_OUTPUT_REVERSE = -.25;
-                public static final float SOFT_LIMIT_UPPER = 15.8f;
-                public static final float SOFT_LIMIT_LOWER = 11f;
+                public static final double PEAK_OUTPUT_FORWARD = 1;
+                public static final double PEAK_OUTPUT_REVERSE = -1;
+                public static final float SOFT_LIMIT_UPPER = 4.8f;
+                public static final float SOFT_LIMIT_LOWER = 0.4f;
 
                 public static final SparkMaxAnalogSensor.Mode ANALOG_MODE = SparkMaxAnalogSensor.Mode.kAbsolute;
 
-                public static final IdleMode NEUTRAL_MODE = IdleMode.kBrake;
+                public static final NeutralMode NEUTRAL_MODE = NeutralMode.Brake;
             }
         }
     }
@@ -319,7 +319,7 @@ public final class Constants {
             }
     
             public static final class Tilt {
-                public static final int CAN_ID = 13;
+                public static final int CAN_ID = 12;
     
                 public static final InvertType INVERT = InvertType.None;
                 public static final int FEEDBACK_PORT = 0;

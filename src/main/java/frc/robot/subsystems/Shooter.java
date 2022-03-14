@@ -57,7 +57,6 @@ public class Shooter extends SubsystemBase {
 
     public void set(double speed) {
         this.shootMotor.drivePercentOutput(-speed);
-        // this.shootMotorFollower.drivePercentOutput(speed);
     }
 
     public void setVelocity(double velocity){
@@ -67,12 +66,6 @@ public class Shooter extends SubsystemBase {
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
-
-        //atSpeed = (Math.abs(shootMotor.getSensorVelocity()) >= ShooterMotionParameters.NOMINAL_VELOCITY);
-        //atSpeed = (Math.abs(shootMotor.getSensorVelocity()) >= ShooterMotionParameters.NOMINAL_VELOCITY);        //if(atSpeed) System.out.println("MOTOR GO BRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR");
-        SmartDashboard.putNumber("shooter velocity", (shootMotor.getSensorVelocity()));
-
-        //SmartDashboard.putNumber("ShooterRPM", ((shootMotor.getSensorVelocity()/2048))*600);
-        
+        SmartDashboard.putNumber("shooter velocity", (shootMotor.getSensorVelocity()));        
     }
 }
