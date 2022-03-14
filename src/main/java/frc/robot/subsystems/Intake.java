@@ -16,9 +16,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.FRCLib.Motors.FRCNEO;
+import frc.robot.FRCLib.Motors.FRCTalonFX;
+import frc.robot.FRCLib.Motors.FRCTalonSRX;
 
 public class Intake extends SubsystemBase {
-    private FRCNEO spin, pivot;
+    private FRCNEO spin;
+    private FRCTalonSRX pivot;
     private double pivotSetpoint;
 
     public AnalogPotentiometer pot;
@@ -47,13 +50,8 @@ public class Intake extends SubsystemBase {
             .build();
 
 
-        pivot = new FRCNEO.FRCNEOBuilder(Constants.IntakeConstants.IntakeMotors.IntakePivot.CAN_ID)
-            .withKP(Constants.IntakeConstants.IntakeMotionParameters.KP)
-            .withKI(Constants.IntakeConstants.IntakeMotionParameters.KI)
-            .withKD(Constants.IntakeConstants.IntakeMotionParameters.KD)
-            .withKF(Constants.IntakeConstants.IntakeMotionParameters.KF)
+        pivot = new FRCTalonSRX.FRCTalonSRXBuilder(Constants.IntakeConstants.IntakeMotors.IntakePivot.CAN_ID)
             .withInverted(Constants.IntakeConstants.IntakeMotors.IntakePivot.INVERT)
-            .withSensorPhase(Constants.IntakeConstants.IntakeMotors.IntakePivot.SENSOR_PHASE)
             .withTimeout(Constants.IntakeConstants.IntakeMotors.IntakePivot.TIMEOUT)
             .withCurrentLimitEnabled(Constants.IntakeConstants.IntakeMotors.IntakePivot.ENABLE_CURRENT_LIMIT)
             .withCurrentLimit(Constants.IntakeConstants.IntakeMotors.IntakePivot.CURRENT_LIMIT)
@@ -77,25 +75,25 @@ public class Intake extends SubsystemBase {
     @Override
     public void periodic() {
         //onInit(); // Oh no no no no no
-        zeroEncoder();
+        //zeroEncoder();
         // This method will be called once per scheduler run
-        SmartDashboard.putNumber("Intake Pivot Encoder Value", pivot.motor.getEncoder().getPosition());
+        //SmartDashboard.putNumber("Intake Pivot Encoder Value", pivot.motor.getEncoder().getPosition());
         SmartDashboard.putNumber("Intake Pivot Output", pivot.motor.get());
         SmartDashboard.putNumber("Intake Pivot raw analog", getPot());
         // SmartDashboard.putBoolean("Intake Pivot Upper Limit", pivot.motor.getEncoder().getPosition() >= pivot.motor.getSoftLimit(SoftLimitDirection.kForward));
         // SmartDashboard.putBoolean("Intake Pivot Lower Limit", pivot.motor.getEncoder().getPosition() <= pivot.motor.getSoftLimit(SoftLimitDirection.kReverse));
-        SmartDashboard.putNumber("Intake Pivot Motor Output", pivot.motor.getAppliedOutput());
+        SmartDashboard.putNumber("Intake Pivot Motor Output", pivot.motor.get());
     }
 
     public void onInit() {
-        zeroEncoder();
+        // zeroEncoder();
         //pivot.motor.getPIDController().setFeedbackDevice(pivot.motor.getEncoder());
     }
 
-    public void zeroEncoder(){
-        double analogPos = pot.get();
-        pivot.motor.getEncoder().setPosition(analogPos * (0.2008) - 3.8352);
-    }
+    // public void zeroEncoder(){
+    //     double analogPos = pot.get();
+    //     pivot.motor.getEncoder().setPosition(analogPos * (0.2008) - 3.8352);
+    // }
 
     public double getPot(){
         // return ((pivot.getAnalogSensorPosition())*360);//pot.getVoltage();

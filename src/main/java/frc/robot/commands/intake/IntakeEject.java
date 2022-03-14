@@ -23,7 +23,6 @@ public class IntakeEject extends CommandBase {
     public void initialize() {
         done = false;
         intake.runSpinner(-Constants.IntakeConstants.IntakeMotionParameters.INTAKE_SPINNER_PERCENT_OUTPUT);
-
     }
 
     // Called every time the scheduler runs while the command is scheduled.

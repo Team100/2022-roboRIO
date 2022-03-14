@@ -41,7 +41,7 @@ public class IntakeUp extends CommandBase {
         // if(intake.getCurrentPosition() <= Constants.IntakeConstants.PivotConstants.DOWN_POSITION){
         //     intake.runSpinner(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_SPINNER_PERCENT_OUTPUT);
         // }
-
+        intake.runSpinner(0);
 
     }
 

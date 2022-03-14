@@ -52,15 +52,11 @@ public class RobotContainer {
     private final JoystickButton ejectButton = new JoystickButton(buttonBoard, 5);
 
     private final JoystickButton alignButton = new JoystickButton(leftJoystick, 1);
-    private final JoystickButton indexUp = new JoystickButton(rightJoystick, 2);
     //private final JoystickButton shootButton = new JoystickButton(buttonBoard, 16);
     //private final JoystickButton indexerIntakeButton = new JoystickButton(buttonBoard, 12);
     private final JoystickButton shootHighButton = new JoystickButton(buttonBoard, 14);
     private final JoystickButton shootLowButton = new JoystickButton(buttonBoard, 13);
-    private final JoystickButton feedButton = new JoystickButton(buttonBoard, 15);
-    private final JoystickButton climberControlButton = new JoystickButton(gamepad, 3);
-    //private final JoystickButton intakePivotDown = new JoystickButton(buttonBoard, 13);
-    private final JoystickButton intakeUpButton = new JoystickButton(buttonBoard, 14);
+
 
     private final JoystickButton HookDownButton = new JoystickButton(buttonBoard, 1);
     private final JoystickButton HookUpButton = new JoystickButton(buttonBoard, 16);
@@ -72,7 +68,6 @@ public class RobotContainer {
     private final Drive driveCommand = new Drive(drivetrain, leftJoystick, rightJoystick);
     private final DriveFurious driveFuriousCommand = new DriveFurious(drivetrain, leftJoystick, rightJoystick);
     private final DriveSlow driveSlowCommand = new DriveSlow(drivetrain, leftJoystick, rightJoystick);
-    private final DriveFurious drive = new DriveFurious(drivetrain, leftJoystick, rightJoystick);
     private final AlignClimber alignCommand = new AlignClimber(drivetrain);
     private final IntakeIntake intakeIntakeCommand = new IntakeIntake(intake);
     private final IntakeEject intakeEjectCommand = new IntakeEject(intake);
@@ -87,7 +82,6 @@ public class RobotContainer {
     private final IndexerFeedHigh feedHighCommand = new IndexerFeedHigh(indexer, shooter);
     private final IndexerFeedLow feedLowCommand = new IndexerFeedLow(indexer, shooter);
     private final ClimberStop climberStopCommand = new ClimberStop(climber);
-    private final IntakeUp intakeUpCommand = new IntakeUp(intake);
 
     private final HookUp HookUpCommand = new HookUp(climber);
     private final HookDown HookDownCommand = new HookDown(climber);
@@ -143,7 +137,7 @@ public class RobotContainer {
         // shootButton.whileHeld(shootCommand);
         ejectButton.whileHeld(new ParallelCommandGroup(intakeEjectCommand, indexerEjectCommand, shootEjectCommand));
 
-        intakeUpButton.whenPressed(intakeUpCommand);
+        //intakeUpButton.whenPressed(intakeUpCommand);
         //indexerIntakeButton.whenPressed(new InstantCommand(() -> { SmartDashboard.putString("Intake Command", "PivotUp");intake.runPivot(0.15);/*intake.setPivot(Constants.IntakeConstants.PivotConstants.UP_POSITION);*/ }, intake));
         // feedButton.whileHeld(new InstantCommand(() -> { SmartDashboard.putString("Intake Command", "PivotDown");intake.runPivot(-0.05);/*intake.setPivot(Constants.IntakeConstants.PivotConstants.DOWN_POSITION);*/ }, intake));
         //feedButton.whenPressed(new PivotDown(intake));
@@ -157,7 +151,7 @@ public class RobotContainer {
     }
 
     public void onInit() {
-        intake.onInit();
+        // intake.onInit();
     }
 
     /**
