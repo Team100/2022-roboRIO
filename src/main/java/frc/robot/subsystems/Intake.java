@@ -20,8 +20,7 @@ import frc.robot.FRCLib.Motors.FRCTalonFX;
 import frc.robot.FRCLib.Motors.FRCTalonSRX;
 
 public class Intake extends SubsystemBase {
-    private FRCNEO spin;
-    private FRCTalonSRX pivot;
+    private FRCNEO spin, pivot;
     private double pivotSetpoint;
 
     public AnalogPotentiometer pot;
@@ -48,8 +47,9 @@ public class Intake extends SubsystemBase {
             .build();
 
 
-        pivot = new FRCTalonSRX.FRCTalonSRXBuilder(Constants.IntakeConstants.IntakeMotors.IntakePivot.CAN_ID)
+            pivot = new FRCNEO.FRCNEOBuilder(Constants.IntakeConstants.IntakeMotors.IntakePivot.CAN_ID)
             .withInverted(Constants.IntakeConstants.IntakeMotors.IntakePivot.INVERT)
+            .withSensorPhase(Constants.IntakeConstants.IntakeMotors.IntakePivot.SENSOR_PHASE)
             .withTimeout(Constants.IntakeConstants.IntakeMotors.IntakePivot.TIMEOUT)
             .withCurrentLimitEnabled(Constants.IntakeConstants.IntakeMotors.IntakePivot.ENABLE_CURRENT_LIMIT)
             .withCurrentLimit(Constants.IntakeConstants.IntakeMotors.IntakePivot.CURRENT_LIMIT)
