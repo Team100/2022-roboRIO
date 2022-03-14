@@ -14,9 +14,9 @@ import frc.robot.subsystems.Shooter;
 public class IndexerFeedLow extends CommandBase {
     private Indexer indexer;
     private Shooter shooter;
-    private boolean wasFalse;
+    //private boolean wasFalse;
     private boolean done = false;
-    private boolean shouldCheckRefill;
+    //private boolean shouldCheckRefill;
 
     /** Creates a new IndexerFeed. */
     public IndexerFeedLow(Indexer indexer, Shooter shooter) {
