@@ -21,7 +21,7 @@ public class Intake extends SubsystemBase {
     private FRCNEO spin, pivot;
     private double pivotSetpoint;
 
-    //public AnalogPotentiometer pot;
+    public AnalogPotentiometer pot;
     //public AnalogPotentiometer pot;// = new AnalogPotentiometer(Constants.IntakeConstants.IntakeSensors.IntakePot.ID);
     //pot.setAverageBits(2);
 
@@ -31,7 +31,7 @@ public class Intake extends SubsystemBase {
      * Creates a new Intake.
      */
     public Intake() {        
-        //pot = new AnalogPotentiometer(Constants.IntakeConstants.IntakeSensors.IntakePot.ID,100,-57);
+        pot = new AnalogPotentiometer(Constants.IntakeConstants.IntakeSensors.IntakePot.ID,100,-47);
 
         spin = new FRCNEO.FRCNEOBuilder(Constants.IntakeConstants.IntakeMotors.IntakeSpin.CAN_ID)
             .withInverted(Constants.IntakeConstants.IntakeMotors.IntakeSpin.INVERT)
@@ -61,13 +61,13 @@ public class Intake extends SubsystemBase {
             .withPeakOutputForward(Constants.IntakeConstants.IntakeMotors.IntakePivot.PEAK_OUTPUT_FORWARD)
             .withPeakOutputReverse(Constants.IntakeConstants.IntakeMotors.IntakePivot.PEAK_OUTPUT_REVERSE)
             .withNeutralMode(Constants.IntakeConstants.IntakeMotors.IntakePivot.NEUTRAL_MODE)
-            .withAnalogSensorMode(Constants.IntakeConstants.IntakeMotors.IntakePivot.ANALOG_MODE, true)
+            // .withAnalogSensorMode(Constants.IntakeConstants.IntakeMotors.IntakePivot.ANALOG_MODE, true)
             .build();
 
-            pivot.motor.enableSoftLimit(SoftLimitDirection.kForward, true);
-            pivot.motor.enableSoftLimit(SoftLimitDirection.kReverse, true);
-            pivot.motor.setSoftLimit(SoftLimitDirection.kForward, Constants.IntakeConstants.IntakeMotors.IntakePivot.SOFT_LIMIT_UPPER);
-            pivot.motor.setSoftLimit(SoftLimitDirection.kReverse, Constants.IntakeConstants.IntakeMotors.IntakePivot.SOFT_LIMIT_LOWER);
+            //pivot.motor.enableSoftLimit(SoftLimitDirection.kForward, true);
+            //pivot.motor.enableSoftLimit(SoftLimitDirection.kReverse, true);
+            //pivot.motor.setSoftLimit(SoftLimitDirection.kForward, Constants.IntakeConstants.IntakeMotors.IntakePivot.SOFT_LIMIT_UPPER);
+            //pivot.motor.setSoftLimit(SoftLimitDirection.kReverse, Constants.IntakeConstants.IntakeMotors.IntakePivot.SOFT_LIMIT_LOWER);//set these
 
         addChild("intakePivot", pivot);
         addChild("intakeSpin", spin);
@@ -76,26 +76,32 @@ public class Intake extends SubsystemBase {
 
     @Override
     public void periodic() {
-        onInit(); // Oh no no no no no
+        //onInit(); // Oh no no no no no
+        zeroEncoder();
         // This method will be called once per scheduler run
         SmartDashboard.putNumber("Intake Pivot Encoder Value", pivot.motor.getEncoder().getPosition());
         SmartDashboard.putNumber("Intake Pivot Output", pivot.motor.get());
-        SmartDashboard.putNumber("Intake Pivot raw analog", pivot.getAnalogSensorPosition());
-        SmartDashboard.putBoolean("Intake Pivot Upper Limit", pivot.motor.getEncoder().getPosition() >= pivot.motor.getSoftLimit(SoftLimitDirection.kForward));
-        SmartDashboard.putBoolean("Intake Pivot Lower Limit", pivot.motor.getEncoder().getPosition() <= pivot.motor.getSoftLimit(SoftLimitDirection.kReverse));
+        SmartDashboard.putNumber("Intake Pivot raw analog", getPot());
+        // SmartDashboard.putBoolean("Intake Pivot Upper Limit", pivot.motor.getEncoder().getPosition() >= pivot.motor.getSoftLimit(SoftLimitDirection.kForward));
+        // SmartDashboard.putBoolean("Intake Pivot Lower Limit", pivot.motor.getEncoder().getPosition() <= pivot.motor.getSoftLimit(SoftLimitDirection.kReverse));
         SmartDashboard.putNumber("Intake Pivot Motor Output", pivot.motor.getAppliedOutput());
     }
 
     public void onInit() {
-        double analogPos = pivot.getAnalogSensorPosition();
-        pivot.motor.getEncoder().setPosition(analogPos * (6.41026) - 1.31538);
-        pivot.motor.getPIDController().setFeedbackDevice(pivot.motor.getEncoder());
+        zeroEncoder();
+        //pivot.motor.getPIDController().setFeedbackDevice(pivot.motor.getEncoder());
+    }
+
+    public void zeroEncoder(){
+        double analogPos = pot.get();
+        pivot.motor.getEncoder().setPosition(analogPos * (0.2008) - 3.8352);
     }
 
     public double getPot(){
         // return ((pivot.getAnalogSensorPosition())*360);//pot.getVoltage();
         // return pivot.motor.getEncoder().getPosition();
-        return pivot.getAnalogSensorPosition();
+        //return pivot.getAnalogSensorPosition();
+        return pot.get();
     }
 
     public void pivotWithRamp(double pivot) {

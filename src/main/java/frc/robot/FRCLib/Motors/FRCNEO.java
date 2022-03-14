@@ -361,6 +361,8 @@ public class FRCNEO implements Sendable {
             System.out.println("SET SENSOR PHASE");
             analog.setPositionConversionFactor(1/3.3);
             closedLoop.setFeedbackDevice(analog);
+        } else {
+            closedLoop.setFeedbackDevice(this.motor.getEncoder());
         }
 
         fwdLimitSwitch = motor.getForwardLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyOpen);
