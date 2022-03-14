@@ -1,0 +1,4 @@
+Pivot arm all the way up(low priority)
+Climber hooks retracted(high priority)
+Climber tilt centered(high priority)
+charge jetson battery backup(high priority)

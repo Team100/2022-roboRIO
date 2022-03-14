@@ -20,15 +20,15 @@ import com.revrobotics.CANSparkMax.IdleMode;
 public final class Constants {
     public static final class DrivetrainConstants {
         public static final class DrivetrainMotion{
-            public static final double ALIGN_SPEED = 0.075;
+            public static final double ALIGN_SPEED = -0.1;
             public static final double SLOW_SPEED = 0.2;
         }
         public static final class DrivetrainSensors{
             public static final class LeftSensor{
-                public static final int ID = 5;
+                public static final int ID = 0;
             }
             public static final class RightSensor{
-                public static final int ID = 6;
+                public static final int ID = 1;
             }
         }
         public static final class DrivetrainMotors {
@@ -284,7 +284,7 @@ public final class Constants {
 
             public static final double TILT_PERCENT_OUTPUT = 0.1;
 
-            public static final int CLIMBER_TOP = -315000;
+            public static final int CLIMBER_TOP = -220000;
             public static final int CLIMBER_BOTTOM = -10000;
             public static final double TILT_START = 7000;
             public static final double STATIONARY_LOCK_ANGLE = 10;
@@ -333,7 +333,7 @@ public final class Constants {
                 public static final double PEAK_OUTPUT_FORWARD = 1;
                 public static final double PEAK_OUTPUT_REVERSE = 1;
 
-                public static final NeutralMode NEUTRAL_MODE = NeutralMode.Brake;
+                public static final NeutralMode NEUTRAL_MODE = NeutralMode.Coast;
             }
         }
     }

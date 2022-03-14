@@ -4,6 +4,8 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -18,8 +20,8 @@ public class Drivetrain extends SubsystemBase {
     
     /** Creates a new Drivetrain. */
     public Drivetrain() {
-        sensorLeft = new DigitalInput(Constants.DrivetrainConstants.DrivetrainSensors.LeftSensor.ID);
-        sensorRight = new DigitalInput(Constants.DrivetrainConstants.DrivetrainSensors.RightSensor.ID);
+        sensorLeft = new DigitalInput(Constants.DrivetrainConstants.DrivetrainSensors.LeftSensor.ID);//a
+        sensorRight = new DigitalInput(Constants.DrivetrainConstants.DrivetrainSensors.RightSensor.ID);//b
 
         leftMaster = new FRCTalonFX.FRCTalonFXBuilder(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.CAN_ID)
             .withKP(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.KP)
@@ -106,20 +108,51 @@ public class Drivetrain extends SubsystemBase {
         return input;
     }
 
-    @Override
-    public void periodic() {
-        // This method will be called once per scheduler run
-        SmartDashboard.putBoolean("allign sensor left", getSensorLeft());
-        SmartDashboard.putBoolean("allign sensor right", getSensorRight());
-    }
-
     public boolean getSensorLeft() {
-        return sensorLeft.get();
+        return !sensorLeft.get();
       }
     
       public boolean getSensorRight() {
-        return sensorRight.get();
+        return !sensorRight.get();
       }
+
+      public double getCurrentEncoderPosition() {
+        return (leftMaster.getSelectedSensorPosition()+rightMaster.getSelectedSensorPosition())/2;
+    }
+
+      public void zeroCurrentPosition() {
+        leftMaster.motor.setSelectedSensorPosition(0);
+        leftFollower.motor.setSelectedSensorPosition(0);
+        rightMaster.motor.setSelectedSensorPosition(0);
+        rightFollower.motor.setSelectedSensorPosition(0);
+    }
+
+    public void setBrakeMode(boolean status){
+        if(status){
+            leftMaster.motor.setNeutralMode(NeutralMode.Brake);
+            leftFollower.motor.setNeutralMode(NeutralMode.Brake);
+            rightMaster.motor.setNeutralMode(NeutralMode.Brake);
+            rightFollower.motor.setNeutralMode(NeutralMode.Brake);
+        }else{
+            leftMaster.motor.setNeutralMode(NeutralMode.Coast);
+            leftFollower.motor.setNeutralMode(NeutralMode.Coast);
+            rightMaster.motor.setNeutralMode(NeutralMode.Coast);
+            rightFollower.motor.setNeutralMode(NeutralMode.Coast);
+        }
+    }
+
+
+    @Override
+    public void periodic() {
+        // This method will be called once per scheduler run
+        // SmartDashboard.putBoolean("allign sensor starboard", getSensorRight());
+        // SmartDashboard.putBoolean("allign sensor port", getSensorLeft());
+        if(this.getCurrentCommand()!=null)SmartDashboard.putString("drivetrain command", this.getCurrentCommand().getName());
+        SmartDashboard.putNumber("drivetrain average encoder value", getCurrentEncoderPosition());
+        SmartDashboard.putString("drivetrain brake mode", rightFollower.getNeutralMode().toString());
+        //SmartDashboard.putNumber("left motor", leftMaster.get)
+    }
+
 
     @Override
     public void simulationPeriodic() {

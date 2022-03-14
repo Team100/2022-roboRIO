@@ -4,6 +4,8 @@
 
 package frc.robot.commands.drivetrain;
 
+import java.sql.Driver;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
@@ -30,15 +32,20 @@ public class AlignClimber extends CommandBase {
     public void execute() {
         SmartDashboard.putBoolean("sensorLeft", drivetrain.getSensorLeft());
         SmartDashboard.putBoolean("sensorRight", drivetrain.getSensorRight());
-        SmartDashboard.putString("Port and Starboard status:", "we are not using port and starboad :(");
+        //SmartDashboard.putString("Port and Starboard status:", "we are not using port and starboad :(");
 
         if(!drivetrain.getSensorLeft() && !drivetrain.getSensorRight()){
+            SmartDashboard.putString("climber turning?", "0");
             drivetrain.driveWithoutRamp(Constants.DrivetrainConstants.DrivetrainMotion.ALIGN_SPEED, Constants.DrivetrainConstants.DrivetrainMotion.ALIGN_SPEED);
         } else if (drivetrain.getSensorLeft() && !drivetrain.getSensorRight()){
-            drivetrain.driveWithoutRamp(0, Constants.DrivetrainConstants.DrivetrainMotion.ALIGN_SPEED);
+            SmartDashboard.putString("climber turning?", "first");
+            drivetrain.driveWithoutRamp(-Constants.DrivetrainConstants.DrivetrainMotion.ALIGN_SPEED, Constants.DrivetrainConstants.DrivetrainMotion.ALIGN_SPEED);
         } else if (drivetrain.getSensorRight() && !drivetrain.getSensorLeft()){
-            drivetrain.driveWithoutRamp(Constants.DrivetrainConstants.DrivetrainMotion.ALIGN_SPEED, 0);
+            SmartDashboard.putString("climber turning?", "2");
+            drivetrain.driveWithoutRamp(Constants.DrivetrainConstants.DrivetrainMotion.ALIGN_SPEED, -Constants.DrivetrainConstants.DrivetrainMotion.ALIGN_SPEED);
         } else if (drivetrain.getSensorLeft() && drivetrain.getSensorRight()){
+            SmartDashboard.putString("climber turning?", "4");
+
             drivetrain.driveWithoutRamp(0, 0);
             done = true;
         }
