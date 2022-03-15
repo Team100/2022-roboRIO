@@ -21,8 +21,8 @@ public class IntakeStop extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        this.intake.runSpinner(0);
-        this.intake.runPivot(0);
+        //this.intake.runSpinner(0);
+        //this.intake.runPivot(0);
         // this.intake.setPivot(Constants.IntakeConstants.PivotConstants.UP_POSITION);
         // SmartDashboard.putNumber("intake setpoint", 0);
         
@@ -35,13 +35,13 @@ public class IntakeStop extends CommandBase {
     public void execute() {
         intake.runSpinner(0);
         // if(shouldBeUp){
-            // if (intake.getPot() <= 40) {
-            //     intake.runPivot(
-            //         - (Math.abs(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_PIVOT_PERCENT_OUTPUT_UP * (40 - intake.getPot())))/200);
-            // } else {
-                //intake.runPivot(0);
+            if (intake.getPot() <= 40) {
+                intake.runPivot(
+                    - (Math.abs(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_PIVOT_PERCENT_OUTPUT_UP * (40 - intake.getPot())))/200);
+            } else {
+                intake.runPivot(0);
                 intake.runSpinner(0);
-            // }
+            }
         //}
     }
 
