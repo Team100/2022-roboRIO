@@ -36,6 +36,6 @@ public class AutonProcedure extends SequentialCommandGroup {
         addCommands(new ParallelDeadlineGroup(new StepTwo(drivetrain), new IndexerStop(indexer)));                                           //drive back to start point(maybe just put drivetrain falcons in brake?)
         //addCommands(new AutoShoot(indexer, shooter));
         addCommands(new ParallelCommandGroup(new WaitCommand(3), new ShootHigh(shooter),  new IndexerFeedHigh(indexer, shooter)));       //shoot your next loaded ball into high goal(needs to be tested)
-        addCommands(new IndexerStop(indexer), new ShootStop(shooter), new IntakeStop(intake));
+        addCommands(new ParallelCommandGroup(new IndexerStop(indexer), new ShootStop(shooter), new IntakeStop(intake)));
     }
 }
