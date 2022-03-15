@@ -157,6 +157,13 @@ public class FRCNEO implements Sendable {
     ///////////////////////////////////////////////////////////////////////////
 
     /**
+     * MotorType
+     * 
+     * Can be kBrushed or kBrushless
+     */
+    private MotorType motorType;
+
+    /**
      * Limit switches
      */
     private SparkMaxLimitSwitch fwdLimitSwitch;
@@ -351,7 +358,7 @@ public class FRCNEO implements Sendable {
     }
 
     public FRCNEO configure() {
-        motor = new CANSparkMax(this.getCanID(), MotorType.kBrushless);
+        motor = new CANSparkMax(this.getCanID(), this.getMotorType());
 
         closedLoop = motor.getPIDController();
 
@@ -434,6 +441,14 @@ public class FRCNEO implements Sendable {
 
     public CANSparkMax getMotor() {
         return motor;
+    }
+
+    public MotorType getMotorType() {
+        return this.motorType;
+    }
+
+    public void setMotorType(MotorType motorType) {
+        this.motorType = motorType;
     }
 
     public void setMotor(CANSparkMax motor) {
@@ -706,6 +721,7 @@ public class FRCNEO implements Sendable {
 
     public static final class FRCNEOBuilder {
         private int canID;
+        private MotorType motorType = MotorType.kBrushless;
         private boolean isInverted = false;
         private int feedbackPort = 0;
         private int timeout = 10;
@@ -751,6 +767,11 @@ public class FRCNEO implements Sendable {
 
         public FRCNEOBuilder withCanID(int canID) {
             this.canID = canID;
+            return this;
+        }
+
+        public FRCNEOBuilder withMotorType(MotorType motorType) {
+            this.motorType = motorType;
             return this;
         }
 
@@ -922,6 +943,7 @@ public class FRCNEO implements Sendable {
         public FRCNEO build() {
             FRCNEO fRCNEO = new FRCNEO();
             fRCNEO.setCanID(canID);
+            fRCNEO.setMotorType(motorType);
             fRCNEO.setInverted(isInverted);
             fRCNEO.setFeedbackPort(feedbackPort);
             fRCNEO.setTimeout(timeout);
