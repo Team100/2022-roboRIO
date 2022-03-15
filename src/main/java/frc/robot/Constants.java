@@ -8,6 +8,7 @@ import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.revrobotics.SparkMaxAnalogSensor;
 import com.revrobotics.CANSparkMax.IdleMode;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -141,6 +142,8 @@ public final class Constants {
                 public static final double NOMINAL_OUTPUT_REVERSE = 0;
 
                 public static final IdleMode NEUTRAL_MODE = IdleMode.kCoast;
+
+                public static final MotorType MOTOR_TYPE = MotorType.kBrushed;
             }
 
             public static final class IntakePivot {
