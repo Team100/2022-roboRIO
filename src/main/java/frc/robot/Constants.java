@@ -120,6 +120,7 @@ public final class Constants {
             public static final double KI = 0;
             public static final double KD = 0.1;
             public static final double KF = 0;
+            public static final double PP_ADJUSTMENT_CONSTANT = 16;
         }
 
         public static final class IntakeMotors {

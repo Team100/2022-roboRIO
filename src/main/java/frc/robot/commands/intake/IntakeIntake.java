@@ -39,12 +39,9 @@ public class IntakeIntake extends CommandBase {
         if (intake.getPot() >= -30) {
             intake.runPivot(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_PIVOT_PERCENT_OUTPUT);
             intake.runSpinner(0);
-            SmartDashboard.putString("intake", "one");
         } else {
             intake.runPivot(0);
             intake.runSpinner(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_SPINNER_PERCENT_OUTPUT);
-            SmartDashboard.putString("intake", "two");
-
         }
         //     intake.runPivot(0);
         // }
