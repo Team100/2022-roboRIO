@@ -35,14 +35,14 @@ public class IntakeStop extends CommandBase {
     public void execute() {
         intake.runSpinner(0);
         // if(shouldBeUp){
-            if (intake.getPot() <= 40) {
+            if (intake.getPot() <= -18) {
                 intake.runPivot(
-                    - (Math.abs(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_PIVOT_PERCENT_OUTPUT_UP * (40 - intake.getPot())))/200);
+                    - (Math.abs(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_PIVOT_PERCENT_OUTPUT_UP * (16 + intake.getPot())))/1);
             } else {
                 intake.runPivot(0);
                 intake.runSpinner(0);
             }
-            System.out.println("pp = " + (- Math.abs(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_PIVOT_PERCENT_OUTPUT_UP * (40 - intake.getPot())))/200);
+            System.out.println("pp = " + (- (Math.abs(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_PIVOT_PERCENT_OUTPUT_UP * (16 + intake.getPot())))/1));
         //}
     }
 

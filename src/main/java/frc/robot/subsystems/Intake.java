@@ -76,7 +76,7 @@ public class Intake extends SubsystemBase {
     public void periodic() {
         //onInit(); // Oh no no no no no
         SmartDashboard.putNumber("Intake Pivot raw analog", getPot());
-        //SmartDashboard.putNumber("Intake Pivot Motor Output", pivot.motor.get());
+        SmartDashboard.putNumber("Intake Pivot Motor Output", pivot.motor.get());
     }
 
     public void onInit() {

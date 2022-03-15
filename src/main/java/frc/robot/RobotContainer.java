@@ -22,6 +22,7 @@ import frc.robot.subsystems.*;
 import frc.robot.commands.drivetrain.*;
 import frc.robot.commands.intake.*;
 import frc.robot.commands.indexer.*;
+import frc.robot.commands.autonomous.AutonProcedure;
 import frc.robot.commands.climber.*;
 import frc.robot.commands.shooter.*;
 
@@ -141,6 +142,7 @@ public class RobotContainer {
      */
     public Command getAutonomousCommand() {
         // An ExampleCommand will run in autonomous
-        return null;
+        //return null;
+        return new AutonProcedure(drivetrain, intake, indexer, shooter);
     }
 }
