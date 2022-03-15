@@ -5,8 +5,10 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.AnalogInput;
+import com.revrobotics.CANSparkMax;
 import com.revrobotics.MotorFeedbackSensor;
 import com.revrobotics.CANSparkMax.SoftLimitDirection;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.SparkMaxAnalogSensor.Mode;
 
 import edu.wpi.first.wpilibj.AnalogEncoder;
@@ -59,7 +61,13 @@ public class Intake extends SubsystemBase {
             .withNeutralMode(Constants.IntakeConstants.IntakeMotors.IntakePivot.NEUTRAL_MODE)
             .build();
 
-        addChild("intakePivot", pivot);
+            //pivot = new CANSparkMax(Constants.IntakeConstants.IntakeMotors.IntakePivot.CAN_ID, MotorType.kBrushless);
+
+
+            //pivot.motor.set();
+
+
+        //addChild("intakePivot", pivot);
         addChild("intakeSpin", spin);
     }
 
@@ -67,7 +75,7 @@ public class Intake extends SubsystemBase {
     public void periodic() {
         //onInit(); // Oh no no no no no
         SmartDashboard.putNumber("Intake Pivot raw analog", getPot());
-        SmartDashboard.putNumber("Intake Pivot Motor Output", pivot.motor.get());
+        //SmartDashboard.putNumber("Intake Pivot Motor Output", pivot.motor.get());
     }
 
     public void onInit() {
@@ -80,7 +88,7 @@ public class Intake extends SubsystemBase {
     public void pivotWithRamp(double pivot) {
         double ramp = ramp(pivot, pivotSetpoint);
 
-        this.pivot.drivePercentOutput(ramp);
+        //this.pivot.drivePercentOutput(ramp);
         this.pivotSetpoint = ramp;
     }
 
@@ -102,13 +110,14 @@ public class Intake extends SubsystemBase {
 
     public void runPivot(double percentOutput) {
         pivot.drivePercentOutput(percentOutput);
+       // pivot.set(percentOutput);
     }
 
     public void runSpinner(double percentOutput) {
         spin.drivePercentOutput(percentOutput);
     }
     public void setPivot(double setpoint) {
-        pivot.drivePosition(setpoint);
+        //pivot.drivePosition(setpoint);
     }
 }
     
