@@ -419,7 +419,7 @@ public class FRCNEO implements Sendable {
         //     System.out.println("setting sensor phase");
         // }
 
-        if (this.getVelocityMeasurementPeriod() != 0 || this.getVelocityMeasurementWindow() != 0) {
+        if (this.motorType == MotorType.kBrushless && (this.getVelocityMeasurementPeriod() != 0 || this.getVelocityMeasurementWindow() != 0)) {
             motor.getEncoder().setMeasurementPeriod(this.getVelocityMeasurementPeriod());
             motor.getEncoder().setAverageDepth(this.getVelocityMeasurementWindow());
             System.out.println("Setting Velocity Measurement Period");

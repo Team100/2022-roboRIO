@@ -39,7 +39,7 @@ public class IntakeStop extends CommandBase {
             //     intake.runPivot(
             //         - (Math.abs(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_PIVOT_PERCENT_OUTPUT_UP * (40 - intake.getPot())))/200);
             // } else {
-                intake.runPivot(0);
+                //intake.runPivot(0);
                 intake.runSpinner(0);
             // }
         //}
