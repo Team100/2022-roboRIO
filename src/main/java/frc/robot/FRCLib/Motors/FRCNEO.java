@@ -369,7 +369,7 @@ public class FRCNEO implements Sendable {
             analog.setPositionConversionFactor(1/3.3);
             closedLoop.setFeedbackDevice(analog);
         } else {
-            closedLoop.setFeedbackDevice(this.motor.getEncoder());
+            if (this.motorType == MotorType.kBrushless) closedLoop.setFeedbackDevice(this.motor.getEncoder());
         }
 
         fwdLimitSwitch = motor.getForwardLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyOpen);

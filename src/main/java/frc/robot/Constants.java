@@ -142,8 +142,6 @@ public final class Constants {
                 public static final double NOMINAL_OUTPUT_REVERSE = 0;
 
                 public static final IdleMode NEUTRAL_MODE = IdleMode.kCoast;
-
-                public static final MotorType MOTOR_TYPE = MotorType.kBrushed;
             }
 
             public static final class IntakePivot {
@@ -166,6 +164,8 @@ public final class Constants {
                 public static final SparkMaxAnalogSensor.Mode ANALOG_MODE = SparkMaxAnalogSensor.Mode.kAbsolute;
 
                 public static final IdleMode NEUTRAL_MODE = IdleMode.kBrake;
+
+                public static final MotorType MOTOR_TYPE = MotorType.kBrushed;
             }
         }
     }

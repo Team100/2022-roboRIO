@@ -59,6 +59,7 @@ public class Intake extends SubsystemBase {
             .withPeakOutputForward(Constants.IntakeConstants.IntakeMotors.IntakePivot.PEAK_OUTPUT_FORWARD)
             .withPeakOutputReverse(Constants.IntakeConstants.IntakeMotors.IntakePivot.PEAK_OUTPUT_REVERSE)
             .withNeutralMode(Constants.IntakeConstants.IntakeMotors.IntakePivot.NEUTRAL_MODE)
+            .withMotorType(Constants.IntakeConstants.IntakeMotors.IntakePivot.MOTOR_TYPE)
             .build();
 
             //pivot = new CANSparkMax(Constants.IntakeConstants.IntakeMotors.IntakePivot.CAN_ID, MotorType.kBrushless);
