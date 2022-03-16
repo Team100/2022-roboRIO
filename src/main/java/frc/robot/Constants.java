@@ -102,7 +102,7 @@ public final class Constants {
         }
         public static final class IntakeMotionParameters {
             public static final double INTAKE_SPINNER_PERCENT_OUTPUT = 0.35;
-            public static final double INTAKE_PIVOT_PERCENT_OUTPUT = 0.25;
+            public static final double INTAKE_PIVOT_PERCENT_OUTPUT = 0.2;
             public static final double INTAKE_PIVOT_PERCENT_OUTPUT_UP = 0.027;
             public static final double INTAKE_ZERO = 0;
 
