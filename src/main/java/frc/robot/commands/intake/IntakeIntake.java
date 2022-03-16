@@ -23,35 +23,30 @@ public class IntakeIntake extends CommandBase {
     @Override
     public void initialize() {
         done = false;
-        intake.pivotDown();
-        //intake.runSpinner(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_SPINNER_PERCENT_OUTPUT);
+        intake.disable();
+        //intake.pivotDown();
 
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        // if (intake.getPot() <= Constants.IntakeConstants.PivotConstants.DOWN_POSITION) {
-        //      intake.runPivot(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_PIVOT_PERCENT_OUTPUT);
-        // }
-        // if(intake.getPot() >= Constants.IntakeConstants.PivotConstants.DOWN_POSITION){
-        // intake.setPivot(Constants.IntakeConstants.PivotConstants.DOWN_POSITION);
-        // SmartDashboard.putNumber("intake setpoint", Constants.IntakeConstants.PivotConstants.DOWN_POSITION);
-        if (!intake.atSetpoint()) {
-            // intake.runPivot(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_PIVOT_PERCENT_OUTPUT);
+        if (intake.getMeasurement() >= 20) {
+            intake.runPivot(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_PIVOT_PERCENT_OUTPUT_DOWN);
+            intake.runSpinner(0);
+        } else if (intake.getMeasurement() >= 10) {
+            intake.runPivot(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_PIVOT_PERCENT_OUTPUT_DOWN_DECEL);
             intake.runSpinner(0);
         } else {
+            intake.runPivot(0);
             intake.runSpinner(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_SPINNER_PERCENT_OUTPUT);
         }
-        //     intake.runPivot(0);
-        // }
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        // intake.setPivot(1.6);
-        // intake.runSpinner(0);
+        intake.runSpinner(0);
     }
 
     // Returns true when the command should end.

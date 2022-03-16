@@ -119,10 +119,9 @@ public class Intake extends PIDSubsystem {
     //     return pot.get();
     // }
 
-    // public void runPivot(double percentOutput) {
-    //     pivot.drivePercentOutput(percentOutput);
-    //    // pivot.set(percentOutput);
-    // }
+    public void runPivot(double percentOutput) {
+        pivot.drivePercentOutput(percentOutput);
+    }
 
     public void runSpinner(double percentOutput) {
         if (getSetpoint() == Constants.IntakeConstants.PivotConstants.UP_POSITION && atSetpoint())
