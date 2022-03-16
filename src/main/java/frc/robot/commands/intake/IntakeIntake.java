@@ -23,7 +23,7 @@ public class IntakeIntake extends CommandBase {
     @Override
     public void initialize() {
         done = false;
-        intake.pivotDown();
+        //intake.pivotDown();
         //intake.runSpinner(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_SPINNER_PERCENT_OUTPUT);
 
     }
@@ -37,10 +37,12 @@ public class IntakeIntake extends CommandBase {
         // if(intake.getPot() >= Constants.IntakeConstants.PivotConstants.DOWN_POSITION){
         // intake.setPivot(Constants.IntakeConstants.PivotConstants.DOWN_POSITION);
         // SmartDashboard.putNumber("intake setpoint", Constants.IntakeConstants.PivotConstants.DOWN_POSITION);
-        if (intake.getPot()<=10) {
+        if (intake.getPot()<=20) {
             // intake.runPivot(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_PIVOT_PERCENT_OUTPUT);
           intake.runSpinner(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_SPINNER_PERCENT_OUTPUT);
+          intake.runPivot(0);
         } else {
+          intake.runPivot(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_PIVOT_PERCENT_OUTPUT);
           intake.runSpinner(0);
         }
         //     intake.runPivot(0);
