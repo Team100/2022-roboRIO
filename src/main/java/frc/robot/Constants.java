@@ -102,9 +102,9 @@ public final class Constants {
         }
         public static final class IntakeMotionParameters {
             public static final double INTAKE_SPINNER_PERCENT_OUTPUT = 0.35;
-            public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN = 0.2;
-            public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN_DECEL = -0.1;
-            public static final double INTAKE_PIVOT_PERCENT_OUTPUT_UP = 0.027;
+            public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN = -0.4;
+            public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN_DECEL = 0.3;
+            public static final double INTAKE_P0IVOT_PERCENT_OUTPUT_UP = 0.027;
             public static final double INTAKE_ZERO = 0;
             public static final double INITIAL_POSITION = 0;
 
@@ -112,9 +112,9 @@ public final class Constants {
 
             public static final int ACCEPTABLE_ERROR_TICKS = 10;
 
-            public static final double KP = 0.5;//6;
-            public static final double KI = 3;
-            public static final double KD = 0.05;
+            public static final double KP = 0.89;//6;
+            public static final double KI = 3.9;
+            public static final double KD = 0.08;
             public static final double KF = 0;
             public static final double PP_ADJUSTMENT_CONSTANT = 16;
         }
