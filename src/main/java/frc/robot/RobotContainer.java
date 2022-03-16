@@ -68,6 +68,8 @@ public class RobotContainer {
 
     private final JoystickButton stopAll = new JoystickButton(buttonBoard, 4);
 
+    private final JoystickButton fixClimberButton = new JoystickButton(rightJoystick, 7);
+
     // private final JoystickButton runPivot = new JoystickButton(gamepad, 1);
     //private final JoystickButton controlBallButton = new JoystickButton(buttonBoard, 14);
 
@@ -91,7 +93,8 @@ public class RobotContainer {
     private final ClimberStop climberStopCommand = new ClimberStop(climber);
 
     private final HookUp HookUpCommand = new HookUp(climber);
-    private final HookDown HookDownCommand = new HookDown(climber);
+    private final HookDown HookDownCommand = new HookDown(climber, symphony);    
+    private final HookZero HookZeroCommand = new HookZero(climber);
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
@@ -128,11 +131,14 @@ public class RobotContainer {
         ejectButton.whileHeld(new ParallelCommandGroup(intakeEjectCommand, indexerEjectCommand, shootEjectCommand));
 
         mediaControlButton.whenPressed(new InstantCommand(() -> { symphony.play();}, symphony));
+
+        fixClimberButton.whileHeld(HookZeroCommand);
         // runPivot.whileHeld(new InstantCommand(() -> { intake.runPivot(0.1); System.out.println("running the thing");}, intake));
     }
 
     public void onInit() {
         // intake.onInit();
+        climber.onInit();
     }
 
     /**

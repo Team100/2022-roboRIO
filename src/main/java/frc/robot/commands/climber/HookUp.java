@@ -7,11 +7,12 @@ package frc.robot.commands.climber;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.Symphony;
 import frc.robot.Constants.ClimberConstants;
 
 public class HookUp extends CommandBase {
   private final Climber climber;
-  boolean done;
+  boolean done, first;
   /** Creates a new HooksUp. */
   public HookUp(Climber climber) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -24,7 +25,7 @@ public class HookUp extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() { 
-    done=false;   
+    done=false;
   }
 
   // Called every time the scheduler runs while the command is scheduled.

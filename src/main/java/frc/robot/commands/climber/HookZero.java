@@ -7,42 +7,30 @@ package frc.robot.commands.climber;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Climber;
-import frc.robot.subsystems.Symphony;
 import frc.robot.Constants.ClimberConstants;
 
-public class HookDown extends CommandBase {
+public class HookZero extends CommandBase {
   /** Creates a new HooksUp. */
 private final Climber climber;
-private final Symphony symphony;
-boolean done, first;
-  public HookDown(Climber climber, Symphony symphony) {  
+boolean done;
+  public HookZero(Climber climber) {  
     // Use addRequirements() here to declare subsystem dependencies.
     this.climber = climber;
-    this.symphony = symphony;
-    addRequirements(this.climber, this.symphony);
+    addRequirements(this.climber);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() { 
-    done=false;  
-    first = true; 
+    done=false;   
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(climber.mainPosition()>=ClimberConstants.ClimberMotionParameters.CLIMBER_BOTTOM){
-      SmartDashboard.putBoolean("we done boys?", true);
-      climber.setWinch(0);
-      if(first){
-        first = false;
-        symphony.play();
-      }
-    }else{
-      climber.setWinch(ClimberConstants.ClimberMotionParameters.CLIMBER_PERCENT_OUTPUT);
-      SmartDashboard.putBoolean("we done boys?", false);
-    }
+    System.out.println("zeroing");
+      climber.setWinch(0.17);
+      climber.zeroWinch();
   }
 
   // Called once the command ends or is interrupted.

@@ -50,6 +50,14 @@ public class Climber extends SubsystemBase {
     return winch.getSelectedSensorPosition();
   }
 
+  public void onInit(){
+     zeroWinch();
+  }
+
+  public void zeroWinch(){
+    winch.motor.setSelectedSensorPosition(0);
+  }
+
   @Override
   public void periodic() {
     SmartDashboard.putNumber("main hooks position", mainPosition());

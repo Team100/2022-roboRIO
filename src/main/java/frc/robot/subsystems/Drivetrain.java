@@ -32,6 +32,8 @@ public class Drivetrain extends SubsystemBase {
             .withSensorPhase(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.SENSOR_PHASE)
             .withPeakOutputForward(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.PEAK_OUTPUT_FORWARD)
             .withPeakOutputReverse(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.PEAK_OUTPUT_REVERSE)
+            // .withNominalOutputForward(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.NOMINAL_OUTPUT_FORWARD)
+            // .withNominalOutputReverse(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.NOMINAL_OUTPUT_REVERSE)
             .withNeutralMode(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.NEUTRAL_MODE).build();
 
         leftFollower = new FRCTalonFX.FRCTalonFXBuilder(Constants.DrivetrainConstants.DrivetrainMotors.LeftFollower.CAN_ID)
@@ -43,6 +45,8 @@ public class Drivetrain extends SubsystemBase {
             .withSensorPhase(Constants.DrivetrainConstants.DrivetrainMotors.LeftFollower.SENSOR_PHASE)
             .withPeakOutputForward(Constants.DrivetrainConstants.DrivetrainMotors.LeftFollower.PEAK_OUTPUT_FORWARD)
             .withPeakOutputReverse(Constants.DrivetrainConstants.DrivetrainMotors.LeftFollower.PEAK_OUTPUT_REVERSE)
+            // .withNominalOutputForward(Constants.DrivetrainConstants.DrivetrainMotors.LeftFollower.NOMINAL_OUTPUT_FORWARD)
+            // .withNominalOutputReverse(Constants.DrivetrainConstants.DrivetrainMotors.LeftFollower.NOMINAL_OUTPUT_REVERSE)
             .withNeutralMode(Constants.DrivetrainConstants.DrivetrainMotors.LeftFollower.NEUTRAL_MODE)
             .withMaster(leftMaster).build();
 
@@ -55,6 +59,8 @@ public class Drivetrain extends SubsystemBase {
             .withSensorPhase(Constants.DrivetrainConstants.DrivetrainMotors.RightMaster.SENSOR_PHASE)
             .withPeakOutputForward(Constants.DrivetrainConstants.DrivetrainMotors.RightMaster.PEAK_OUTPUT_FORWARD)
             .withPeakOutputReverse(Constants.DrivetrainConstants.DrivetrainMotors.RightMaster.PEAK_OUTPUT_REVERSE)
+            // .withNominalOutputForward(Constants.DrivetrainConstants.DrivetrainMotors.RightMaster.NOMINAL_OUTPUT_FORWARD)
+            // .withNominalOutputReverse(Constants.DrivetrainConstants.DrivetrainMotors.RightMaster.NOMINAL_OUTPUT_REVERSE)
             .withNeutralMode(Constants.DrivetrainConstants.DrivetrainMotors.RightMaster.NEUTRAL_MODE).build();
 
         rightFollower = new FRCTalonFX.FRCTalonFXBuilder(Constants.DrivetrainConstants.DrivetrainMotors.RightFollower.CAN_ID)
@@ -66,6 +72,8 @@ public class Drivetrain extends SubsystemBase {
             .withSensorPhase(Constants.DrivetrainConstants.DrivetrainMotors.RightFollower.SENSOR_PHASE)
             .withPeakOutputForward(Constants.DrivetrainConstants.DrivetrainMotors.RightFollower.PEAK_OUTPUT_FORWARD)
             .withPeakOutputReverse(Constants.DrivetrainConstants.DrivetrainMotors.RightFollower.PEAK_OUTPUT_REVERSE)
+            // .withNominalOutputForward(Constants.DrivetrainConstants.DrivetrainMotors.RightFollower.NOMINAL_OUTPUT_FORWARD)
+            // .withNominalOutputReverse(Constants.DrivetrainConstants.DrivetrainMotors.RightFollower.NOMINAL_OUTPUT_REVERSE)
             .withNeutralMode(Constants.DrivetrainConstants.DrivetrainMotors.RightFollower.NEUTRAL_MODE)
             .withMaster(rightMaster).build();
 
