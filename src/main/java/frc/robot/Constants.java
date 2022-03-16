@@ -111,9 +111,9 @@ public final class Constants {
 
             public static final int ACCEPTABLE_ERROR_TICKS = 10;
 
-            public static final double KP = 0.3;//6;
-            public static final double KI = 1;
-            public static final double KD = 0.02;
+            public static final double KP = 0.5;//6;
+            public static final double KI = 3;
+            public static final double KD = 0.05;
             public static final double KF = 0;
             public static final double PP_ADJUSTMENT_CONSTANT = 16;
         }

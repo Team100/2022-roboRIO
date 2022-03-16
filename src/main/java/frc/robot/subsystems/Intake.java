@@ -107,6 +107,7 @@ public class Intake extends PIDSubsystem {
         SmartDashboard.putNumber("Intake Pivot Applied Output", pivot.motor.getAppliedOutput());
         SmartDashboard.putNumber("Errorrororor", getController().getPositionError());
         SmartDashboard.putNumber("setpointtttttttttt", getController().getSetpoint());
+        SmartDashboard.putBoolean("At Setpoint", atSetpoint());
         SmartDashboard.putBoolean("enabled", super.isEnabled());
         SmartDashboard.putNumber("current current current", pivot.motor.getOutputCurrent());
     }
