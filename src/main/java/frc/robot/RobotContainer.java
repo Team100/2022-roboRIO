@@ -68,7 +68,7 @@ public class RobotContainer {
 
     private final JoystickButton stopAll = new JoystickButton(buttonBoard, 4);
 
-    private final JoystickButton runPivot = new JoystickButton(gamepad, 1);
+    // private final JoystickButton runPivot = new JoystickButton(gamepad, 1);
     //private final JoystickButton controlBallButton = new JoystickButton(buttonBoard, 14);
 
     // Commands
@@ -128,7 +128,7 @@ public class RobotContainer {
         ejectButton.whileHeld(new ParallelCommandGroup(intakeEjectCommand, indexerEjectCommand, shootEjectCommand));
 
         mediaControlButton.whenPressed(new InstantCommand(() -> { symphony.play();}, symphony));
-        runPivot.whileHeld(new InstantCommand(() -> { intake.runPivot(0.1); System.out.println("running the thing");}, intake));
+        // runPivot.whileHeld(new InstantCommand(() -> { intake.runPivot(0.1); System.out.println("running the thing");}, intake));
     }
 
     public void onInit() {

@@ -97,28 +97,23 @@ public final class Constants {
             }
         }
         public static final class PivotConstants {
-            public static final double UP_POSITION = 2.65;
-            public static final double DOWN_POSITION = 1.95; // (250d / 360d) * 3.3;
+            public static final double UP_POSITION = 26.8;
+            public static final double DOWN_POSITION = 2.5; // (250d / 360d) * 3.3;
         }
         public static final class IntakeMotionParameters {
             public static final double INTAKE_SPINNER_PERCENT_OUTPUT = 0.35;
             public static final double INTAKE_PIVOT_PERCENT_OUTPUT = 0.2;
             public static final double INTAKE_PIVOT_PERCENT_OUTPUT_UP = 0.027;
             public static final double INTAKE_ZERO = 0;
+            public static final double INITIAL_POSITION = 0;
 
             public static final int ZEROED_ENCODER_TICKS = 65;
 
-
-            // public static final double INTAKE_DOWN_DEGREES = EncoderConversionFactors
-            //         .CONVERT_ANGLE_TO_MA3_ENCODER_TICKS(-40);  //Ultimate down = 22ticks @ ~-15deg
-            // public static final double INTAKE_UP_DEGREES = EncoderConversionFactors
-            //         .CONVERT_ANGLE_TO_MA3_ENCODER_TICKS(90);
-
             public static final int ACCEPTABLE_ERROR_TICKS = 10;
 
-            public static final double KP = 2;//6;
-            public static final double KI = 0;
-            public static final double KD = 0.1;
+            public static final double KP = 0.3;//6;
+            public static final double KI = 1;
+            public static final double KD = 0.02;
             public static final double KF = 0;
             public static final double PP_ADJUSTMENT_CONSTANT = 16;
         }
@@ -136,8 +131,8 @@ public final class Constants {
                 public static final boolean ENABLE_CURRENT_LIMIT = false;
                 public static final int CURRENT_LIMIT = 25;
                 public static final double OPEN_LOOP_RAMP = 0.1;
-                public static final double PEAK_OUTPUT_FORWARD = .5;
-                public static final double PEAK_OUTPUT_REVERSE = -.5;
+                public static final double PEAK_OUTPUT_FORWARD = 1;
+                public static final double PEAK_OUTPUT_REVERSE = -1;
 
                 public static final double NOMINAL_OUTPUT_FORWARD = 0;
                 public static final double NOMINAL_OUTPUT_REVERSE = 0;
@@ -148,17 +143,17 @@ public final class Constants {
             public static final class IntakePivot {
                 public static final int CAN_ID = 2; //2
 
-                public static final boolean INVERT = false;
+                public static final boolean INVERT = true;
                 public static final int FEEDBACK_PORT = 0;
                 public static final boolean SENSOR_PHASE = false;
 
                 public static final int TIMEOUT = 10;
 
                 public static final boolean ENABLE_CURRENT_LIMIT = true;
-                public static final int CURRENT_LIMIT = 15;
+                public static final int CURRENT_LIMIT = 20;
                 public static final double OPEN_LOOP_RAMP = 0.1;
-                public static final double PEAK_OUTPUT_FORWARD = 0.5;
-                public static final double PEAK_OUTPUT_REVERSE = -0.5;
+                public static final double PEAK_OUTPUT_FORWARD = 1;
+                public static final double PEAK_OUTPUT_REVERSE = -1;
                 public static final float SOFT_LIMIT_UPPER = 4.8f;
                 public static final float SOFT_LIMIT_LOWER = 0.4f;
 
