@@ -102,8 +102,8 @@ public final class Constants {
         }
         public static final class IntakeMotionParameters {
             public static final double INTAKE_SPINNER_PERCENT_OUTPUT = 0.35;
-            public static final double INTAKE_PIVOT_PERCENT_OUTPUT = 0.18;
-            public static final double INTAKE_PIVOT_PERCENT_OUTPUT_UP = 0.02;
+            public static final double INTAKE_PIVOT_PERCENT_OUTPUT = 0.25;
+            public static final double INTAKE_PIVOT_PERCENT_OUTPUT_UP = 0.027;
             public static final double INTAKE_ZERO = 0;
 
             public static final int ZEROED_ENCODER_TICKS = 65;
@@ -155,10 +155,10 @@ public final class Constants {
                 public static final int TIMEOUT = 10;
 
                 public static final boolean ENABLE_CURRENT_LIMIT = true;
-                public static final int CURRENT_LIMIT = 25;
+                public static final int CURRENT_LIMIT = 15;
                 public static final double OPEN_LOOP_RAMP = 0.1;
-                public static final double PEAK_OUTPUT_FORWARD = 1;
-                public static final double PEAK_OUTPUT_REVERSE = -1;
+                public static final double PEAK_OUTPUT_FORWARD = 0.5;
+                public static final double PEAK_OUTPUT_REVERSE = -0.5;
                 public static final float SOFT_LIMIT_UPPER = 4.8f;
                 public static final float SOFT_LIMIT_LOWER = 0.4f;
 

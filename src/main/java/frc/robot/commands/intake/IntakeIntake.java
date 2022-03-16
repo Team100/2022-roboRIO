@@ -36,7 +36,7 @@ public class IntakeIntake extends CommandBase {
         // if(intake.getPot() >= Constants.IntakeConstants.PivotConstants.DOWN_POSITION){
         // intake.setPivot(Constants.IntakeConstants.PivotConstants.DOWN_POSITION);
         // SmartDashboard.putNumber("intake setpoint", Constants.IntakeConstants.PivotConstants.DOWN_POSITION);
-        if (intake.getPot() >= -30) {
+        if (intake.getPot() >= -36) {
             intake.runPivot(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_PIVOT_PERCENT_OUTPUT);
             intake.runSpinner(0);
         } else {
