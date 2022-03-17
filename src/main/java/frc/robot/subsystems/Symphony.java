@@ -25,7 +25,7 @@ public class Symphony extends SubsystemBase {
       instruments.add(FX[i]);
     }
     orchestra = new Orchestra(instruments);
-    orchestra.loadMusic("mega.chrp"); 
+    orchestra.loadMusic("birth.chrp"); 
     orchestra.pause();
   }
 
