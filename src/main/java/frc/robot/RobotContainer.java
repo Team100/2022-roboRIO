@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
+import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.ScheduleCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
@@ -80,7 +81,7 @@ public class RobotContainer {
     private final AlignClimber alignCommand = new AlignClimber(drivetrain);
     private final IntakeIntake intakeIntakeCommand = new IntakeIntake(intake);
     private final IntakeEject intakeEjectCommand = new IntakeEject(intake);
-    private final IntakeStop intakeStopCommand = new IntakeStop(intake);
+    private final BetterIntakeStop intakeStopCommand = new BetterIntakeStop(intake);
     private final ShootHigh shootHighCommand = new ShootHigh(shooter);
     private final ShootLow shootLowCommand = new ShootLow(shooter);
     private final ShootEject shootEjectCommand = new ShootEject(shooter);
@@ -124,7 +125,7 @@ public class RobotContainer {
         HookDownButton.whenPressed(HookDownCommand);
         HookUpButton.whenPressed(HookUpCommand);
         slowButton.whileHeld(driveSlowCommand);
-        stopAll.whenPressed(new ParallelCommandGroup(new ClimberStop(climber), new IndexerStop(indexer), new IntakeStop(intake), new ShootStop(shooter)));
+        stopAll.whenPressed(new ParallelCommandGroup(new ClimberStop(climber), new IndexerStop(indexer), new BetterIntakeStop(intake), new ShootStop(shooter)));
         intakeButton.whenPressed(new SequentialCommandGroup(new ParallelDeadlineGroup(intakeCommand, intakeIntakeCommand), new WaitCommand(0.2)));
         shootHighButton.whileHeld(new ParallelCommandGroup(shootHighCommand, feedHighCommand));
         shootLowButton.whileHeld(new ParallelCommandGroup(shootLowCommand, feedLowCommand));

@@ -109,7 +109,7 @@ public final class Constants {
             public static final double DOWN_POSITION = 2.5; // (250d / 360d) * 3.3;
         }
         public static final class IntakeMotionParameters {
-            public static final double INTAKE_SPINNER_PERCENT_OUTPUT = 0.35;
+            public static final double INTAKE_SPINNER_PERCENT_OUTPUT = -0.35;
             public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN = -0.4;
             public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN_DECEL = 0.35;
             public static final double INTAKE_P0IVOT_PERCENT_OUTPUT_UP = 0.027;
@@ -178,9 +178,9 @@ public final class Constants {
         public static final class ShooterMotionParameters {
             public static final double SHOOTER_PERCENT_OUTPUT = 0.1; //0.17 //0.175
             public static final double SHOOTER_VELOCITY_HIGH = -4150; //0.17 //0.175
-            public static final double SHOOTER_VELOCITY_LOW = -2500; //0.17 //0.175 //-2500
+            public static final double SHOOTER_VELOCITY_LOW = -2300; //0.17 //0.175 //-2500
 
-			public static final double NOMINAL_LOW_VELOCITY = 2480;
+			public static final double NOMINAL_LOW_VELOCITY = 2280;
             public static final double NOMINAL_HIGH_VELOCITY = 4100;
 
             
