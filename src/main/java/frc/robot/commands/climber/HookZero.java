@@ -29,7 +29,7 @@ boolean done;
   @Override
   public void execute() {
     System.out.println("zeroing");
-      climber.setWinch(0.17);
+      climber.setWinch(0.25);
       climber.zeroWinch();
   }
 

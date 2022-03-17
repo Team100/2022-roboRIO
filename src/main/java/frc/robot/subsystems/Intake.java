@@ -72,7 +72,7 @@ public class Intake extends ProfiledPIDSubsystem {
         if(pot.get()<27){
             pivot.motor.setVoltage(output);
         }
-        System.out.println("output is  " + output);
+        // System.out.println("output is  " + output);
     }
 
     @Override

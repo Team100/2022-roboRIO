@@ -41,6 +41,6 @@ public class StepTwo extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return drivetrain.getCurrentEncoderPosition() >= 0;
+        return drivetrain.getCurrentEncoderPosition() >= -30000;
     }
 }
