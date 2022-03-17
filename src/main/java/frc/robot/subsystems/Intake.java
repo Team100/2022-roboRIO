@@ -4,27 +4,16 @@
 
 package frc.robot.subsystems;
 
-import com.revrobotics.AnalogInput;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.MotorFeedbackSensor;
-import com.revrobotics.CANSparkMax.SoftLimitDirection;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-import com.revrobotics.SparkMaxAnalogSensor.Mode;
-
-import edu.wpi.first.wpilibj.AnalogEncoder;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
-import edu.wpi.first.wpilibj.AnalogTrigger;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj2.command.PIDSubsystem;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.ProfiledPIDSubsystem;
 import frc.robot.Constants;
 import frc.robot.FRCLib.Motors.FRCNEO;
-import frc.robot.FRCLib.Motors.FRCTalonFX;
-import frc.robot.FRCLib.Motors.FRCTalonSRX;
-import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.math.controller.ProfiledPIDController;
+import edu.wpi.first.math.trajectory.TrapezoidProfile;
+import edu.wpi.first.math.trajectory.TrapezoidProfile.State;
 
-public class Intake extends PIDSubsystem {
+public class Intake extends ProfiledPIDSubsystem {
     private FRCNEO spin, pivot;
     private double pivotSetpoint;
     private AnalogPotentiometer pot;
@@ -33,7 +22,14 @@ public class Intake extends PIDSubsystem {
      * Creates a new Intake.
      */
     public Intake() {
-        super(new PIDController(Constants.IntakeConstants.IntakeMotionParameters.KP, Constants.IntakeConstants.IntakeMotionParameters.KI, Constants.IntakeConstants.IntakeMotionParameters.KD));
+        super(new ProfiledPIDController(
+            Constants.IntakeConstants.IntakeMotionParameters.KP,
+            Constants.IntakeConstants.IntakeMotionParameters.KI,
+            Constants.IntakeConstants.IntakeMotionParameters.KD,
+            new TrapezoidProfile.Constraints(
+                192,
+                70)),
+            Constants.IntakeConstants.PivotConstants.UP_POSITION);
         getController().setTolerance(0.1);
         //setSetpoint(Constants.IntakeConstants.PivotConstants.UP_POSITION);
 
@@ -67,17 +63,22 @@ public class Intake extends PIDSubsystem {
             .build();
         addChild("intakeSpin", spin);
         addChild("intakePivot", pivot);
+
+        setGoal(Constants.IntakeConstants.PivotConstants.UP_POSITION);
     }
 
     @Override
-    public void useOutput(double output, double setpoint) {
-        // pivot.motor.setVoltage(output);
-        // System.out.println("output is  " + output);
+    public void useOutput(double output, State setpoint) {
+        if(pot.get()<27){
+            pivot.motor.setVoltage(output);
+        }
+        System.out.println("output is  " + output);
     }
 
     @Override
     public double getMeasurement() {
-        return pot.get();
+        double p = pot.get();
+        return Math.round(1000*p)/1000;
     }
 
     public boolean atSetpoint() {
@@ -86,30 +87,34 @@ public class Intake extends PIDSubsystem {
 
     public void pivotUp() {
         // super.disable();
-        getController().setSetpoint(Constants.IntakeConstants.PivotConstants.UP_POSITION);
+        getController().setGoal(Constants.IntakeConstants.PivotConstants.UP_POSITION);
         super.enable();
     }
 
     public void pivotDown() {
         // super.disable();
-        getController().setSetpoint(Constants.IntakeConstants.PivotConstants.DOWN_POSITION);
+        getController().setGoal(Constants.IntakeConstants.PivotConstants.DOWN_POSITION);
         super.enable();
     }
 
     @Override
     public void periodic() {
+        if (m_enabled) {
+            useOutput(m_controller.calculate(getMeasurement(), getController().getGoal()), m_controller.getSetpoint());
+
+        }
         // getController().calculate(pot.get());
-        if (isEnabled()) pivot.motor.setVoltage(getController().calculate(getMeasurement()));
+        // if (isEnabled()) pivot.motor.setVoltage(getController().calculate(getMeasurement()));
         //onInit(); // Oh no no no no no
         
         SmartDashboard.putNumber("Intake Pivot raw analog", getMeasurement());
         SmartDashboard.putNumber("Intake Pivot Motor Output", pivot.motor.get());
         SmartDashboard.putNumber("Intake Pivot Applied Output", pivot.motor.getAppliedOutput());
         SmartDashboard.putNumber("Errorrororor", getController().getPositionError());
-        SmartDashboard.putNumber("setpointtttttttttt", getController().getSetpoint());
+        SmartDashboard.putNumber("setpointtttttttttt", getController().getGoal().position);
         SmartDashboard.putBoolean("At Setpoint", atSetpoint());
         SmartDashboard.putBoolean("enabled", super.isEnabled());
-        SmartDashboard.putNumber("current current current", pivot.motor.getOutputCurrent());
+        SmartDashboard.putNumber("current current current", pivot.motor.getOutputCurrent()*(pivot.motor.getAppliedOutput()));
     }
 
     public void onInit() {
@@ -124,8 +129,8 @@ public class Intake extends PIDSubsystem {
     }
 
     public void runSpinner(double percentOutput) {
-        if (getSetpoint() == Constants.IntakeConstants.PivotConstants.UP_POSITION && atSetpoint())
         spin.drivePercentOutput(percentOutput);
     }
+
 }
     

@@ -25,6 +25,7 @@ public class IntakeIntake extends CommandBase {
         done = false;
         intake.disable();
         //intake.pivotDown();
+        //intake.pivotDown();
 
     }
 

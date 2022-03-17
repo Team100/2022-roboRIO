@@ -21,6 +21,7 @@ public class IntakeStop extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
+        intake.pivotUp();
         //this.intake.runSpinner(0);
         //this.intake.runPivot(0);
         // this.intake.setPivot(Constants.IntakeConstants.PivotConstants.UP_POSITION);
@@ -34,7 +35,6 @@ public class IntakeStop extends CommandBase {
     @Override
     public void execute() {
         intake.runSpinner(0);
-        intake.pivotUp();
         // if(shouldBeUp){}
             // if (intake.getPot() <= -30) {
             //     intake.runPivot(-Math.abs(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_PIVOT_PERCENT_OUTPUT_UP *(1.05*((Constants.IntakeConstants.IntakeMotionParameters.PP_ADJUSTMENT_CONSTANT)+intake.getPot()))));
