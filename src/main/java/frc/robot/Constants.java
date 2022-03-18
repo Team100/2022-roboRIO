@@ -152,7 +152,7 @@ public final class Constants {
             public static final class IntakePivot {
                 public static final int CAN_ID = 2; //2
 
-                public static final boolean INVERT = true;
+                public static final InvertType INVERT = InvertType.None;
                 public static final int FEEDBACK_PORT = 0;
                 public static final boolean SENSOR_PHASE = false;
 
@@ -168,7 +168,7 @@ public final class Constants {
 
                 public static final SparkMaxAnalogSensor.Mode ANALOG_MODE = SparkMaxAnalogSensor.Mode.kAbsolute;
 
-                public static final IdleMode NEUTRAL_MODE = IdleMode.kBrake;
+                public static final NeutralMode NEUTRAL_MODE = NeutralMode.Brake;
 
                 public static final MotorType MOTOR_TYPE = MotorType.kBrushed;
             }
