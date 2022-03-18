@@ -17,6 +17,7 @@ public class Intake extends ProfiledPIDSubsystem {
     private FRCNEO spin, pivot;
     private double pivotSetpoint;
     private AnalogPotentiometer pot;
+    private int cycleCount;
 
     /**
      * Creates a new Intake.
@@ -69,8 +70,14 @@ public class Intake extends ProfiledPIDSubsystem {
 
     @Override
     public void useOutput(double output, State setpoint) {
-        if(pot.get()<27){
+        if(pot.get() < 26){
             pivot.motor.setVoltage(output);
+        } else {
+            cycleCount++;
+            if (cycleCount >= 50) {
+                pivot.motor.setVoltage(0);
+                cycleCount = 0;
+            }
         }
         // System.out.println("output is  " + output);
     }
@@ -107,6 +114,7 @@ public class Intake extends ProfiledPIDSubsystem {
         // if (isEnabled()) pivot.motor.setVoltage(getController().calculate(getMeasurement()));
         //onInit(); // Oh no no no no no
         
+        SmartDashboard.putNumber("Intake Cycle Count", cycleCount);
         SmartDashboard.putNumber("Intake Pivot raw analog", getMeasurement());
         SmartDashboard.putNumber("Intake Pivot Motor Output", pivot.motor.get());
         SmartDashboard.putNumber("Intake Pivot Applied Output", pivot.motor.getAppliedOutput());

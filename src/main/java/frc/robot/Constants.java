@@ -105,7 +105,7 @@ public final class Constants {
             }
         }
         public static final class PivotConstants {
-            public static final double UP_POSITION = 28;
+            public static final double UP_POSITION = 26.5;
             public static final double DOWN_POSITION = 2.5; // (250d / 360d) * 3.3;
         }
         public static final class IntakeMotionParameters {

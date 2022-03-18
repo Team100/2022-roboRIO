@@ -170,6 +170,6 @@ public class Drivetrain extends SubsystemBase {
     }
 
     public boolean getAutoEnd() {
-        return getCurrentEncoderPosition() >= -150000;
+        return getCurrentEncoderPosition() <= -150000;
     }
 }
