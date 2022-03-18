@@ -22,7 +22,7 @@ public class IntakeEject extends CommandBase {
     @Override
     public void initialize() {
         done = false;
-        intake.runSpinner(-Constants.IntakeConstants.IntakeMotionParameters.INTAKE_SPINNER_PERCENT_OUTPUT);
+
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -34,7 +34,11 @@ public class IntakeEject extends CommandBase {
         // if(intake.getCurrentPosition() <= Constants.IntakeConstants.PivotConstants.DOWN_POSITION){
         //     intake.runSpinner(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_SPINNER_PERCENT_OUTPUT);
         // }
-
+        if(intake.getMeasurement()<=10){
+            intake.runSpinner(-Constants.IntakeConstants.IntakeMotionParameters.INTAKE_SPINNER_PERCENT_OUTPUT);
+        }else{
+            intake.runSpinner(0);
+        }
 
     }
 
