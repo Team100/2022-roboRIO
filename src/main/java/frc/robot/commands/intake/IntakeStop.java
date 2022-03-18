@@ -35,8 +35,6 @@ public class IntakeStop extends CommandBase {
     @Override
     public void execute() {
         intake.runSpinner(0);
-        if (intake.getMeasurement() >= 26) intake.disable();
-        else intake.enable();
         // if(shouldBeUp){}
             // if (intake.getPot() <= -30) {
             //     intake.runPivot(-Math.abs(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_PIVOT_PERCENT_OUTPUT_UP *(1.05*((Constants.IntakeConstants.IntakeMotionParameters.PP_ADJUSTMENT_CONSTANT)+intake.getPot()))));
@@ -51,7 +49,6 @@ public class IntakeStop extends CommandBase {
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        // intake.disable();
     }
 
     // Returns true when the command should end.

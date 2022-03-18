@@ -30,7 +30,7 @@ public class Intake extends ProfiledPIDSubsystem {
                 192,
                 70)),
             Constants.IntakeConstants.PivotConstants.UP_POSITION);
-        getController().setTolerance(0.5);
+        getController().setTolerance(0.1);
         //setSetpoint(Constants.IntakeConstants.PivotConstants.UP_POSITION);
 
         pot = new AnalogPotentiometer(Constants.IntakeConstants.IntakeSensors.IntakePot.ID,100,-37);

@@ -4,7 +4,6 @@
 
 package frc.robot.commands.intake;
 
-import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
@@ -18,6 +17,6 @@ public class BetterIntakeStop extends SequentialCommandGroup {
   public BetterIntakeStop(Intake intake) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new ParallelRaceGroup(new IntakeStop(intake), new WaitCommand(1.5)), new WaitCommand(2.5), new InstantCommand(() -> { intake.enable(); }));
+    addCommands(new ParallelRaceGroup(new IntakeStop(intake), new WaitCommand(2)), new WaitCommand(3));
   }
 }
