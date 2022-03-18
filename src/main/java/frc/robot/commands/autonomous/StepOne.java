@@ -6,6 +6,7 @@ package frc.robot.commands.autonomous;
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 //import frc.robot.commands.automatic.IntakeCargo;
@@ -32,8 +33,9 @@ public class StepOne extends ParallelDeadlineGroup {
         //addCommands(new IntakeIntake(intake));   //intake a new ball
 
         // addCommands(new IntakeCargo(new IntakeIntake(intake), new IndexerIntake(indexer)));
-        addCommands(new InstantCommand(() -> {
-            drivetrain.driveWithRamp(-0.2, -0.2);
-        }));
+        addCommands(new RunCommand(() -> drivetrain.driveWithRamp(-0.2, -0.2), drivetrain)
+                    .until(drivetrain::getAutoEnd)
+                    .andThen(new InstantCommand(() -> { drivetrain.driveWithoutRamp(0, 0); }, drivetrain))
+        );
     }
 }
