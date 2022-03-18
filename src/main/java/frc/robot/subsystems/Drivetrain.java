@@ -154,6 +154,9 @@ public class Drivetrain extends SubsystemBase {
 
     @Override
     public void periodic() {
+        
+        SmartDashboard.putBoolean("sensorLeft", getSensorLeft());
+        SmartDashboard.putBoolean("sensorRight", getSensorRight());
         // This method will be called once per scheduler run
         // SmartDashboard.putBoolean("allign sensor starboard", getSensorRight());
         // SmartDashboard.putBoolean("allign sensor port", getSensorLeft());

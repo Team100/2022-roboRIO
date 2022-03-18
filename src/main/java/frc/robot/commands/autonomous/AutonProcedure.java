@@ -10,10 +10,13 @@ import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.indexer.IndexerFeedHigh;
+import frc.robot.commands.indexer.IndexerFeedLow;
 import frc.robot.commands.indexer.IndexerStop;
 import frc.robot.commands.intake.BetterIntakeStop;
+import frc.robot.commands.intake.IntakeIntake;
 //import frc.robot.commands.automatic.AutoShoot;
 import frc.robot.commands.shooter.ShootHigh;
+import frc.robot.commands.shooter.ShootLow;
 import frc.robot.commands.shooter.ShootStop;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Indexer;
@@ -27,9 +30,9 @@ public class AutonProcedure extends SequentialCommandGroup {
     /** Creates a new AutonProcedure. */
     public AutonProcedure(Drivetrain drivetrain, Intake intake, Indexer indexer, Shooter shooter) {
         // Add your commands in the addCommands() call, e.g.
-        // addCommands(new FooCommand(), new BarCommand());
+        // addCommands(new FooCommand(), new BarCommand());7
         addCommands(new InstantCommand(() -> { drivetrain.zeroCurrentPosition(); }, drivetrain));//zero the drivetrain
-        addCommands(new ParallelDeadlineGroup(new WaitCommand(4), new ShootHigh(shooter),  new IndexerFeedHigh(indexer, shooter))); //shoot one loaded ball into high goal
+        addCommands(new ParallelDeadlineGroup(new WaitCommand(4), new ShootLow(shooter),  new IndexerFeedLow(indexer, shooter), new IntakeIntake(intake))); //shoot one loaded ball into high goal
         addCommands(new InstantCommand(() -> { shooter.set(0); }, shooter));//stops the shoot
         addCommands(new StepOne(intake, indexer, drivetrain));                                   //drive back and grab another ball
         addCommands(new ParallelDeadlineGroup(new StepTwo(drivetrain), new BetterIntakeStop(intake), new IndexerStop(indexer)));                                           //drive back to start point(maybe just put drivetrain falcons in brake?)

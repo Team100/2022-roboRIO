@@ -380,6 +380,11 @@ public class FRCNEO implements Sendable {
         motor.setInverted(this.isInverted);
         System.out.println("Configuring Inverted");
 
+        if (this.currentLimitEnabled) {
+            motor.setSmartCurrentLimit(this.getCurrentLimit());
+            motor.setSecondaryCurrentLimit(this.getCurrentLimit());
+        }
+
         if (this.isForwardSoftLimitEnabled()) {
             motor.enableSoftLimit(SoftLimitDirection.kForward, this.isForwardSoftLimitEnabled());
             motor.setSoftLimit(SoftLimitDirection.kForward, this.getForwardSoftLimitThreshold());
