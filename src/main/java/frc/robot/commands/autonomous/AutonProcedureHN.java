@@ -10,13 +10,9 @@ import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.indexer.IndexerFeedHigh;
-import frc.robot.commands.indexer.IndexerFeedLow;
 import frc.robot.commands.indexer.IndexerStop;
-import frc.robot.commands.intake.BetterIntakeStop;
 import frc.robot.commands.intake.IntakeIntake;
-//import frc.robot.commands.automatic.AutoShoot;
 import frc.robot.commands.shooter.ShootHigh;
-import frc.robot.commands.shooter.ShootLow;
 import frc.robot.commands.shooter.ShootStop;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Indexer;
@@ -33,7 +29,7 @@ public class AutonProcedureHN extends SequentialCommandGroup {
         // addCommands(new FooCommand(), new BarCommand());7
         addCommands(new InstantCommand(() -> { drivetrain.zeroCurrentPosition(); }, drivetrain));//zero the drivetrain
 
-        addCommands(new ParallelDeadlineGroup(new WaitCommand(4), new ShootHigh(shooter),  new IndexerFeedHigh(indexer, shooter), new IntakeIntake(intake))); //shoot one loaded ball into high goal
+        addCommands(new ParallelDeadlineGroup(new WaitCommand(3), new ShootHigh(shooter),  new IndexerFeedHigh(indexer, shooter), new IntakeIntake(intake))); //shoot one loaded ball into high goal
         
         addCommands(new ParallelCommandGroup(new IndexerStop(indexer), new ShootStop(shooter))); //stop everything
     }

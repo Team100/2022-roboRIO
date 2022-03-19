@@ -9,7 +9,8 @@ import frc.robot.subsystems.Drivetrain;
 
 public class StepTwo extends CommandBase {
     private Drivetrain drivetrain;
-    double stopPosition;
+    private double stopPosition;
+
     /** Creates a new StepTwo. */
     public StepTwo(Drivetrain drivetrain, double stopPosition) {
         this.drivetrain = drivetrain;
@@ -27,7 +28,7 @@ public class StepTwo extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-    drivetrain.driveWithRamp(0.2, 0.2);
+    drivetrain.driveWithRamp(0.15, 0.15);
     }
 
 
@@ -42,6 +43,6 @@ public class StepTwo extends CommandBase {
     @Override
     public boolean isFinished() {
 
-        return drivetrain.getCurrentEncoderPosition() >= -stopPosition;
+        return drivetrain.getCurrentEncoderPosition() >= stopPosition;
     }
 }

@@ -7,6 +7,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.FRCLib.Motors.FRCTalonFX;
@@ -152,8 +153,9 @@ public class Drivetrain extends SubsystemBase {
     @Override
     public void periodic() {
         
-        // SmartDashboard.putBoolean("sensorLeft", getSensorLeft());
-        // SmartDashboard.putBoolean("sensorRight", getSensorRight());
+        SmartDashboard.putBoolean("sensorLeft", getSensorLeft());
+        SmartDashboard.putBoolean("sensorRight", getSensorRight());
+        SmartDashboard.putNumber("drivetrain average encoder value", getCurrentEncoderPosition());
         // This method will be called once per scheduler run
         // SmartDashboard.putBoolean("allign sensor starboard", getSensorRight());
         // SmartDashboard.putBoolean("allign sensor port", getSensorLeft());

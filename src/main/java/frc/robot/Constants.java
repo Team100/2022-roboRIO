@@ -21,7 +21,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 public final class Constants {
     public static final class DrivetrainConstants {
         public static final class DrivetrainMotion{
-            public static final double ALIGN_SPEED = -0.1;
+            public static final double ALIGN_SPEED = -0.15;
             public static final double SLOW_SPEED = 0.2;
         }
         public static final class DrivetrainSensors{
@@ -178,12 +178,14 @@ public final class Constants {
     public static final class ShooterConstants {
         public static final class ShooterMotionParameters {
             public static final double SHOOTER_PERCENT_OUTPUT = 0.1; //0.17 //0.175
-            public static final double SHOOTER_VELOCITY_HIGH = -4000; //0.17 //0.175
-            public static final double SHOOTER_VELOCITY_LOW = -2300; //0.17 //0.175 //-2500
-            public static final double SHOOTER_VELOCITY_LOW_FAR = -2500; // TODO: find value
 
-			public static final double NOMINAL_LOW_VELOCITY = 2280;
+            public static final double SHOOTER_VELOCITY_LOW = -2200; //0.17 //0.175 //-2500
+			public static final double NOMINAL_LOW_VELOCITY = 2180;
+
+            public static final double SHOOTER_VELOCITY_LOW_FAR = -2500; // TODO: find value
 			public static final double NOMINAL_LOW_FAR_VELOCITY = 2480; // TODO: find value
+
+            public static final double SHOOTER_VELOCITY_HIGH = -4000; //0.17 //0.175
             public static final double NOMINAL_HIGH_VELOCITY = 3950;
 
             

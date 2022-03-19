@@ -33,7 +33,7 @@ public class StepOne extends ParallelDeadlineGroup {
         //addCommands(new IntakeIntake(intake));   //intake a new ball
 
         // addCommands(new IntakeCargo(new IntakeIntake(intake), new IndexerIntake(indexer)));
-        addCommands(new RunCommand(() -> drivetrain.driveWithRamp(-0.2, -0.2), drivetrain)
+        addCommands(new RunCommand(() -> drivetrain.driveWithRamp(-0.14, -0.14), drivetrain)
                     .until(drivetrain::getAutoEnd)
                     .andThen(new InstantCommand(() -> { drivetrain.driveWithoutRamp(0, 0); }, drivetrain))
         );

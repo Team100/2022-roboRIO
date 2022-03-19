@@ -3,6 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.subsystems;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ShooterConstants.*;
 import frc.robot.FRCLib.Motors.FRCNEO;
@@ -61,10 +62,15 @@ public class Shooter extends SubsystemBase {
     public void setVelocity(double velocity){
         this.shootMotor.driveVelocity(velocity);
     }
+
+    // public double getAdjustment(){
+    //     double limiter = (-rightJoystick.getRawAxis(2)+1)/2;
+    // }
     
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
-        // SmartDashboard.putNumber("shooter velocity", (shootMotor.getSensorVelocity()));        
+        // SmartDashboard.putNumber("shooter offset", value)
+        SmartDashboard.putNumber("shooter velocity", (shootMotor.getSensorVelocity()));        
     }
 }

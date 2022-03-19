@@ -45,7 +45,7 @@ public class RobotContainer {
     private final DigitalInput secondBallOption = new DigitalInput(4);
     private final DigitalInput yeetOrLeave = new DigitalInput(5);
 
-    int gitforcepushorginmaster = 15;
+    int gitforcepushorginmaster = 2;
 
     // OI Devices
     private final Joystick leftJoystick = new Joystick(0);
@@ -55,7 +55,7 @@ public class RobotContainer {
     private final Joystick buttonBoard = new Joystick(3);
     private final JoystickButton turboButton = new JoystickButton(rightJoystick, 1);
     private final JoystickButton slowButton = new JoystickButton(rightJoystick, 3);
-    private final JoystickButton intakeButton = new JoystickButton(buttonBoard, 2);
+    private final JoystickButton intakeButton = new JoystickButton(buttonBoard, 15);
     private final JoystickButton ejectButton = new JoystickButton(buttonBoard, 5);
 
     private final JoystickButton alignButton = new JoystickButton(leftJoystick, 1);
@@ -143,6 +143,7 @@ public class RobotContainer {
     public void onInit() {
         // intake.onInit();
         climber.onInit();
+        drivetrain.setBrakeMode(false);
     }
 
     public int parseAutoSelector() {
