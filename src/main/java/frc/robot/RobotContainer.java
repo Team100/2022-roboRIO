@@ -44,6 +44,7 @@ public class RobotContainer {
     private final DigitalInput firstBallOption = new DigitalInput(3);
     private final DigitalInput secondBallOption = new DigitalInput(4);
     private final DigitalInput yeetOrLeave = new DigitalInput(5);
+    private final DigitalInput stopAtWall = new DigitalInput(6);
 
     int gitforcepushorginmaster = 2;
 
@@ -167,15 +168,15 @@ public class RobotContainer {
             case 1: // Low far, none
             return new AutonProcedureLNF(drivetrain, intake, indexer, shooter);
             case 2: // Low close, high
-            return new AutonProcedureLH(drivetrain, intake, indexer, shooter);
+            return new AutonProcedureLH(drivetrain, intake, indexer, shooter, !this.stopAtWall.get());
             case 3: // Low far, high
-            return new AutonProcedureLHF(drivetrain, intake, indexer, shooter);
+            return new AutonProcedureLHF(drivetrain, intake, indexer, shooter, !this.stopAtWall.get());
             case 4: // High close, none
             case 5: // High far, none
             return new AutonProcedureHN(drivetrain, intake, indexer, shooter);
             case 6: // High close, high
             case 7: // High far, high
-            return new AutonProcedureHH(drivetrain, intake, indexer, shooter);
+            return new AutonProcedureHH(drivetrain, intake, indexer, shooter, !this.stopAtWall.get());
         }
     }
 }

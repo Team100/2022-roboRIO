@@ -171,7 +171,11 @@ public class Drivetrain extends SubsystemBase {
         // This method will be called once per scheduler run during simulation
     }
 
-    public boolean getAutoEnd() {
-        return getCurrentEncoderPosition() <= -150000;
+    public boolean getAutoEnd(int distance) {
+        return getCurrentEncoderPosition() <= distance;
     }
+    
+    // public boolean getAutoEnd() {
+    //     return getCurrentEncoderPosition() <= -150000;
+    // }
 }
