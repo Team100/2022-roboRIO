@@ -5,6 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -65,7 +66,33 @@ public class Robot extends TimedRobot {
   public void disabledInit() {}
 
   @Override
-  public void disabledPeriodic() {}
+  public void disabledPeriodic() {
+    String commandName;
+    switch(m_robotContainer.parseAutoSelector()) {
+      default:
+      case 0: // Low close, none
+        commandName = "L,N";
+        break;
+      case 1: // Low far, none
+        commandName = "LF,N";
+        break;
+      case 2: // Low close, high
+        commandName = "LC,H";
+        break;
+      case 3: // Low far, high
+        commandName = "LF,H";
+        break;
+      case 4: // High close, none
+      case 5: // High far, none
+        commandName = "H,N";
+        break;
+      case 6: // High close, high
+      case 7: // High far, high
+        commandName = "H,H";
+        break;
+    }
+    SmartDashboard.putString("Auto Command", commandName);
+  }
 
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override

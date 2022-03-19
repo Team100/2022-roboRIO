@@ -41,9 +41,9 @@ public class RobotContainer {
     private final Symphony symphony = new Symphony();
 
     // Auton DIP Switches
-    private final DigitalInput firstBallOption = new DigitalInput(5);
-    private final DigitalInput secondBallOption = new DigitalInput(6);
-    private final DigitalInput yeetOrLeave = new DigitalInput(7);
+    private final DigitalInput firstBallOption = new DigitalInput(3);
+    private final DigitalInput secondBallOption = new DigitalInput(4);
+    private final DigitalInput yeetOrLeave = new DigitalInput(5);
 
     int gitforcepushorginmaster = 11;
 
@@ -145,21 +145,21 @@ public class RobotContainer {
         climber.onInit();
     }
 
+    public int parseAutoSelector() {
+        int selection = 0;
+        if (this.firstBallOption.get()) selection += 4;
+        if (this.secondBallOption.get()) selection += 2;
+        if (this.yeetOrLeave.get()) selection += 1;
+        return selection;
+    }
+
     /**
      * Use this to pass the autonomous command to the main {@link Robot} class.
      *
      * @return the command to run in autonomous
      */
     public Command getAutonomousCommand() {
-        // An ExampleCommand will run in autonomous
-        //return null;
-
-        int selection = 0;
-        if (this.firstBallOption.get()) selection += 4;
-        if (this.secondBallOption.get()) selection += 2;
-        if (this.yeetOrLeave.get()) selection += 1;
-
-        switch(selection) {
+        switch(parseAutoSelector()) {
             default:
             case 0: // Low close, none
             return new AutonProcedureLN(drivetrain, intake, indexer, shooter);
