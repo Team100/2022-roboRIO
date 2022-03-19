@@ -44,6 +44,7 @@ public class RobotContainer {
     private final Indexer indexer = new Indexer();
     private final Symphony symphony = new Symphony();
 
+    int gitforcepushorginmaster = 11;
 
     // OI Devices
     private final Joystick leftJoystick = new Joystick(0);
@@ -70,6 +71,7 @@ public class RobotContainer {
     private final JoystickButton stopAll = new JoystickButton(buttonBoard, 4);
 
     private final JoystickButton fixClimberButton = new JoystickButton(rightJoystick, 7);
+    private final JoystickButton indexTwoButton = new JoystickButton(buttonBoard, gitforcepushorginmaster);
 
     // private final JoystickButton runPivot = new JoystickButton(gamepad, 1);
     //private final JoystickButton controlBallButton = new JoystickButton(buttonBoard, 14);
@@ -92,7 +94,6 @@ public class RobotContainer {
     private final IndexerFeedHigh feedHighCommand = new IndexerFeedHigh(indexer, shooter);
     private final IndexerFeedLow feedLowCommand = new IndexerFeedLow(indexer, shooter);
     private final ClimberStop climberStopCommand = new ClimberStop(climber);
-
     private final HookUp HookUpCommand = new HookUp(climber);
     private final HookDown HookDownCommand = new HookDown(climber, symphony);    
     private final HookZero HookZeroCommand = new HookZero(climber);
@@ -127,6 +128,7 @@ public class RobotContainer {
         slowButton.whileHeld(driveSlowCommand);
         stopAll.whenPressed(new ParallelCommandGroup(new ClimberStop(climber), new IndexerStop(indexer), new BetterIntakeStop(intake), new ShootStop(shooter)));
         intakeButton.whenPressed(new SequentialCommandGroup(new ParallelDeadlineGroup(intakeCommand, intakeIntakeCommand), new WaitCommand(0.2)));
+        indexTwoButton.whenPressed(new SequentialCommandGroup(new ParallelDeadlineGroup(intakeCommand, intakeIntakeCommand), new WaitCommand(0.2), new ParallelDeadlineGroup(intakeCommand, intakeIntakeCommand), new WaitCommand(0.2)));
         shootHighButton.whileHeld(new ParallelCommandGroup(shootHighCommand, feedHighCommand));
         shootLowButton.whileHeld(new ParallelCommandGroup(shootLowCommand, feedLowCommand));
         ejectButton.whileHeld(new ParallelCommandGroup(intakeEjectCommand, indexerEjectCommand, shootEjectCommand));
