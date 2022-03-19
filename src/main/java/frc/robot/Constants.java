@@ -179,8 +179,10 @@ public final class Constants {
             public static final double SHOOTER_PERCENT_OUTPUT = 0.1; //0.17 //0.175
             public static final double SHOOTER_VELOCITY_HIGH = -4000; //0.17 //0.175
             public static final double SHOOTER_VELOCITY_LOW = -2300; //0.17 //0.175 //-2500
+            public static final double SHOOTER_VELOCITY_LOW_FAR = -2500; // TODO: find value
 
 			public static final double NOMINAL_LOW_VELOCITY = 2280;
+			public static final double NOMINAL_LOW_FAR_VELOCITY = 2480; // TODO: find value
             public static final double NOMINAL_HIGH_VELOCITY = 3950;
 
             

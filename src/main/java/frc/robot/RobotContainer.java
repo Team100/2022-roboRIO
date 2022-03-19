@@ -4,18 +4,14 @@
 
 package frc.robot;
 
-import javax.sql.rowset.spi.SyncProvider;
-
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
-import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
-import edu.wpi.first.wpilibj2.command.ScheduleCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -23,7 +19,7 @@ import frc.robot.subsystems.*;
 import frc.robot.commands.drivetrain.*;
 import frc.robot.commands.intake.*;
 import frc.robot.commands.indexer.*;
-import frc.robot.commands.autonomous.AutonProcedure;
+import frc.robot.commands.autonomous.*;
 import frc.robot.commands.climber.*;
 import frc.robot.commands.shooter.*;
 
@@ -44,12 +40,17 @@ public class RobotContainer {
     private final Indexer indexer = new Indexer();
     private final Symphony symphony = new Symphony();
 
+    // Auton DIP Switches
+    private final DigitalInput firstBallOption = new DigitalInput(5);
+    private final DigitalInput secondBallOption = new DigitalInput(6);
+    private final DigitalInput yeetOrLeave = new DigitalInput(7);
+
     int gitforcepushorginmaster = 11;
 
     // OI Devices
     private final Joystick leftJoystick = new Joystick(0);
     private final Joystick rightJoystick = new Joystick(1);
-    private final Joystick gamepad = new Joystick(2);
+    // private final Joystick gamepad = new Joystick(2);
     //private final JoystickButton indexButton = new JoystickButton(leftJoystick, 1);
     private final Joystick buttonBoard = new Joystick(3);
     private final JoystickButton turboButton = new JoystickButton(rightJoystick, 1);
@@ -152,6 +153,28 @@ public class RobotContainer {
     public Command getAutonomousCommand() {
         // An ExampleCommand will run in autonomous
         //return null;
-        return new AutonProcedure(drivetrain, intake, indexer, shooter);
+
+        int selection = 0;
+        if (this.firstBallOption.get()) selection += 4;
+        if (this.secondBallOption.get()) selection += 2;
+        if (this.yeetOrLeave.get()) selection += 1;
+
+        switch(selection) {
+            default:
+            case 0: // Low close, none
+            return new AutonProcedureLN(drivetrain, intake, indexer, shooter);
+            case 1: // Low far, none
+            return new AutonProcedureLNF(drivetrain, intake, indexer, shooter);
+            case 2: // Low close, high
+            return new AutonProcedureLH(drivetrain, intake, indexer, shooter);
+            case 3: // Low far, high
+            return new AutonProcedureLHF(drivetrain, intake, indexer, shooter);
+            case 4: // High close, none
+            case 5: // High far, none
+            return new AutonProcedureHN(drivetrain, intake, indexer, shooter);
+            case 6: // High close, high
+            case 7: // High far, high
+            return new AutonProcedureHH(drivetrain, intake, indexer, shooter);
+        }
     }
 }
