@@ -4,13 +4,12 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.FRCLib.Motors.FRCTalonFX;
 
 public class Climber extends SubsystemBase {
-  private FRCTalonFX tilt, winch;
+  private FRCTalonFX /*tilt,*/ winch;
   /** Creates a new Climber. */
   public Climber() {
     // tilt = new FRCTalonFX.FRCTalonFXBuilder(Constants.ClimberConstants.ClimberMotors.Tilt.CAN_ID)
@@ -60,6 +59,6 @@ public class Climber extends SubsystemBase {
 
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("main hooks position", mainPosition());
+    // SmartDashboard.putNumber("main hooks position", mainPosition());
   }
 }

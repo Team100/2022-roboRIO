@@ -4,12 +4,9 @@
 
 package frc.robot.subsystems;
 
-import java.util.function.BooleanSupplier;
-
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.FRCLib.Motors.FRCTalonFX;
@@ -155,14 +152,14 @@ public class Drivetrain extends SubsystemBase {
     @Override
     public void periodic() {
         
-        SmartDashboard.putBoolean("sensorLeft", getSensorLeft());
-        SmartDashboard.putBoolean("sensorRight", getSensorRight());
+        // SmartDashboard.putBoolean("sensorLeft", getSensorLeft());
+        // SmartDashboard.putBoolean("sensorRight", getSensorRight());
         // This method will be called once per scheduler run
         // SmartDashboard.putBoolean("allign sensor starboard", getSensorRight());
         // SmartDashboard.putBoolean("allign sensor port", getSensorLeft());
-        if(this.getCurrentCommand()!=null)SmartDashboard.putString("drivetrain command", this.getCurrentCommand().getName());
-        SmartDashboard.putNumber("drivetrain average encoder value", getCurrentEncoderPosition());
-        SmartDashboard.putString("drivetrain brake mode", rightFollower.getNeutralMode().toString());
+        // if(this.getCurrentCommand()!=null)SmartDashboard.putString("drivetrain command", this.getCurrentCommand().getName());
+        // SmartDashboard.putNumber("drivetrain average encoder value", getCurrentEncoderPosition());
+        // SmartDashboard.putString("drivetrain brake mode", rightFollower.getNeutralMode().toString());
         //SmartDashboard.putNumber("left motor", leftMaster.get)
     }
 

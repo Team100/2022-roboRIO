@@ -11,8 +11,6 @@ import frc.robot.Constants;
 import frc.robot.FRCLib.Motors.FRCNEO;
 import frc.robot.FRCLib.Motors.FRCTalonSRX;
 
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.math.trajectory.TrapezoidProfile.State;
@@ -20,7 +18,6 @@ import edu.wpi.first.math.trajectory.TrapezoidProfile.State;
 public class Intake extends ProfiledPIDSubsystem {
     private FRCNEO spin;
     private FRCTalonSRX pivot;
-    private double pivotSetpoint;
     private AnalogPotentiometer pot;
     private int cycleCount;
 
@@ -74,7 +71,7 @@ public class Intake extends ProfiledPIDSubsystem {
 
     @Override
     public void useOutput(double output, State setpoint) {
-        if(pot.get() < 26){
+        if(pot.get() < Constants.IntakeConstants.PivotConstants.UP_SETPOINT){
             pivot.motor.setVoltage(output);
         } else {
             cycleCount++;
@@ -124,16 +121,16 @@ public class Intake extends ProfiledPIDSubsystem {
         // if (isEnabled()) pivot.motor.setVoltage(getController().calculate(getMeasurement()));
         //onInit(); // Oh no no no no no
         
-        SmartDashboard.putNumber("Intake Cycle Count", cycleCount);
-        //SmartDashboard.putNumber("Intake Pivot raw analog", getMeasurement());
-        SmartDashboard.putNumber("Intake Pivot Motor Output", pivot.motor.get());
-        SmartDashboard.putNumber("Intake Pivot Applied Output", pivot.motor.getMotorOutputPercent());
-        SmartDashboard.putNumber("Errorrororor", getController().getPositionError());
-        SmartDashboard.putNumber("setpointtttttttttt", getController().getGoal().position);
-        SmartDashboard.putBoolean("At Setpoint", atSetpoint());
-        SmartDashboard.putBoolean("enabled", super.isEnabled());
-        SmartDashboard.putNumber("current current current", pivot.motor.getStatorCurrent());
-        SmartDashboard.putNumber("wattage wattege wattege", (pivot.motor.getStatorCurrent()*pivot.motor.getMotorOutputVoltage()));
+        // SmartDashboard.putNumber("Intake Cycle Count", cycleCount);
+        SmartDashboard.putNumber("Intake Pivot Angle", getMeasurement());
+        // SmartDashboard.putNumber("Intake Pivot Motor Output", pivot.motor.get());
+        // SmartDashboard.putNumber("Intake Pivot Applied Output", pivot.motor.getMotorOutputPercent());
+        // SmartDashboard.putNumber("Errorrororor", getController().getPositionError());
+        // SmartDashboard.putNumber("setpointtttttttttt", getController().getGoal().position);
+        // SmartDashboard.putBoolean("At Setpoint", atSetpoint());
+        // SmartDashboard.putBoolean("enabled", super.isEnabled());
+        // SmartDashboard.putNumber("current current current", pivot.motor.getStatorCurrent());
+        // SmartDashboard.putNumber("wattage wattege wattege", (pivot.motor.getStatorCurrent()*pivot.motor.getMotorOutputVoltage()));
     }
 
     public void onInit() {

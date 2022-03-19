@@ -4,7 +4,6 @@
 
 package frc.robot.commands.climber;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Symphony;
@@ -33,7 +32,7 @@ boolean done, first;
   @Override
   public void execute() {
     if(climber.mainPosition()>=ClimberConstants.ClimberMotionParameters.CLIMBER_BOTTOM){
-      SmartDashboard.putBoolean("we done boys?", true);
+      // SmartDashboard.putBoolean("we done boys?", true);
       climber.setWinch(0);
       if(first){
         first = false;
@@ -41,7 +40,7 @@ boolean done, first;
       }
     }else{
       climber.setWinch(ClimberConstants.ClimberMotionParameters.CLIMBER_PERCENT_OUTPUT);
-      SmartDashboard.putBoolean("we done boys?", false);
+      // SmartDashboard.putBoolean("we done boys?", false);
     }
   }
 
