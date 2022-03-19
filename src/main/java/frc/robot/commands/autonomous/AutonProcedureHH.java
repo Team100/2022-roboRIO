@@ -36,7 +36,7 @@ public class AutonProcedureHH extends SequentialCommandGroup {
         addCommands(new ParallelDeadlineGroup(new WaitCommand(4), new ShootHigh(shooter),  new IndexerFeedHigh(indexer, shooter), new IntakeIntake(intake))); //shoot one loaded ball into high goal
         addCommands(new InstantCommand(() -> { shooter.set(0); }, shooter)); //stops the shoot
         addCommands(new StepOne(intake, indexer, drivetrain)); //drive back and grab another ball
-        addCommands(new ParallelDeadlineGroup(new StepTwo(drivetrain), new BetterIntakeStop(intake), new IndexerStop(indexer))); //drive back to start point(maybe just put drivetrain falcons in brake?)
+        addCommands(new ParallelDeadlineGroup(new StepTwo(drivetrain, 0), new BetterIntakeStop(intake), new IndexerStop(indexer))); //drive back to start point(maybe just put drivetrain falcons in brake?)
         addCommands(new ParallelDeadlineGroup(new WaitCommand(4), new ShootHigh(shooter),  new IndexerFeedHigh(indexer, shooter))); //shoot your next loaded ball into high goal(needs to be tested)
         
         addCommands(new ParallelCommandGroup(new IndexerStop(indexer), new ShootStop(shooter))); //stop everything

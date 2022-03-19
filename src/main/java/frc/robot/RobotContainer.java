@@ -45,7 +45,7 @@ public class RobotContainer {
     private final DigitalInput secondBallOption = new DigitalInput(4);
     private final DigitalInput yeetOrLeave = new DigitalInput(5);
 
-    int gitforcepushorginmaster = 11;
+    int gitforcepushorginmaster = 15;
 
     // OI Devices
     private final Joystick leftJoystick = new Joystick(0);
@@ -129,7 +129,7 @@ public class RobotContainer {
         slowButton.whileHeld(driveSlowCommand);
         stopAll.whenPressed(new ParallelCommandGroup(new ClimberStop(climber), new IndexerStop(indexer), new BetterIntakeStop(intake), new ShootStop(shooter)));
         intakeButton.whenPressed(new SequentialCommandGroup(new ParallelDeadlineGroup(intakeCommand, intakeIntakeCommand), new WaitCommand(0.2)));
-        indexTwoButton.whenPressed(new SequentialCommandGroup(new ParallelDeadlineGroup(intakeCommand, intakeIntakeCommand), new WaitCommand(0.2), new ParallelDeadlineGroup(intakeCommand, intakeIntakeCommand), new WaitCommand(0.2)));
+        indexTwoButton.whenPressed(new SequentialCommandGroup(new ParallelDeadlineGroup(new BetterIndexerIntake(indexer), new IntakeIntake(intake)), new WaitCommand(0.2), new ParallelDeadlineGroup(new BetterIndexerIntake(indexer), new IntakeIntake(intake)), new WaitCommand(0.2)));
         shootHighButton.whileHeld(new ParallelCommandGroup(shootHighCommand, feedHighCommand));
         shootLowButton.whileHeld(new ParallelCommandGroup(shootLowCommand, feedLowCommand));
         ejectButton.whileHeld(new ParallelCommandGroup(intakeEjectCommand, indexerEjectCommand, shootEjectCommand));
@@ -147,9 +147,9 @@ public class RobotContainer {
 
     public int parseAutoSelector() {
         int selection = 0;
-        if (this.firstBallOption.get()) selection += 4;
-        if (this.secondBallOption.get()) selection += 2;
-        if (this.yeetOrLeave.get()) selection += 1;
+        if (!this.firstBallOption.get()) selection += 4;
+        if (!this.secondBallOption.get()) selection += 2;
+        if (!this.yeetOrLeave.get()) selection += 1;
         return selection;
     }
 

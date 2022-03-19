@@ -121,7 +121,7 @@ public final class Constants {
 
             public static final int ACCEPTABLE_ERROR_TICKS = 10;
 
-            public static final double KP = 1.08;
+            public static final double KP = 1.1;//1.08
             public static final double KI = 0.250;
             public static final double KD = 0.032;
             public static final double KF = 0;
