@@ -78,12 +78,18 @@ public class Intake extends ProfiledPIDSubsystem {
             pivot.motor.setVoltage(output);
         } else {
             cycleCount++;
-            if (cycleCount >= 50) {
+            if (cycleCount >= 30) {
                 pivot.motor.setVoltage(0);
                 cycleCount = 0;
             }
         }
         // System.out.println("output is  " + output);
+    }
+
+    @Override
+    public void disable() {
+        cycleCount = 0;
+        super.disable();
     }
 
     @Override
@@ -118,7 +124,7 @@ public class Intake extends ProfiledPIDSubsystem {
         // if (isEnabled()) pivot.motor.setVoltage(getController().calculate(getMeasurement()));
         //onInit(); // Oh no no no no no
         
-        //SmartDashboard.putNumber("Intake Cycle Count", cycleCount);
+        SmartDashboard.putNumber("Intake Cycle Count", cycleCount);
         //SmartDashboard.putNumber("Intake Pivot raw analog", getMeasurement());
         SmartDashboard.putNumber("Intake Pivot Motor Output", pivot.motor.get());
         SmartDashboard.putNumber("Intake Pivot Applied Output", pivot.motor.getMotorOutputPercent());

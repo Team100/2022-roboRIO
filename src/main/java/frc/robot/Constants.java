@@ -120,8 +120,8 @@ public final class Constants {
 
             public static final int ACCEPTABLE_ERROR_TICKS = 10;
 
-            public static final double KP = 1.06;
-            public static final double KI = 0.220;
+            public static final double KP = 1.08;
+            public static final double KI = 0.250;
             public static final double KD = 0.032;
             public static final double KF = 0;
             public static final double PP_ADJUSTMENT_CONSTANT = 16;
@@ -159,7 +159,7 @@ public final class Constants {
                 public static final int TIMEOUT = 10;
 
                 public static final boolean ENABLE_CURRENT_LIMIT = true;
-                public static final int CURRENT_LIMIT = 15;
+                public static final int CURRENT_LIMIT = 25;
                 public static final double OPEN_LOOP_RAMP = 0.1;
                 public static final double PEAK_OUTPUT_FORWARD = 0.5;
                 public static final double PEAK_OUTPUT_REVERSE = -0.5;
@@ -177,11 +177,11 @@ public final class Constants {
     public static final class ShooterConstants {
         public static final class ShooterMotionParameters {
             public static final double SHOOTER_PERCENT_OUTPUT = 0.1; //0.17 //0.175
-            public static final double SHOOTER_VELOCITY_HIGH = -4150; //0.17 //0.175
+            public static final double SHOOTER_VELOCITY_HIGH = -4000; //0.17 //0.175
             public static final double SHOOTER_VELOCITY_LOW = -2300; //0.17 //0.175 //-2500
 
 			public static final double NOMINAL_LOW_VELOCITY = 2280;
-            public static final double NOMINAL_HIGH_VELOCITY = 4100;
+            public static final double NOMINAL_HIGH_VELOCITY = 3950;
 
             
             public static final double KP = 0.00008;
