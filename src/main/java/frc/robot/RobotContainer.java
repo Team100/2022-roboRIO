@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
@@ -68,8 +67,10 @@ public class RobotContainer {
 
     private final JoystickButton mediaControlButton = new JoystickButton(buttonBoard, 12);
 
-    private final JoystickButton HookDownButton = new JoystickButton(buttonBoard, 1);
-    private final JoystickButton HookUpButton = new JoystickButton(buttonBoard, 16);
+    private final JoystickButton hookDownButton = new JoystickButton(buttonBoard, 1);
+    private final JoystickButton hookUpButton = new JoystickButton(buttonBoard, 16);
+    private final JoystickButton hookUpLowButton = new JoystickButton(rightJoystick, 11);
+    private final JoystickButton hookDownLowButton = new JoystickButton(rightJoystick, 10);
 
     private final JoystickButton stopAll = new JoystickButton(buttonBoard, 4);
 
@@ -97,9 +98,9 @@ public class RobotContainer {
     private final IndexerFeedHigh feedHighCommand = new IndexerFeedHigh(indexer, shooter);
     private final IndexerFeedLow feedLowCommand = new IndexerFeedLow(indexer, shooter);
     private final ClimberStop climberStopCommand = new ClimberStop(climber);
-    private final HookUp HookUpCommand = new HookUp(climber);
-    private final HookDown HookDownCommand = new HookDown(climber, symphony);    
-    private final HookZero HookZeroCommand = new HookZero(climber);
+    private final HookUp hookUpCommand = new HookUp(climber);
+    private final HookDown hookDownCommand = new HookDown(climber, symphony);    
+    private final HookZero hookZeroCommand = new HookZero(climber);
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
@@ -126,8 +127,10 @@ public class RobotContainer {
     private void configureButtonBindings() {
         turboButton.whileHeld(driveFuriousCommand);
         alignButton.whileHeld(alignCommand);
-        HookDownButton.whenPressed(HookDownCommand);
-        HookUpButton.whenPressed(HookUpCommand);
+        hookDownButton.whenPressed(hookDownCommand);
+        hookUpButton.whenPressed(hookUpCommand);
+        hookUpLowButton.whenPressed(new HookUpLow(climber));
+        hookDownLowButton.whenPressed(hookDownCommand);
         slowButton.whileHeld(driveSlowCommand);
         stopAll.whenPressed(new ParallelCommandGroup(new ClimberStop(climber), new IndexerStop(indexer), new BetterIntakeStop(intake), new ShootStop(shooter)));
         intakeButton.whenPressed(new SequentialCommandGroup(new ParallelDeadlineGroup(intakeCommand, intakeIntakeCommand), new WaitCommand(0.2)));
@@ -138,7 +141,7 @@ public class RobotContainer {
 
         mediaControlButton.whenPressed(new InstantCommand(() -> { symphony.play();}, symphony));
 
-        fixClimberButton.whileHeld(HookZeroCommand);
+        fixClimberButton.whileHeld(hookZeroCommand);
         // runPivot.whileHeld(new InstantCommand(() -> { intake.runPivot(0.1); System.out.println("running the thing");}, intake));
     }
 

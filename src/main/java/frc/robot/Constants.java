@@ -128,7 +128,7 @@ public final class Constants {
 
             public static final int ACCEPTABLE_ERROR_TICKS = 10;
 
-            public static final double KP = 2;//1.08
+            public static final double KP = 2.5;//1.08
             public static final double KI = 0.250;
             public static final double KD = 0.032;
             public static final double KF = 0;
@@ -160,7 +160,7 @@ public final class Constants {
             public static final class IntakePivot {
                 public static final int CAN_ID = 2; //2
 
-                public static final InvertType INVERT = InvertType.InvertMotorOutput;
+                public static final InvertType INVERT = InvertType.None;
                 public static final int FEEDBACK_PORT = 0;
                 public static final boolean SENSOR_PHASE = false;
 
@@ -221,7 +221,7 @@ public final class Constants {
                 public static final IdleMode NEUTRAL_MODE = IdleMode.kCoast;
             }
             public static final class ShooterFollower {
-                public static final int CAN_ID = 6;
+                public static final int CAN_ID = 7;
     
                 public static final boolean INVERT = true;
                 public static final int FEEDBACK_PORT = 0;
@@ -246,7 +246,7 @@ public final class Constants {
             }
 
             public static final class RearSensor {
-                public static final int ID = 9;
+                public static final int ID = 8;
             }
         }
 
@@ -299,12 +299,13 @@ public final class Constants {
 
     public static final class ClimberConstants {
         public static final class ClimberMotionParameters {
-            public static final double CLIMBER_PERCENT_OUTPUT = 0.5;
+            public static final double CLIMBER_PERCENT_OUTPUT = 0.6;
             public static final double CLIMBER_ZERO = 0;
 
             public static final double TILT_PERCENT_OUTPUT = 0.1;
 
             public static final int CLIMBER_TOP = -220000;
+            public static final int CLIMBER_LOW_BAR_TOP = -110000;
             public static final int CLIMBER_BOTTOM = -10000;
             public static final double TILT_START = 7000;
             public static final double STATIONARY_LOCK_ANGLE = 10;
