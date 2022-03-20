@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
@@ -44,7 +45,7 @@ public class RobotContainer {
     private final DigitalInput firstBallOption = new DigitalInput(3);
     private final DigitalInput secondBallOption = new DigitalInput(4);
     private final DigitalInput yeetOrLeave = new DigitalInput(5);
-    private final DigitalInput stopAtWall = new DigitalInput(6);
+    // private final DigitalInput stopAtWall = new DigitalInput(6);
 
     int gitforcepushorginmaster = 2;
 
@@ -147,6 +148,14 @@ public class RobotContainer {
         drivetrain.setBrakeMode(false);
     }
 
+    public void onAutoInit(){
+        drivetrain.setBrakeMode(true);
+    }
+
+    public void onDisableInit(){
+        drivetrain.setBrakeMode(false);
+    }
+
     public int parseAutoSelector() {
         int selection = 0;
         if (!this.firstBallOption.get()) selection += 4;
@@ -168,15 +177,15 @@ public class RobotContainer {
             case 1: // Low far, none
             return new AutonProcedureLNF(drivetrain, intake, indexer, shooter);
             case 2: // Low close, high
-            return new AutonProcedureLH(drivetrain, intake, indexer, shooter, !this.stopAtWall.get());
+            return new AutonProcedureLH(drivetrain, intake, indexer, shooter);
             case 3: // Low far, high
-            return new AutonProcedureLHF(drivetrain, intake, indexer, shooter, !this.stopAtWall.get());
+            return new AutonProcedureLHF(drivetrain, intake, indexer, shooter);
             case 4: // High close, none
             case 5: // High far, none
             return new AutonProcedureHN(drivetrain, intake, indexer, shooter);
             case 6: // High close, high
             case 7: // High far, high
-            return new AutonProcedureHH(drivetrain, intake, indexer, shooter, !this.stopAtWall.get());
+            return new AutonProcedureHH(drivetrain, intake, indexer, shooter);
         }
     }
 }

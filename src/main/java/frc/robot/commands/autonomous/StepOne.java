@@ -6,6 +6,7 @@ package frc.robot.commands.autonomous;
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
+import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
@@ -19,25 +20,25 @@ import frc.robot.subsystems.Intake;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class StepOne extends ParallelDeadlineGroup {
-    private int distanceBack;
-    private Drivetrain drivetrain;
+public class StepOne extends ParallelRaceGroup {
+    // private int distanceBack;
+    // private Drivetrain drivetrain;
     /** Creates a new StepOne. */
-    public StepOne(Intake intake, Indexer indexer, Drivetrain drivetrain, int distanceBack) {
+    public StepOne(Intake intake, Indexer indexer, Drivetrain drivetrain) {
         // Add the deadline command in the super() call. Add other commands using
         // addCommands().
         //super(new StepOneEndCriteria(indexer));
         super(new SequentialCommandGroup(new ParallelDeadlineGroup(new BetterIndexerIntake(indexer), new IntakeIntake(intake)), new WaitCommand(0.2))); //run the standerd intake command and stop step one once a ball has been intaken
         
-        this.drivetrain = drivetrain;
+        // this.drivetrain = drivetrain;
     
         addCommands(new RunCommand(() -> drivetrain.driveWithRamp(-0.14, -0.14), drivetrain)
-                    .until(this::getAutoEnd)
+                    .until(drivetrain::getAutoEnd)
                     .andThen(new InstantCommand(() -> { drivetrain.driveWithoutRamp(0, 0); }, drivetrain))
         );
     }
 
-    private boolean getAutoEnd() {
-        return drivetrain.getAutoEnd(this.distanceBack);
-    }
+    // private boolean getAutoEnd() {
+    //     return drivetrain.getAutoEnd(this.distanceBack);
+    // }
 }

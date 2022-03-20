@@ -28,7 +28,7 @@ public class StepTwo extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-    drivetrain.driveWithRamp(0.15, 0.15);
+        drivetrain.driveWithRamp(0.13, 0.13);
     }
 
 

@@ -175,7 +175,7 @@ public class Drivetrain extends SubsystemBase {
         return getCurrentEncoderPosition() <= distance;
     }
     
-    // public boolean getAutoEnd() {
-    //     return getCurrentEncoderPosition() <= -150000;
-    // }
+    public boolean getAutoEnd() {
+        return getCurrentEncoderPosition() <= -150000;
+    }
 }

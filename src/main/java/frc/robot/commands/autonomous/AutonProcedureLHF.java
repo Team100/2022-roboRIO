@@ -28,14 +28,14 @@ import frc.robot.subsystems.Shooter;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class AutonProcedureLHF extends SequentialCommandGroup {
     /** Creates a new AutonProcedure. */
-    public AutonProcedureLHF(Drivetrain drivetrain, Intake intake, Indexer indexer, Shooter shooter, boolean stopAtWall) {
+    public AutonProcedureLHF(Drivetrain drivetrain, Intake intake, Indexer indexer, Shooter shooter) {
         // Add your commands in the addCommands() call, e.g.
         // addCommands(new FooCommand(), new BarCommand());7
         addCommands(new InstantCommand(() -> { drivetrain.zeroCurrentPosition(); }, drivetrain));//zero the drivetrain
 
         addCommands(new ParallelDeadlineGroup(new WaitCommand(3), new ShootLowFar(shooter),  new IndexerFeedLowFar(indexer, shooter), new IntakeIntake(intake))); //shoot one loaded ball into high goal
         addCommands(new InstantCommand(() -> { shooter.set(0); }, shooter)); //stops the shoot
-        addCommands(new StepOne(intake, indexer, drivetrain, stopAtWall ? Constants.DrivetrainConstants.Autonomous.LHF_WALL_DISTANCE : Constants.DrivetrainConstants.Autonomous.MAX_REVERSE_DISTANCE)); //drive back and grab another ball
+        addCommands(new StepOne(intake, indexer, drivetrain)); //drive back and grab another ball
         addCommands(new ParallelDeadlineGroup(new StepTwo(drivetrain, -20000), new BetterIntakeStop(intake), new IndexerStop(indexer))); //drive back to start point(maybe just put drivetrain falcons in brake?)
         addCommands(new ParallelDeadlineGroup(new WaitCommand(4), new ShootHigh(shooter),  new IndexerFeedHigh(indexer, shooter))); //shoot your next loaded ball into high goal(needs to be tested)
         

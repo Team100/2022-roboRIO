@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.indexer.IndexerFeedLow;
 import frc.robot.commands.indexer.IndexerStop;
 import frc.robot.commands.intake.IntakeIntake;
+import frc.robot.commands.intake.IntakeStop;
 import frc.robot.commands.shooter.ShootLow;
 import frc.robot.commands.shooter.ShootStop;
 import frc.robot.subsystems.Drivetrain;
@@ -31,6 +32,6 @@ public class AutonProcedureLN extends SequentialCommandGroup {
 
         addCommands(new ParallelDeadlineGroup(new WaitCommand(3), new ShootLow(shooter),  new IndexerFeedLow(indexer, shooter), new IntakeIntake(intake))); //shoot one loaded ball into high goal
         
-        addCommands(new ParallelCommandGroup(new IndexerStop(indexer), new ShootStop(shooter))); //stop everything
+        addCommands(new ParallelCommandGroup(new IndexerStop(indexer), new IntakeStop(intake), new ShootStop(shooter))); //stop everything
     }
 }
