@@ -33,7 +33,6 @@ public class IntakeEject extends CommandBase {
         }else{
             intake.runSpinner(0);
         }
-
     }
 
     // Called once the command ends or is interrupted.
