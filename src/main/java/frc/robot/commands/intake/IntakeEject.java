@@ -28,12 +28,6 @@ public class IntakeEject extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        // if (intake.getCurrentPosition() >= Constants.IntakeConstants.PivotConstants.DOWN_POSITION) {
-        //     intake.runPivot(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_PIVOT_PERCENT_OUTPUT);
-        // }
-        // if(intake.getCurrentPosition() <= Constants.IntakeConstants.PivotConstants.DOWN_POSITION){
-        //     intake.runSpinner(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_SPINNER_PERCENT_OUTPUT);
-        // }
         if(intake.getMeasurement()<=10){
             intake.runSpinner(-Constants.IntakeConstants.IntakeMotionParameters.INTAKE_SPINNER_PERCENT_OUTPUT);
         }else{

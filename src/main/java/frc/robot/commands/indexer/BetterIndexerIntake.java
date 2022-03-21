@@ -41,7 +41,6 @@ public class BetterIndexerIntake extends CommandBase {
             if (indexer.getSensorOne() && indexer.getSensorTwo()) stop();
             else {
                 indexer.runMotorOne(Constants.IndexerConstants.IndexerMotionParameters.STAGE_ONE_PERCENT_OUTPUT_FORWARD);
-                // indexer.runMotorTwo(0);
             }
         } else {
             if (indexer.getSensorOne() && indexer.getSensorTwo()) stop();

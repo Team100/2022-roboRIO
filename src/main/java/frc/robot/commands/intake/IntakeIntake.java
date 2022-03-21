@@ -23,9 +23,6 @@ public class IntakeIntake extends CommandBase {
     public void initialize() {
         done = false;
         intake.disable();
-        //intake.pivotDown();
-        //intake.pivotDown();
-
     }
 
     // Called every time the scheduler runs while the command is scheduled.
