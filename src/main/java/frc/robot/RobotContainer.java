@@ -4,15 +4,14 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
-import edu.wpi.first.wpilibj2.command.ScheduleCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -20,6 +19,7 @@ import frc.robot.subsystems.*;
 import frc.robot.commands.drivetrain.*;
 import frc.robot.commands.intake.*;
 import frc.robot.commands.indexer.*;
+import frc.robot.commands.autonomous.*;
 import frc.robot.commands.climber.*;
 import frc.robot.commands.shooter.*;
 
@@ -38,17 +38,25 @@ public class RobotContainer {
     private final Shooter shooter = new Shooter();
     private final Intake intake = new Intake();
     private final Indexer indexer = new Indexer();
+    private final Symphony symphony = new Symphony();
 
+    // Auton DIP Switches
+    private final DigitalInput firstBallOption = new DigitalInput(3);
+    private final DigitalInput secondBallOption = new DigitalInput(4);
+    private final DigitalInput yeetOrLeave = new DigitalInput(5);
+    // private final DigitalInput stopAtWall = new DigitalInput(6);
+
+    int gitforcepushorginmaster = 2;
 
     // OI Devices
     private final Joystick leftJoystick = new Joystick(0);
     private final Joystick rightJoystick = new Joystick(1);
-    private final Joystick gamepad = new Joystick(2);
+    // private final Joystick gamepad = new Joystick(2);
     //private final JoystickButton indexButton = new JoystickButton(leftJoystick, 1);
     private final Joystick buttonBoard = new Joystick(3);
     private final JoystickButton turboButton = new JoystickButton(rightJoystick, 1);
     private final JoystickButton slowButton = new JoystickButton(rightJoystick, 3);
-    private final JoystickButton intakeButton = new JoystickButton(buttonBoard, 2);
+    private final JoystickButton intakeButton = new JoystickButton(buttonBoard, 15);
     private final JoystickButton ejectButton = new JoystickButton(buttonBoard, 5);
 
     private final JoystickButton alignButton = new JoystickButton(leftJoystick, 1);
@@ -57,11 +65,19 @@ public class RobotContainer {
     private final JoystickButton shootHighButton = new JoystickButton(buttonBoard, 14);
     private final JoystickButton shootLowButton = new JoystickButton(buttonBoard, 13);
 
+    private final JoystickButton mediaControlButton = new JoystickButton(buttonBoard, 12);
 
-    private final JoystickButton HookDownButton = new JoystickButton(buttonBoard, 1);
-    private final JoystickButton HookUpButton = new JoystickButton(buttonBoard, 16);
+    private final JoystickButton hookDownButton = new JoystickButton(buttonBoard, 1);
+    private final JoystickButton hookUpButton = new JoystickButton(buttonBoard, 16);
+    private final JoystickButton hookUpLowButton = new JoystickButton(rightJoystick, 11);
+    private final JoystickButton hookDownLowButton = new JoystickButton(rightJoystick, 10);
 
     private final JoystickButton stopAll = new JoystickButton(buttonBoard, 4);
+
+    private final JoystickButton fixClimberButton = new JoystickButton(rightJoystick, 7);
+    private final JoystickButton indexTwoButton = new JoystickButton(buttonBoard, gitforcepushorginmaster);
+
+    // private final JoystickButton runPivot = new JoystickButton(gamepad, 1);
     //private final JoystickButton controlBallButton = new JoystickButton(buttonBoard, 14);
 
     // Commands
@@ -71,7 +87,7 @@ public class RobotContainer {
     private final AlignClimber alignCommand = new AlignClimber(drivetrain);
     private final IntakeIntake intakeIntakeCommand = new IntakeIntake(intake);
     private final IntakeEject intakeEjectCommand = new IntakeEject(intake);
-    private final IntakeStop intakeStopCommand = new IntakeStop(intake);
+    private final BetterIntakeStop intakeStopCommand = new BetterIntakeStop(intake);
     private final ShootHigh shootHighCommand = new ShootHigh(shooter);
     private final ShootLow shootLowCommand = new ShootLow(shooter);
     private final ShootEject shootEjectCommand = new ShootEject(shooter);
@@ -82,12 +98,9 @@ public class RobotContainer {
     private final IndexerFeedHigh feedHighCommand = new IndexerFeedHigh(indexer, shooter);
     private final IndexerFeedLow feedLowCommand = new IndexerFeedLow(indexer, shooter);
     private final ClimberStop climberStopCommand = new ClimberStop(climber);
-
-    private final HookUp HookUpCommand = new HookUp(climber);
-    private final HookDown HookDownCommand = new HookDown(climber);
-    //private final ClimberControl climberControl = new ClimberControl(climber, gamepad);
-    //private final ParallelCommandGroup controlBall = new ParallelCommandGroup(intakeIntakeCommand,indexerStopCommand);
-
+    private final HookUp hookUpCommand = new HookUp(climber);
+    private final HookDown hookDownCommand = new HookDown(climber, symphony);    
+    private final HookZero hookZeroCommand = new HookZero(climber);
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
@@ -112,46 +125,46 @@ public class RobotContainer {
     * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
     */
     private void configureButtonBindings() {
-        //shootButton.whileHeld(shootCommand);
-
-        // indexButton.whileHeld(new SequentialCommandGroup(new ParallelDeadlineGroup(intakeCommand, intakeIntakeCommand), new WaitCommand(0.2)));
         turboButton.whileHeld(driveFuriousCommand);
         alignButton.whileHeld(alignCommand);
-        HookDownButton.whenPressed(HookDownCommand);
-        HookUpButton.whenPressed(HookUpCommand);
+        hookDownButton.whenPressed(hookDownCommand);
+        hookUpButton.whenPressed(hookUpCommand);
+        hookUpLowButton.whenPressed(new HookUpLow(climber));
+        hookDownLowButton.whenPressed(hookDownCommand);
         slowButton.whileHeld(driveSlowCommand);
-        // intakeIntakeButton.whileHeld(intakeIntakeCommand);
-        //intakeEjectButton.whileHeld(intakeEjectCommand);
-        //alignButton.whileHeld(alignCommand);
-        //indexerIntakeButton.whenPressed(new ScheduleCommand(new SequentialCommandGroup(intakeCommand, new WaitCommand(0.3))));
-            //intakeButton.whenPressed(new ScheduleCommand(new SequentialCommandGroup((new ParallelCommandGroup(intakeIntakeCommand, intakeCommand)), new WaitCommand(0.3))));
-        stopAll.whenPressed(new ParallelCommandGroup(new ClimberStop(climber), new IndexerStop(indexer), new IntakeStop(intake), new ShootStop(shooter)));
-        
-        //    intakeButton.whenPressed(new ParallelDeadlineGroup(new SequentialCommandGroup(intakeIntakeCommand, new WaitCommand(0.3)), intakeCommand));
-        // intakeButton.whenPressed(new ParallelDeadlineGroup(new SequentialCommandGroup(new WaitCommand(0.3),intakeCommand),intakeIntakeCommand));
+        stopAll.whenPressed(new ParallelCommandGroup(new ClimberStop(climber), new IndexerStop(indexer), new BetterIntakeStop(intake), new ShootStop(shooter)));
         intakeButton.whenPressed(new SequentialCommandGroup(new ParallelDeadlineGroup(intakeCommand, intakeIntakeCommand), new WaitCommand(0.2)));
-        //intakeButton.whileHeld(intakeIntakeCommand);
+        indexTwoButton.whenPressed(new SequentialCommandGroup(new ParallelDeadlineGroup(new BetterIndexerIntake(indexer), new IntakeIntake(intake)), new WaitCommand(0.2), new ParallelDeadlineGroup(new BetterIndexerIntake(indexer), new IntakeIntake(intake)), new WaitCommand(0.2)));
         shootHighButton.whileHeld(new ParallelCommandGroup(shootHighCommand, feedHighCommand));
         shootLowButton.whileHeld(new ParallelCommandGroup(shootLowCommand, feedLowCommand));
-        
-        // shootButton.whileHeld(shootCommand);
         ejectButton.whileHeld(new ParallelCommandGroup(intakeEjectCommand, indexerEjectCommand, shootEjectCommand));
 
-        //intakeUpButton.whenPressed(intakeUpCommand);
-        //indexerIntakeButton.whenPressed(new InstantCommand(() -> { SmartDashboard.putString("Intake Command", "PivotUp");intake.runPivot(0.15);/*intake.setPivot(Constants.IntakeConstants.PivotConstants.UP_POSITION);*/ }, intake));
-        // feedButton.whileHeld(new InstantCommand(() -> { SmartDashboard.putString("Intake Command", "PivotDown");intake.runPivot(-0.05);/*intake.setPivot(Constants.IntakeConstants.PivotConstants.DOWN_POSITION);*/ }, intake));
-        //feedButton.whenPressed(new PivotDown(intake));
-        //ejectButton.whileHeld(ejectCommand);
-        //feedButton.whenPressed(feedCommand);
-        //climberControlButton.whenPressed(climberControl);
-        //controlBallButton.whileHeld(controlBall);
+        mediaControlButton.whenPressed(new InstantCommand(() -> { symphony.play();}, symphony));
 
-        // intakePivotDown.whileHeld(intakeIntakeCommand);
-        // intakePivotUp.whileHeld(new InstantCommand(() -> { intake.runPivot(-0.2); }, intake));
+        fixClimberButton.whileHeld(hookZeroCommand);
+        // runPivot.whileHeld(new InstantCommand(() -> { intake.runPivot(0.1); System.out.println("running the thing");}, intake));
     }
 
     public void onInit() {
         // intake.onInit();
+        climber.onInit();
+        drivetrain.setBrakeMode(false);
+    }
+
+    public void onAutoInit(){
+        drivetrain.setBrakeMode(true);
+    }
+
+    public void onDisableInit(){
+        drivetrain.setBrakeMode(false);
+    }
+
+    public int parseAutoSelector() {
+        int selection = 0;
+        if (!this.firstBallOption.get()) selection += 4;
+        if (!this.secondBallOption.get()) selection += 2;
+        if (!this.yeetOrLeave.get()) selection += 1;
+        return selection;
     }
 
     /**
@@ -160,7 +173,22 @@ public class RobotContainer {
      * @return the command to run in autonomous
      */
     public Command getAutonomousCommand() {
-        // An ExampleCommand will run in autonomous
-        return null;
+        switch(parseAutoSelector()) {
+            default:
+            case 0: // Low close, none
+            return new AutonProcedureLN(drivetrain, intake, indexer, shooter);
+            case 1: // Low far, none
+            return new AutonProcedureLNF(drivetrain, intake, indexer, shooter);
+            case 2: // Low close, high
+            return new AutonProcedureLH(drivetrain, intake, indexer, shooter);
+            case 3: // Low far, high
+            return new AutonProcedureLHF(drivetrain, intake, indexer, shooter);
+            case 4: // High close, none
+            case 5: // High far, none
+            return new AutonProcedureHN(drivetrain, intake, indexer, shooter);
+            case 6: // High close, high
+            case 7: // High far, high
+            return new AutonProcedureHH(drivetrain, intake, indexer, shooter);
+        }
     }
 }

@@ -5,6 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -33,13 +34,13 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     
-    // mainCamera = CameraServer.startAutomaticCapture(0);
-    // mainCamera.setResolution(240, 160);
-    // mainCamera.setFPS(15);
+    mainCamera = CameraServer.startAutomaticCapture(0);
+    mainCamera.setResolution(240, 160);
+    mainCamera.setFPS(15);
 
-    // secondCamera = CameraServer.startAutomaticCapture(1);
-    // secondCamera.setResolution(240, 160);
-    // secondCamera.setFPS(30);
+    secondCamera = CameraServer.startAutomaticCapture(1);
+    secondCamera.setResolution(240, 160);
+    secondCamera.setFPS(30);
     
     m_robotContainer = new RobotContainer();
   }
@@ -62,14 +63,43 @@ public class Robot extends TimedRobot {
 
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
-  public void disabledInit() {}
+  public void disabledInit() {
+    m_robotContainer.onDisableInit();
+  }
 
   @Override
-  public void disabledPeriodic() {}
+  public void disabledPeriodic() {
+    String commandName;
+    switch(m_robotContainer.parseAutoSelector()) {
+      default:
+      case 0: // Low close, none
+        commandName = "L,N";
+        break;
+      case 1: // Low far, none
+        commandName = "LF,N";
+        break;
+      case 2: // Low close, high
+        commandName = "LC,H";
+        break;
+      case 3: // Low far, high
+        commandName = "LF,H";
+        break;
+      case 4: // High close, none
+      case 5: // High far, none
+        commandName = "H,N";
+        break;
+      case 6: // High close, high
+      case 7: // High far, high
+        commandName = "H,H";
+        break;
+    }
+    SmartDashboard.putString("Auto Command", commandName);
+  }
 
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
+    m_robotContainer.onAutoInit();
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
     // schedule the autonomous command (example)

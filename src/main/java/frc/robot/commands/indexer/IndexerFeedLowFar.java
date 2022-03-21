@@ -10,15 +10,13 @@ import frc.robot.Constants;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Shooter;
 
-public class IndexerFeedLow extends CommandBase {
+public class IndexerFeedLowFar extends CommandBase {
     private Indexer indexer;
     private Shooter shooter;
-    // private boolean wasFalse;
     private boolean done = false;
-    // private boolean shouldCheckRefill;
 
     /** Creates a new IndexerFeed. */
-    public IndexerFeedLow(Indexer indexer, Shooter shooter) {
+    public IndexerFeedLowFar(Indexer indexer, Shooter shooter) {
         this.indexer = indexer;
         this.shooter = shooter;
 
@@ -29,41 +27,19 @@ public class IndexerFeedLow extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        // wasFalse = false;
         done = false;
-
-        // shouldCheckRefill = indexer.getSensorOne() && indexer.getSensorTwo();
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        // if (shouldCheckRefill) {
-        //     if (indexer.getSensorTwo() && wasFalse) {
-        //         // shouldCheckRefill = false;
-        //         done = true;
-        //         return;
-        //     }
-        if (shooter.speed()>Constants.ShooterConstants.ShooterMotionParameters.NOMINAL_LOW_VELOCITY) {
+        if (shooter.speed()>Constants.ShooterConstants.ShooterMotionParameters.NOMINAL_LOW_FAR_VELOCITY) {
             indexer.runMotorOne(STAGE_ONE_PERCENT_OUTPUT_FORWARD);
             indexer.runMotorTwo(STAGE_TWO_PERCENT_OUTPUT_FORWARD);
         } else {
             indexer.runMotorOne(0);
             indexer.runMotorTwo(0);
         }
-
-        //     if (!indexer.getSensorTwo()) {
-        //         wasFalse = true;
-        //     }
-        // } else {
-        //     if (!indexer.getSensorTwo()) {
-        //         done = true;
-        //         return;
-        //     }
-
-        //     indexer.runMotorOne(STAGE_ONE_PERCENT_OUTPUT_FORWARD);
-        //     indexer.runMotorTwo(STAGE_TWO_PERCENT_OUTPUT_FORWARD);
-        // }
     }
         
     

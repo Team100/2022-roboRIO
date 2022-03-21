@@ -15,11 +15,9 @@ import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMax.SoftLimitDirection;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-import com.revrobotics.SparkMaxAnalogSensor.Mode;
 
 import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.util.sendable.SendableBuilder;
-import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
@@ -155,6 +153,13 @@ public class FRCNEO implements Sendable {
      */
     public FRCNEO master;
     ///////////////////////////////////////////////////////////////////////////
+
+    /**
+     * MotorType
+     * 
+     * Can be kBrushed or kBrushless
+     */
+    private MotorType motorType;
 
     /**
      * Limit switches
@@ -351,7 +356,7 @@ public class FRCNEO implements Sendable {
     }
 
     public FRCNEO configure() {
-        motor = new CANSparkMax(this.getCanID(), MotorType.kBrushless);
+        motor = new CANSparkMax(this.getCanID(), this.getMotorType());
 
         closedLoop = motor.getPIDController();
 
@@ -362,7 +367,7 @@ public class FRCNEO implements Sendable {
             analog.setPositionConversionFactor(1/3.3);
             closedLoop.setFeedbackDevice(analog);
         } else {
-            closedLoop.setFeedbackDevice(this.motor.getEncoder());
+            if (this.motorType == MotorType.kBrushless) closedLoop.setFeedbackDevice(this.motor.getEncoder());
         }
 
         fwdLimitSwitch = motor.getForwardLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyOpen);
@@ -372,6 +377,11 @@ public class FRCNEO implements Sendable {
 
         motor.setInverted(this.isInverted);
         System.out.println("Configuring Inverted");
+
+        if (this.currentLimitEnabled) {
+            motor.setSmartCurrentLimit(this.getCurrentLimit());
+            motor.setSecondaryCurrentLimit(this.getCurrentLimit());
+        }
 
         if (this.isForwardSoftLimitEnabled()) {
             motor.enableSoftLimit(SoftLimitDirection.kForward, this.isForwardSoftLimitEnabled());
@@ -412,7 +422,7 @@ public class FRCNEO implements Sendable {
         //     System.out.println("setting sensor phase");
         // }
 
-        if (this.getVelocityMeasurementPeriod() != 0 || this.getVelocityMeasurementWindow() != 0) {
+        if (this.motorType == MotorType.kBrushless && (this.getVelocityMeasurementPeriod() != 0 || this.getVelocityMeasurementWindow() != 0)) {
             motor.getEncoder().setMeasurementPeriod(this.getVelocityMeasurementPeriod());
             motor.getEncoder().setAverageDepth(this.getVelocityMeasurementWindow());
             System.out.println("Setting Velocity Measurement Period");
@@ -434,6 +444,14 @@ public class FRCNEO implements Sendable {
 
     public CANSparkMax getMotor() {
         return motor;
+    }
+
+    public MotorType getMotorType() {
+        return this.motorType;
+    }
+
+    public void setMotorType(MotorType motorType) {
+        this.motorType = motorType;
     }
 
     public void setMotor(CANSparkMax motor) {
@@ -706,6 +724,7 @@ public class FRCNEO implements Sendable {
 
     public static final class FRCNEOBuilder {
         private int canID;
+        private MotorType motorType = MotorType.kBrushless;
         private boolean isInverted = false;
         private int feedbackPort = 0;
         private int timeout = 10;
@@ -751,6 +770,11 @@ public class FRCNEO implements Sendable {
 
         public FRCNEOBuilder withCanID(int canID) {
             this.canID = canID;
+            return this;
+        }
+
+        public FRCNEOBuilder withMotorType(MotorType motorType) {
+            this.motorType = motorType;
             return this;
         }
 
@@ -922,6 +946,7 @@ public class FRCNEO implements Sendable {
         public FRCNEO build() {
             FRCNEO fRCNEO = new FRCNEO();
             fRCNEO.setCanID(canID);
+            fRCNEO.setMotorType(motorType);
             fRCNEO.setInverted(isInverted);
             fRCNEO.setFeedbackPort(feedbackPort);
             fRCNEO.setTimeout(timeout);

@@ -4,37 +4,43 @@
 
 package frc.robot.commands.climber;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.Symphony;
 import frc.robot.Constants.ClimberConstants;
 
 public class HookDown extends CommandBase {
   /** Creates a new HooksUp. */
 private final Climber climber;
-boolean done;
-  public HookDown(Climber climber) {  
+private final Symphony symphony;
+boolean done, first;
+  public HookDown(Climber climber, Symphony symphony) {  
     // Use addRequirements() here to declare subsystem dependencies.
     this.climber = climber;
-    addRequirements(this.climber);
+    this.symphony = symphony;
+    addRequirements(this.climber, this.symphony);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() { 
-    done=false;   
+    done=false;  
+    first = true; 
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     if(climber.mainPosition()>=ClimberConstants.ClimberMotionParameters.CLIMBER_BOTTOM){
-      SmartDashboard.putBoolean("we done boys?", true);
+      // SmartDashboard.putBoolean("we done boys?", true);
       climber.setWinch(0);
-      done = true;
+      if(first){
+        first = false;
+        symphony.play();
+      }
     }else{
       climber.setWinch(ClimberConstants.ClimberMotionParameters.CLIMBER_PERCENT_OUTPUT);
-      SmartDashboard.putBoolean("we done boys?", false);
+      // SmartDashboard.putBoolean("we done boys?", false);
     }
   }
 

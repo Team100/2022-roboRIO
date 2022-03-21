@@ -8,12 +8,13 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Drivetrain;
 
 public class StepTwo extends CommandBase {
-    Drivetrain drivetrain;
+    private Drivetrain drivetrain;
+    private double stopPosition;
 
     /** Creates a new StepTwo. */
-    public StepTwo(Drivetrain drivetrain) {
+    public StepTwo(Drivetrain drivetrain, double stopPosition) {
         this.drivetrain = drivetrain;
-
+        this.stopPosition = stopPosition;
         // Use addRequirements() here to declare subsystem dependencies.
         addRequirements(drivetrain);
     }
@@ -22,22 +23,26 @@ public class StepTwo extends CommandBase {
     @Override
     public void initialize() {
         drivetrain.setBrakeMode(true);
-        drivetrain.driveWithRamp(0.2, 0.2);
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
-    public void execute() {}
+    public void execute() {
+        drivetrain.driveWithRamp(0.13, 0.13);
+    }
+
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
         drivetrain.setBrakeMode(false);
+        drivetrain.driveWithoutRamp(0, 0);
     }
 
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return drivetrain.getCurrentEncoderPosition() <= 0;
+
+        return drivetrain.getCurrentEncoderPosition() >= stopPosition;
     }
 }

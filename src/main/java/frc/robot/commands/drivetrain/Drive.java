@@ -31,7 +31,7 @@ public class Drive extends CommandBase {
     public void execute() {
         double left = -leftJoystick.getY() - rightJoystick.getX();
         double right = -leftJoystick.getY() + rightJoystick.getX();
-        double limiter = (-rightJoystick.getRawAxis(3)+1)/2;
+        double limiter = (-rightJoystick.getRawAxis(2)+1)/2;
         drivetrain.driveWithRamp((left*limiter), (right*limiter));
     }
 

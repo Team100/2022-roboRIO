@@ -12,7 +12,7 @@ import frc.robot.FRCLib.Motors.FRCNEO;
 public class Shooter extends SubsystemBase {
     private FRCNEO shootMotor,shootMotorFollower;
 
-    private boolean atSpeed = false;
+    // private boolean atSpeed = false;
     public int speed() { 
         return Math.abs(shootMotor.getSensorVelocity()); 
     }
@@ -57,22 +57,20 @@ public class Shooter extends SubsystemBase {
 
     public void set(double speed) {
         this.shootMotor.drivePercentOutput(-speed);
-        // this.shootMotorFollower.drivePercentOutput(speed);
     }
 
     public void setVelocity(double velocity){
         this.shootMotor.driveVelocity(velocity);
     }
+
+    // public double getAdjustment(){
+    //     double limiter = (-rightJoystick.getRawAxis(2)+1)/2;
+    // }
     
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
-
-        //atSpeed = (Math.abs(shootMotor.getSensorVelocity()) >= ShooterMotionParameters.NOMINAL_VELOCITY);
-        //atSpeed = (Math.abs(shootMotor.getSensorVelocity()) >= ShooterMotionParameters.NOMINAL_VELOCITY);        //if(atSpeed) System.out.println("MOTOR GO BRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR");
-        SmartDashboard.putNumber("shooter velocity", (shootMotor.getSensorVelocity()));
-
-        //SmartDashboard.putNumber("ShooterRPM", ((shootMotor.getSensorVelocity()/2048))*600);
-        
+        // SmartDashboard.putNumber("shooter offset", value)
+        SmartDashboard.putNumber("shooter velocity", (shootMotor.getSensorVelocity()));        
     }
 }

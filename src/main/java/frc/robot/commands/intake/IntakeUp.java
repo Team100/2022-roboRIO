@@ -1,7 +1,6 @@
 package frc.robot.commands.intake;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
 import frc.robot.subsystems.Intake;
 
 public class IntakeUp extends CommandBase {
@@ -27,14 +26,15 @@ public class IntakeUp extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        if (intake.getPot() <= 40) {
-            intake.runPivot(
-                Constants.IntakeConstants.IntakeMotionParameters.INTAKE_PIVOT_PERCENT_OUTPUT_UP
-                * (40 - intake.getPot()));
-        } else {
-            intake.runPivot(0);
-            done = true;
-        }
+        // if (intake.getPot() <= -30) {
+        //     intake.runPivot(
+        //         Constants.IntakeConstants.IntakeMotionParameters.INTAKE_PIVOT_PERCENT_OUTPUT_UP
+        //         * (40 - intake.getPot()));
+        // } else {
+        //     intake.runPivot(0);
+        //     done = true;
+        // }
+
         // if (intake.getCurrentPosition() >= Constants.IntakeConstants.PivotConstants.DOWN_POSITION) {
         //     intake.runPivot(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_PIVOT_PERCENT_OUTPUT);
         // }
