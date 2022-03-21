@@ -21,6 +21,9 @@ import frc.robot.commands.intake.*;
 import frc.robot.commands.indexer.*;
 import frc.robot.commands.autonomous.*;
 import frc.robot.commands.climber.*;
+import frc.robot.commands.climber.simpleCommands.HookDown;
+import frc.robot.commands.climber.simpleCommands.HookUp;
+import frc.robot.commands.climber.simpleCommands.HookUpLow;
 import frc.robot.commands.shooter.*;
 
 /**
@@ -38,7 +41,6 @@ public class RobotContainer {
     private final Shooter shooter = new Shooter();
     private final Intake intake = new Intake();
     private final Indexer indexer = new Indexer();
-    private final Symphony symphony = new Symphony();
 
     // Auton DIP Switches
     private final DigitalInput firstBallOption = new DigitalInput(3);
@@ -92,7 +94,7 @@ public class RobotContainer {
     private final IndexerFeedLow feedLowCommand = new IndexerFeedLow(indexer, shooter);
     private final ClimberStop climberStopCommand = new ClimberStop(climber);
     private final HookUp hookUpCommand = new HookUp(climber);
-    private final HookDown hookDownCommand = new HookDown(climber, symphony);    
+    private final HookDown hookDownCommand = new HookDown(climber);    
     private final HookZero hookZeroCommand = new HookZero(climber);
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -131,8 +133,6 @@ public class RobotContainer {
         shootHighButton.whileHeld(new ParallelCommandGroup(shootHighCommand, feedHighCommand));
         shootLowButton.whileHeld(new ParallelCommandGroup(shootLowCommand, feedLowCommand));
         ejectButton.whileHeld(new ParallelCommandGroup(intakeEjectCommand, indexerEjectCommand, shootEjectCommand));
-
-        mediaControlButton.whenPressed(new InstantCommand(() -> { symphony.play();}, symphony));
 
         fixClimberButton.whileHeld(hookZeroCommand);
         }
