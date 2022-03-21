@@ -164,4 +164,8 @@ public class Drivetrain extends SubsystemBase {
     public boolean getAutoEnd() {
         return getCurrentEncoderPosition() <= -150000;
     }
+
+    public boolean getAutoEndHighReverse() {
+        return getCurrentEncoderPosition() <= Constants.DrivetrainConstants.Autonomous.Distance.HIGH_GOAL_SHOT;
+    }
 }

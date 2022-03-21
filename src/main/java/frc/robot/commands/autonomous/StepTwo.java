@@ -5,6 +5,7 @@
 package frc.robot.commands.autonomous;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.subsystems.Drivetrain;
 
 public class StepTwo extends CommandBase {
@@ -28,7 +29,7 @@ public class StepTwo extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        drivetrain.driveWithRamp(0.13, 0.13);
+        drivetrain.driveWithRamp(Constants.DrivetrainConstants.Autonomous.Speeds.DRIVE_FORWARD_SPEED, Constants.DrivetrainConstants.Autonomous.Speeds.DRIVE_FORWARD_SPEED);
     }
 
 
@@ -42,7 +43,6 @@ public class StepTwo extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-
         return drivetrain.getCurrentEncoderPosition() >= stopPosition;
     }
 }

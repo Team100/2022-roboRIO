@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
+import frc.robot.Constants;
 //import frc.robot.commands.automatic.IntakeCargo;
 import frc.robot.commands.indexer.BetterIndexerIntake;
 import frc.robot.commands.intake.IntakeIntake;
@@ -32,7 +33,7 @@ public class StepOne extends ParallelRaceGroup {
         
         // this.drivetrain = drivetrain;
     
-        addCommands(new RunCommand(() -> drivetrain.driveWithRamp(-0.14, -0.14), drivetrain)
+        addCommands(new RunCommand(() -> drivetrain.driveWithRamp(Constants.DrivetrainConstants.Autonomous.Speeds.DRIVE_REVERSE_SPEED, Constants.DrivetrainConstants.Autonomous.Speeds.DRIVE_REVERSE_SPEED), drivetrain)
                     .until(drivetrain::getAutoEnd)
                     .andThen(new InstantCommand(() -> { drivetrain.driveWithoutRamp(0, 0); }, drivetrain))
         );

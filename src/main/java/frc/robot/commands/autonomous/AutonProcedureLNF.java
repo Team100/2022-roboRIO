@@ -27,7 +27,7 @@ public class AutonProcedureLNF extends SequentialCommandGroup {
     /** Creates a new AutonProcedure. */
     public AutonProcedureLNF(Drivetrain drivetrain, Intake intake, Indexer indexer, Shooter shooter) {
         // Add your commands in the addCommands() call, e.g.
-        // addCommands(new FooCommand(), new BarCommand());7
+        // addCommands(new FooCommand(), new BarCommand());
         addCommands(new InstantCommand(() -> { drivetrain.zeroCurrentPosition(); }, drivetrain));//zero the drivetrain
 
         addCommands(new ParallelDeadlineGroup(new WaitCommand(3), new ShootLowFar(shooter),  new IndexerFeedLowFar(indexer, shooter), new IntakeIntake(intake))); //shoot one loaded ball into high goal

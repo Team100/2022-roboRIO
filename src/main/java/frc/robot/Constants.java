@@ -21,12 +21,19 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 public final class Constants {
     public static final class DrivetrainConstants {
         public static final class Autonomous {
-            public static final int MAX_REVERSE_DISTANCE = -150000;
-            public static final int LH_WALL_DISTANCE = -150000;
-            public static final int LHF_WALL_DISTANCE = -150000;
-            public static final int HH_WALL_DISTANCE = -150000;
+            public static final class Distance {
+                public static final int HIGH_GOAL_SHOT = -40000;
+            }
+            public static final class Offsets {
+                public static final int AUTO_H_H_OFFSET = -56000;
+                public static final int AUTO_L_H_OFFSET = -56000;
+                public static final int AUTO_LF_H_OFFSET = -40000;
+            }
+            public static final class Speeds {
+                public static final double DRIVE_REVERSE_SPEED = -0.14;
+                public static final double DRIVE_FORWARD_SPEED = 0.13;
+            }
         }
-
         public static final class DrivetrainMotion{
             public static final double ALIGN_SPEED = -0.15;
             public static final double SLOW_SPEED = 0.2;
