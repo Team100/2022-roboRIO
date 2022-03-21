@@ -34,9 +34,8 @@ public class Intake extends ProfiledPIDSubsystem {
                 70)),
             Constants.IntakeConstants.PivotConstants.UP_POSITION);
         getController().setTolerance(0.1);
-        //setSetpoint(Constants.IntakeConstants.PivotConstants.UP_POSITION);
-
-        pot = new AnalogPotentiometer(Constants.IntakeConstants.IntakeSensors.IntakePot.ID,100,-37);
+        
+        pot = new AnalogPotentiometer(Constants.IntakeConstants.IntakeSensors.IntakePot.ID,Constants.IntakeConstants.IntakeSensors.IntakePot.POT_ADJUSTMENT_FACTOR,Constants.IntakeConstants.IntakeSensors.IntakePot.POT_OFFSET);
 
         spin = new FRCNEO.FRCNEOBuilder(Constants.IntakeConstants.IntakeMotors.IntakeSpin.CAN_ID)
             .withInverted(Constants.IntakeConstants.IntakeMotors.IntakeSpin.INVERT)
@@ -58,7 +57,6 @@ public class Intake extends ProfiledPIDSubsystem {
             .withTimeout(Constants.IntakeConstants.IntakeMotors.IntakePivot.TIMEOUT)
             .withCurrentLimitEnabled(Constants.IntakeConstants.IntakeMotors.IntakePivot.ENABLE_CURRENT_LIMIT)
             .withCurrentLimit(Constants.IntakeConstants.IntakeMotors.IntakePivot.CURRENT_LIMIT)
-            // .withOpenLoopRampRate(Constants.IntakeConstants.IntakeMotors.IntakePivot.OPEN_LOOP_RAMP)
             .withPeakOutputForward(Constants.IntakeConstants.IntakeMotors.IntakePivot.PEAK_OUTPUT_FORWARD)
             .withPeakOutputReverse(Constants.IntakeConstants.IntakeMotors.IntakePivot.PEAK_OUTPUT_REVERSE)
             .withNeutralMode(Constants.IntakeConstants.IntakeMotors.IntakePivot.NEUTRAL_MODE)
@@ -75,12 +73,11 @@ public class Intake extends ProfiledPIDSubsystem {
             pivot.motor.setVoltage(output);
         } else {
             cycleCount++;
-            if (cycleCount >= 30) {
+            if (cycleCount >= Constants.IntakeConstants.PivotConstants.CYCLE_COUNT) {
                 pivot.motor.setVoltage(0);
                 cycleCount = 0;
             }
         }
-        // System.out.println("output is  " + output);
     }
 
     @Override
@@ -100,13 +97,11 @@ public class Intake extends ProfiledPIDSubsystem {
     }
 
     public void pivotUp() {
-        // super.disable();
         getController().setGoal(Constants.IntakeConstants.PivotConstants.UP_POSITION);
         super.enable();
     }
 
     public void pivotDown() {
-        // super.disable();
         getController().setGoal(Constants.IntakeConstants.PivotConstants.DOWN_POSITION);
         super.enable();
     }
@@ -115,9 +110,7 @@ public class Intake extends ProfiledPIDSubsystem {
     public void periodic() {
         if (m_enabled) {
             useOutput(m_controller.calculate(getMeasurement(), getController().getGoal()), m_controller.getSetpoint());
-
         }
-        // getController().calculate(pot.get());
         // if (isEnabled()) pivot.motor.setVoltage(getController().calculate(getMeasurement()));
         //onInit(); // Oh no no no no no
         
@@ -135,10 +128,6 @@ public class Intake extends ProfiledPIDSubsystem {
 
     public void onInit() {
     }
-
-    // public double getPot(){
-    //     return pot.get();
-    // }
 
     public void runPivot(double percentOutput) {
         pivot.drivePercentOutput(percentOutput);

@@ -108,13 +108,16 @@ public final class Constants {
         public static final class IntakeSensors{
             public static final class IntakePot{
                 public static final int ID = 3;
-                public static final int DOWN = 15;
+                public static final int POT_OFFSET = -37;
+                public static final int POT_ADJUSTMENT_FACTOR = 100;
             }
         }
         public static final class PivotConstants {
             public static final double UP_POSITION = 26.5;
-            public static final double DOWN_POSITION = 2.5; // (250d / 360d) * 3.3;
+            public static final double DOWN_POSITION = 2.5;
             public static final double UP_SETPOINT = 25;
+
+            public static final double CYCLE_COUNT = 30;
         }
         public static final class IntakeMotionParameters {
             public static final double INTAKE_SPINNER_PERCENT_OUTPUT = -0.35;
@@ -171,8 +174,6 @@ public final class Constants {
                 public static final double OPEN_LOOP_RAMP = 0.1;
                 public static final double PEAK_OUTPUT_FORWARD = 0.5;
                 public static final double PEAK_OUTPUT_REVERSE = -0.5;
-                // public static final float SOFT_LIMIT_UPPER = 4.8f;
-                // public static final float SOFT_LIMIT_LOWER = 0.4f;
 
                 public static final SparkMaxAnalogSensor.Mode ANALOG_MODE = SparkMaxAnalogSensor.Mode.kAbsolute;
 
@@ -189,8 +190,8 @@ public final class Constants {
             public static final double SHOOTER_VELOCITY_LOW = -2200; //0.17 //0.175 //-2500
 			public static final double NOMINAL_LOW_VELOCITY = 2180;
 
-            public static final double SHOOTER_VELOCITY_LOW_FAR = -2500; // TODO: find value
-			public static final double NOMINAL_LOW_FAR_VELOCITY = 2480; // TODO: find value
+            public static final double SHOOTER_VELOCITY_LOW_FAR = -2500;
+			public static final double NOMINAL_LOW_FAR_VELOCITY = 2480;
 
             public static final double SHOOTER_VELOCITY_HIGH = -4000; //0.17 //0.175
             public static final double NOMINAL_HIGH_VELOCITY = 3950;
