@@ -44,15 +44,13 @@ public class RobotContainer {
     private final DigitalInput firstBallOption = new DigitalInput(3);
     private final DigitalInput secondBallOption = new DigitalInput(4);
     private final DigitalInput yeetOrLeave = new DigitalInput(5);
-    // private final DigitalInput stopAtWall = new DigitalInput(6);
 
+    //crucial variables
     int gitforcepushorginmaster = 2;
 
     // OI Devices
     private final Joystick leftJoystick = new Joystick(0);
     private final Joystick rightJoystick = new Joystick(1);
-    // private final Joystick gamepad = new Joystick(2);
-    //private final JoystickButton indexButton = new JoystickButton(leftJoystick, 1);
     private final Joystick buttonBoard = new Joystick(3);
     private final JoystickButton turboButton = new JoystickButton(rightJoystick, 1);
     private final JoystickButton slowButton = new JoystickButton(rightJoystick, 3);
@@ -60,8 +58,6 @@ public class RobotContainer {
     private final JoystickButton ejectButton = new JoystickButton(buttonBoard, 5);
 
     private final JoystickButton alignButton = new JoystickButton(leftJoystick, 1);
-    //private final JoystickButton shootButton = new JoystickButton(buttonBoard, 16);
-    //private final JoystickButton indexerIntakeButton = new JoystickButton(buttonBoard, 12);
     private final JoystickButton shootHighButton = new JoystickButton(buttonBoard, 14);
     private final JoystickButton shootLowButton = new JoystickButton(buttonBoard, 13);
 
@@ -76,9 +72,6 @@ public class RobotContainer {
 
     private final JoystickButton fixClimberButton = new JoystickButton(rightJoystick, 7);
     private final JoystickButton indexTwoButton = new JoystickButton(buttonBoard, gitforcepushorginmaster);
-
-    // private final JoystickButton runPivot = new JoystickButton(gamepad, 1);
-    //private final JoystickButton controlBallButton = new JoystickButton(buttonBoard, 14);
 
     // Commands
     private final Drive driveCommand = new Drive(drivetrain, leftJoystick, rightJoystick);
@@ -142,8 +135,7 @@ public class RobotContainer {
         mediaControlButton.whenPressed(new InstantCommand(() -> { symphony.play();}, symphony));
 
         fixClimberButton.whileHeld(hookZeroCommand);
-        // runPivot.whileHeld(new InstantCommand(() -> { intake.runPivot(0.1); System.out.println("running the thing");}, intake));
-    }
+        }
 
     public void onInit() {
         // intake.onInit();

@@ -30,11 +30,11 @@ public class Intake extends ProfiledPIDSubsystem {
             Constants.IntakeConstants.IntakeMotionParameters.KI,
             Constants.IntakeConstants.IntakeMotionParameters.KD,
             new TrapezoidProfile.Constraints(
-                192,
-                70)),
+                Constants.IntakeConstants.IntakeMotionParameters.TRAPAZOID_PROFILE_MAX_VEL,
+                Constants.IntakeConstants.IntakeMotionParameters.TRAPAZOID_PROFILE_MAX_ACL)),
             Constants.IntakeConstants.PivotConstants.UP_POSITION);
-        getController().setTolerance(0.1);
-        
+        getController().setTolerance(Constants.IntakeConstants.IntakeMotionParameters.PID_TOLERANCE);
+
         pot = new AnalogPotentiometer(Constants.IntakeConstants.IntakeSensors.IntakePot.ID,Constants.IntakeConstants.IntakeSensors.IntakePot.POT_ADJUSTMENT_FACTOR,Constants.IntakeConstants.IntakeSensors.IntakePot.POT_OFFSET);
 
         spin = new FRCNEO.FRCNEOBuilder(Constants.IntakeConstants.IntakeMotors.IntakeSpin.CAN_ID)
@@ -136,6 +136,5 @@ public class Intake extends ProfiledPIDSubsystem {
     public void runSpinner(double percentOutput) {
         spin.drivePercentOutput(percentOutput);
     }
-
 }
     

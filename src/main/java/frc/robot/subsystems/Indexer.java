@@ -74,11 +74,9 @@ public class Indexer extends SubsystemBase {
     public void periodic() {
         // This method will be called once per scheduler run
         // stageOneMotor.drivePercentOutput(stageOneSetpoint);
+        // SmartDashboard.putNumber("motor one received", stageOneMotor.motor.get());
+        // SmartDashboard.putNumber("motor two received", stageTwoMotor.motor.get());
         SmartDashboard.putBoolean("Indexer StageOne", getSensorOne());
         SmartDashboard.putBoolean("Indexer StageTwo", getSensorTwo());
-
-        // SmartDashboard.putNumber("motor one received", stageOneMotor.motor.get());
-        
-        // SmartDashboard.putNumber("motor two received", stageTwoMotor.motor.get());
     }
 }

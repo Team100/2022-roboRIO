@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
+import frc.robot.Constants;
 import frc.robot.subsystems.Intake;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -18,6 +19,10 @@ public class BetterIntakeStop extends SequentialCommandGroup {
   public BetterIntakeStop(Intake intake) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new ParallelRaceGroup(new IntakeStop(intake), new WaitCommand(2)), new WaitCommand(2), new InstantCommand(() -> { intake.enable(); }));
+    addCommands(new ParallelRaceGroup(new IntakeStop(intake), new WaitCommand(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_UP_TIMEOUT)), 
+    new WaitCommand(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_UP_TIME_TO_RESTART), 
+    new InstantCommand(() -> { intake.enable(); })
+    );
+    //start moving the intake up using intake stop, if it hasn't finished after the length of the first wait then stop the command and wait the length of the second wait before restarting the command 
   }
 }

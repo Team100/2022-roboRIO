@@ -120,6 +120,11 @@ public final class Constants {
             public static final double CYCLE_COUNT = 30;
         }
         public static final class IntakeMotionParameters {
+            public static final double TRAPAZOID_PROFILE_MAX_VEL = 192;
+            public static final double TRAPAZOID_PROFILE_MAX_ACL = 70;
+            public static final double PID_TOLERANCE = 0.1;
+            public static final double INTAKE_UP_TIMEOUT = 2;
+            public static final double INTAKE_UP_TIME_TO_RESTART = 2;
             public static final double INTAKE_SPINNER_PERCENT_OUTPUT = -0.35;
             public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN = -0.4;
             public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN_DECEL = 0.35;
@@ -300,7 +305,7 @@ public final class Constants {
 
     public static final class ClimberConstants {
         public static final class ClimberMotionParameters {
-            public static final double CLIMBER_PERCENT_OUTPUT = 0.6;
+            public static final double CLIMBER_PERCENT_OUTPUT = 0.75;
             public static final double CLIMBER_ZERO = 0;
 
             public static final double TILT_PERCENT_OUTPUT = 0.1;

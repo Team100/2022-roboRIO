@@ -30,12 +30,10 @@ public class HookUpLow extends CommandBase {
   @Override
   public void execute() {
     if(climber.mainPosition()<=ClimberConstants.ClimberMotionParameters.CLIMBER_LOW_BAR_TOP){
-      // SmartDashboard.putBoolean("we done boys?", true);
       climber.setWinch(0);
       done = true;
     }else{
       climber.setWinch(-ClimberConstants.ClimberMotionParameters.CLIMBER_PERCENT_OUTPUT);
-      // SmartDashboard.putBoolean("we done boys?", false);
     }
   }
 

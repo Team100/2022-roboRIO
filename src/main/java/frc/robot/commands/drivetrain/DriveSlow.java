@@ -42,15 +42,11 @@ public class DriveSlow extends CommandBase {
         double right = -leftJoystick.getY() + rightJoystick.getX();
         double limiter = Constants.DrivetrainConstants.DrivetrainMotion.SLOW_SPEED;
         drivetrain.driveWithoutRamp((left*limiter), (right*limiter));
-
-
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        // intake.runPivot(0);
-        // if (enabled) intake.enable();
     }
 
     // Returns true when the command should end.

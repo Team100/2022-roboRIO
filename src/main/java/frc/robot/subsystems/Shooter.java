@@ -62,10 +62,6 @@ public class Shooter extends SubsystemBase {
     public void setVelocity(double velocity){
         this.shootMotor.driveVelocity(velocity);
     }
-
-    // public double getAdjustment(){
-    //     double limiter = (-rightJoystick.getRawAxis(2)+1)/2;
-    // }
     
     @Override
     public void periodic() {
