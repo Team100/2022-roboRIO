@@ -63,7 +63,7 @@ public class RobotContainer {
     private final JoystickButton shootHighButton = new JoystickButton(buttonBoard, 14);
     private final JoystickButton shootLowButton = new JoystickButton(buttonBoard, 13);
 
-    private final JoystickButton mediaControlButton = new JoystickButton(buttonBoard, 12);
+    //private final JoystickButton mediaControlButton = new JoystickButton(buttonBoard, 12);
 
     private final JoystickButton hookDownButton = new JoystickButton(buttonBoard, 1);
     private final JoystickButton hookUpButton = new JoystickButton(buttonBoard, 16);

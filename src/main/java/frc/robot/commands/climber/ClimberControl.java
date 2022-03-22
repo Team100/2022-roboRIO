@@ -33,13 +33,13 @@ public class ClimberControl extends CommandBase {
     public void execute() {
         double limiter = (-leftJoystick.getRawAxis(2)+1)/2;
 
-        if (Math.abs(rightJoystick.getY()) > 0.05){
+        if (Math.abs(rightJoystick.getY()) > Constants.ClimberConstants.ClimberControls.TILT_CONTROL_DEADZONE){
             climber.setTilt(rightJoystick.getY()*limiter);
         }else{
             climber.setWinch(0);
         }
 
-        if (Math.abs(leftJoystick.getY()) > 0.05){
+        if (Math.abs(leftJoystick.getY()) > Constants.ClimberConstants.ClimberControls.WINCH_CONTROL_DEADZONE){
             climber.setWinch(leftJoystick.getY()*limiter);
         }else{
             climber.setWinch(0);

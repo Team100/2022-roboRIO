@@ -6,7 +6,6 @@ package frc.robot.commands.climber;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
 import frc.robot.subsystems.Climber;
 import frc.robot.Constants.ClimberConstants;
 //import frc.robot.Constants.ClimberConstants.*;
@@ -35,25 +34,34 @@ public class LockStationary extends CommandBase {
   @Override
   public void execute() {    //climber is hanging on or lined up with a bar
     if(!mainLocked){//is climber main hooks locked on a bar?
-      SmartDashboard.putString("Rnjnsknfds","mains not locked yet");
       climber.setWinch(ClimberConstants.ClimberMotionParameters.CLIMBER_PERCENT_OUTPUT);  //if not pull until you grab it 
       if(climber.mainLocked()){
         mainLocked = true;
-        SmartDashboard.putString("Rnjnsknfds","mains now locked");
       }
     }                                                                     
-    if(!(climber.mainPosition()>=ClimberConstants.ClimberMotionParameters.CLIMBER_TOP)&&climber.mainLocked()){//if climber is not all the way retracted the hooks are locked on
-      climber.setWinch(ClimberConstants.ClimberMotionParameters.CLIMBER_PERCENT_OUTPUT);                      //retract the hooks
-      if(climber.mainPosition()>=ClimberConstants.ClimberMotionParameters.TILT_START&&!climber.stationaryLocked()){//while your doing that, if your close enough to the top
-        climber.setTilt(ClimberConstants.ClimberMotionParameters.TILT_PERCENT_OUTPUT);                        //start tilting the stationary hooks into position
-      }
-    }else if(climber.mainPosition()>=ClimberConstants.ClimberMotionParameters.CLIMBER_TOP&&climber.mainLocked()&&!climber.stationaryLocked()&&climber.tiltAngle()>ClimberConstants.ClimberMotionParameters.STATIONARY_LOCK_ANGLE){ //if you are sufficiently retracted and the main hooks are locked and the stationaries are not and your tilt angle is insufficient to drop the stationary hooks onto the bar
+    if((climber.mainPosition()>=ClimberConstants.ClimberMotionParameters.CLIMBER_BOTTOM)&&climber.mainLocked()){//if climber is not all the way retracted the hooks are locked on
+        climber.setWinch(ClimberConstants.ClimberMotionParameters.CLIMBER_PERCENT_OUTPUT);                      //retract the hooks
+      // if(climber.mainPosition()>=ClimberConstants.ClimberMotionParameters.TILT_START&&!climber.stationaryLocked()){//while your doing that, if your close enough to the top
+      //   climber.setTilt(ClimberConstants.ClimberMotionParameters.TILT_PERCENT_OUTPUT);                        //start tilting the stationary hooks into position
+      // }
+    }else if(climber.mainPosition()<ClimberConstants.ClimberMotionParameters.CLIMBER_TOP&&climber.mainLocked()&&!climber.stationaryLocked()&&climber.tiltAngle()<ClimberConstants.ClimberMotionParameters.STATIONARY_LOCK_ANGLE){ //if you are sufficiently retracted and the main hooks are locked and the stationaries are not and your tilt angle is insufficient to drop the stationary hooks onto the bar
       climber.setWinch(0);                                                                                    //stop retracting
       climber.setTilt(ClimberConstants.ClimberMotionParameters.TILT_PERCENT_OUTPUT);                          //tilt until your in position to drop the stationary hooks onto the bar
-    }else if(!climber.stationaryLocked()&&mainLocked){                                                                    //if its just the stationary hooks that need to be droped
+    }else if(!climber.stationaryLocked()&&climber.mainLocked()&&climber.tiltAngle()>=ClimberConstants.ClimberMotionParameters.STATIONARY_LOCK_ANGLE){                                                                    //if its just the stationary hooks that need to be droped
+      climber.setTilt(0);
       climber.setWinch(-ClimberConstants.ClimberMotionParameters.CLIMBER_PERCENT_OUTPUT);                     //drop down to lock 'em
     }
 
+
+
+    //safties to prevent exiting frame permiter or incurring death by rohan
+    if(climber.mainPosition()<ClimberConstants.ClimberMotionParameters.CLIMBER_TOP){
+      climber.setWinch(0);
+      SmartDashboard.putString("stopped climbing b/c", "climber too tall");
+    }
+    if(climber.tiltAngle()>ClimberConstants.ClimberMotionParameters.STATIONARY_LOCK_ANGLE+2){
+      SmartDashboard.putString("stopped climbing b/c", "tilt too tilty");
+    }
   }
 
   // Called once the command ends or is interrupted.

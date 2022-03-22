@@ -6,7 +6,6 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -15,7 +14,6 @@ import frc.robot.FRCLib.Motors.FRCTalonFX;
 
 public class Drivetrain extends SubsystemBase {
     private FRCTalonFX leftMaster, leftFollower, rightMaster, rightFollower;
-    private DigitalInput sensorLeft, sensorRight;
     private double leftSetpoint, rightSetpoint;
     
     /** Creates a new Drivetrain. */

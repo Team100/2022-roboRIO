@@ -333,7 +333,7 @@ public final class Constants {
 
             public static final int CLIMBER_TOP = -220000;
             public static final int CLIMBER_LOW_BAR_TOP = -110000;
-            public static final int CLIMBER_BOTTOM = -10000;
+            public static final int CLIMBER_BOTTOM = -7000;
             public static final double TILT_START = 7000;
             public static final double STATIONARY_LOCK_ANGLE = 10;
 
@@ -345,8 +345,8 @@ public final class Constants {
         }
 
         public static final class ClimberControls {
-            public static final int TILT_FORWARD_GAMEPAD_BUTTON = 1;
-            public static final int TILT_REVERSE_GAMEPAD_BUTTON = 2;
+            public static final double TILT_CONTROL_DEADZONE = 0.05;
+            public static final double WINCH_CONTROL_DEADZONE = 0.05;
         };
 
         public static final class ClimberMotors {
