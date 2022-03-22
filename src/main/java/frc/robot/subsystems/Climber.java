@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -11,8 +12,17 @@ import frc.robot.FRCLib.Motors.FRCTalonFX;
 
 public class Climber extends SubsystemBase {
   private FRCTalonFX tilt, winch;
+
+  private DigitalInput leftStationaryHook, rightStationaryHook, leftMainHook, rightMainHook;
   /** Creates a new Climber. */
   public Climber() {
+    leftStationaryHook = new DigitalInput(Constants.ClimberConstants.ClimberSensors.StationaryHooks.LeftSensor.ID);
+    rightStationaryHook = new DigitalInput(Constants.ClimberConstants.ClimberSensors.StationaryHooks.RightSensor.ID);
+    leftMainHook = new DigitalInput(Constants.ClimberConstants.ClimberSensors.MainHooks.LeftSensor.ID);
+    rightMainHook = new DigitalInput(Constants.ClimberConstants.ClimberSensors.MainHooks.RightSensor.ID);
+
+
+
     tilt = new FRCTalonFX.FRCTalonFXBuilder(Constants.ClimberConstants.ClimberMotors.Tilt.CAN_ID)
     .withInverted(Constants.ClimberConstants.ClimberMotors.Tilt.INVERT)
     .withFeedbackPort(Constants.ClimberConstants.ClimberMotors.Tilt.FEEDBACK_PORT)
@@ -36,6 +46,8 @@ public class Climber extends SubsystemBase {
     .withPeakOutputReverse(Constants.ClimberConstants.ClimberMotors.Winch.PEAK_OUTPUT_REVERSE)
     .withNeutralMode(Constants.ClimberConstants.ClimberMotors.Winch.NEUTRAL_MODE).build();
 
+    addChild("tilt", tilt);
+    addChild("winch", winch);
   }
 
   public void setTilt(double percentOutput) {
@@ -44,6 +56,24 @@ public class Climber extends SubsystemBase {
 
   public void setWinch(double percentOutput) {
     winch.drivePercentOutput(percentOutput);
+  }
+
+  public boolean stationaryLocked(){
+    return !leftStationaryHook.get()&&!rightStationaryHook.get();
+    //return SmartDashboard.getBoolean("Stationaries Locked?", false);
+  }
+
+  public boolean mainLocked(){
+    return !leftMainHook.get()&&!rightMainHook.get();
+    //return SmartDashboard.getBoolean("Main Hooks Locked?", false);
+  }
+
+  public boolean getMainSensorLeft(){
+    return !leftMainHook.get();
+  }
+
+  public boolean getMainSensorRight(){
+    return !rightMainHook.get();
   }
 
   public double mainPosition(){
@@ -58,8 +88,15 @@ public class Climber extends SubsystemBase {
     winch.motor.setSelectedSensorPosition(0);
   }
 
+  public double tiltAngle(){
+    return 90-((tilt.getSelectedSensorPosition()/2048)+45);
+  }
+
   @Override
   public void periodic() {
     SmartDashboard.putNumber("main hooks position", mainPosition());
+    SmartDashboard.putNumber("TiltAngle", tiltAngle());
+    SmartDashboard.putBoolean("mainLocked", mainLocked());
+    SmartDashboard.putBoolean("stationaryLocked", stationaryLocked());
   }
 }

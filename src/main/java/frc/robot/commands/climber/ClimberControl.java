@@ -11,11 +11,13 @@ import frc.robot.subsystems.Climber;
 public class ClimberControl extends CommandBase {
     /** Creates a new Climb. */
     private final Climber climber;
-    private final Joystick gamepad;
+    private final Joystick leftJoystick;
+    private final Joystick rightJoystick;
 
-    public ClimberControl(Climber climber, Joystick gamepad) {
+    public ClimberControl(Climber climber, Joystick l, Joystick r) {
         this.climber = climber;
-        this.gamepad = gamepad;
+        leftJoystick = l;
+        rightJoystick = r;
 
         // Use addRequirements() here to declare subsystem dependencies.
         addRequirements(climber);
@@ -29,18 +31,18 @@ public class ClimberControl extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        // Winch
-        if (Math.abs(gamepad.getRawAxis(3)) < 0.05){
+        double limiter = (-leftJoystick.getRawAxis(2)+1)/2;
+
+        if (Math.abs(rightJoystick.getY()) > 0.05){
+            climber.setTilt(rightJoystick.getY()*limiter);
+        }else{
             climber.setWinch(0);
-        } else {
-            climber.setWinch(-gamepad.getRawAxis(3));
         }
 
-        //Tilt
-        if (gamepad.getRawButton(Constants.ClimberConstants.ClimberControls.TILT_FORWARD_GAMEPAD_BUTTON)) {
-            climber.setTilt(Constants.ClimberConstants.ClimberMotionParameters.TILT_PERCENT_OUTPUT);
-        } else if (gamepad.getRawButton(Constants.ClimberConstants.ClimberControls.TILT_REVERSE_GAMEPAD_BUTTON)) {
-            climber.setTilt(-Constants.ClimberConstants.ClimberMotionParameters.TILT_PERCENT_OUTPUT);
+        if (Math.abs(leftJoystick.getY()) > 0.05){
+            climber.setWinch(leftJoystick.getY()*limiter);
+        }else{
+            climber.setWinch(0);
         }
     }
 

@@ -43,9 +43,9 @@ public class RobotContainer {
     private final Indexer indexer = new Indexer();
 
     // Auton DIP Switches
-    private final DigitalInput firstBallOption = new DigitalInput(3);
-    private final DigitalInput secondBallOption = new DigitalInput(4);
-    private final DigitalInput yeetOrLeave = new DigitalInput(5);
+    private final DigitalInput firstBallOption = new DigitalInput(Constants.AutonomousConstants.DipSwitches.FIRST_BALL_OPTION_ID);
+    private final DigitalInput secondBallOption = new DigitalInput(Constants.AutonomousConstants.DipSwitches.SECOND_BALL_OPTION_ID);
+    private final DigitalInput yeetOrLeave = new DigitalInput(Constants.AutonomousConstants.DipSwitches.YEET_OR_LEAVE);
 
     //crucial variables
     int gitforcepushorginmaster = 2;
@@ -75,11 +75,13 @@ public class RobotContainer {
     private final JoystickButton fixClimberButton = new JoystickButton(rightJoystick, 7);
     private final JoystickButton indexTwoButton = new JoystickButton(buttonBoard, gitforcepushorginmaster);
 
+    private final JoystickButton climberControlButton = new JoystickButton(leftJoystick, 3);
+
     // Commands
     private final Drive driveCommand = new Drive(drivetrain, leftJoystick, rightJoystick);
     private final DriveFurious driveFuriousCommand = new DriveFurious(drivetrain, leftJoystick, rightJoystick);
     private final DriveSlow driveSlowCommand = new DriveSlow(drivetrain, leftJoystick, rightJoystick);
-    private final AlignClimber alignCommand = new AlignClimber(drivetrain);
+    private final AlignClimber alignCommand = new AlignClimber(climber, drivetrain);
     private final IntakeIntake intakeIntakeCommand = new IntakeIntake(intake);
     private final IntakeEject intakeEjectCommand = new IntakeEject(intake);
     private final BetterIntakeStop intakeStopCommand = new BetterIntakeStop(intake);
@@ -96,6 +98,7 @@ public class RobotContainer {
     private final HookUp hookUpCommand = new HookUp(climber);
     private final HookDown hookDownCommand = new HookDown(climber);    
     private final HookZero hookZeroCommand = new HookZero(climber);
+    private final ClimberControl climberControlCommand = new ClimberControl(climber, leftJoystick, rightJoystick);
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
@@ -133,8 +136,9 @@ public class RobotContainer {
         shootHighButton.whileHeld(new ParallelCommandGroup(shootHighCommand, feedHighCommand));
         shootLowButton.whileHeld(new ParallelCommandGroup(shootLowCommand, feedLowCommand));
         ejectButton.whileHeld(new ParallelCommandGroup(intakeEjectCommand, indexerEjectCommand, shootEjectCommand));
-
         fixClimberButton.whileHeld(hookZeroCommand);
+
+        climberControlButton.whileHeld(climberControlCommand);
         }
 
     public void onInit() {

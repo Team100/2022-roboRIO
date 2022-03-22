@@ -19,6 +19,13 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+    public static final class AutonomousConstants {
+        public static final class DipSwitches{
+            public static final int FIRST_BALL_OPTION_ID = 3;
+            public static final int SECOND_BALL_OPTION_ID = 4;
+            public static final int YEET_OR_LEAVE = 5;
+        }
+    }
     public static final class DrivetrainConstants {
         public static final class Autonomous {
             public static final class Distance {
@@ -39,12 +46,6 @@ public final class Constants {
             public static final double SLOW_SPEED = 0.2;
         }
         public static final class DrivetrainSensors{
-            public static final class LeftSensor{
-                public static final int ID = 0;
-            }
-            public static final class RightSensor{
-                public static final int ID = 2;
-            }
         }
         public static final class DrivetrainMotors {
             public static final class LeftMaster {
@@ -306,8 +307,26 @@ public final class Constants {
     }
 
     public static final class ClimberConstants {
+        public static final class ClimberSensors{
+            public static final class MainHooks{
+                public static final class LeftSensor{
+                    public static final int ID = 0;
+                }
+                public static final class RightSensor{
+                    public static final int ID = 2;
+                }
+            }
+            public static final class StationaryHooks{
+                public static final class LeftSensor{
+                    public static final int ID = 1;
+                }
+                public static final class RightSensor{
+                    public static final int ID = 9;
+                }
+            }
+        }
         public static final class ClimberMotionParameters {
-            public static final double CLIMBER_PERCENT_OUTPUT = 0.75;
+            public static final double CLIMBER_PERCENT_OUTPUT = 0.3;
             public static final double CLIMBER_ZERO = 0;
 
             public static final double TILT_PERCENT_OUTPUT = 0.1;
