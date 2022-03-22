@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
@@ -63,12 +62,17 @@ public class RobotContainer {
     private final JoystickButton shootHighButton = new JoystickButton(buttonBoard, 14);
     private final JoystickButton shootLowButton = new JoystickButton(buttonBoard, 13);
 
-    //private final JoystickButton mediaControlButton = new JoystickButton(buttonBoard, 12);
+    // private final JoystickButton hookDownButton = new JoystickButton(buttonBoard, 1);
+    // private final JoystickButton hookUpButton = new JoystickButton(buttonBoard, 16);
+    // private final JoystickButton hookUpLowButton = new JoystickButton(rightJoystick, 11);
+    // private final JoystickButton hookDownLowButton = new JoystickButton(rightJoystick, 10);
 
-    private final JoystickButton hookDownButton = new JoystickButton(buttonBoard, 1);
-    private final JoystickButton hookUpButton = new JoystickButton(buttonBoard, 16);
-    private final JoystickButton hookUpLowButton = new JoystickButton(rightJoystick, 11);
-    private final JoystickButton hookDownLowButton = new JoystickButton(rightJoystick, 10);
+    private final JoystickButton lockStationariesButton = new JoystickButton(buttonBoard, 12);
+    private final JoystickButton nextBarButton = new JoystickButton(buttonBoard, 1);
+
+    private final JoystickButton hookUpButton = new JoystickButton(rightJoystick, 11);
+    private final JoystickButton hookUpLowButton = new JoystickButton(rightJoystick, 10);
+    private final JoystickButton hookDownButton = new JoystickButton(buttonBoard, 16);
 
     private final JoystickButton stopAll = new JoystickButton(buttonBoard, 4);
 
@@ -94,11 +98,16 @@ public class RobotContainer {
     private final IndexerEject indexerEjectCommand = new IndexerEject(indexer, intake);
     private final IndexerFeedHigh feedHighCommand = new IndexerFeedHigh(indexer, shooter);
     private final IndexerFeedLow feedLowCommand = new IndexerFeedLow(indexer, shooter);
-    private final ClimberStop climberStopCommand = new ClimberStop(climber);
-    private final HookUp hookUpCommand = new HookUp(climber);
-    private final HookDown hookDownCommand = new HookDown(climber);    
+    private final ClimberStop climberStopCommand = new ClimberStop(climber);   
     private final HookZero hookZeroCommand = new HookZero(climber);
     private final ClimberControl climberControlCommand = new ClimberControl(climber, leftJoystick, rightJoystick);
+
+    private final HookUp hookUpCommand = new HookUp(climber);
+    private final HookUpLow hookUpLowCommand = new HookUpLow(climber);
+    private final HookDown hookDownCommand = new HookDown(climber); 
+
+    private final NextBar nextBarCommand = new NextBar(climber);
+    private final LockStationary lockStationariesCommand = new LockStationary(climber);
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
@@ -109,9 +118,7 @@ public class RobotContainer {
         intake.setDefaultCommand(intakeStopCommand);
         shooter.setDefaultCommand(shootStopCommand);
 
-
-        //Sanjan.setDefaultCommand(STOP)
-
+        //sanjan.setDefaultCommand(STOP)
         // Configure the button bindings
         configureButtonBindings();
     }
@@ -125,10 +132,6 @@ public class RobotContainer {
     private void configureButtonBindings() {
         turboButton.whileHeld(driveFuriousCommand);
         alignButton.whileHeld(alignCommand);
-        hookDownButton.whenPressed(hookDownCommand);
-        hookUpButton.whenPressed(hookUpCommand);
-        hookUpLowButton.whenPressed(new HookUpLow(climber));
-        hookDownLowButton.whenPressed(hookDownCommand);
         slowButton.whileHeld(driveSlowCommand);
         stopAll.whenPressed(new ParallelCommandGroup(new ClimberStop(climber), new IndexerStop(indexer), new BetterIntakeStop(intake), new ShootStop(shooter)));
         intakeButton.whenPressed(new SequentialCommandGroup(new ParallelDeadlineGroup(intakeCommand, intakeIntakeCommand), new WaitCommand(0.2)));
@@ -138,6 +141,16 @@ public class RobotContainer {
         ejectButton.whileHeld(new ParallelCommandGroup(intakeEjectCommand, indexerEjectCommand, shootEjectCommand));
         fixClimberButton.whileHeld(hookZeroCommand);
 
+
+        // hookDownButton.whenPressed(hookDownCommand);
+        // hookUpButton.whenPressed(hookUpCommand);
+        // hookUpLowButton.whenPressed(new HookUpLow(climber));
+        hookUpButton.whenPressed(hookUpCommand);
+        hookUpLowButton.whenPressed(hookUpLowCommand);
+        hookDownButton.whenPressed(hookDownCommand);
+
+        nextBarButton.whileHeld(nextBarCommand);
+        lockStationariesButton.whileHeld(lockStationariesCommand);
         climberControlButton.whileHeld(climberControlCommand);
         }
 
