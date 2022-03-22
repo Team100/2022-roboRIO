@@ -20,9 +20,6 @@ public class Drivetrain extends SubsystemBase {
     
     /** Creates a new Drivetrain. */
     public Drivetrain() {
-        sensorLeft = new DigitalInput(Constants.DrivetrainConstants.DrivetrainSensors.LeftSensor.ID);
-        sensorRight = new DigitalInput(Constants.DrivetrainConstants.DrivetrainSensors.RightSensor.ID);
-
         leftMaster = new FRCTalonFX.FRCTalonFXBuilder(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.CAN_ID)
             .withKP(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.KP)
             .withKI(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.KI)
@@ -108,14 +105,6 @@ public class Drivetrain extends SubsystemBase {
         return input;
     }
 
-    public boolean getSensorLeft() {
-        return !sensorLeft.get();
-      }
-    
-      public boolean getSensorRight() {
-        return !sensorRight.get();
-      }
-
       public double getCurrentEncoderPosition() {
         return (leftMaster.getSelectedSensorPosition()+rightMaster.getSelectedSensorPosition())/2;
     }
@@ -144,9 +133,7 @@ public class Drivetrain extends SubsystemBase {
 
     @Override
     public void periodic() {
-        
-        SmartDashboard.putBoolean("sensorLeft", getSensorLeft());
-        SmartDashboard.putBoolean("sensorRight", getSensorRight());
+    
         SmartDashboard.putNumber("drivetrain average encoder value", getCurrentEncoderPosition());
         // This method will be called once per scheduler run
         // SmartDashboard.putBoolean("allign sensor starboard", getSensorRight());
