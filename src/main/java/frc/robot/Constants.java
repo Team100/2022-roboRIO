@@ -338,8 +338,8 @@ public final class Constants {
             public static final double STATIONARY_LOCK_ANGLE = 10;
 
             public static final double EXTEND_START_ANGLE = 0;
-            public static final double NEXT_BAR_ANGLE = 10;
-            public static final double NEXT_BAR_DISTANCE = 9000;
+            public static final double NEXT_BAR_ANGLE = -20;
+            public static final double NEXT_BAR_DISTANCE = -180000;
 
             public static final double NEXT_BAR_GRAB_ANGLE = 0;
         }

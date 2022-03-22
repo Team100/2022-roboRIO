@@ -13,7 +13,7 @@ import frc.robot.Constants.ClimberConstants;
 
 
 public class LockStationary extends CommandBase {
-  public boolean done, mainLocked;
+  public boolean mainLocked;
 
   public Climber climber;
   /** Creates a new LockStationary. */
@@ -32,13 +32,15 @@ public class LockStationary extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {    //climber is hanging on or lined up with a bar
+  public void execute() {    //climber is hanging on or lined up with a bar(needs seperate variable b/c otherwise idk, prbly smthn bad)
     if(!mainLocked){//is climber main hooks locked on a bar?
       climber.setWinch(ClimberConstants.ClimberMotionParameters.CLIMBER_PERCENT_OUTPUT);  //if not pull until you grab it 
       if(climber.mainLocked()){
         mainLocked = true;
+        climber.setWinch(0);
       }
-    }                                                                     
+    }            
+   
     if((climber.mainPosition()>=ClimberConstants.ClimberMotionParameters.CLIMBER_BOTTOM)&&climber.mainLocked()){//if climber is not all the way retracted the hooks are locked on
         climber.setWinch(ClimberConstants.ClimberMotionParameters.CLIMBER_PERCENT_OUTPUT);                      //retract the hooks
       // if(climber.mainPosition()>=ClimberConstants.ClimberMotionParameters.TILT_START&&!climber.stationaryLocked()){//while your doing that, if your close enough to the top
