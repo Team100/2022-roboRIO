@@ -101,7 +101,7 @@ public class RobotContainer {
     private final IndexerFeedLow feedLowCommand = new IndexerFeedLow(indexer, shooter);
     private final ClimberStop climberStopCommand = new ClimberStop(climber);   
     private final HookZero hookZeroCommand = new HookZero(climber);
-    private final ClimberControl climberControlCommand = new ClimberControl(climber, gamepad);
+    private final ClimberControl climberControlCommand = new ClimberControl(climber, leftJoystick, rightJoystick, drivetrain);
 
     private final HookUp hookUpCommand = new HookUp(climber);
     private final HookUpLow hookUpLowCommand = new HookUpLow(climber);

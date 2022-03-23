@@ -7,18 +7,26 @@ package frc.robot.commands.climber;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
+import frc.robot.commands.drivetrain.Drive;
 import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.Drivetrain;
 public class ClimberControl extends CommandBase {
     /** Creates a new Climb. */
     private final Climber climber;
-    private final Joystick gamepad;
+    private final Drivetrain drivetrain;
+    private final Joystick leftJoystick;
+    private final Joystick rightJoystick;
 
-    public ClimberControl(Climber climber, Joystick gamepad) {
+    private double limiter;
+
+    public ClimberControl(Climber climber, Joystick l, Joystick r, Drivetrain drivetrain) {
         this.climber = climber;
-        this.gamepad = gamepad;
+        this.drivetrain = drivetrain;
+        leftJoystick = l;
+        rightJoystick = r;
 
         // Use addRequirements() here to declare subsystem dependencies.
-        addRequirements(climber);
+        addRequirements(climber, drivetrain);
     }
 
     // Called when the command is initially scheduled.
@@ -29,14 +37,16 @@ public class ClimberControl extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        if (Math.abs(gamepad.getX()) > Constants.ClimberConstants.ClimberControls.TILT_CONTROL_DEADZONE) {
-            climber.setTilt(-gamepad.getX());
+        drivetrain.driveWithoutRamp(0, 0);
+        limiter = (-leftJoystick.getZ()+1)/2;
+        if (Math.abs(leftJoystick.getX()) > Constants.ClimberConstants.ClimberControls.TILT_CONTROL_DEADZONE) {
+            climber.setTilt(-leftJoystick.getX()*limiter);
         } else {
             climber.setTilt(0);
         }
 
-        if (Math.abs(gamepad.getRawAxis(3)) > Constants.ClimberConstants.ClimberControls.WINCH_CONTROL_DEADZONE) {
-            climber.setWinch(gamepad.getRawAxis(3)/5);
+        if (Math.abs(rightJoystick.getX()) > Constants.ClimberConstants.ClimberControls.WINCH_CONTROL_DEADZONE) {
+            climber.setWinch(rightJoystick.getX()*limiter);
         } else {
             climber.setWinch(0);
         }
@@ -47,6 +57,7 @@ public class ClimberControl extends CommandBase {
     public void end(boolean interrupted) {
         climber.setTilt(0);
         climber.setWinch(0);
+        drivetrain.driveWithoutRamp(0, 0);
     }
 
     // Returns true when the command should end.
