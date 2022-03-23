@@ -52,6 +52,7 @@ public class RobotContainer {
     // OI Devices
     private final Joystick leftJoystick = new Joystick(0);
     private final Joystick rightJoystick = new Joystick(1);
+    private final Joystick gamepad = new Joystick(2);
     private final Joystick buttonBoard = new Joystick(3);
     private final JoystickButton turboButton = new JoystickButton(rightJoystick, 1);
     private final JoystickButton slowButton = new JoystickButton(rightJoystick, 3);
@@ -62,24 +63,24 @@ public class RobotContainer {
     private final JoystickButton shootHighButton = new JoystickButton(buttonBoard, 14);
     private final JoystickButton shootLowButton = new JoystickButton(buttonBoard, 13);
 
-    // private final JoystickButton hookDownButton = new JoystickButton(buttonBoard, 1);
-    // private final JoystickButton hookUpButton = new JoystickButton(buttonBoard, 16);
+    private final JoystickButton hookDownButton = new JoystickButton(buttonBoard, 1);
+    private final JoystickButton hookUpButton = new JoystickButton(buttonBoard, 16);
     // private final JoystickButton hookUpLowButton = new JoystickButton(rightJoystick, 11);
     // private final JoystickButton hookDownLowButton = new JoystickButton(rightJoystick, 10);
 
-    private final JoystickButton lockStationariesButton = new JoystickButton(buttonBoard, 12);
-    private final JoystickButton nextBarButton = new JoystickButton(buttonBoard, 1);
+    // private final JoystickButton lockStationariesButton = new JoystickButton(buttonBoard, 12);
+    // private final JoystickButton nextBarButton = new JoystickButton(buttonBoard, 1);
 
-    private final JoystickButton hookUpButton = new JoystickButton(rightJoystick, 11);
+    // private final JoystickButton hookUpButton = new JoystickButton(rightJoystick, 11);
     private final JoystickButton hookUpLowButton = new JoystickButton(rightJoystick, 10);
-    private final JoystickButton hookDownButton = new JoystickButton(buttonBoard, 16);
+    // private final JoystickButton hookDownButton = new JoystickButton(buttonBoard, 16);
 
     private final JoystickButton stopAll = new JoystickButton(buttonBoard, 4);
 
     private final JoystickButton fixClimberButton = new JoystickButton(rightJoystick, 7);
     private final JoystickButton indexTwoButton = new JoystickButton(buttonBoard, gitforcepushorginmaster);
 
-    private final JoystickButton climberControlButton = new JoystickButton(leftJoystick, 3);
+    private final JoystickButton climberControlButton = new JoystickButton(gamepad, 6);
 
     // Commands
     private final Drive driveCommand = new Drive(drivetrain, leftJoystick, rightJoystick);
@@ -100,14 +101,14 @@ public class RobotContainer {
     private final IndexerFeedLow feedLowCommand = new IndexerFeedLow(indexer, shooter);
     private final ClimberStop climberStopCommand = new ClimberStop(climber);   
     private final HookZero hookZeroCommand = new HookZero(climber);
-    private final ClimberControl climberControlCommand = new ClimberControl(climber, leftJoystick, rightJoystick);
+    private final ClimberControl climberControlCommand = new ClimberControl(climber, gamepad);
 
     private final HookUp hookUpCommand = new HookUp(climber);
     private final HookUpLow hookUpLowCommand = new HookUpLow(climber);
     private final HookDown hookDownCommand = new HookDown(climber); 
 
-    private final NextBar nextBarCommand = new NextBar(climber);
-    private final LockStationary lockStationariesCommand = new LockStationary(climber);
+    // private final NextBar nextBarCommand = new NextBar(climber);
+    // private final LockStationary lockStationariesCommand = new LockStationary(climber);
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
@@ -149,10 +150,10 @@ public class RobotContainer {
         hookUpLowButton.whenPressed(hookUpLowCommand);
         hookDownButton.whenPressed(hookDownCommand);
 
-        nextBarButton.whileHeld(nextBarCommand);
-        lockStationariesButton.whileHeld(lockStationariesCommand);
+        // nextBarButton.whileHeld(nextBarCommand);
+        // lockStationariesButton.whileHeld(lockStationariesCommand);
         climberControlButton.whileHeld(climberControlCommand);
-        }
+    }
 
     public void onInit() {
         // intake.onInit();

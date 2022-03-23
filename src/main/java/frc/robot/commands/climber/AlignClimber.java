@@ -36,13 +36,13 @@ public class AlignClimber extends CommandBase {
         // SmartDashboard.putBoolean("sensorRight", drivetrain.getSensorRight());
         //SmartDashboard.putString("Port and Starboard status:", "we are not using port and starboad :(");
 
-        if(!climber.getMainSensorLeft() && !climber.getMainSensorRight()){
+        if (!climber.getMainSensorLeft() && !climber.getMainSensorRight()) {
             drivetrain.driveWithoutRamp(Constants.DrivetrainConstants.DrivetrainMotion.ALIGN_SPEED, Constants.DrivetrainConstants.DrivetrainMotion.ALIGN_SPEED);
-        } else if (climber.getMainSensorLeft() && !climber.getMainSensorRight()){
+        } else if (climber.getMainSensorLeft() && !climber.getMainSensorRight()) {
             drivetrain.driveWithoutRamp(0, Constants.DrivetrainConstants.DrivetrainMotion.ALIGN_SPEED);
-        } else if (climber.getMainSensorRight() && !climber.getMainSensorLeft()){
+        } else if (climber.getMainSensorRight() && !climber.getMainSensorLeft()) {
             drivetrain.driveWithoutRamp(Constants.DrivetrainConstants.DrivetrainMotion.ALIGN_SPEED, 0);
-        } else if (climber.getMainSensorLeft() && climber.getMainSensorRight()){
+        } else if (climber.getMainSensorLeft() && climber.getMainSensorRight()) {
             drivetrain.driveWithoutRamp(0, 0);
             done = true;
         }

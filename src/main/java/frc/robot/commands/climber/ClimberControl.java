@@ -11,8 +11,7 @@ import frc.robot.subsystems.Climber;
 public class ClimberControl extends CommandBase {
     /** Creates a new Climb. */
     private final Climber climber;
-    private final Joystick leftJoystick;
-    private final Joystick rightJoystick;
+    private final Joystick gamepad;
 
     public ClimberControl(Climber climber, Joystick l, Joystick r) {
         this.climber = climber;
@@ -31,17 +30,15 @@ public class ClimberControl extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        double limiter = (-leftJoystick.getRawAxis(2)+1)/2;
-
-        if (Math.abs(rightJoystick.getY()) > Constants.ClimberConstants.ClimberControls.TILT_CONTROL_DEADZONE){
-            climber.setTilt(rightJoystick.getY()*limiter);
-        }else{
-            climber.setWinch(0);
+        if (Math.abs(gamepad.getX()) > Constants.ClimberConstants.ClimberControls.TILT_CONTROL_DEADZONE) {
+            climber.setTilt(-gamepad.getX());
+        } else {
+            climber.setTilt(0);
         }
 
-        if (Math.abs(leftJoystick.getY()) > Constants.ClimberConstants.ClimberControls.WINCH_CONTROL_DEADZONE){
-            climber.setWinch(leftJoystick.getY()*limiter);
-        }else{
+        if (Math.abs(gamepad.getRawAxis(3)) > Constants.ClimberConstants.ClimberControls.WINCH_CONTROL_DEADZONE) {
+            climber.setWinch(gamepad.getRawAxis(3)/5);
+        } else {
             climber.setWinch(0);
         }
     }

@@ -360,10 +360,10 @@ public final class Constants {
                 public static final int TIMEOUT = 10;
     
                 public static final boolean ENABLE_CURRENT_LIMIT = true;
-                public static final int CURRENT_LIMIT = 25;
+                public static final int CURRENT_LIMIT = 40;
                 public static final double OPEN_LOOP_RAMP = 0;
-                public static final double PEAK_OUTPUT_FORWARD = 1;
-                public static final double PEAK_OUTPUT_REVERSE = -1;
+                public static final double PEAK_OUTPUT_FORWARD = 0.2;
+                public static final double PEAK_OUTPUT_REVERSE = -0.2;
                 
                 public static final NeutralMode NEUTRAL_MODE = NeutralMode.Brake;
             }
@@ -378,10 +378,10 @@ public final class Constants {
                 public static final int TIMEOUT = 10;
     
                 public static final boolean ENABLE_CURRENT_LIMIT = true;
-                public static final int CURRENT_LIMIT = 25;
+                public static final int CURRENT_LIMIT = 40;
                 public static final double OPEN_LOOP_RAMP = 0.1;
                 public static final double PEAK_OUTPUT_FORWARD = 1;
-                public static final double PEAK_OUTPUT_REVERSE = 1;
+                public static final double PEAK_OUTPUT_REVERSE = -1;
 
                 public static final NeutralMode NEUTRAL_MODE = NeutralMode.Coast;
             }
