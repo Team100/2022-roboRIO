@@ -120,6 +120,14 @@ public class Drivetrain extends SubsystemBase {
         return (leftMaster.getSelectedSensorPosition()+rightMaster.getSelectedSensorPosition())/2;
     }
 
+    public double getLeft(){
+        return leftMaster.getSelectedSensorPosition();
+    }
+
+    public double getRight(){
+        return rightMaster.getSelectedSensorPosition();
+    }
+
       public void zeroCurrentPosition() {
         leftMaster.motor.setSelectedSensorPosition(0);
         leftFollower.motor.setSelectedSensorPosition(0);
