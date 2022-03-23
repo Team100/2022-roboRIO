@@ -80,7 +80,7 @@ public class RobotContainer {
     private final JoystickButton fixClimberButton = new JoystickButton(rightJoystick, 7);
     private final JoystickButton indexTwoButton = new JoystickButton(buttonBoard, gitforcepushorginmaster);
 
-    private final JoystickButton climberControlButton = new JoystickButton(gamepad, 6);
+    private final JoystickButton climberControlButton = new JoystickButton(leftJoystick, 3);
 
     // Commands
     private final Drive driveCommand = new Drive(drivetrain, leftJoystick, rightJoystick);

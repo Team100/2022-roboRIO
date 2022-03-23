@@ -342,6 +342,8 @@ public final class Constants {
             public static final double NEXT_BAR_DISTANCE = -180000;
 
             public static final double NEXT_BAR_GRAB_ANGLE = 0;
+
+            public static final double BAR_HEIGHT_OFFSET = -5000;//I'd like to set off to a bar if you caatchmydrift
         }
 
         public static final class ClimberControls {
