@@ -62,7 +62,7 @@ public class LockStationary extends CommandBase {
                    climber.tiltAngle() >= ClimberConstants.ClimberMotionParameters.STATIONARY_LOCK_ANGLE) { //if its just the stationary hooks that need to be droped
             climber.setTilt(0);
             climber.setWinch(-ClimberConstants.ClimberMotionParameters.CLIMBER_PERCENT_OUTPUT);             //drop down to lock 'em
-            SmartDashboard.putString("Climber Command", "SFR climb done, tilting stationaries into position");
+            SmartDashboard.putString("Climber Command", "stationaries in position, dropping down onto the bar");
 
         }
 

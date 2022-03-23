@@ -30,6 +30,7 @@ public class NextBar extends CommandBase {
         done = false;
         behindBar = false;
         aboveBar = false;
+        encoderTicks = 17;
         SmartDashboard.putString("Climber Command","Grabbing Next Bar");
     }
 
