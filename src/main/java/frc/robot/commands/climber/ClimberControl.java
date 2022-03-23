@@ -13,10 +13,9 @@ public class ClimberControl extends CommandBase {
     private final Climber climber;
     private final Joystick gamepad;
 
-    public ClimberControl(Climber climber, Joystick l, Joystick r) {
+    public ClimberControl(Climber climber, Joystick gamepad) {
         this.climber = climber;
-        leftJoystick = l;
-        rightJoystick = r;
+        this.gamepad = gamepad;
 
         // Use addRequirements() here to declare subsystem dependencies.
         addRequirements(climber);
