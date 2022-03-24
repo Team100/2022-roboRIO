@@ -21,6 +21,10 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 public final class Constants {
     public static final class DrivetrainConstants {
         public static final class Autonomous {
+            public static final class Turning {
+                public static final double TURN_SPEED = 0.15;
+                public static final double TURN_ADJUSMENT = 246;
+            }
             public static final class Distance {
                 public static final int HIGH_GOAL_SHOT = -40000;
             }
@@ -135,8 +139,8 @@ public final class Constants {
             public static final double INTAKE_SPINNER_PERCENT_OUTPUT = -0.35;
             public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN = -0.4;
             public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN_DECEL = 0.35;
-            public static final double INTAKE_ZERO = 0;
-            public static final double INITIAL_POSITION = 0;
+            // public static final double INTAKE_ZERO = 0;
+            // public static final double INITIAL_POSITION = 0;
 
             public static final double KP = 2.5;//1.08
             public static final double KI = 0.250;

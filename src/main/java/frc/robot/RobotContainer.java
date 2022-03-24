@@ -132,7 +132,7 @@ public class RobotContainer {
         shootLowButton.whileHeld(new ParallelCommandGroup(shootLowCommand, feedLowCommand));
         ejectButton.whileHeld(new ParallelCommandGroup(intakeEjectCommand, indexerEjectCommand, shootEjectCommand));
 
-        mediaControlButton.whenPressed(new InstantCommand(() -> { symphony.play();}, symphony));
+        mediaControlButton.whenPressed(new Turn(drivetrain, 90));
 
         fixClimberButton.whileHeld(hookZeroCommand);
         }
