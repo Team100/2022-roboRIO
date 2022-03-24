@@ -61,7 +61,7 @@ public class RobotContainer {
     private final JoystickButton shootHighButton = new JoystickButton(buttonBoard, 14);
     private final JoystickButton shootLowButton = new JoystickButton(buttonBoard, 13);
 
-    private final JoystickButton mediaControlButton = new JoystickButton(buttonBoard, 12);
+    private final JoystickButton rampLowButton = new JoystickButton(buttonBoard, 12);
 
     private final JoystickButton hookDownButton = new JoystickButton(buttonBoard, 1);
     private final JoystickButton hookUpButton = new JoystickButton(buttonBoard, 16);
@@ -132,7 +132,7 @@ public class RobotContainer {
         shootLowButton.whileHeld(new ParallelCommandGroup(shootLowCommand, feedLowCommand));
         ejectButton.whileHeld(new ParallelCommandGroup(intakeEjectCommand, indexerEjectCommand, shootEjectCommand));
 
-        mediaControlButton.whenPressed(new Turn(drivetrain, 90));
+        rampLowButton.whileHeld(new ShootLow(shooter));
 
         fixClimberButton.whileHeld(hookZeroCommand);
         }
