@@ -24,6 +24,9 @@ public final class Constants {
             public static final class Turning {
                 public static final double TURN_SPEED = 0.15;
                 public static final double TURN_ADJUSMENT = 246;
+
+                public static final int HHH_TURN = 70;
+                // public static final int SECOND_HHH_TURN = -70;
             }
             public static final class Distance {
                 public static final int HIGH_GOAL_SHOT = -40000;
