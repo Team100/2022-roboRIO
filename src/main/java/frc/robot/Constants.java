@@ -208,7 +208,7 @@ public final class Constants {
             public static final double NOMINAL_HIGH_VELOCITY = 3950;
 
             
-            public static final double KP = 0.00008;
+            public static final double KP = 0.00016;
             public static final double KI = 0;
             public static final double KD = 0;
             public static final double KF = 0.00008947; // 0.17/1900
