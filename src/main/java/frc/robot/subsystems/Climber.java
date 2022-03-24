@@ -13,13 +13,15 @@ import frc.robot.FRCLib.Motors.FRCTalonFX;
 public class Climber extends SubsystemBase {
     private FRCTalonFX tilt, winch;
 
-    private DigitalInput leftStationaryHook, rightStationaryHook, leftMainHook, rightMainHook;
+    private DigitalInput leftStationaryHook, rightStationaryHook, leftMainHook, rightMainHook, homeSwitch;
     /** Creates a new Climber. */
     public Climber() {
         leftStationaryHook = new DigitalInput(Constants.ClimberConstants.ClimberSensors.StationaryHooks.LeftSensor.ID);
         rightStationaryHook = new DigitalInput(Constants.ClimberConstants.ClimberSensors.StationaryHooks.RightSensor.ID);
         leftMainHook = new DigitalInput(Constants.ClimberConstants.ClimberSensors.MainHooks.LeftSensor.ID);
         rightMainHook = new DigitalInput(Constants.ClimberConstants.ClimberSensors.MainHooks.RightSensor.ID);
+        homeSwitch = new DigitalInput(Constants.ClimberConstants.ClimberSensors.StationaryHooks.LeftSensor.ID);
+
 
         tilt = new FRCTalonFX.FRCTalonFXBuilder(Constants.ClimberConstants.ClimberMotors.Tilt.CAN_ID)
         .withInverted(Constants.ClimberConstants.ClimberMotors.Tilt.INVERT)
@@ -62,6 +64,11 @@ public class Climber extends SubsystemBase {
         //return SmartDashboard.getBoolean("Stationaries Locked?", false);
     }
 
+    public boolean getHomeSwitch(){
+        return homeSwitch.get();
+        //return SmartDashboard.getBoolean("Stationaries Locked?", false);
+    }
+
     public boolean mainLocked(){
         return !leftMainHook.get()&&!rightMainHook.get();
         //return SmartDashboard.getBoolean("Main Hooks Locked?", false);
@@ -87,6 +94,12 @@ public class Climber extends SubsystemBase {
     public void zeroWinch(){
         winch.motor.setSelectedSensorPosition(0);
     }
+
+    public void zeroTilt(){
+        tilt.motor.setSelectedSensorPosition(0);
+    }
+
+    
 
     public double tiltAngle(){
         // return 90-((tilt.getSelectedSensorPosition()/2048)+45);

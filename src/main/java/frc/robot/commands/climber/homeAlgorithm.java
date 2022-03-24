@@ -4,21 +4,51 @@
 
 package frc.robot.commands.climber;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
+import frc.robot.subsystems.Climber;
 
 public class homeAlgorithm extends CommandBase {
   /** Creates a new homeAlgorithm. */
-  public homeAlgorithm() {
+  public Climber climber;
+  public DigitalInput limit;
+  public Boolean done, zeroed = false;
+
+
+  public homeAlgorithm(Climber climber) {
     // Use addRequirements() here to declare subsystem dependencies.
+    this.climber = climber;
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    done = false;
+    zeroed = false;
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    if(!climber.getHomeSwitch()){
+      climber.setTilt(-Constants.ClimberConstants.ClimberSensors.Homing.HomingSpeed);
+    }else{
+      climber.setTilt(0);
+      zeroed = true;
+      climber.zeroTilt();
+
+    }
+
+    if(zeroed){
+      if(climber.tiltAngle() < 45){
+        climber.setTilt(Constants.ClimberConstants.ClimberSensors.Homing.HomingSpeed);
+      }else{
+        climber.setTilt(0);
+        done = true;
+      }
+    }
+  }
 
   // Called once the command ends or is interrupted.
   @Override
@@ -27,6 +57,6 @@ public class homeAlgorithm extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return done;
   }
 }

@@ -324,6 +324,11 @@ public final class Constants {
                     public static final int ID = 9;
                 }
             }
+
+            public static final class Homing{
+                public static final int ID = 69;
+                public static final double HomingSpeed = -0.15;
+            }
         }
         public static final class ClimberMotionParameters {
             public static final double CLIMBER_PERCENT_OUTPUT = 0.3;
