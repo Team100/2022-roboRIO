@@ -34,8 +34,8 @@ public final class Constants {
                 public static final int AUTO_LF_H_OFFSET = -40000;
             }
             public static final class Speeds {
-                public static final double DRIVE_REVERSE_SPEED = -0.14;
-                public static final double DRIVE_FORWARD_SPEED = 0.13;
+                public static final double DRIVE_REVERSE_SPEED = -0.2;
+                public static final double DRIVE_FORWARD_SPEED = 0.2;
             }
         }
         public static final class DrivetrainMotion{
@@ -208,7 +208,7 @@ public final class Constants {
             public static final double NOMINAL_HIGH_VELOCITY = 3950;
 
             
-            public static final double KP = 0.00016;
+            public static final double KP = 0.00069;
             public static final double KI = 0;
             public static final double KD = 0;
             public static final double KF = 0.00008947; // 0.17/1900
