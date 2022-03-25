@@ -13,6 +13,7 @@ import frc.robot.Constants.DrivetrainConstants;
 public class Turn extends CommandBase {
   private final Drivetrain drivetrain;
   private int degrees;
+  private double degreesError, turnSpeed;
   private Boolean done;
 
   /** Creates a new Turn. */
@@ -34,17 +35,20 @@ public class Turn extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    System.out.println("encoders............... " + -((drivetrain.getRight()-drivetrain.getLeft())/2));
+    degreesError = (((drivetrain.getRight()-drivetrain.getLeft())/2)/DrivetrainConstants.Autonomous.Turning.TURN_ADJUSMENT);
+    turnSpeed = DrivetrainConstants.Autonomous.Turning.TURN_SPEED+(degreesError*DrivetrainConstants.Autonomous.Turning.TURNING_PP);
+
+    // System.out.println("encoders............... " + -((drivetrain.getRight()-drivetrain.getLeft())/2));
         if(degrees>0){
           if(-((drivetrain.getRight()-drivetrain.getLeft())/2)<(degrees*DrivetrainConstants.Autonomous.Turning.TURN_ADJUSMENT)){
-            drivetrain.driveWithoutRamp(DrivetrainConstants.Autonomous.Turning.TURN_SPEED,-DrivetrainConstants.Autonomous.Turning.TURN_SPEED);
+            drivetrain.driveWithoutRamp(turnSpeed,-turnSpeed);
           }else if(-((drivetrain.getRight()-drivetrain.getLeft())/2)>=(degrees*DrivetrainConstants.Autonomous.Turning.TURN_ADJUSMENT)){
             drivetrain.driveWithoutRamp(0,0);
             done = true;
           }
         }else if(degrees<0){
           if(((drivetrain.getRight()-drivetrain.getLeft())/2)<(-degrees*DrivetrainConstants.Autonomous.Turning.TURN_ADJUSMENT)){
-            drivetrain.driveWithoutRamp(-DrivetrainConstants.Autonomous.Turning.TURN_SPEED,DrivetrainConstants.Autonomous.Turning.TURN_SPEED);
+            drivetrain.driveWithoutRamp(-turnSpeed,turnSpeed);
           }else if(((drivetrain.getRight()-drivetrain.getLeft())/2)>=(-degrees*DrivetrainConstants.Autonomous.Turning.TURN_ADJUSMENT)){
             drivetrain.driveWithoutRamp(0,0);
             done = true;

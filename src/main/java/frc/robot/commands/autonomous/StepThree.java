@@ -22,11 +22,11 @@ import frc.robot.subsystems.Intake;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class StepOneAndAHalf extends ParallelRaceGroup {
+public class StepThree extends ParallelRaceGroup {
     // private int distanceBack;
     // private Drivetrain drivetrain;
     /** Creates a new StepOne. */
-    public StepOneAndAHalf(Intake intake, Indexer indexer, Drivetrain drivetrain) {
+    public StepThree(Intake intake, Indexer indexer, Drivetrain drivetrain) {
         // Add the deadline command in the super() call. Add other commands using
         // addCommands().
         //super(new StepOneEndCriteria(indexer));
@@ -34,7 +34,7 @@ public class StepOneAndAHalf extends ParallelRaceGroup {
         
         // this.drivetrain = drivetrain;
     
-        addCommands(new RunCommand(() -> drivetrain.driveWithRamp(Constants.DrivetrainConstants.Autonomous.Speeds.DRIVE_REVERSE_SPEED, Constants.DrivetrainConstants.Autonomous.Speeds.DRIVE_REVERSE_SPEED), drivetrain)
+        addCommands(new RunCommand(() -> drivetrain.driveWithError(Constants.DrivetrainConstants.Autonomous.Speeds.DRIVE_REVERSE_SPEED, Constants.DrivetrainConstants.Autonomous.Speeds.DRIVE_REVERSE_SPEED, Constants.DrivetrainConstants.Autonomous.Distance.FIRST_BALL_OFFSET_FROM_TARMACK_EDGE), drivetrain)
                     .until(drivetrain::getAutoEnd)
                     .andThen(new InstantCommand(() -> { drivetrain.driveWithoutRamp(0, 0); }, drivetrain))
         );

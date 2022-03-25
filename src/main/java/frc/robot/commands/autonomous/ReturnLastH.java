@@ -36,7 +36,7 @@ public class ReturnLastH extends CommandBase {
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        drivetrain.setBrakeMode(false);
+        // drivetrain.setBrakeMode(true);
         drivetrain.driveWithoutRamp(0, 0);
     }
 

@@ -37,10 +37,10 @@ public class AutonProcedureLASTH extends SequentialCommandGroup {
         addCommands(new Turn(drivetrain, Constants.DrivetrainConstants.Autonomous.Turning.HHH_TURN));//turn to be pointed the right way
 
         //addCommands(new ParallelDeadlineGroup(new WaitCommand(0.6), new IntakeIntake(intake)));//drop the intake
-        addCommands(new StepOne(intake, indexer, drivetrain)); //drive back and grab another ball
+        addCommands(new StepThree(intake, indexer, drivetrain)); //drive back and grab another ball
         addCommands(new ParallelDeadlineGroup(new ReturnLastH(drivetrain, 0), new BetterIndexerIntake(indexer), new IntakeStop(intake), new ShootHigh(shooter)));
         //addCommands(new ParallelDeadlineGroup(new StepTwo(drivetrain, Constants.DrivetrainConstants.Autonomous.Offsets.AUTO_H_H_OFFSET), new BetterIntakeStop(intake), new IndexerStop(indexer), new ShootHigh(shooter))); //drive back to correct point to sink two high shots   
-        addCommands(new ParallelDeadlineGroup(new Turn(drivetrain, -Constants.DrivetrainConstants.Autonomous.Turning.HHH_TURN+15),new ShootHigh(shooter)));//turn to be pointed the right way
+        addCommands(new ParallelDeadlineGroup(new Turn(drivetrain, -Constants.DrivetrainConstants.Autonomous.Turning.HHH_TURN+Constants.DrivetrainConstants.Autonomous.Turning.SECOND_HHH_OFFSET),new ShootHigh(shooter)));//turn to be pointed the right way
 
         
         addCommands(new ParallelDeadlineGroup(new WaitCommand(2), new ShootHigh(shooter),  new IndexerFeedHigh(indexer, shooter))); //hold down the shoot high button for the same number of seconds as the wait command
@@ -49,4 +49,4 @@ public class AutonProcedureLASTH extends SequentialCommandGroup {
 
         addCommands(new ParallelCommandGroup(new IndexerStop(indexer), new ShootStop(shooter))); //stop everything
     }
-}
+}//pass in expected error to step one for speed

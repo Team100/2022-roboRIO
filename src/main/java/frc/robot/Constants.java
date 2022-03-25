@@ -22,14 +22,17 @@ public final class Constants {
     public static final class DrivetrainConstants {
         public static final class Autonomous {
             public static final class Turning {
-                public static final double TURN_SPEED = 0.17;
+                public static final double TURN_SPEED = 0.15;
                 public static final double TURN_ADJUSMENT = 246;
 
                 public static final int HHH_TURN = 90;
                 // public static final int SECOND_HHH_TURN = -70;
+                public static final int SECOND_HHH_OFFSET = 15;
+                public static final double TURNING_PP = 0.003;
             }
             public static final class Distance {
                 public static final int HIGH_GOAL_SHOT = -40000;
+                public static final double FIRST_BALL_OFFSET_FROM_TARMACK_EDGE = -80000;
             }
             public static final class Offsets {
                 public static final int AUTO_H_H_OFFSET = 0;//-56000;
@@ -115,7 +118,8 @@ public final class Constants {
             }
         }
         public static final class DrivetrainControls {
-            public static final double RAMP_LIMIT = 0.2;
+            public static final double RAMP_LIMIT = 0.3;
+            public static final double ERROR_ADJUSTMENT_DRIVE = 0.000006;
         }
     }
     public static final class IntakeConstants {

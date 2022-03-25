@@ -75,6 +75,16 @@ public class Drivetrain extends SubsystemBase {
         addChild("drivetrainRightFollower", rightFollower);
     }
 
+    public void driveWithError(double left, double right, double expectedStop) {
+        if(left>=0)left = left + ((Math.abs(expectedStop)-(Math.abs(getCurrentEncoderPosition())))*Constants.DrivetrainConstants.DrivetrainControls.ERROR_ADJUSTMENT_DRIVE);
+        else if(left<0)left = left - ((Math.abs(expectedStop)-(Math.abs(getCurrentEncoderPosition())))*Constants.DrivetrainConstants.DrivetrainControls.ERROR_ADJUSTMENT_DRIVE);
+
+        if(right>=0) right = right + ((Math.abs(expectedStop)-(Math.abs(getCurrentEncoderPosition())))*Constants.DrivetrainConstants.DrivetrainControls.ERROR_ADJUSTMENT_DRIVE);
+        else if(right<0) right = right - ((Math.abs(expectedStop)-(Math.abs(getCurrentEncoderPosition())))*Constants.DrivetrainConstants.DrivetrainControls.ERROR_ADJUSTMENT_DRIVE);
+
+        driveWithRamp(left, right);
+    }
+
     public void driveWithoutRamp(double left, double right) {
         this.leftMaster.drivePercentOutput(left);
         this.rightMaster.drivePercentOutput(right);
