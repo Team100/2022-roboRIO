@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
 import frc.robot.commands.indexer.IndexerFeedHigh;
+import frc.robot.commands.indexer.IndexerFeedWayDowntown;
 import frc.robot.commands.indexer.IndexerStop;
 import frc.robot.commands.indexer.BetterIndexerIntake;
 import frc.robot.commands.indexer.IndexerEject;
@@ -20,6 +21,7 @@ import frc.robot.commands.intake.IntakeIntake;
 import frc.robot.commands.intake.IntakeStop;
 import frc.robot.commands.shooter.ShootHigh;
 import frc.robot.commands.shooter.ShootStop;
+import frc.robot.commands.shooter.ShootWayDowntown;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Intake;
@@ -38,15 +40,31 @@ public class AutonProcedureLASTH extends SequentialCommandGroup {
 
         //addCommands(new ParallelDeadlineGroup(new WaitCommand(0.6), new IntakeIntake(intake)));//drop the intake
         addCommands(new StepThree(intake, indexer, drivetrain)); //drive back and grab another ball
-        addCommands(new ParallelDeadlineGroup(new StepTwo(drivetrain, 0), new BetterIndexerIntake(indexer), new IntakeStop(intake), new ShootHigh(shooter)));
-        //addCommands(new ParallelDeadlineGroup(new StepTwo(drivetrain, Constants.DrivetrainConstants.Autonomous.Offsets.AUTO_H_H_OFFSET), new BetterIntakeStop(intake), new IndexerStop(indexer), new ShootHigh(shooter))); //drive back to correct point to sink two high shots   
-        addCommands(new ParallelDeadlineGroup(new Turn(drivetrain, -Constants.DrivetrainConstants.Autonomous.Turning.HHH_TURN+Constants.DrivetrainConstants.Autonomous.Turning.SECOND_HHH_OFFSET),new ShootHigh(shooter)));//turn to be pointed the right way
+        
+        
+        //method for drive back and shoot
+        
+        
+            addCommands(new ParallelDeadlineGroup(new StepTwo(drivetrain, 0), new BetterIndexerIntake(indexer), new IntakeStop(intake), new ShootHigh(shooter)));
+            //addCommands(new ParallelDeadlineGroup(new StepTwo(drivetrain, Constants.DrivetrainConstants.Autonomous.Offsets.AUTO_H_H_OFFSET), new BetterIntakeStop(intake), new IndexerStop(indexer), new ShootHigh(shooter))); //drive back to correct point to sink two high shots   
+            addCommands(new ParallelDeadlineGroup(new Turn(drivetrain, -Constants.DrivetrainConstants.Autonomous.Turning.HHH_TURN+Constants.DrivetrainConstants.Autonomous.Turning.SECOND_HHH_OFFSET),new ShootHigh(shooter)));//turn to be pointed the right way
 
         
-        addCommands(new ParallelDeadlineGroup(new WaitCommand(2), new ShootHigh(shooter),  new IndexerFeedHigh(indexer, shooter))); //hold down the shoot high button for the same number of seconds as the wait command
-        //addCommands(new ParallelDeadlineGroup(new WaitCommand(3), new IndexerEject(indexer), new IntakeEject(intake)));
-        //addCommands(new ParallelDeadlineGroup(new WaitCommand(3), new IntakeEject(intake), new IndexerEject(indexer)));
+            addCommands(new ParallelDeadlineGroup(new WaitCommand(2), new ShootHigh(shooter),  new IndexerFeedHigh(indexer, shooter))); //hold down the shoot high button for the same number of seconds as the wait command
+            //addCommands(new ParallelDeadlineGroup(new WaitCommand(3), new IndexerEject(indexer), new IntakeEject(intake)));
+            //addCommands(new ParallelDeadlineGroup(new WaitCommand(3), new IntakeEject(intake), new IndexerEject(indexer)));
 
-        addCommands(new ParallelCommandGroup(new IndexerStop(indexer), new ShootStop(shooter))); //stop everything
+            addCommands(new ParallelCommandGroup(new IndexerStop(indexer), new ShootStop(shooter))); //stop everything
+
+
+
+        //method for turn and shoot
+        
+        
+            //addCommands(new ParallelDeadlineGroup(new Turn(drivetrain, -Constants.DrivetrainConstants.Autonomous.Turning.HHH_TURN+Constants.DrivetrainConstants.Autonomous.Turning.SECOND_HHH_OFFSET),new ShootWayDowntown(shooter)));//turn to be pointed the right way
+            //addCommands(new ParallelDeadlineGroup(new WaitCommand(2), new ShootWayDowntown(shooter),  new IndexerFeedWayDowntown(indexer, shooter))); //hold down the shoot high button for the same number of seconds as the wait command
+            //addCommands(new ParallelCommandGroup(new IndexerStop(indexer), new ShootStop(shooter))); //stop everything
+
+
     }
 }//pass in expected error to step one for speed
