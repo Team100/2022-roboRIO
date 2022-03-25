@@ -10,8 +10,8 @@ import frc.robot.subsystems.Indexer;
 
 public class FirstSensorIntake extends CommandBase {
     private Indexer indexer;
-    private boolean sensorOne = false;
-    private boolean done = false;
+    // private boolean sensorOne = false;
+    // private boolean done = false;
 
     /** Creates a new BetterIndexerIntake. */
     public FirstSensorIntake(Indexer indexer) {
@@ -24,7 +24,7 @@ public class FirstSensorIntake extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        done = false;
+        // done = false;
         // sensorTwo = indexer.getSensorOne();
         indexer.runMotorOne(Constants.IndexerConstants.IndexerMotionParameters.STAGE_ONE_PERCENT_OUTPUT_FORWARD);
         // if (!sensorTwo) indexer.runMotorTwo(Constants.IndexerConstants.IndexerMotionParameters.STAGE_TWO_PERCENT_OUTPUT_FORWARD);

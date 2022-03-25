@@ -34,7 +34,7 @@ public class StepThree extends ParallelRaceGroup {
         
         // this.drivetrain = drivetrain;
     
-        addCommands(new RunCommand(() -> drivetrain.driveWithError(Constants.DrivetrainConstants.Autonomous.Speeds.DRIVE_REVERSE_SPEED, Constants.DrivetrainConstants.Autonomous.Speeds.DRIVE_REVERSE_SPEED, Constants.DrivetrainConstants.Autonomous.Distance.FIRST_BALL_OFFSET_FROM_TARMACK_EDGE), drivetrain)
+        addCommands(new RunCommand(() -> drivetrain.driveWithError(Constants.DrivetrainConstants.Autonomous.Speeds.DRIVE_REVERSE_SPEED, Constants.DrivetrainConstants.Autonomous.Speeds.DRIVE_REVERSE_SPEED, Constants.DrivetrainConstants.Autonomous.Distance.THIRD_BALL_OFFSET_FROM_SHOOT_POSITION), drivetrain)
                     .until(drivetrain::getAutoEnd)
                     .andThen(new InstantCommand(() -> { drivetrain.driveWithoutRamp(0, 0); }, drivetrain))
         );

@@ -33,6 +33,7 @@ public final class Constants {
             public static final class Distance {
                 public static final int HIGH_GOAL_SHOT = -40000;
                 public static final double FIRST_BALL_OFFSET_FROM_TARMACK_EDGE = -80000;
+                public static final double THIRD_BALL_OFFSET_FROM_SHOOT_POSITION = -120000;
             }
             public static final class Offsets {
                 public static final int AUTO_H_H_OFFSET = 0;//-56000;
