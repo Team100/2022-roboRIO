@@ -43,7 +43,7 @@ public final class Constants {
         }
         public static final class DrivetrainMotion{
             public static final double ALIGN_SPEED = -0.15;
-            public static final double SLOW_SPEED = 0.2;
+            public static final double SLOW_SPEED = 0.3; //0.2
         }
         public static final class DrivetrainSensors{
             public static final class LeftSensor{
@@ -219,7 +219,7 @@ public final class Constants {
 
         public static final class ShooterMotors {
             public static final class Shooter {
-                public static final int CAN_ID = 3;
+                public static final int CAN_ID = 7;
     
                 public static final boolean INVERT = false;
                 public static final int FEEDBACK_PORT = 0;
@@ -236,7 +236,7 @@ public final class Constants {
                 public static final IdleMode NEUTRAL_MODE = IdleMode.kCoast;
             }
             public static final class ShooterFollower {
-                public static final int CAN_ID = 7;
+                public static final int CAN_ID = 3;
     
                 public static final boolean INVERT = true;
                 public static final int FEEDBACK_PORT = 0;
