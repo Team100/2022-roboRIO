@@ -44,7 +44,7 @@ public class Turn extends CommandBase {
           }
         }else if(degrees<0){
           if(((drivetrain.getRight()-drivetrain.getLeft())/2)<(-degrees*DrivetrainConstants.Autonomous.Turning.TURN_ADJUSMENT)){
-            drivetrain.driveWithoutRamp(DrivetrainConstants.Autonomous.Turning.TURN_SPEED,-DrivetrainConstants.Autonomous.Turning.TURN_SPEED);
+            drivetrain.driveWithoutRamp(-DrivetrainConstants.Autonomous.Turning.TURN_SPEED,DrivetrainConstants.Autonomous.Turning.TURN_SPEED);
           }else if(((drivetrain.getRight()-drivetrain.getLeft())/2)>=(-degrees*DrivetrainConstants.Autonomous.Turning.TURN_ADJUSMENT)){
             drivetrain.driveWithoutRamp(0,0);
             done = true;

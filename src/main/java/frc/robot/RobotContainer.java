@@ -89,7 +89,7 @@ public class RobotContainer {
     private final ShootStop shootStopCommand = new ShootStop(shooter);
     private final IndexerStop indexerStopCommand = new IndexerStop(indexer);
     private final BetterIndexerIntake intakeCommand = new BetterIndexerIntake(indexer);
-    private final IndexerEject indexerEjectCommand = new IndexerEject(indexer, intake);
+    private final IndexerEject indexerEjectCommand = new IndexerEject(indexer);
     private final IndexerFeedHigh feedHighCommand = new IndexerFeedHigh(indexer, shooter);
     private final IndexerFeedLow feedLowCommand = new IndexerFeedLow(indexer, shooter);
     private final ClimberStop climberStopCommand = new ClimberStop(climber);

@@ -22,23 +22,23 @@ public final class Constants {
     public static final class DrivetrainConstants {
         public static final class Autonomous {
             public static final class Turning {
-                public static final double TURN_SPEED = 0.15;
+                public static final double TURN_SPEED = 0.17;
                 public static final double TURN_ADJUSMENT = 246;
 
-                public static final int HHH_TURN = 70;
+                public static final int HHH_TURN = 90;
                 // public static final int SECOND_HHH_TURN = -70;
             }
             public static final class Distance {
                 public static final int HIGH_GOAL_SHOT = -40000;
             }
             public static final class Offsets {
-                public static final int AUTO_H_H_OFFSET = -56000;
+                public static final int AUTO_H_H_OFFSET = 0;//-56000;
                 public static final int AUTO_L_H_OFFSET = -56000;
                 public static final int AUTO_LF_H_OFFSET = -40000;
             }
             public static final class Speeds {
-                public static final double DRIVE_REVERSE_SPEED = -0.16;
-                public static final double DRIVE_FORWARD_SPEED = 0.16;
+                public static final double DRIVE_REVERSE_SPEED = -0.17;
+                public static final double DRIVE_FORWARD_SPEED = 0.17;
             }
         }
         public static final class DrivetrainMotion{
@@ -208,7 +208,7 @@ public final class Constants {
 			public static final double NOMINAL_LOW_FAR_VELOCITY = 2480;
 
             public static final double SHOOTER_VELOCITY_HIGH = -4000; //0.17 //0.175
-            public static final double NOMINAL_HIGH_VELOCITY = 3950;
+            public static final double NOMINAL_HIGH_VELOCITY = 3980;
 
             
             public static final double KP = 0.00010;
@@ -219,7 +219,7 @@ public final class Constants {
 
         public static final class ShooterMotors {
             public static final class Shooter {
-                public static final int CAN_ID = 7;
+                public static final int CAN_ID = 3;
     
                 public static final boolean INVERT = false;
                 public static final int FEEDBACK_PORT = 0;
@@ -236,7 +236,7 @@ public final class Constants {
                 public static final IdleMode NEUTRAL_MODE = IdleMode.kCoast;
             }
             public static final class ShooterFollower {
-                public static final int CAN_ID = 3;
+                public static final int CAN_ID = 7;
     
                 public static final boolean INVERT = true;
                 public static final int FEEDBACK_PORT = 0;
