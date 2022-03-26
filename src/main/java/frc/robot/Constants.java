@@ -326,21 +326,22 @@ public final class Constants {
             }
 
             public static final class Homing{
-                public static final int ID = 69;
+                public static final int ID = 25;
                 public static final double HomingSpeed = -0.15;
             }
         }
         public static final class ClimberMotionParameters {
-            public static final double CLIMBER_PERCENT_OUTPUT = 0.3;
+            public static final double CLIMBER_PERCENT_OUTPUT = 0.4;
+            public static final double CLIMBER_DESCEND_PERCENT_OUTPUT = 0.1;
             public static final double CLIMBER_ZERO = 0;
 
-            public static final double TILT_PERCENT_OUTPUT = 0.1;
+            public static final double TILT_PERCENT_OUTPUT = 0.2;
 
             public static final int CLIMBER_TOP = -220000;
             public static final int CLIMBER_LOW_BAR_TOP = -110000;
             public static final int CLIMBER_BOTTOM = -7000;
             public static final double TILT_START = 7000;
-            public static final double STATIONARY_LOCK_ANGLE = 10;
+            public static final double STATIONARY_LOCK_ANGLE = 21;
 
             public static final double EXTEND_START_ANGLE = 0;
             public static final double NEXT_BAR_ANGLE = -20;
@@ -349,6 +350,7 @@ public final class Constants {
             public static final double NEXT_BAR_GRAB_ANGLE = 0;
 
             public static final double BAR_HEIGHT_OFFSET = -5000;//I'd like to set off to a bar if you caatchmydrift
+            public static final double CLIMBER_DESCEND_SAFTEY_SHUTOFF = -210000;
         }
 
         public static final class ClimberControls {

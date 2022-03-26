@@ -20,7 +20,7 @@ public class Climber extends SubsystemBase {
         rightStationaryHook = new DigitalInput(Constants.ClimberConstants.ClimberSensors.StationaryHooks.RightSensor.ID);
         leftMainHook = new DigitalInput(Constants.ClimberConstants.ClimberSensors.MainHooks.LeftSensor.ID);
         rightMainHook = new DigitalInput(Constants.ClimberConstants.ClimberSensors.MainHooks.RightSensor.ID);
-        homeSwitch = new DigitalInput(Constants.ClimberConstants.ClimberSensors.StationaryHooks.LeftSensor.ID);
+        homeSwitch = new DigitalInput(Constants.ClimberConstants.ClimberSensors.Homing.ID);
 
 
         tilt = new FRCTalonFX.FRCTalonFXBuilder(Constants.ClimberConstants.ClimberMotors.Tilt.CAN_ID)
@@ -87,8 +87,8 @@ public class Climber extends SubsystemBase {
     }
 
     public void onInit(){
-        zeroWinch();
-        tilt.motor.setSelectedSensorPosition(0);
+        // zeroWinch();
+        // tilt.motor.setSelectedSensorPosition(0);
     }
 
     public void zeroWinch(){
@@ -113,5 +113,8 @@ public class Climber extends SubsystemBase {
         SmartDashboard.putNumber("TiltAngle", tiltAngle());
         SmartDashboard.putBoolean("mainLocked", mainLocked());
         SmartDashboard.putBoolean("stationaryLocked", stationaryLocked());
+
+        SmartDashboard.putBoolean("sensorLeft", getMainSensorLeft());
+        SmartDashboard.putBoolean("sensorRight", getMainSensorRight());
     }
 }

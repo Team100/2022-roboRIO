@@ -4,7 +4,10 @@
 
 package frc.robot.commands.climber;
 
+import org.opencv.features2d.FastFeatureDetector;
+
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.commands.drivetrain.Drive;
@@ -39,17 +42,18 @@ public class ClimberControl extends CommandBase {
     public void execute() {
         drivetrain.driveWithoutRamp(0, 0);
         limiter = (-leftJoystick.getZ()+1)/2;
-        if (Math.abs(leftJoystick.getX()) > Constants.ClimberConstants.ClimberControls.TILT_CONTROL_DEADZONE) {
-            climber.setTilt(-leftJoystick.getX()*limiter);
+        if (Math.abs(leftJoystick.getY()) > Constants.ClimberConstants.ClimberControls.TILT_CONTROL_DEADZONE) {
+            climber.setTilt(-leftJoystick.getY()*limiter);
         } else {
             climber.setTilt(0);
         }
 
-        if (Math.abs(rightJoystick.getX()) > Constants.ClimberConstants.ClimberControls.WINCH_CONTROL_DEADZONE) {
-            climber.setWinch(rightJoystick.getX()*limiter);
+        if (Math.abs(rightJoystick.getY()) > Constants.ClimberConstants.ClimberControls.WINCH_CONTROL_DEADZONE) {
+            climber.setWinch(rightJoystick.getY()*limiter);
         } else {
             climber.setWinch(0);
         }
+        SmartDashboard.putBoolean("Climber Manual?", true);
     }
 
     // Called once the command ends or is interrupted.
@@ -58,6 +62,8 @@ public class ClimberControl extends CommandBase {
         climber.setTilt(0);
         climber.setWinch(0);
         drivetrain.driveWithoutRamp(0, 0);
+        SmartDashboard.putBoolean("Climber Manual?", false);
+
     }
 
     // Returns true when the command should end.
