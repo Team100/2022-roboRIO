@@ -144,7 +144,8 @@ public class RobotContainer {
     public void onInit() {
         // intake.onInit();
         climber.onInit();
-        drivetrain.setBrakeMode(false);
+        drivetrain.setBrakeMode(true);
+        new InstantCommand(() -> { drivetrain.zeroCurrentPosition(); }, drivetrain);//zero the drivetrain
     }
 
     public void onAutoInit(){

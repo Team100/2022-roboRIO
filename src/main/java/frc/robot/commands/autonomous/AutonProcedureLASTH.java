@@ -45,25 +45,25 @@ public class AutonProcedureLASTH extends SequentialCommandGroup {
         //method for drive back and shoot
         
         
-            addCommands(new ParallelDeadlineGroup(new StepTwo(drivetrain, 0), new BetterIndexerIntake(indexer), new IntakeStop(intake), new ShootHigh(shooter)));
-            //addCommands(new ParallelDeadlineGroup(new StepTwo(drivetrain, Constants.DrivetrainConstants.Autonomous.Offsets.AUTO_H_H_OFFSET), new BetterIntakeStop(intake), new IndexerStop(indexer), new ShootHigh(shooter))); //drive back to correct point to sink two high shots   
-            addCommands(new ParallelDeadlineGroup(new Turn(drivetrain, -Constants.DrivetrainConstants.Autonomous.Turning.HHH_TURN+Constants.DrivetrainConstants.Autonomous.Turning.SECOND_HHH_OFFSET),new ShootHigh(shooter)));//turn to be pointed the right way
+            // addCommands(new ParallelDeadlineGroup(new StepTwo(drivetrain, 0), new BetterIndexerIntake(indexer), new IntakeStop(intake), new ShootHigh(shooter)));
+            // //addCommands(new ParallelDeadlineGroup(new StepTwo(drivetrain, Constants.DrivetrainConstants.Autonomous.Offsets.AUTO_H_H_OFFSET), new BetterIntakeStop(intake), new IndexerStop(indexer), new ShootHigh(shooter))); //drive back to correct point to sink two high shots   
+            // addCommands(new ParallelDeadlineGroup(new Turn(drivetrain, -Constants.DrivetrainConstants.Autonomous.Turning.HHH_TURN+Constants.DrivetrainConstants.Autonomous.Turning.SECOND_HHH_OFFSET),new ShootHigh(shooter)));//turn to be pointed the right way
 
         
-            addCommands(new ParallelDeadlineGroup(new WaitCommand(2), new ShootHigh(shooter),  new IndexerFeedHigh(indexer, shooter))); //hold down the shoot high button for the same number of seconds as the wait command
-            //addCommands(new ParallelDeadlineGroup(new WaitCommand(3), new IndexerEject(indexer), new IntakeEject(intake)));
-            //addCommands(new ParallelDeadlineGroup(new WaitCommand(3), new IntakeEject(intake), new IndexerEject(indexer)));
+            // addCommands(new ParallelDeadlineGroup(new WaitCommand(2), new ShootHigh(shooter),  new IndexerFeedHigh(indexer, shooter))); //hold down the shoot high button for the same number of seconds as the wait command
+            // //addCommands(new ParallelDeadlineGroup(new WaitCommand(3), new IndexerEject(indexer), new IntakeEject(intake)));
+            // //addCommands(new ParallelDeadlineGroup(new WaitCommand(3), new IntakeEject(intake), new IndexerEject(indexer)));
 
-            addCommands(new ParallelCommandGroup(new IndexerStop(indexer), new ShootStop(shooter))); //stop everything
+            // addCommands(new ParallelCommandGroup(new IndexerStop(indexer), new ShootStop(shooter))); //stop everything
 
 
 
         //method for turn and shoot
         
         
-            //addCommands(new ParallelDeadlineGroup(new Turn(drivetrain, -Constants.DrivetrainConstants.Autonomous.Turning.HHH_TURN+Constants.DrivetrainConstants.Autonomous.Turning.SECOND_HHH_OFFSET),new ShootWayDowntown(shooter)));//turn to be pointed the right way
-            //addCommands(new ParallelDeadlineGroup(new WaitCommand(2), new ShootWayDowntown(shooter),  new IndexerFeedWayDowntown(indexer, shooter))); //hold down the shoot high button for the same number of seconds as the wait command
-            //addCommands(new ParallelCommandGroup(new IndexerStop(indexer), new ShootStop(shooter))); //stop everything
+            addCommands(new ParallelDeadlineGroup(new Turn(drivetrain, -Constants.DrivetrainConstants.Autonomous.Turning.HHH_TURN+Constants.DrivetrainConstants.Autonomous.Turning.SECOND_HHH_OFFSET),new ShootWayDowntown(shooter)));//turn to be pointed the right way
+            addCommands(new ParallelDeadlineGroup(new WaitCommand(2), new ShootWayDowntown(shooter),  new IndexerFeedWayDowntown(indexer, shooter))); //hold down the shoot high button for the same number of seconds as the wait command
+            addCommands(new ParallelCommandGroup(new IndexerStop(indexer), new ShootStop(shooter))); //stop everything
 
 
     }

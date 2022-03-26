@@ -63,6 +63,7 @@ public class Turn extends CommandBase {
   public void end(boolean interrupted) {
     drivetrain.driveWithoutRamp(0, 0);
     // drivetrain.setBrakeMode(status);
+    drivetrain.zeroCurrentPosition();
   }
 
   // Returns true when the command should end.

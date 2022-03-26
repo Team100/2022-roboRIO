@@ -34,7 +34,7 @@ public class AutonProcedureHH extends SequentialCommandGroup {
         addCommands(new InstantCommand(() -> { drivetrain.zeroCurrentPosition(); }, drivetrain));//zero the drivetrain
         addCommands(new InstantCommand(() -> { drivetrain.setBrakeMode(true); }, drivetrain));//brake mode the drivetrain
 
-        addCommands(new ParallelCommandGroup(new StepOne(intake, indexer, drivetrain), new ParallelDeadlineGroup(new WaitCommand(0.5), new IntakeIntake(intake))));//optimized
+        addCommands(new ParallelCommandGroup(new StepOne(intake, indexer, drivetrain)));//optimized
 
 
         // addCommands(new ParallelDeadlineGroup(new WaitCommand(0.1), new IntakeIntake(intake)));//drop the intake

@@ -10,7 +10,7 @@ import frc.robot.subsystems.Drivetrain;
 
 public class StepTwo extends CommandBase {
     private Drivetrain drivetrain;
-    private double stopPosition, returnDistance;
+    private double stopPosition;
 
     /** Creates a new StepTwo. */
     public StepTwo(Drivetrain drivetrain, double stopPosition) {
@@ -24,19 +24,20 @@ public class StepTwo extends CommandBase {
     @Override
     public void initialize() {
         drivetrain.setBrakeMode(true);
-        returnDistance = drivetrain.getCurrentEncoderPosition();
+        //returnDistance = drivetrain.getCurrentEncoderPosition();
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        drivetrain.driveWithError(Constants.DrivetrainConstants.Autonomous.Speeds.DRIVE_FORWARD_SPEED, Constants.DrivetrainConstants.Autonomous.Speeds.DRIVE_FORWARD_SPEED, returnDistance);
+        drivetrain.driveWithError(Constants.DrivetrainConstants.Autonomous.Speeds.DRIVE_FORWARD_SPEED, Constants.DrivetrainConstants.Autonomous.Speeds.DRIVE_FORWARD_SPEED, Constants.DrivetrainConstants.Autonomous.Offsets.STEP_TWO_RETURN_OFFSET);
     }
 
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
+        drivetrain.setBrakeMode(true);
         drivetrain.driveWithoutRamp(0, 0);
     }
 
