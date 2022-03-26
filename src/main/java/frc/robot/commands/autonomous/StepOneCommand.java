@@ -12,18 +12,14 @@ import frc.robot.subsystems.Intake;
 
 public class StepOneCommand extends CommandBase {
     private Drivetrain drivetrain;
-    private Intake intake;
-    private Indexer indexer;
-    private double stopPosition;
+    private double expectedPosition;
 
     /** Creates a new StepTwo. */
-    public StepOneCommand(Intake intake, Indexer indexer, Drivetrain drivetrain, double stopPosition) {
+    public StepOneCommand(Drivetrain drivetrain, double expectedPosition) {
         this.drivetrain = drivetrain;
-        this.indexer = indexer;
-        this.intake = intake;
-        this.stopPosition = stopPosition;
+        this.expectedPosition = expectedPosition;
         // Use addRequirements() here to declare subsystem dependencies.
-        addRequirements(drivetrain, indexer, intake);
+        addRequirements(drivetrain);
     }
 
     // Called when the command is initially scheduled.
@@ -36,7 +32,7 @@ public class StepOneCommand extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        drivetrain.driveWithError(Constants.DrivetrainConstants.Autonomous.Speeds.DRIVE_REVERSE_SPEED, Constants.DrivetrainConstants.Autonomous.Speeds.DRIVE_REVERSE_SPEED, stopPosition);
+        drivetrain.driveWithError(Constants.DrivetrainConstants.Autonomous.Speeds.DRIVE_REVERSE_SPEED, Constants.DrivetrainConstants.Autonomous.Speeds.DRIVE_REVERSE_SPEED, expectedPosition);
     }
 
 
@@ -50,6 +46,6 @@ public class StepOneCommand extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return drivetrain.getCurrentEncoderPosition() >= stopPosition;
+        return false;//drivetrain.getCurrentEncoderPosition() >= stopPosition;
     }
 }

@@ -36,7 +36,7 @@ public class AutonProcedureLASTH extends SequentialCommandGroup {
         // Add your commands in the addCommands() call, e.g.
         // addCommands(new FooCommand(), new BarCommand());
         //addCommands(new InstantCommand(() -> { drivetrain.zeroCurrentPosition(); }, drivetrain));//zero the drivetrain
-        addCommands(new Turn(drivetrain, Constants.DrivetrainConstants.Autonomous.Turning.HHH_TURN));//turn to be pointed the right way
+        addCommands(new Turn(drivetrain, -Constants.DrivetrainConstants.Autonomous.Turning.HHH_TURN));//turn to be pointed the right way
 
         //addCommands(new ParallelDeadlineGroup(new WaitCommand(0.6), new IntakeIntake(intake)));//drop the intake
         addCommands(new StepThree(intake, indexer, drivetrain)); //drive back and grab another ball
@@ -61,7 +61,7 @@ public class AutonProcedureLASTH extends SequentialCommandGroup {
         //method for turn and shoot
         
         
-            addCommands(new ParallelDeadlineGroup(new Turn(drivetrain, -Constants.DrivetrainConstants.Autonomous.Turning.HHH_TURN+Constants.DrivetrainConstants.Autonomous.Turning.SECOND_HHH_OFFSET),new ShootWayDowntown(shooter)));//turn to be pointed the right way
+            addCommands(new ParallelDeadlineGroup(new Turn(drivetrain, Constants.DrivetrainConstants.Autonomous.Turning.HHH_TURN-Constants.DrivetrainConstants.Autonomous.Turning.SECOND_HHH_OFFSET),new ShootWayDowntown(shooter)));//turn to be pointed the right way
             addCommands(new ParallelDeadlineGroup(new WaitCommand(2), new ShootWayDowntown(shooter),  new IndexerFeedWayDowntown(indexer, shooter))); //hold down the shoot high button for the same number of seconds as the wait command
             addCommands(new ParallelCommandGroup(new IndexerStop(indexer), new ShootStop(shooter))); //stop everything
 

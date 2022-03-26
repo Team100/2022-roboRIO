@@ -35,10 +35,10 @@ public class Turn extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    degreesError = (((drivetrain.getRight()-drivetrain.getLeft())/2)/DrivetrainConstants.Autonomous.Turning.TURN_ADJUSMENT);
-    turnSpeed = DrivetrainConstants.Autonomous.Turning.TURN_SPEED+(degreesError*DrivetrainConstants.Autonomous.Turning.TURNING_PP);
+    degreesError = degrees-(((drivetrain.getRight()-drivetrain.getLeft())/2)/DrivetrainConstants.Autonomous.Turning.TURN_ADJUSMENT);
+    turnSpeed = DrivetrainConstants.Autonomous.Turning.TURN_SPEED+Math.abs(degreesError*DrivetrainConstants.Autonomous.Turning.TURNING_PP);
 
-    // System.out.println("encoders............... " + -((drivetrain.getRight()-drivetrain.getLeft())/2));
+     System.out.println("turn speed............... " + turnSpeed);
         if(degrees>0){
           if(-((drivetrain.getRight()-drivetrain.getLeft())/2)<(degrees*DrivetrainConstants.Autonomous.Turning.TURN_ADJUSMENT)){
             drivetrain.driveWithoutRamp(turnSpeed,-turnSpeed);

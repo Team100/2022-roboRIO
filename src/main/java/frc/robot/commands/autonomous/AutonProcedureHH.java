@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
 import frc.robot.commands.indexer.IndexerFeedHigh;
 import frc.robot.commands.indexer.IndexerStop;
+import frc.robot.commands.indexer.BetterIndexerIntake;
 import frc.robot.commands.indexer.IndexerEject;
 import frc.robot.commands.intake.BetterIntakeStop;
 import frc.robot.commands.intake.IntakeIntake;
@@ -34,7 +35,9 @@ public class AutonProcedureHH extends SequentialCommandGroup {
         addCommands(new InstantCommand(() -> { drivetrain.zeroCurrentPosition(); }, drivetrain));//zero the drivetrain
         addCommands(new InstantCommand(() -> { drivetrain.setBrakeMode(true); }, drivetrain));//brake mode the drivetrain
 
-        addCommands(new ParallelCommandGroup(new StepOneCommand(intake, indexer, drivetrain, Constants.DrivetrainConstants.Autonomous.Distance.FIRST_BALL_EXPECTED_STOP_FROM_TARMACK_EDGE)));//optimized
+        addCommands(new ParallelDeadlineGroup(
+            new SequentialCommandGroup(new ParallelDeadlineGroup(new BetterIndexerIntake(indexer), new IntakeIntake(intake)), new WaitCommand(0.2)), //could save 0.3 or so seconds by moving it to keep intaking well driving
+            new StepOneCommand(drivetrain, Constants.DrivetrainConstants.Autonomous.Distance.FIRST_BALL_EXPECTED_STOP_FROM_TARMACK_EDGE)));//(new StepOneCommand(intake, indexer, drivetrain, Constants.DrivetrainConstants.Autonomous.Distance.FIRST_BALL_EXPECTED_STOP_FROM_TARMACK_EDGE)));//optimized
 
 
         // addCommands(new ParallelDeadlineGroup(new WaitCommand(0.1), new IntakeIntake(intake)));//drop the intake

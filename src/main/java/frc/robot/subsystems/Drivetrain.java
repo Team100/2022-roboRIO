@@ -92,7 +92,7 @@ public class Drivetrain extends SubsystemBase {
             right = right - Math.abs(((Math.abs(expectedStop)-(Math.abs(getCurrentEncoderPosition())))*Constants.DrivetrainConstants.DrivetrainControls.ERROR_ADJUSTMENT_DRIVE));
         }
 
-        driveWithRamp(left, right);
+        driveWithoutRamp(left, right);
         System.out.println("left:right    " + left + " : " + right);
     }
 

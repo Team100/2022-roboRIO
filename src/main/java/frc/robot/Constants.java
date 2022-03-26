@@ -22,18 +22,18 @@ public final class Constants {
     public static final class DrivetrainConstants {
         public static final class Autonomous {
             public static final class Turning {
-                public static final double TURN_SPEED = 0.17;
-                public static final double TURN_ADJUSMENT = 246;
+                public static final double TURN_SPEED = 0.15;
+                public static final double TURN_ADJUSMENT = 230;
 
-                public static final int HHH_TURN = 90;
+                public static final int HHH_TURN = 84;
                 // public static final int SECOND_HHH_TURN = -70;
-                public static final int SECOND_HHH_OFFSET = 15;
-                public static final double TURNING_PP = 0.001;
+                public static final int SECOND_HHH_OFFSET = 46;
+                public static final double TURNING_PP = 0.0006;
             }
             public static final class Distance {
                 public static final int HIGH_GOAL_SHOT = -40000;
-                public static final double FIRST_BALL_EXPECTED_STOP_FROM_TARMACK_EDGE = -40000;
-                public static final double THIRD_BALL_OFFSET_FROM_SHOOT_POSITION = -50000;
+                public static final double FIRST_BALL_EXPECTED_STOP_FROM_TARMACK_EDGE = -60000;
+                public static final double THIRD_BALL_OFFSET_FROM_SHOOT_POSITION = -85000;
             }
             public static final class Offsets {
                 public static final int AUTO_H_H_OFFSET = 0;//-56000;
@@ -42,8 +42,8 @@ public final class Constants {
                 public static final double STEP_TWO_RETURN_OFFSET = -10000;
             }
             public static final class Speeds {
-                public static final double DRIVE_REVERSE_SPEED = -0.17;
-                public static final double DRIVE_FORWARD_SPEED = 0.17;
+                public static final double DRIVE_REVERSE_SPEED = -0.16;
+                public static final double DRIVE_FORWARD_SPEED = 0.16;
             }
         }
         public static final class DrivetrainMotion{
@@ -120,8 +120,8 @@ public final class Constants {
             }
         }
         public static final class DrivetrainControls {
-            public static final double RAMP_LIMIT = 0.3;
-            public static final double ERROR_ADJUSTMENT_DRIVE = 0.000002;
+            public static final double RAMP_LIMIT = 0.2;
+            public static final double ERROR_ADJUSTMENT_DRIVE = 0.0000025;
         }
     }
     public static final class IntakeConstants {
@@ -213,14 +213,14 @@ public final class Constants {
             public static final double SHOOTER_VELOCITY_LOW_FAR = -2500;
 			public static final double NOMINAL_LOW_FAR_VELOCITY = 2480;
 
-            public static final double SHOOTER_VELOCITY_HIGH = -4000; //0.17 //0.175
-            public static final double NOMINAL_HIGH_VELOCITY = 3980;
+            public static final double SHOOTER_VELOCITY_HIGH = -4100; //0.17 //0.175
+            public static final double NOMINAL_HIGH_VELOCITY = 4080;
 
-            public static final double SHOOTER_VELOCITY_HIGH_FAR = -4600; //0.17 //0.175
-            public static final double NOMINAL_HIGH_VELOCITY_FAR = 4580;
+            public static final double SHOOTER_VELOCITY_HIGH_FAR = -4900; //0.17 //0.175
+            public static final double NOMINAL_HIGH_VELOCITY_FAR = 4880;
 
             
-            public static final double KP = 0.00010;
+            public static final double KP = 0.00011;
             public static final double KI = 0;
             public static final double KD = 0;
             public static final double KF = 0.00008947; // 0.17/1900
