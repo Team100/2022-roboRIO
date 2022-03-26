@@ -25,7 +25,7 @@ public class StepOne extends ParallelRaceGroup {
     // private int distanceBack;
     // private Drivetrain drivetrain;
     /** Creates a new StepOne. */
-    public StepOne(Intake intake, Indexer indexer, Drivetrain drivetrain) {
+    public StepOne(Intake intake, Indexer indexer, Drivetrain drivetrain, Double ) {
         // Add the deadline command in the super() call. Add other commands using
         // addCommands().
         //super(new StepOneEndCriteria(indexer));
