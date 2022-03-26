@@ -81,6 +81,8 @@ public class RobotContainer {
     private final JoystickButton indexTwoButton = new JoystickButton(buttonBoard, gitforcepushorginmaster);
 
     private final JoystickButton climberControlButton = new JoystickButton(leftJoystick, 3);
+    private final JoystickButton climberZeroButton = new JoystickButton(rightJoystick, 8);
+
 
     // Commands
     private final Drive driveCommand = new Drive(drivetrain, leftJoystick, rightJoystick);
@@ -106,6 +108,8 @@ public class RobotContainer {
     private final HookUp hookUpCommand = new HookUp(climber);
     private final HookUpLow hookUpLowCommand = new HookUpLow(climber);
     private final HookDown hookDownCommand = new HookDown(climber); 
+    
+    private final HomeAlgorithm homeAlgorithmCommand = new HomeAlgorithm(climber); 
 
     // private final NextBar nextBarCommand = new NextBar(climber);
     // private final LockStationary lockStationariesCommand = new LockStationary(climber);
@@ -149,6 +153,8 @@ public class RobotContainer {
         hookUpButton.whenPressed(hookUpCommand);
         hookUpLowButton.whenPressed(hookUpLowCommand);
         hookDownButton.whenPressed(hookDownCommand);
+
+        climberZeroButton.whenPressed(homeAlgorithmCommand);
 
         // nextBarButton.whileHeld(nextBarCommand);
         // lockStationariesButton.whileHeld(lockStationariesCommand);

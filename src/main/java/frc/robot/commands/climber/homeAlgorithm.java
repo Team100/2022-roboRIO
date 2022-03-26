@@ -9,14 +9,14 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Climber;
 
-public class homeAlgorithm extends CommandBase {
+public class HomeAlgorithm extends CommandBase {
   /** Creates a new homeAlgorithm. */
   public Climber climber;
-  public DigitalInput limit;
+  // public DigitalInput limit;
   public Boolean done, zeroed = false;
 
 
-  public homeAlgorithm(Climber climber) {
+  public HomeAlgorithm(Climber climber) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.climber = climber;
   }
@@ -41,7 +41,7 @@ public class homeAlgorithm extends CommandBase {
     }
 
     if(zeroed){
-      if(climber.tiltAngle() < 45){
+      if(climber.tiltAngle() < 20){
         climber.setTilt(Constants.ClimberConstants.ClimberSensors.Homing.HomingSpeed);
       }else{
         climber.setTilt(0);
