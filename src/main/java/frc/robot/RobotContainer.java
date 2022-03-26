@@ -83,6 +83,10 @@ public class RobotContainer {
     private final JoystickButton climberControlButton = new JoystickButton(leftJoystick, 3);
     private final JoystickButton climberZeroButton = new JoystickButton(rightJoystick, 8);
 
+    private final JoystickButton lockStationariesButton = new JoystickButton(gamepad, 1);
+    private final JoystickButton nextBarButton = new JoystickButton(gamepad, 2);
+
+
 
     // Commands
     private final Drive driveCommand = new Drive(drivetrain, leftJoystick, rightJoystick);
@@ -111,8 +115,8 @@ public class RobotContainer {
     
     private final HomeAlgorithm homeAlgorithmCommand = new HomeAlgorithm(climber); 
 
-    // private final NextBar nextBarCommand = new NextBar(climber);
-    // private final LockStationary lockStationariesCommand = new LockStationary(climber);
+    private final NextBar nextBarCommand = new NextBar(climber);
+    private final LockStationary lockStationariesCommand = new LockStationary(climber);
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
@@ -156,15 +160,15 @@ public class RobotContainer {
 
         climberZeroButton.whenPressed(homeAlgorithmCommand);
 
-        // nextBarButton.whileHeld(nextBarCommand);
-        // lockStationariesButton.whileHeld(lockStationariesCommand);
+        nextBarButton.whenPressed(nextBarCommand);
+        lockStationariesButton.whenPressed(lockStationariesCommand);
         climberControlButton.whileHeld(climberControlCommand);
     }
 
     public void onInit() {
         // intake.onInit();
         climber.onInit();
-        drivetrain.setBrakeMode(false);
+        //drivetrain.setBrakeMode(false);
     }
 
     public void onAutoInit(){

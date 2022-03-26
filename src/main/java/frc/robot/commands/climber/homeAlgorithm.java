@@ -11,14 +11,15 @@ import frc.robot.subsystems.Climber;
 
 public class HomeAlgorithm extends CommandBase {
   /** Creates a new homeAlgorithm. */
-  public Climber climber;
+  private final Climber climber;
   // public DigitalInput limit;
-  public Boolean done, zeroed = false;
+  private Boolean done, zeroed;
 
 
   public HomeAlgorithm(Climber climber) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.climber = climber;
+    addRequirements(climber);
   }
 
   // Called when the command is initially scheduled.
@@ -26,6 +27,7 @@ public class HomeAlgorithm extends CommandBase {
   public void initialize() {
     done = false;
     zeroed = false;
+   
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -41,10 +43,11 @@ public class HomeAlgorithm extends CommandBase {
     }
 
     if(zeroed){
-      if(climber.tiltAngle() < 20){
+      if(climber.tiltAngle() > -21.8){
         climber.setTilt(Constants.ClimberConstants.ClimberSensors.Homing.HomingSpeed);
       }else{
         climber.setTilt(0);
+        climber.zeroTilt();
         done = true;
       }
     }

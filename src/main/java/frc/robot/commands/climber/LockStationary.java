@@ -13,7 +13,7 @@ import frc.robot.Constants.ClimberConstants;
 
 
 public class LockStationary extends CommandBase {
-    public boolean mainLocked;
+    public boolean mainLocked, dropping;
 
     public Climber climber;
     /** Creates a new LockStationary. */
@@ -28,6 +28,7 @@ public class LockStationary extends CommandBase {
     public void initialize() {
         SmartDashboard.putString("Climber Command","Locking Stationaries");
         mainLocked = climber.mainLocked();
+        dropping = false;
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -44,7 +45,9 @@ public class LockStationary extends CommandBase {
         }
     
         if (climber.mainLocked() &&
-            climber.mainPosition() <= ClimberConstants.ClimberMotionParameters.CLIMBER_BOTTOM) {           //if climber is not all the way retracted the hooks are locked on
+            climber.mainPosition() <= ClimberConstants.ClimberMotionParameters.CLIMBER_BOTTOM && 
+            !dropping
+            ) {           //if climber is not all the way retracted the hooks are locked on
             climber.setWinch(ClimberConstants.ClimberMotionParameters.CLIMBER_PERCENT_OUTPUT);             //retract the hooks
             SmartDashboard.putString("Climber Command", "Doing an SFR climb but only for a bit");
 
@@ -52,21 +55,26 @@ public class LockStationary extends CommandBase {
         //     climber.mainPosition() >= ClimberConstants.ClimberMotionParameters.TILT_START) {               //while your doing that, if your close enough to the top
         //     climber.setTilt(ClimberConstants.ClimberMotionParameters.TILT_PERCENT_OUTPUT);                 //start tilting the stationary hooks into position
         // }
-        } else if (climber.mainPosition() > ClimberConstants.ClimberMotionParameters.CLIMBER_BOTTOM &&
+        }else if(climber.mainPosition() > ClimberConstants.ClimberMotionParameters.CLIMBER_BOTTOM && !dropping) {
+            climber.setWinch(0);
+
+        }
+        if (climber.mainPosition() > ClimberConstants.ClimberMotionParameters.CLIMBER_BOTTOM-2000 &&
                    climber.mainLocked() && !climber.stationaryLocked() &&
                    climber.tiltAngle() < ClimberConstants.ClimberMotionParameters.STATIONARY_LOCK_ANGLE) { //if you are sufficiently retracted and the main hooks are locked and the stationaries are not and your tilt angle is insufficient to drop the stationary hooks onto the bar
-            climber.setWinch(0);                                                                           //stop retracting
+            // climber.setWinch(0);                                                                           //stop retracting
             climber.setTilt(ClimberConstants.ClimberMotionParameters.TILT_PERCENT_OUTPUT);                 //tilt until your in position to drop the stationary hooks onto the bar
             SmartDashboard.putString("Climber Command", "SFR climb done, tilting stationaries into position");
-        } else if (!climber.stationaryLocked() && climber.mainLocked() &&
+        } else if (!climber.stationaryLocked() &&
                    climber.tiltAngle() >= ClimberConstants.ClimberMotionParameters.STATIONARY_LOCK_ANGLE &&
-                   climber.mainPosition() <= ClimberConstants.ClimberMotionParameters.CLIMBER_DESCEND_SAFTEY_SHUTOFF) { //if its just the stationary hooks that need to be droped
+                   climber.mainPosition() >= ClimberConstants.ClimberMotionParameters.CLIMBER_DESCEND_SAFTEY_SHUTOFF) { //if its just the stationary hooks that need to be droped
+            dropping = true;
             climber.setTilt(0);
             climber.setWinch(-ClimberConstants.ClimberMotionParameters.CLIMBER_DESCEND_PERCENT_OUTPUT);             //drop down to lock 'em
             SmartDashboard.putString("Climber Command", "stationaries in position, dropping down onto the bar");
-        } else if (!climber.stationaryLocked() && climber.mainLocked() &&
+        } else if (!climber.stationaryLocked() &&
         climber.tiltAngle() >= ClimberConstants.ClimberMotionParameters.STATIONARY_LOCK_ANGLE &&
-        climber.mainPosition() >= ClimberConstants.ClimberMotionParameters.CLIMBER_DESCEND_SAFTEY_SHUTOFF) {
+        climber.mainPosition() < ClimberConstants.ClimberMotionParameters.CLIMBER_DESCEND_SAFTEY_SHUTOFF) {
             climber.setTilt(0);
             climber.setWinch(0);
             System.out.println("climb aborted due to climber descend saftey shuttoff");
@@ -75,11 +83,11 @@ public class LockStationary extends CommandBase {
 
 
         //safties to prevent exiting frame permiter or incurring death by rohan
-        if (climber.mainPosition() < ClimberConstants.ClimberMotionParameters.CLIMBER_TOP){
+        if (climber.mainPosition() < ClimberConstants.ClimberMotionParameters.CLIMBER_TOP-20000){
             climber.setWinch(0);
             SmartDashboard.putString("Climber Command", "stopped climbing b/c climber too tall");
         }
-        if (climber.tiltAngle() > ClimberConstants.ClimberMotionParameters.STATIONARY_LOCK_ANGLE + 2){
+        if (climber.tiltAngle() > ClimberConstants.ClimberMotionParameters.STATIONARY_LOCK_ANGLE + 3){
             climber.setTilt(0);
             SmartDashboard.putString("Climber Command", "stopped climbing b/c tilt too tilty");
         }

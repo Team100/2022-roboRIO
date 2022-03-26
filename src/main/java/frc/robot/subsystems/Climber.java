@@ -65,7 +65,7 @@ public class Climber extends SubsystemBase {
     }
 
     public boolean getHomeSwitch(){
-        return homeSwitch.get();
+        return !homeSwitch.get();
         //return SmartDashboard.getBoolean("Stationaries Locked?", false);
     }
 
@@ -116,5 +116,6 @@ public class Climber extends SubsystemBase {
 
         SmartDashboard.putBoolean("sensorLeft", getMainSensorLeft());
         SmartDashboard.putBoolean("sensorRight", getMainSensorRight());
+        SmartDashboard.putBoolean("allingment switch", getHomeSwitch());
     }
 }

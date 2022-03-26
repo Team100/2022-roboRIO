@@ -120,11 +120,14 @@ public class Drivetrain extends SubsystemBase {
             leftFollower.motor.setNeutralMode(NeutralMode.Brake);
             rightMaster.motor.setNeutralMode(NeutralMode.Brake);
             rightFollower.motor.setNeutralMode(NeutralMode.Brake);
+            System.out.println("brake");
         }else{
             leftMaster.motor.setNeutralMode(NeutralMode.Coast);
             leftFollower.motor.setNeutralMode(NeutralMode.Coast);
             rightMaster.motor.setNeutralMode(NeutralMode.Coast);
             rightFollower.motor.setNeutralMode(NeutralMode.Coast);
+            System.out.println("coast");
+
         }
     }
 
@@ -138,7 +141,7 @@ public class Drivetrain extends SubsystemBase {
         // SmartDashboard.putBoolean("allign sensor port", getSensorLeft());
         // if(this.getCurrentCommand()!=null)SmartDashboard.putString("drivetrain command", this.getCurrentCommand().getName());
         // SmartDashboard.putNumber("drivetrain average encoder value", getCurrentEncoderPosition());
-        // SmartDashboard.putString("drivetrain brake mode", rightFollower.getNeutralMode().toString());
+        SmartDashboard.putString("drivetrain brake mode", rightFollower.getNeutralMode().toString());
         //SmartDashboard.putNumber("left motor", leftMaster.get)
     }
 
