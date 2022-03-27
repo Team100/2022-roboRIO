@@ -344,13 +344,17 @@ public final class Constants {
             public static final double STATIONARY_LOCK_ANGLE = 22;
 
             public static final double EXTEND_START_ANGLE = 0;
-            public static final double NEXT_BAR_ANGLE = -20;
-            public static final double NEXT_BAR_DISTANCE = -180000;
+            public static final double NEXT_BAR_ANGLE = -5;
+            public static final double NEXT_BAR_DISTANCE = -294000;
 
-            public static final double NEXT_BAR_GRAB_ANGLE = 0;
+            public static final double NEXT_BAR_GRAB_ANGLE = 5;
 
-            public static final double BAR_HEIGHT_OFFSET = -15000;//I'd like to set off to a bar if you caatchmydrift
+            public static final double BAR_HEIGHT_OFFSET = 10000;//I'd like to set off to a bar if you caatchmydrift
             public static final double CLIMBER_DESCEND_SAFTEY_SHUTOFF = -20000;
+            public static final double CLIMBER_MAX_EXTEND = -320000;
+            public static final double CLIMBER_TILT_BACK_ANGLE_DISTANCE_THING = -150000;
+            public static final double CLIMBER_CLUTCH_SAFTEY_SPEED = TILT_PERCENT_OUTPUT;
+            public static final double TILT_NEXT_BAR_HEIGHT_OFFSET = 500;
         }
 
         public static final class ClimberControls {
