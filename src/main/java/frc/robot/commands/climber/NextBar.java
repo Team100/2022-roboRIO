@@ -14,9 +14,8 @@ import frc.robot.Constants.ClimberConstants.ClimberMotionParameters;
 import frc.robot.subsystems.Climber;
 
 public class NextBar extends CommandBase {
-    public boolean done, behindBar, aboveBar;
+    public boolean done, behindBar, aboveBar, finishing;
     public double encoderTicks=17;
-    public double encoderTicks2=17;
     public Climber climber;
     
     /** Creates a new LockStationary. */
@@ -32,8 +31,8 @@ public class NextBar extends CommandBase {
         done = false;
         behindBar = false;
         aboveBar = false;
+        finishing = false;
         encoderTicks = 17;
-        encoderTicks2 = 17;
         SmartDashboard.putString("Climber Command","Grabbing Next Bar");
     }
 
@@ -48,13 +47,13 @@ public class NextBar extends CommandBase {
         // }
 
         if (climber.stationaryLocked() && 
-        !behindBar&&!aboveBar&&(climber.mainPosition()>ClimberMotionParameters.CLIMBER_TILT_BACK_ANGLE_DISTANCE_THING)) {
+        !behindBar&&!aboveBar&&(climber.mainPosition()>ClimberMotionParameters.CLIMBER_TILT_BACK_ANGLE_DISTANCE_THING)  && !finishing) {
             SmartDashboard.putString("Climber Command", "preparing to tilt back for next bar case 2");
             if(encoderTicks==17){
                 encoderTicks=climber.mainPosition();
                 System.out.println("set encoder tics to " + encoderTicks);
                 climber.setWinch(-ClimberConstants.ClimberMotionParameters.CLIMBER_PERCENT_OUTPUT);
-            }else if(Math.abs(climber.mainPosition())>(Math.abs(encoderTicks)+ClimberConstants.ClimberMotionParameters.BAR_HEIGHT_OFFSET)){
+            }else if(Math.abs(climber.mainPosition())>(Math.abs(encoderTicks)+ClimberConstants.ClimberMotionParameters.BAR_HEIGHT_OFFSET)  && !finishing){
                 climber.setTilt(0);
                 climber.setWinch(0);
                 aboveBar=true;
@@ -65,7 +64,7 @@ public class NextBar extends CommandBase {
         if (climber.stationaryLocked() &&
             !behindBar &&
             aboveBar &&
-            climber.tiltAngle() > ClimberConstants.ClimberMotionParameters.NEXT_BAR_ANGLE) {
+            climber.tiltAngle() > ClimberConstants.ClimberMotionParameters.NEXT_BAR_ANGLE  && !finishing) {
             climber.setWinch(0);
             climber.setTilt(-ClimberConstants.ClimberMotionParameters.TILT_PERCENT_OUTPUT); //tilt back until angled with the hooks behind the next bar
             // if (climber.tiltAngle() > ClimberConstants.ClimberMotionParameters.EXTEND_START_ANGLE && climber.mainPosition() > ClimberConstants.ClimberMotionParameters.NEXT_BAR_DISTANCE) { //if you are sufficiently tilted that you can start reaching back and still end up behind the next bar and you haven't reached back enough
@@ -74,25 +73,25 @@ public class NextBar extends CommandBase {
             SmartDashboard.putString("Climber Command", "tilting back to get behind next bar");
         } else if (!behindBar &&
                    climber.stationaryLocked() &&
-                   climber.tiltAngle() <= ClimberConstants.ClimberMotionParameters.NEXT_BAR_ANGLE) {
+                   climber.tiltAngle() <= ClimberConstants.ClimberMotionParameters.NEXT_BAR_ANGLE  && !finishing) {
             climber.setTilt(0);
             climber.setWinch(-ClimberConstants.ClimberMotionParameters.CLIMBER_PERCENT_OUTPUT); //extend main hooks
             SmartDashboard.putString("Climber Command", "tilted back sufficently to reach next bar, extedning hooks");
         }
 
         if (!behindBar &&
-            climber.mainPosition() < ClimberConstants.ClimberMotionParameters.NEXT_BAR_DISTANCE) { //if main hooks are far back enough
+            climber.mainPosition() < ClimberConstants.ClimberMotionParameters.NEXT_BAR_DISTANCE  && !finishing) { //if main hooks are far back enough
             climber.setWinch(0); //stop extending
             behindBar = true; //you are now behind the bar
             SmartDashboard.putString("Climber Command", "finished extending to grab next bar");
         }
 
         if (behindBar &&
-            climber.tiltAngle() <= ClimberConstants.ClimberMotionParameters.NEXT_BAR_GRAB_ANGLE) { //if you are behind the bar
+            climber.tiltAngle() <= ClimberConstants.ClimberMotionParameters.NEXT_BAR_GRAB_ANGLE && !finishing) { //if you are behind the bar
             climber.setTilt(ClimberConstants.ClimberMotionParameters.TILT_PERCENT_OUTPUT); //tilt forward until you can grab the bar
             SmartDashboard.putString("Climber Command", "tilting forward to grab next bar");
         } else if (behindBar &&
-                   climber.tiltAngle() >= ClimberConstants.ClimberMotionParameters.NEXT_BAR_GRAB_ANGLE) {
+                   climber.tiltAngle() >= ClimberConstants.ClimberMotionParameters.NEXT_BAR_GRAB_ANGLE  && !finishing) {
             climber.setTilt(0);
             SmartDashboard.putString("Climber Command", "tilted forward enough to grab next bar but didn't get it, giving up");
             done = true;
@@ -128,6 +127,7 @@ public class NextBar extends CommandBase {
             climber.setWinch(ClimberConstants.ClimberMotionParameters.CLIMBER_PERCENT_OUTPUT);
 
             climber.setTilt(-ClimberConstants.ClimberMotionParameters.CLIMBER_CLUTCH_SAFTEY_SPEED);
+            finishing = true;
 
 
 
@@ -137,7 +137,8 @@ public class NextBar extends CommandBase {
 
         if (behindBar &&
             climber.mainLocked() &&
-            climber.mainPosition() > ClimberConstants.ClimberMotionParameters.CLIMBER_BOTTOM-25000) { //if locked on next bar and  retracted sufficiently
+            finishing &&
+            !climber.stationaryLocked()) { //if locked on next bar and  retracted sufficiently
             climber.setWinch(0); //stop winch
             climber.setTilt(0); //stop tilting
             SmartDashboard.putString("Climber Command","Next Bar Command finished");
