@@ -136,14 +136,26 @@ public class NextBar extends CommandBase {
         }
 
         if (behindBar &&
-            climber.mainLocked() &&
             finishing &&
             !climber.stationaryLocked()) { //if locked on next bar and  retracted sufficiently
-            climber.setWinch(0); //stop winch
-            climber.setTilt(0); //stop tilting
-            SmartDashboard.putString("Climber Command","Next Bar Command finished");
-            System.out.println("finished the normal way withthe climb");
-            done = true;
+
+                SmartDashboard.putString("Climber Command","On next bar, moving stationaries around bar");
+
+            if(climber.mainPosition() > ClimberConstants.ClimberMotionParameters.PIVOT_AROUND_NEXT_BAR_MAIN_POSITION){
+                climber.setWinch(-ClimberConstants.ClimberMotionParameters.CLIMBER_PERCENT_OUTPUT);
+                climber.setTilt(-ClimberConstants.ClimberMotionParameters.TILT_PERCENT_OUTPUT); 
+            } else if(climber.mainPosition() < ClimberConstants.ClimberMotionParameters.PIVOT_AROUND_NEXT_BAR_MAIN_POSITION&&climber.tiltAngle()<0){
+                climber.setWinch(0);
+                climber.setTilt(ClimberConstants.ClimberMotionParameters.TILT_PERCENT_OUTPUT); 
+            }else{
+                climber.setTilt(0);
+                climber.setWinch(0);
+                SmartDashboard.putString("Climber Command","finished the thing");
+                done = true;
+            }
+            // System.out.println("finished the normal way withthe climb");
+            // done = true;
+
         }
     }
 
