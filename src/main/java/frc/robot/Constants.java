@@ -361,6 +361,7 @@ public final class Constants {
             public static final double SLOW_CLIMBER_PERCENT_OUTPUT = 0.35;
             public static final double STATIONARIES_MISS_BAR_ANGLE = -5;
             public static final double MAX_NEGATIVE_TILT = -28;
+            public static final double HOOK_ZERO_SPEED = -0.2;
         }
 
         public static final class ClimberControls {

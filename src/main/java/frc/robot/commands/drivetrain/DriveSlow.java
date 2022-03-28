@@ -29,6 +29,7 @@ public class DriveSlow extends CommandBase {
         // enabled = intake.isEnabled();
         // intake.disable();
         // intake.runPivot(-0.2);
+        drivetrain.setBrakeMode(true);
     }
 
     // Called every time the scheduler runs while the command is scheduled.

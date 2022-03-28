@@ -63,7 +63,11 @@ public class RobotContainer {
     private final JoystickButton shootHighButton = new JoystickButton(buttonBoard, 14);
     private final JoystickButton shootLowButton = new JoystickButton(buttonBoard, 13);
 
-    private final JoystickButton hookDownButton = new JoystickButton(buttonBoard, 1);
+    // private final JoystickButton hookDownButton = new JoystickButton(buttonBoard, 1);
+    private final JoystickButton lockStationariesButton = new JoystickButton(buttonBoard, 1);
+    private final JoystickButton nextBarButton = new JoystickButton(buttonBoard, 16);
+
+    private final JoystickButton hookDownButton = new JoystickButton(rightJoystick, 9);
     //private final JoystickButton hookUpButton = new JoystickButton(rightJoystick, 11);
 
     private final JoystickButton hookUpMidButton = new JoystickButton(rightJoystick, 11);
@@ -71,14 +75,14 @@ public class RobotContainer {
 
     private final JoystickButton stopAll = new JoystickButton(buttonBoard, 4);
 
-    private final JoystickButton fixClimberButton = new JoystickButton(rightJoystick, 7);
+    private final JoystickButton hookZeroButton = new JoystickButton(rightJoystick, 7);
     private final JoystickButton indexTwoButton = new JoystickButton(buttonBoard, gitforcepushorginmaster);
 
     private final JoystickButton climberControlButton = new JoystickButton(leftJoystick, 3);
-    private final JoystickButton climberZeroButton = new JoystickButton(rightJoystick, 8);
+    private final JoystickButton climberTiltZeroButton = new JoystickButton(rightJoystick, 8);
 
-    private final JoystickButton lockStationariesButton = new JoystickButton(gamepad, 1);
-    private final JoystickButton nextBarButton = new JoystickButton(gamepad, 2);
+    //private final JoystickButton lockStationariesButton = new JoystickButton(gamepad, 1);
+    //private final JoystickButton nextBarButton = new JoystickButton(gamepad, 2);
 
 
 
@@ -142,17 +146,17 @@ public class RobotContainer {
         shootHighButton.whileHeld(new ParallelCommandGroup(shootHighCommand, feedHighCommand));
         shootLowButton.whileHeld(new ParallelCommandGroup(shootLowCommand, feedLowCommand));
         ejectButton.whileHeld(new ParallelCommandGroup(intakeEjectCommand, indexerEjectCommand, shootEjectCommand));
-        fixClimberButton.whileHeld(hookZeroCommand);
+        hookZeroButton.whileHeld(hookZeroCommand);
 
 
         // hookDownButton.whenPressed(hookDownCommand);
         // hookUpButton.whenPressed(hookUpCommand);
         // hookUpLowButton.whenPressed(new HookUpLow(climber));
-        hookUpButton.whenPressed(hookUpCommand);
+        hookUpMidButton.whenPressed(hookUpCommand);
         hookUpLowButton.whenPressed(hookUpLowCommand);
         hookDownButton.whenPressed(hookDownCommand);
 
-        climberZeroButton.whenPressed(homeAlgorithmCommand);
+        climberTiltZeroButton.whenPressed(homeAlgorithmCommand);
 
         nextBarButton.whenPressed(nextBarCommand);
         lockStationariesButton.whenPressed(lockStationariesCommand);

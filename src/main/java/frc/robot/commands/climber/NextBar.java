@@ -33,11 +33,11 @@ public class NextBar extends CommandBase {
         done = false;
         behindBar = false;
         aboveBar = false;
+        finishedUnhooking = false;
         finalManuver = 0;
         encoderTicks = 17;
         encoderTicks2 = 17;
-        finishedUnhooking = false;
-        SmartDashboard.putString("Climber Command","Grabbing Next Bar");
+        SmartDashboard.putString("Climber Command","Initialized grabbing Next Bar");
     }
 
     // Called every time the scheduler runs while the command is scheduled.

@@ -5,6 +5,7 @@
 package frc.robot.commands.climber;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.subsystems.Climber;
 
 public class HookZero extends CommandBase {
@@ -27,7 +28,7 @@ boolean done;
   @Override
   public void execute() {
     System.out.println("zeroing");
-      climber.setWinch(0.25);
+      climber.setWinch(Constants.ClimberConstants.ClimberMotionParameters.HOOK_ZERO_SPEED);
       climber.zeroWinch();
   }
 
