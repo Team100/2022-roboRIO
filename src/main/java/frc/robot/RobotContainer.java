@@ -20,6 +20,8 @@ import frc.robot.commands.drivetrain.*;
 import frc.robot.commands.intake.*;
 import frc.robot.commands.indexer.*;
 import frc.robot.commands.autonomous.*;
+import frc.robot.commands.autonomous.unusedFarAuto.AutonProcedureLHF;
+import frc.robot.commands.autonomous.unusedFarAuto.AutonProcedureLNF;
 import frc.robot.commands.climber.*;
 import frc.robot.commands.shooter.*;
 
@@ -43,7 +45,7 @@ public class RobotContainer {
     // Auton DIP Switches
     private final DigitalInput firstBallOption = new DigitalInput(3);
     private final DigitalInput secondBallOption = new DigitalInput(4);
-    private final DigitalInput yeetOrLeave = new DigitalInput(5);
+    private final DigitalInput thirdBallOption = new DigitalInput(5);
 
     //crucial variables
     int gitforcepushorginmaster = 2;
@@ -159,11 +161,16 @@ public class RobotContainer {
         drivetrain.setBrakeMode(false);
     }
 
+    public boolean getThirdBallOption(){
+        return (!this.thirdBallOption.get());
+    }
+
     public int parseAutoSelector() {
         int selection = 0;
-        if (!this.firstBallOption.get()) selection += 4;
-        if (!this.secondBallOption.get()) selection += 2;
-        if (!this.yeetOrLeave.get()) selection += 1;
+        if (!this.firstBallOption.get()) selection += 2;//high if plugged, else low
+        if (!this.secondBallOption.get()) selection += 1;//high if plugged else none
+        
+        //if (!this.thirdBallOption.get()) selection += 1;//third ball or not
         return selection;
     }
 
@@ -172,23 +179,21 @@ public class RobotContainer {
      *
      * @return the command to run in autonomous
      */
-    public Command getAutonomousCommand() {
-        switch(parseAutoSelector()) {
-            default:
-            case 0: // Low close, none
-            return new AutonProcedureLN(drivetrain, intake, indexer, shooter);
-            case 1: // Low far, none
-            return new AutonProcedureLNF(drivetrain, intake, indexer, shooter);
-            case 2: // Low close, high
-            return new AutonProcedureLH(drivetrain, intake, indexer, shooter);
-            case 3: // Low far, high
-            return new AutonProcedureLHF(drivetrain, intake, indexer, shooter);
-            case 4: // High close, none
-            case 5: // High far, none
-            return new AutonProcedureHN(drivetrain, intake, indexer, shooter);
-            case 6: // High close, high
-            case 7: // High far, high
-            return new AutonProcedureHHH(drivetrain, intake, indexer, shooter);
+    public Command getAutonomousCommand() {//add parallel command with climber calibration(if needed) to each of these
+        if(getThirdBallOption()){
+            return new AutonProcedureHHH(drivetrain, intake, indexer, shooter);//high high high
+        }else{
+            switch(parseAutoSelector()) {
+                default:
+                case 0://low none
+                    return new AutonProcedureLN(drivetrain, intake, indexer, shooter);
+                case 1://low high (the sfr classic)
+                    return new AutonProcedureLH(drivetrain, intake, indexer, shooter);
+                case 2://high none
+                    return new AutonProcedureHN(drivetrain, intake, indexer, shooter);
+                case 3://high high
+                    return new AutonProcedureHH(drivetrain, intake, indexer, shooter);
+            }
         }
     }
 }
