@@ -79,7 +79,7 @@ public class NextBar extends CommandBase {
                    climber.stationaryLocked() &&
                    climber.tiltAngle() <= ClimberConstants.ClimberMotionParameters.NEXT_BAR_ANGLE  && (finalManuver==0)) {
             climber.setTilt(0);
-            climber.setWinch(-ClimberConstants.ClimberMotionParameters.CLIMBER_PERCENT_OUTPUT); //extend main hooks
+            climber.setWinch(-ClimberConstants.ClimberMotionParameters.SLOW_CLIMBER_PERCENT_OUTPUT); //extend main hooks
             SmartDashboard.putString("Climber Command", "tilted back sufficently to reach next bar, extedning hooks");
         }
 
