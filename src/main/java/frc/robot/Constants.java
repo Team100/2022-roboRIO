@@ -324,10 +324,14 @@ public final class Constants {
                     public static final int ID = 9;
                 }
             }
-
             public static final class Homing{
                 public static final int ID = 6;
                 public static final double HomingSpeed = -0.5;
+            }
+            public static final class Tilt{
+                public static final int ID = 2;
+                public static final double POT_ADJUSTMENT_FACTOR = 100;
+                public static final double POT_OFFSET = 0;
             }
         }
         public static final class ClimberMotionParameters {

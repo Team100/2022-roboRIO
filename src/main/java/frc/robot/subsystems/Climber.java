@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -12,6 +13,7 @@ import frc.robot.FRCLib.Motors.FRCTalonFX;
 
 public class Climber extends SubsystemBase {
     private FRCTalonFX tilt, winch;
+    private AnalogPotentiometer pot;
 
     private DigitalInput leftStationaryHook, rightStationaryHook, leftMainHook, rightMainHook, homeSwitch;
     /** Creates a new Climber. */
@@ -22,6 +24,7 @@ public class Climber extends SubsystemBase {
         rightMainHook = new DigitalInput(Constants.ClimberConstants.ClimberSensors.MainHooks.RightSensor.ID);
         homeSwitch = new DigitalInput(Constants.ClimberConstants.ClimberSensors.Homing.ID);
 
+        pot = new AnalogPotentiometer(Constants.ClimberConstants.ClimberSensors.Tilt.ID,Constants.ClimberConstants.ClimberSensors.Tilt.POT_ADJUSTMENT_FACTOR,Constants.ClimberConstants.ClimberSensors.Tilt.POT_OFFSET);
 
         tilt = new FRCTalonFX.FRCTalonFXBuilder(Constants.ClimberConstants.ClimberMotors.Tilt.CAN_ID)
         .withInverted(Constants.ClimberConstants.ClimberMotors.Tilt.INVERT)
@@ -104,7 +107,8 @@ public class Climber extends SubsystemBase {
     public double tiltAngle(){
         // return 90-((tilt.getSelectedSensorPosition()/2048)+45);
         // return 45-(tilt.getSelectedSensorPosition()/2048/2000*360);
-        return tilt.getSelectedSensorPosition()/2048/2000*360;
+        //return tilt.getSelectedSensorPosition()/2048/2000*360;//previously used one
+        return pot.get();
     }
 
     @Override

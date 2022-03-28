@@ -9,6 +9,7 @@ if have climber potentiometer, adjust code to use that, should just need to chan
 test climber again(first check climber max tilt negative(towards shooter) is <-28)
 tune hhh, left joystick 11 should turn 90 degrees, tune until it does, then its just a matter of running it a few times for distances and shoot way downtown
 relable auto switch, dio5 is now third ball high y/n(plugged = hhh)
+tune climber so clutch doesn't slip on unhooking
 
 later:
 Merge code and make sure climber calibrates during auto
