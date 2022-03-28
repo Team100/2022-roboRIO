@@ -127,7 +127,6 @@ public class Drivetrain extends SubsystemBase {
             rightMaster.motor.setNeutralMode(NeutralMode.Coast);
             rightFollower.motor.setNeutralMode(NeutralMode.Coast);
             System.out.println("coast");
-
         }
     }
 

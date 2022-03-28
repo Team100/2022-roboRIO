@@ -42,7 +42,7 @@ public final class Constants {
             }
         }
         public static final class DrivetrainMotion{
-            public static final double ALIGN_SPEED = -0.15;
+            public static final double ALIGN_SPEED = -0.1;
             public static final double SLOW_SPEED = 0.2;
         }
         public static final class DrivetrainSensors{

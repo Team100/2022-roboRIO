@@ -64,16 +64,10 @@ public class RobotContainer {
     private final JoystickButton shootLowButton = new JoystickButton(buttonBoard, 13);
 
     private final JoystickButton hookDownButton = new JoystickButton(buttonBoard, 1);
-    private final JoystickButton hookUpButton = new JoystickButton(buttonBoard, 16);
-    // private final JoystickButton hookUpLowButton = new JoystickButton(rightJoystick, 11);
-    // private final JoystickButton hookDownLowButton = new JoystickButton(rightJoystick, 10);
+    //private final JoystickButton hookUpButton = new JoystickButton(rightJoystick, 11);
 
-    // private final JoystickButton lockStationariesButton = new JoystickButton(buttonBoard, 12);
-    // private final JoystickButton nextBarButton = new JoystickButton(buttonBoard, 1);
-
-    // private final JoystickButton hookUpButton = new JoystickButton(rightJoystick, 11);
+    private final JoystickButton hookUpMidButton = new JoystickButton(rightJoystick, 11);
     private final JoystickButton hookUpLowButton = new JoystickButton(rightJoystick, 10);
-    // private final JoystickButton hookDownButton = new JoystickButton(buttonBoard, 16);
 
     private final JoystickButton stopAll = new JoystickButton(buttonBoard, 4);
 
