@@ -110,7 +110,9 @@ public class Climber extends SubsystemBase {
         // return 90-((tilt.getSelectedSensorPosition()/2048)+45);
         // return 45-(tilt.getSelectedSensorPosition()/2048/2000*360);
         //return tilt.getSelectedSensorPosition()/2048/2000*360;//previously used one
-        return pot.get();
+        //return pot.get();
+        double p = pot.get();
+        return ((p - 0.082) * -345) +256 - 9.3;
     }
 
     @Override
@@ -119,11 +121,15 @@ public class Climber extends SubsystemBase {
         SmartDashboard.putNumber("TiltAngle", tiltAngle());
         SmartDashboard.putNumber("Legacy TiltAngle", legacyTiltAngle());
 
+        //SmartDashboard.putNumber("Old value testing", ((tiltAngle() - 0.082) * -340) +256 - 10.8);
+
         SmartDashboard.putBoolean("mainLocked", mainLocked());
         SmartDashboard.putBoolean("stationaryLocked", stationaryLocked());
 
         SmartDashboard.putBoolean("sensorLeft", getMainSensorLeft());
         SmartDashboard.putBoolean("sensorRight", getMainSensorRight());
         SmartDashboard.putBoolean("allingment switch", getHomeSwitch());
+
+        SmartDashboard.putNumber("Winch", winch.getSelectedSensorPosition());
     }
 }

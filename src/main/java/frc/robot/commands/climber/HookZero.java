@@ -28,13 +28,15 @@ boolean done;
   @Override
   public void execute() {
     System.out.println("zeroing");
-      climber.setWinch(Constants.ClimberConstants.ClimberMotionParameters.HOOK_ZERO_SPEED);
+      climber.setWinch(-Constants.ClimberConstants.ClimberMotionParameters.HOOK_ZERO_SPEED);
       climber.zeroWinch();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    climber.zeroWinch();
+
     climber.setWinch(0);
   }
 

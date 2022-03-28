@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
@@ -66,7 +67,6 @@ public class RobotContainer {
     // private final JoystickButton hookDownButton = new JoystickButton(buttonBoard, 1);
     private final JoystickButton lockStationariesButton = new JoystickButton(buttonBoard, 1);
     private final JoystickButton nextBarButton = new JoystickButton(buttonBoard, 16);
-
     private final JoystickButton hookDownButton = new JoystickButton(rightJoystick, 9);
     //private final JoystickButton hookUpButton = new JoystickButton(rightJoystick, 11);
 
@@ -76,6 +76,7 @@ public class RobotContainer {
     private final JoystickButton stopAll = new JoystickButton(buttonBoard, 4);
 
     private final JoystickButton hookZeroButton = new JoystickButton(rightJoystick, 7);
+
     private final JoystickButton indexTwoButton = new JoystickButton(buttonBoard, gitforcepushorginmaster);
 
     private final JoystickButton climberControlButton = new JoystickButton(leftJoystick, 3);
@@ -147,7 +148,6 @@ public class RobotContainer {
         shootLowButton.whileHeld(new ParallelCommandGroup(shootLowCommand, feedLowCommand));
         ejectButton.whileHeld(new ParallelCommandGroup(intakeEjectCommand, indexerEjectCommand, shootEjectCommand));
         hookZeroButton.whileHeld(hookZeroCommand);
-
 
         // hookDownButton.whenPressed(hookDownCommand);
         // hookUpButton.whenPressed(hookUpCommand);

@@ -330,8 +330,8 @@ public final class Constants {
             }
             public static final class Tilt{
                 public static final int ID = 2;
-                public static final double POT_ADJUSTMENT_FACTOR = 100;
-                public static final double POT_OFFSET = 0;
+                public static final double POT_ADJUSTMENT_FACTOR = 1;//105;
+                public static final double POT_OFFSET = 0;//-95;
             }
         }
         public static final class ClimberMotionParameters {
@@ -341,11 +341,11 @@ public final class Constants {
 
             public static final double TILT_PERCENT_OUTPUT = 0.7;
 
-            public static final int CLIMBER_TOP = -243000;
+            public static final int CLIMBER_TOP = -225000; //-243000;
             public static final int CLIMBER_LOW_BAR_TOP = -110000;
             public static final int CLIMBER_BOTTOM = 5000;
             public static final double TILT_START = 7000;
-            public static final double STATIONARY_LOCK_ANGLE = 22;
+            public static final double STATIONARY_LOCK_ANGLE = 15; //22;
 
             public static final double EXTEND_START_ANGLE = 0;
             public static final double NEXT_BAR_ANGLE = -5;
