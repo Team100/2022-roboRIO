@@ -331,11 +331,11 @@ public final class Constants {
             }
         }
         public static final class ClimberMotionParameters {
-            public static final double CLIMBER_PERCENT_OUTPUT = 0.35;
+            public static final double CLIMBER_PERCENT_OUTPUT = 0.7;
             public static final double CLIMBER_DESCEND_PERCENT_OUTPUT = 0.3;
             // public static final double CLIMBER_ZERO = 0;
 
-            public static final double TILT_PERCENT_OUTPUT = 0.35;
+            public static final double TILT_PERCENT_OUTPUT = 0.7;
 
             public static final int CLIMBER_TOP = -243000;
             public static final int CLIMBER_LOW_BAR_TOP = -110000;
@@ -350,12 +350,17 @@ public final class Constants {
             public static final double NEXT_BAR_GRAB_ANGLE = 5;
 
             public static final double BAR_HEIGHT_OFFSET = 10000;//I'd like to set off to a bar if you caatchmydrift
+            public static final double STATIONARY_REMOVAL_OFFSET = 10000;
             public static final double CLIMBER_DESCEND_SAFTEY_SHUTOFF = -20000;
             public static final double CLIMBER_MAX_EXTEND = -320000;
             public static final double CLIMBER_TILT_BACK_ANGLE_DISTANCE_THING = -150000;
-            public static final double CLIMBER_CLUTCH_SAFTEY_SPEED = TILT_PERCENT_OUTPUT;
+            public static final double CLIMBER_CLUTCH_SAFTEY_SPEED = 0.35;
             public static final double TILT_NEXT_BAR_HEIGHT_OFFSET = 500;
             public static final double PIVOT_AROUND_NEXT_BAR_MAIN_POSITION = -105000;
+            public static final double SLOW_TILT_PERCENT_OUTPUT = 0.35;
+            public static final double SLOW_CLIMBER_PERCENT_OUTPUT = 0.35;
+            public static final double STATIONARIES_MISS_BAR_ANGLE = -5;
+            public static final double MAX_NEGATIVE_TILT = -28;
         }
 
         public static final class ClimberControls {

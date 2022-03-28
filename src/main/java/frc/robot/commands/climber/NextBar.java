@@ -14,8 +14,9 @@ import frc.robot.Constants.ClimberConstants.ClimberMotionParameters;
 import frc.robot.subsystems.Climber;
 
 public class NextBar extends CommandBase {
-    public boolean done, behindBar, aboveBar;
+    public boolean done, behindBar, aboveBar, finishedUnhooking;
     public double encoderTicks=17;
+    public double encoderTicks2=17;
     public double finalManuver = 0;
     public Climber climber;
     
@@ -34,6 +35,8 @@ public class NextBar extends CommandBase {
         aboveBar = false;
         finalManuver = 0;
         encoderTicks = 17;
+        encoderTicks2 = 17;
+        finishedUnhooking = false;
         SmartDashboard.putString("Climber Command","Grabbing Next Bar");
     }
 
@@ -89,7 +92,7 @@ public class NextBar extends CommandBase {
 
         if (behindBar &&
             climber.tiltAngle() <= ClimberConstants.ClimberMotionParameters.NEXT_BAR_GRAB_ANGLE && (finalManuver==0)) { //if you are behind the bar
-            climber.setTilt(ClimberConstants.ClimberMotionParameters.TILT_PERCENT_OUTPUT); //tilt forward until you can grab the bar
+            climber.setTilt(ClimberConstants.ClimberMotionParameters.SLOW_TILT_PERCENT_OUTPUT); //tilt forward until you can grab the bar
             SmartDashboard.putString("Climber Command", "tilting forward to grab next bar");
         } else if (behindBar &&
                    climber.tiltAngle() >= ClimberConstants.ClimberMotionParameters.NEXT_BAR_GRAB_ANGLE  && (finalManuver==0)) {
@@ -108,8 +111,8 @@ public class NextBar extends CommandBase {
 
         if (behindBar &&
             climber.mainLocked() &&
-            climber.stationaryLocked() &&
-            climber.mainPosition() <= ClimberConstants.ClimberMotionParameters.CLIMBER_BOTTOM-15000) { //if locked on next bar and not retracted sufficiently
+            !finishedUnhooking &&
+            climber.mainPosition() <= ClimberConstants.ClimberMotionParameters.CLIMBER_BOTTOM-10000) { //if locked on next bar and not retracted sufficiently
             //climber.setWinch(ClimberConstants.ClimberMotionParameters.CLIMBER_PERCENT_OUTPUT); //retract main hooks
             //if(climber.tiltAngle() > ClimberConstants.ClimberMotionParameters.NEXT_BAR_GRAB_ANGLE)
             //climber.setTilt(-ClimberConstants.ClimberMotionParameters.TILT_PERCENT_OUTPUT/2); //stop tilting
@@ -126,9 +129,9 @@ public class NextBar extends CommandBase {
             //     climber.setTilt(-ClimberConstants.ClimberMotionParameters.CLIMBER_CLUTCH_SAFTEY_SPEED);
             // }
 
-            climber.setWinch(ClimberConstants.ClimberMotionParameters.CLIMBER_PERCENT_OUTPUT);
-            if(climber.tiltAngle()>-28){
-                climber.setTilt(-ClimberConstants.ClimberMotionParameters.CLIMBER_CLUTCH_SAFTEY_SPEED);
+            climber.setWinch(ClimberConstants.ClimberMotionParameters.SLOW_CLIMBER_PERCENT_OUTPUT);
+            if(climber.tiltAngle()>ClimberConstants.ClimberMotionParameters.MAX_NEGATIVE_TILT){
+                climber.setTilt(-ClimberConstants.ClimberMotionParameters.SLOW_TILT_PERCENT_OUTPUT);
                 SmartDashboard.putString("Climber Command", "tilting to protect clutch");
             }else{
                 climber.setTilt(0);
@@ -136,23 +139,57 @@ public class NextBar extends CommandBase {
 
             }
             //climber.setTilt(-ClimberConstants.ClimberMotionParameters.CLIMBER_CLUTCH_SAFTEY_SPEED);
-            if((finalManuver==0)){
-                finalManuver = 1;
+
+
+
+
+
+
+
+
+            if(climber.stationaryLocked()){
+                SmartDashboard.putString("Climber Command", "stationaries still locked");
+            }else{
+                if(encoderTicks2==17){
+                    encoderTicks=climber.mainPosition();
+                    System.out.println("set encoder tics two to " + encoderTicks2);
+                    climber.setWinch(-ClimberConstants.ClimberMotionParameters.SLOW_CLIMBER_PERCENT_OUTPUT);
+                }else if(Math.abs(climber.mainPosition())<(Math.abs(encoderTicks2)-ClimberConstants.ClimberMotionParameters.STATIONARY_REMOVAL_OFFSET)){
+                    climber.setTilt(0);
+                    climber.setWinch(0);
+                    finishedUnhooking=true;
+                    SmartDashboard.putString("Climber Command", "finished unhooking stationaries");
+                    if((finalManuver==0)){
+                        finalManuver = 1;
+                    }
+                }
             }
+
             SmartDashboard.putString("Climber Command", "retracting to remove stationary hooks from initial bar");
         }
 
         if (behindBar &&
             (finalManuver>0) &&
             climber.mainLocked() &&
-            !climber.stationaryLocked()) { //if locked on next bar and  retracted sufficiently to drop the hooks
+            !climber.stationaryLocked() &&
+            finishedUnhooking) { //if locked on next bar and  retracted sufficiently to drop the hooks
 
                 SmartDashboard.putString("Climber Command","On next bar, moving stationaries around bar");
 
             if(climber.mainPosition() > ClimberConstants.ClimberMotionParameters.PIVOT_AROUND_NEXT_BAR_MAIN_POSITION && finalManuver==1){
-                climber.setWinch(-ClimberConstants.ClimberMotionParameters.CLIMBER_PERCENT_OUTPUT);
-                climber.setTilt(-ClimberConstants.ClimberMotionParameters.TILT_PERCENT_OUTPUT); 
+                climber.setWinch(-ClimberConstants.ClimberMotionParameters.CLIMBER_DESCEND_PERCENT_OUTPUT);
+                if(climber.tiltAngle()>ClimberMotionParameters.MAX_NEGATIVE_TILT){
+                    climber.setTilt(-ClimberConstants.ClimberMotionParameters.TILT_PERCENT_OUTPUT);
+                } else{
+                    climber.setTilt(0);
+                }
             } else if(climber.mainPosition() < ClimberConstants.ClimberMotionParameters.PIVOT_AROUND_NEXT_BAR_MAIN_POSITION&&climber.tiltAngle()<0){
+                if(climber.mainPosition() <= ClimberConstants.ClimberMotionParameters.CLIMBER_BOTTOM-20000&&finalManuver==1&&climber.tiltAngle()>ClimberConstants.ClimberMotionParameters.STATIONARIES_MISS_BAR_ANGLE){//if ok to start winching up
+                    climber.setWinch(ClimberConstants.ClimberMotionParameters.CLIMBER_PERCENT_OUTPUT);             //retract the hooks
+                }else{
+                    climber.setWinch(0);
+                    finalManuver=2;
+                }
                 climber.setWinch(0);
                 climber.setTilt(ClimberConstants.ClimberMotionParameters.TILT_PERCENT_OUTPUT); 
             }else{
