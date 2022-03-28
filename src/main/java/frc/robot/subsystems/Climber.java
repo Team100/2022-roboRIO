@@ -102,7 +102,9 @@ public class Climber extends SubsystemBase {
         tilt.motor.setSelectedSensorPosition(0);
     }
 
-    
+    public double legacyTiltAngle(){
+        return tilt.getSelectedSensorPosition()/2048/2000*360;//previously used one
+    }
 
     public double tiltAngle(){
         // return 90-((tilt.getSelectedSensorPosition()/2048)+45);
@@ -115,6 +117,8 @@ public class Climber extends SubsystemBase {
     public void periodic() {
         SmartDashboard.putNumber("main hooks position", mainPosition());
         SmartDashboard.putNumber("TiltAngle", tiltAngle());
+        SmartDashboard.putNumber("Legacy TiltAngle", legacyTiltAngle());
+
         SmartDashboard.putBoolean("mainLocked", mainLocked());
         SmartDashboard.putBoolean("stationaryLocked", stationaryLocked());
 
