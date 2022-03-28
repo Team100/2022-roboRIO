@@ -29,9 +29,9 @@ import frc.robot.subsystems.Shooter;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class AutonProcedureHH extends SequentialCommandGroup {
+public class AutonProcedureHHH extends SequentialCommandGroup {
     /** Creates a new AutonProcedure. */
-    public AutonProcedureHH(Drivetrain drivetrain, Intake intake, Indexer indexer, Shooter shooter) {
+    public AutonProcedureHHH(Drivetrain drivetrain, Intake intake, Indexer indexer, Shooter shooter) {
         // Add your commands in the addCommands() call, e.g.
         // addCommands(new FooCommand(), new BarCommand());
         addCommands(new InstantCommand(() -> { drivetrain.zeroCurrentPosition(); }, drivetrain));//zero the drivetrain

@@ -141,14 +141,14 @@ public class RobotContainer {
 
         fixClimberButton.whileHeld(hookZeroCommand);
 
-        HHHButton.whileHeld(new SequentialCommandGroup(new AutonProcedureHH(drivetrain, intake, indexer, shooter), new AutonProcedureLASTH(drivetrain, intake, indexer, shooter)));
+        HHHButton.whileHeld(new AutonProcedureHHH(drivetrain, intake, indexer, shooter));
         }
 
     public void onInit() {
         // intake.onInit();
-        climber.onInit();
-        drivetrain.setBrakeMode(true);
-        new InstantCommand(() -> { drivetrain.zeroCurrentPosition(); }, drivetrain);//zero the drivetrain
+        //climber.onInit();
+        //drivetrain.setBrakeMode(true);
+        //new InstantCommand(() -> { drivetrain.zeroCurrentPosition(); }, drivetrain);//zero the drivetrain
     }
 
     public void onAutoInit(){
@@ -188,7 +188,7 @@ public class RobotContainer {
             return new AutonProcedureHN(drivetrain, intake, indexer, shooter);
             case 6: // High close, high
             case 7: // High far, high
-            return new AutonProcedureHH(drivetrain, intake, indexer, shooter);
+            return new AutonProcedureHHH(drivetrain, intake, indexer, shooter);
         }
     }
 }
