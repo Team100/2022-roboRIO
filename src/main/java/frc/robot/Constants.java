@@ -108,7 +108,7 @@ public final class Constants {
             }
         }
         public static final class DrivetrainControls {
-            public static final double RAMP_LIMIT = 0.2;
+            public static final double RAMP_LIMIT = 0.2; //0.2
         }
     }
     public static final class IntakeConstants {
@@ -132,7 +132,7 @@ public final class Constants {
             public static final double PID_TOLERANCE = 0.1;
             public static final double INTAKE_UP_TIMEOUT = 2;
             public static final double INTAKE_UP_TIME_TO_RESTART = 2;
-            public static final double INTAKE_SPINNER_PERCENT_OUTPUT = -0.35;
+            public static final double INTAKE_SPINNER_PERCENT_OUTPUT = -0.25; //-0.35;
             public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN = -0.4;
             public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN_DECEL = 0.35;
             public static final double INTAKE_ZERO = 0;
@@ -361,7 +361,6 @@ public final class Constants {
                 public static final double OPEN_LOOP_RAMP = 0.1;
                 public static final double PEAK_OUTPUT_FORWARD = 1;
                 public static final double PEAK_OUTPUT_REVERSE = 1;
-
                 public static final NeutralMode NEUTRAL_MODE = NeutralMode.Coast;
             }
         }
