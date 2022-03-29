@@ -134,14 +134,14 @@ public final class Constants {
             public static final double INTAKE_UP_TIMEOUT = 2;
             public static final double INTAKE_UP_TIME_TO_RESTART = 2;
             public static final double INTAKE_SPINNER_PERCENT_OUTPUT = -0.35;
-            public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN = -0.4;
-            public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN_DECEL = 0.35;
+            public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN = -0.2;
+            public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN_DECEL = 0.15;
             public static final double INTAKE_ZERO = 0;
             public static final double INITIAL_POSITION = 0;
 
-            public static final double KP = 2.5;//1.08
-            public static final double KI = 0.250;
-            public static final double KD = 0.032;
+            public static final double KP = 0;//1.08
+            public static final double KI = 0;
+            public static final double KD = 0;
             public static final double KF = 0;
             public static final double PP_ADJUSTMENT_CONSTANT = 16;
         }
