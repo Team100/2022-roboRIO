@@ -35,9 +35,8 @@ boolean done;
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    climber.zeroWinch();
-
     climber.setWinch(0);
+    climber.zeroWinch();
   }
 
   // Returns true when the command should end.
