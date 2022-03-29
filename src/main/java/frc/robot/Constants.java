@@ -335,11 +335,11 @@ public final class Constants {
             }
         }
         public static final class ClimberMotionParameters {
-            public static final double CLIMBER_PERCENT_OUTPUT = 0.7;
+            public static final double CLIMBER_PERCENT_OUTPUT = 0.85;
             public static final double CLIMBER_DESCEND_PERCENT_OUTPUT = 0.3;
             // public static final double CLIMBER_ZERO = 0;
 
-            public static final double TILT_PERCENT_OUTPUT = 0.7;
+            public static final double TILT_PERCENT_OUTPUT = 0.85;
 
             public static final int CLIMBER_TOP = -234000; //-243000;
             public static final int CLIMBER_LOW_BAR_TOP = -110000;

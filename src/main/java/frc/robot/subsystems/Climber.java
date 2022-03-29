@@ -63,7 +63,7 @@ public class Climber extends SubsystemBase {
     }
 
     public boolean stationaryLocked(){
-        return !leftStationaryHook.get();//||!rightStationaryHook.get();
+        return !leftStationaryHook.get()||!rightStationaryHook.get();
         //return SmartDashboard.getBoolean("Stationaries Locked?", false);
     }
 
