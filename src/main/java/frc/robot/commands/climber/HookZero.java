@@ -28,7 +28,7 @@ boolean done;
   @Override
   public void execute() {
     System.out.println("zeroing");
-      climber.setWinch(-Constants.ClimberConstants.ClimberMotionParameters.HOOK_ZERO_SPEED);
+      //climber.setWinch(-Constants.ClimberConstants.ClimberMotionParameters.HOOK_ZERO_SPEED);
       climber.zeroWinch();
   }
 

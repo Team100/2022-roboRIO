@@ -73,7 +73,7 @@ public class Climber extends SubsystemBase {
     }
 
     public boolean mainLocked(){
-        return !leftMainHook.get()&&!rightMainHook.get();
+        return !leftMainHook.get()||!rightMainHook.get();
         //return SmartDashboard.getBoolean("Main Hooks Locked?", false);
     }
 
@@ -111,8 +111,10 @@ public class Climber extends SubsystemBase {
         // return 45-(tilt.getSelectedSensorPosition()/2048/2000*360);
         //return tilt.getSelectedSensorPosition()/2048/2000*360;//previously used one
         //return pot.get();
+        // double p = pot.get();
+        // return p;//((p - 0.082) * -345) +256 - 9.3;
         double p = pot.get();
-        return ((p - 0.082) * -345) +256 - 9.3;
+        return Math.round(1000*p)/1000;
     }
 
     @Override

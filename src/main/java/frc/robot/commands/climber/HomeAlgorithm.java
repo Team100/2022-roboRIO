@@ -43,7 +43,7 @@ public class HomeAlgorithm extends CommandBase {
     }
 
     if(zeroed){
-      if(climber.tiltAngle() > -21.8){
+      if(climber.legacyTiltAngle() > -21.8){
         climber.setTilt(Constants.ClimberConstants.ClimberSensors.Homing.HomingSpeed);
       }else{
         climber.setTilt(0);

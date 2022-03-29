@@ -84,7 +84,7 @@ public class NextBar extends CommandBase {
         }
 
         if (!behindBar &&
-            climber.mainPosition() < ClimberConstants.ClimberMotionParameters.NEXT_BAR_DISTANCE + 7000  && (finalManuver==0)) { //if main hooks are far back enough
+            climber.mainPosition() < ClimberConstants.ClimberMotionParameters.NEXT_BAR_DISTANCE && (finalManuver==0)) { //if main hooks are far back enough
             climber.setWinch(0); //stop extending
             behindBar = true; //you are now behind the bar
             SmartDashboard.putString("Climber Command", "finished extending to grab next bar");
@@ -150,6 +150,18 @@ public class NextBar extends CommandBase {
             if(climber.stationaryLocked()){
                 SmartDashboard.putString("Climber Command", "stationaries still locked");
             }else{
+
+
+
+
+                
+                boolean theThing = Math.abs(climber.mainPosition())<(Math.abs(encoderTicks2)-ClimberConstants.ClimberMotionParameters.STATIONARY_REMOVAL_OFFSET);
+                System.out.println("must return false a crapload and then true " + theThing);
+
+
+
+
+
                 if(encoderTicks2==17){
                     encoderTicks=climber.mainPosition();
                     System.out.println("set encoder tics two to " + encoderTicks2);
