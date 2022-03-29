@@ -139,7 +139,7 @@ public class RobotContainer {
     */
     private void configureButtonBindings() {
         turboButton.whileHeld(driveFuriousCommand);
-        alignButton.whileHeld(alignCommand);
+        alignButton.whileHeld(new SequentialCommandGroup(new ClimberCenter(climber), alignCommand));
         slowButton.whileHeld(driveSlowCommand);
         stopAll.whenPressed(new ParallelCommandGroup(new ClimberStop(climber), new IndexerStop(indexer), new BetterIntakeStop(intake), new ShootStop(shooter)));
         intakeButton.whenPressed(new SequentialCommandGroup(new ParallelDeadlineGroup(intakeCommand, intakeIntakeCommand), new WaitCommand(0.2)));
