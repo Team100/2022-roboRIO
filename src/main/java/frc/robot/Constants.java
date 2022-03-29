@@ -349,12 +349,12 @@ public final class Constants {
 
             public static final double EXTEND_START_ANGLE = 0;
             public static final double NEXT_BAR_ANGLE = -5;
-            public static final double NEXT_BAR_DISTANCE = -268000;
+            public static final double NEXT_BAR_DISTANCE = -279000;
 
             public static final double NEXT_BAR_GRAB_ANGLE = 5;
 
             public static final double BAR_HEIGHT_OFFSET = 10000;//I'd like to set off to a bar if you caatchmydrift
-            public static final double STATIONARY_REMOVAL_OFFSET = 20000;
+            public static final double STATIONARY_REMOVAL_OFFSET = 10000;
             public static final double CLIMBER_DESCEND_SAFTEY_SHUTOFF = -20000;
             public static final double CLIMBER_MAX_EXTEND = -320000;
             public static final double CLIMBER_TILT_BACK_ANGLE_DISTANCE_THING = -150000;

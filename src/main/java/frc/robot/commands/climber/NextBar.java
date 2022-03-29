@@ -74,10 +74,12 @@ public class NextBar extends CommandBase {
             // if (climber.tiltAngle() > ClimberConstants.ClimberMotionParameters.EXTEND_START_ANGLE && climber.mainPosition() > ClimberConstants.ClimberMotionParameters.NEXT_BAR_DISTANCE) { //if you are sufficiently tilted that you can start reaching back and still end up behind the next bar and you haven't reached back enough
             //   climber.setWinch(-ClimberConstants.ClimberMotionParameters.CLIMBER_PERCENT_OUTPUT); //extend main hooks
             // }
+            System.out.println("tiltiltiltiltiltbackkkkk");
             SmartDashboard.putString("Climber Command", "tilting back to get behind next bar");
         } else if (!behindBar &&
                    climber.stationaryLocked() &&
                    climber.tiltAngle() <= ClimberConstants.ClimberMotionParameters.NEXT_BAR_ANGLE  && (finalManuver==0)) {
+                        System.out.println("stopping tikt");
             climber.setTilt(0);
             climber.setWinch(-ClimberConstants.ClimberMotionParameters.SLOW_CLIMBER_PERCENT_OUTPUT); //extend main hooks
             SmartDashboard.putString("Climber Command", "tilted back sufficently to reach next bar, extedning hooks");
@@ -86,6 +88,7 @@ public class NextBar extends CommandBase {
         if (!behindBar &&
             climber.mainPosition() < ClimberConstants.ClimberMotionParameters.NEXT_BAR_DISTANCE && (finalManuver==0)) { //if main hooks are far back enough
             climber.setWinch(0); //stop extending
+            System.out.println("extending seen to be finished");
             behindBar = true; //you are now behind the bar
             SmartDashboard.putString("Climber Command", "finished extending to grab next bar");
         }
@@ -155,7 +158,7 @@ public class NextBar extends CommandBase {
 
 
                 
-                boolean theThing = Math.abs(climber.mainPosition())<(Math.abs(encoderTicks2)-ClimberConstants.ClimberMotionParameters.STATIONARY_REMOVAL_OFFSET);
+                boolean theThing = Math.abs(climber.mainPosition())>(Math.abs(encoderTicks2)+ClimberConstants.ClimberMotionParameters.STATIONARY_REMOVAL_OFFSET);
                 System.out.println("must return false a crapload and then true " + theThing);
 
 
@@ -163,10 +166,10 @@ public class NextBar extends CommandBase {
 
 
                 if(encoderTicks2==17){
-                    encoderTicks=climber.mainPosition();
+                    encoderTick2=climber.mainPosition();
                     System.out.println("set encoder tics two to " + encoderTicks2);
                     climber.setWinch(-ClimberConstants.ClimberMotionParameters.SLOW_CLIMBER_PERCENT_OUTPUT);
-                }else if(Math.abs(climber.mainPosition())<(Math.abs(encoderTicks2)-ClimberConstants.ClimberMotionParameters.STATIONARY_REMOVAL_OFFSET)){
+                }else if(Math.abs(climber.mainPosition())>(Math.abs(encoderTicks2)+ClimberConstants.ClimberMotionParameters.STATIONARY_REMOVAL_OFFSET)){
                     climber.setTilt(0);
                     climber.setWinch(0);
                     finishedUnhooking=true;
