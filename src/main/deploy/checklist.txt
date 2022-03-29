@@ -10,6 +10,7 @@ test climber again(first check climber max tilt negative(towards shooter) is <-2
 tune hhh, left joystick 11 should turn 90 degrees, tune until it does, then its just a matter of running it a few times for distances and shoot way downtown
 relable auto switch, dio5 is now third ball high y/n(plugged = hhh)
 tune climber so clutch doesn't slip on unhooking
+move climber limit switch to winch so you can zero that instea
 
 later:
 Merge code and make sure climber calibrates during auto
