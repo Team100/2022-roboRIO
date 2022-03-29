@@ -147,14 +147,14 @@ public final class Constants {
             public static final double INTAKE_UP_TIMEOUT = 2;
             public static final double INTAKE_UP_TIME_TO_RESTART = 2;
             public static final double INTAKE_SPINNER_PERCENT_OUTPUT = -0.35;
-            public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN = -0.4;
-            public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN_DECEL = 0.35;
+            public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN = -0.2;
+            public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN_DECEL = 0.15;
             // public static final double INTAKE_ZERO = 0;
             // public static final double INITIAL_POSITION = 0;
 
-            public static final double KP = 2.5;//1.08
-            public static final double KI = 0.250;
-            public static final double KD = 0.032;
+            public static final double KP = 0;//1.08
+            public static final double KI = 0.0;
+            public static final double KD = 0.0;
             public static final double KF = 0;
             public static final double PP_ADJUSTMENT_CONSTANT = 16;
         }
@@ -182,7 +182,7 @@ public final class Constants {
             }
 
             public static final class IntakePivot {
-                public static final int CAN_ID = 15; //2
+                public static final int CAN_ID = 3; //2
 
                 public static final InvertType INVERT = InvertType.None;
                 public static final int FEEDBACK_PORT = 0;
@@ -193,8 +193,8 @@ public final class Constants {
                 public static final boolean ENABLE_CURRENT_LIMIT = true;
                 public static final int CURRENT_LIMIT = 25;
                 public static final double OPEN_LOOP_RAMP = 0.1;
-                public static final double PEAK_OUTPUT_FORWARD = 0.5;
-                public static final double PEAK_OUTPUT_REVERSE = -0.5;
+                public static final double PEAK_OUTPUT_FORWARD = 1;
+                public static final double PEAK_OUTPUT_REVERSE = -1;
 
                 public static final SparkMaxAnalogSensor.Mode ANALOG_MODE = SparkMaxAnalogSensor.Mode.kAbsolute;
 
@@ -229,7 +229,7 @@ public final class Constants {
 
         public static final class ShooterMotors {
             public static final class Shooter {
-                public static final int CAN_ID = 3;
+                public static final int CAN_ID = 2;
     
                 public static final boolean INVERT = false;
                 public static final int FEEDBACK_PORT = 0;
