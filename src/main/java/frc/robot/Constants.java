@@ -70,8 +70,8 @@ public final class Constants {
                 public static final boolean SENSOR_PHASE = false;
                 public static final double PEAK_OUTPUT_FORWARD = 1;
                 public static final double PEAK_OUTPUT_REVERSE = -1;
-                public static final double NOMINAL_OUTPUT_FORWARD = 0.05;
-                public static final double NOMINAL_OUTPUT_REVERSE = -0.05;
+                // public static final double NOMINAL_OUTPUT_FORWARD = 0.05;
+                // public static final double NOMINAL_OUTPUT_REVERSE = -0.05;
                 public static final NeutralMode NEUTRAL_MODE = NeutralMode.Coast;
             }
 
@@ -85,8 +85,8 @@ public final class Constants {
                 public static final boolean SENSOR_PHASE = false;
                 public static final double PEAK_OUTPUT_FORWARD = 1;
                 public static final double PEAK_OUTPUT_REVERSE = -1;
-                public static final double NOMINAL_OUTPUT_FORWARD = 0.05;
-                public static final double NOMINAL_OUTPUT_REVERSE = -0.05;
+                // public static final double NOMINAL_OUTPUT_FORWARD = 0.05;
+                // public static final double NOMINAL_OUTPUT_REVERSE = -0.05;
                 public static final NeutralMode NEUTRAL_MODE = NeutralMode.Coast;
             }
 
@@ -100,8 +100,8 @@ public final class Constants {
                 public static final boolean SENSOR_PHASE = false;
                 public static final double PEAK_OUTPUT_FORWARD = 1;
                 public static final double PEAK_OUTPUT_REVERSE = -1;
-                public static final double NOMINAL_OUTPUT_FORWARD = 0.05;
-                public static final double NOMINAL_OUTPUT_REVERSE = -0.05;
+                // public static final double NOMINAL_OUTPUT_FORWARD = 0.05;
+                // public static final double NOMINAL_OUTPUT_REVERSE = -0.05;
                 public static final NeutralMode NEUTRAL_MODE = NeutralMode.Coast;
             }
 
@@ -115,8 +115,8 @@ public final class Constants {
                 public static final boolean SENSOR_PHASE = false;
                 public static final double PEAK_OUTPUT_FORWARD = 1;
                 public static final double PEAK_OUTPUT_REVERSE = -1;
-                public static final double NOMINAL_OUTPUT_FORWARD = 0.05;
-                public static final double NOMINAL_OUTPUT_REVERSE = -0.05;
+                // public static final double NOMINAL_OUTPUT_FORWARD = 0.05;
+                // public static final double NOMINAL_OUTPUT_REVERSE = -0.05;
                 public static final NeutralMode NEUTRAL_MODE = NeutralMode.Coast;
             }
         }
@@ -146,7 +146,7 @@ public final class Constants {
             public static final double PID_TOLERANCE = 0.1;
             public static final double INTAKE_UP_TIMEOUT = 2;
             public static final double INTAKE_UP_TIME_TO_RESTART = 2;
-            public static final double INTAKE_SPINNER_PERCENT_OUTPUT = -0.35;
+            public static final double INTAKE_SPINNER_PERCENT_OUTPUT = -0.45;
             public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN = -0.2;
             public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN_DECEL = 0.15;
             // public static final double INTAKE_ZERO = 0;
@@ -276,11 +276,11 @@ public final class Constants {
         }
 
         public static final class IndexerMotionParameters {
-            public static final double STAGE_ONE_PERCENT_OUTPUT_FORWARD = 0.4;
-            public static final double STAGE_TWO_PERCENT_OUTPUT_FORWARD = 0.4;
+            public static final double STAGE_ONE_PERCENT_OUTPUT_FORWARD = 0.8;
+            public static final double STAGE_TWO_PERCENT_OUTPUT_FORWARD = 0.8;
 
-            public static final double STAGE_ONE_PERCENT_OUTPUT_BACKWARD = -0.4;
-            public static final double STAGE_TWO_PERCENT_OUTPUT_BACKWARD = -0.4;
+            public static final double STAGE_ONE_PERCENT_OUTPUT_BACKWARD = -0.8;
+            public static final double STAGE_TWO_PERCENT_OUTPUT_BACKWARD = -0.8;
         }
 
         public static final class IndexerMotors {
