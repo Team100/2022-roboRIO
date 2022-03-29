@@ -166,7 +166,7 @@ public class NextBar extends CommandBase {
 
 
                 if(encoderTicks2==17){
-                    encoderTick2=climber.mainPosition();
+                    encoderTicks2=climber.mainPosition();
                     System.out.println("set encoder tics two to " + encoderTicks2);
                     climber.setWinch(-ClimberConstants.ClimberMotionParameters.SLOW_CLIMBER_PERCENT_OUTPUT);
                 }else if(Math.abs(climber.mainPosition())>(Math.abs(encoderTicks2)+ClimberConstants.ClimberMotionParameters.STATIONARY_REMOVAL_OFFSET)){
