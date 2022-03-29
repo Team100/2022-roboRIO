@@ -345,7 +345,7 @@ public final class Constants {
             public static final int CLIMBER_LOW_BAR_TOP = -110000;
             public static final int CLIMBER_BOTTOM = 5000;
             public static final double TILT_START = 7000;
-            public static final double STATIONARY_LOCK_ANGLE = 15; //22;
+            public static final double STATIONARY_LOCK_ANGLE = 22; //23.5; //22;
 
             public static final double EXTEND_START_ANGLE = 0;
             public static final double NEXT_BAR_ANGLE = -5;
@@ -361,8 +361,8 @@ public final class Constants {
             public static final double CLIMBER_CLUTCH_SAFTEY_SPEED = 0.35;
             public static final double TILT_NEXT_BAR_HEIGHT_OFFSET = 500;
             public static final double PIVOT_AROUND_NEXT_BAR_MAIN_POSITION = -105000;
-            public static final double SLOW_TILT_PERCENT_OUTPUT = 0.35;
-            public static final double SLOW_CLIMBER_PERCENT_OUTPUT = 0.35;
+            public static final double SLOW_TILT_PERCENT_OUTPUT = 0.25;
+            public static final double SLOW_CLIMBER_PERCENT_OUTPUT = 0.45;
             public static final double STATIONARIES_MISS_BAR_ANGLE = -5;
             public static final double MAX_NEGATIVE_TILT = -28;
             public static final double HOOK_ZERO_SPEED = -0.2;
