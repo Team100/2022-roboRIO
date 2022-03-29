@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.ProfiledPIDSubsystem;
 import frc.robot.Constants;
 import frc.robot.FRCLib.Motors.FRCNEO;
+import frc.robot.FRCLib.Motors.FRCTalonFX;
 import frc.robot.FRCLib.Motors.FRCTalonSRX;
 
 import edu.wpi.first.math.controller.ProfiledPIDController;
@@ -17,7 +18,7 @@ import edu.wpi.first.math.trajectory.TrapezoidProfile.State;
 
 public class Intake extends ProfiledPIDSubsystem {
     private FRCNEO spin;
-    private FRCTalonSRX pivot;
+    private FRCTalonFX pivot;
     private AnalogPotentiometer pot;
     private int cycleCount;
 
@@ -51,7 +52,7 @@ public class Intake extends ProfiledPIDSubsystem {
             .build();
 
 
-        pivot = new FRCTalonSRX.FRCTalonSRXBuilder(Constants.IntakeConstants.IntakeMotors.IntakePivot.CAN_ID)
+        pivot = new FRCTalonFX.FRCTalonFXBuilder(Constants.IntakeConstants.IntakeMotors.IntakePivot.CAN_ID)
             .withInverted(Constants.IntakeConstants.IntakeMotors.IntakePivot.INVERT)
             .withSensorPhase(Constants.IntakeConstants.IntakeMotors.IntakePivot.SENSOR_PHASE)
             .withTimeout(Constants.IntakeConstants.IntakeMotors.IntakePivot.TIMEOUT)

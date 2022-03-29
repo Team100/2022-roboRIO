@@ -182,7 +182,7 @@ public final class Constants {
             }
 
             public static final class IntakePivot {
-                public static final int CAN_ID = 2; //2
+                public static final int CAN_ID = 15; //2
 
                 public static final InvertType INVERT = InvertType.None;
                 public static final int FEEDBACK_PORT = 0;
