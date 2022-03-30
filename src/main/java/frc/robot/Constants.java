@@ -42,7 +42,7 @@ public final class Constants {
             }
         }
         public static final class DrivetrainMotion{
-            public static final double ALIGN_SPEED = -0.12;
+            public static final double ALIGN_SPEED = -0.09;
             public static final double SLOW_SPEED = 0.2;
         }
         public static final class DrivetrainSensors{
@@ -331,7 +331,7 @@ public final class Constants {
             public static final class Tilt{
                 public static final int ID = 2;
                 public static final double POT_ADJUSTMENT_FACTOR = -348.837209;//105;
-                public static final double POT_OFFSET = 274.5349;//-95;
+                public static final double POT_OFFSET = 106.5349;//274;
             }
         }
         public static final class ClimberMotionParameters {
@@ -348,8 +348,8 @@ public final class Constants {
             public static final double STATIONARY_LOCK_ANGLE = 21; //23.5; //22;
 
             public static final double EXTEND_START_ANGLE = 0;
-            public static final double NEXT_BAR_ANGLE = -12;
-            public static final double NEXT_BAR_DISTANCE = -288000;
+            public static final double NEXT_BAR_ANGLE = -5;
+            public static final double NEXT_BAR_DISTANCE = -278000;
 
             public static final double NEXT_BAR_GRAB_ANGLE = 5;
 

@@ -81,7 +81,7 @@ public class NextBar extends CommandBase {
                    climber.tiltAngle() <= ClimberConstants.ClimberMotionParameters.NEXT_BAR_ANGLE  && (finalManuver==0)) {
                         System.out.println("stopping tikt");
             climber.setTilt(0);
-            climber.setWinch(-ClimberConstants.ClimberMotionParameters.SLOW_CLIMBER_PERCENT_OUTPUT); //extend main hooks
+            climber.setWinch(-ClimberConstants.ClimberMotionParameters.CLIMBER_PERCENT_OUTPUT); //extend main hooks
             SmartDashboard.putString("Climber Command", "tilted back sufficently to reach next bar, extedning hooks");
         }
 
@@ -115,7 +115,7 @@ public class NextBar extends CommandBase {
         if (behindBar &&
             climber.mainLocked() &&
             !finishedUnhooking &&
-            climber.mainPosition() <= ClimberConstants.ClimberMotionParameters.CLIMBER_BOTTOM-10000) { //if locked on next bar and not retracted sufficiently
+            climber.mainPosition() <= ClimberConstants.ClimberMotionParameters.CLIMBER_BOTTOM-50000) { //if locked on next bar and not retracted sufficiently
             //climber.setWinch(ClimberConstants.ClimberMotionParameters.CLIMBER_PERCENT_OUTPUT); //retract main hooks
             //if(climber.tiltAngle() > ClimberConstants.ClimberMotionParameters.NEXT_BAR_GRAB_ANGLE)
             //climber.setTilt(-ClimberConstants.ClimberMotionParameters.TILT_PERCENT_OUTPUT/2); //stop tilting
@@ -133,6 +133,7 @@ public class NextBar extends CommandBase {
             // }
 
             climber.setWinch(ClimberConstants.ClimberMotionParameters.SLOW_CLIMBER_PERCENT_OUTPUT);
+
             if(climber.tiltAngle()>ClimberConstants.ClimberMotionParameters.MAX_NEGATIVE_TILT){
                 climber.setTilt(-ClimberConstants.ClimberMotionParameters.SLOW_TILT_PERCENT_OUTPUT);
                 SmartDashboard.putString("Climber Command", "tilting to protect clutch");
@@ -152,30 +153,37 @@ public class NextBar extends CommandBase {
 
             if(climber.stationaryLocked()){
                 SmartDashboard.putString("Climber Command", "stationaries still locked");
+                System.out.println("stationaries locked");
             }else{
 
 
 
 
-                
-
-
-
-
-
-                if(encoderTicks2==17){
-                    encoderTicks2=climber.mainPosition();
-                    System.out.println("set encoder tics two to " + encoderTicks2);
-                    climber.setWinch(-ClimberConstants.ClimberMotionParameters.SLOW_CLIMBER_PERCENT_OUTPUT);
-                }else if(Math.abs(climber.mainPosition())>(Math.abs(encoderTicks2)+ClimberConstants.ClimberMotionParameters.STATIONARY_REMOVAL_OFFSET)){
-                    climber.setTilt(0);
+                climber.setTilt(0);
                     climber.setWinch(0);
-                    finishedUnhooking=true;
                     SmartDashboard.putString("Climber Command", "finished unhooking stationaries");
                     if((finalManuver==0)){
                         finalManuver = 1;
                     }
-                }
+                    finishedUnhooking=true;
+
+
+
+
+
+                // if(encoderTicks2==17){
+                //     encoderTicks2=climber.mainPosition();
+                //     System.out.println("set encoder tics two to " + encoderTicks2);
+                //     climber.setWinch(-ClimberConstants.ClimberMotionParameters.SLOW_CLIMBER_PERCENT_OUTPUT);
+                // }else if(Math.abs(climber.mainPosition())>(Math.abs(encoderTicks2))){
+                //     climber.setTilt(0);
+                //     climber.setWinch(0);
+                //     SmartDashboard.putString("Climber Command", "finished unhooking stationaries");
+                //     if((finalManuver==0)){
+                //         finalManuver = 1;
+                //     }
+                //     finishedUnhooking=true;
+                // }
 
                 boolean theThing = Math.abs(climber.mainPosition())>(Math.abs(encoderTicks2)+ClimberConstants.ClimberMotionParameters.STATIONARY_REMOVAL_OFFSET);
                 System.out.println("must return false a crapload and then true " + theThing);
@@ -206,12 +214,19 @@ public class NextBar extends CommandBase {
 
                 if(climber.mainPosition() <= ClimberConstants.ClimberMotionParameters.CLIMBER_BOTTOM-20000&&finalManuver==1&&climber.tiltAngle()>ClimberConstants.ClimberMotionParameters.STATIONARIES_MISS_BAR_ANGLE){//if ok to start winching up
                     climber.setWinch(ClimberConstants.ClimberMotionParameters.CLIMBER_PERCENT_OUTPUT);             //retract the hooks
+                    System.out.println("kentucky fried jeanas with a j");
                 }else{
                     climber.setWinch(0);
                     finalManuver=2;
                 }
-                climber.setWinch(0);
-                climber.setTilt(ClimberConstants.ClimberMotionParameters.TILT_PERCENT_OUTPUT); 
+                //climber.setWinch(0);
+                //climber.setTilt(ClimberConstants.ClimberMotionParameters.TILT_PERCENT_OUTPUT);
+                if(climber.tiltAngle()<0){
+                    climber.setTilt(ClimberConstants.ClimberMotionParameters.TILT_PERCENT_OUTPUT);
+                }else{
+                    climber.setTilt(0);
+                    done = true;
+                } 
             }else{
                 climber.setTilt(0);
                 System.out.println("kentucky fried genes");
