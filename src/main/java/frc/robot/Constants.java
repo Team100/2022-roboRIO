@@ -129,7 +129,7 @@ public final class Constants {
         public static final class IntakeSensors{
             public static final class IntakePot{
                 public static final int ID = 3;
-                public static final int POT_OFFSET = -29;
+                public static final int POT_OFFSET = 0;
                 public static final int POT_ADJUSTMENT_FACTOR = 100;
             }
         }
@@ -142,19 +142,19 @@ public final class Constants {
         }
         public static final class IntakeMotionParameters {
             public static final double TRAPAZOID_PROFILE_MAX_VEL = 192;
-            public static final double TRAPAZOID_PROFILE_MAX_ACL = 90;
+            public static final double TRAPAZOID_PROFILE_MAX_ACL = 105;
             public static final double PID_TOLERANCE = 0.1;
             public static final double INTAKE_UP_TIMEOUT = 2;
             public static final double INTAKE_UP_TIME_TO_RESTART = 2;
             public static final double INTAKE_SPINNER_PERCENT_OUTPUT = -0.45;
-            public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN = -0.3;
-            public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN_DECEL = 0.15;
+            public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN = -0.22;
+            public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN_DECEL = 0.1;
             // public static final double INTAKE_ZERO = 0;
             // public static final double INITIAL_POSITION = 0;
 
-            public static final double KP = 0.4;//1.08
+            public static final double KP = 0.26;//0.2
             public static final double KI = 0.0;
-            public static final double KD = 0.05;
+            public static final double KD = 0.015;
             public static final double KF = 0;
             public static final double PP_ADJUSTMENT_CONSTANT = 16;
         }
