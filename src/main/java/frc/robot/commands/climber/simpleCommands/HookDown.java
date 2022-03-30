@@ -2,38 +2,39 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands.climber;
+package frc.robot.commands.climber.simpleCommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Climber;
 import frc.robot.Constants.ClimberConstants;
 
-public class HookUp extends CommandBase {
-  private final Climber climber;
-  boolean done, first;
+public class HookDown extends CommandBase {
   /** Creates a new HooksUp. */
-  public HookUp(Climber climber) {
+private final Climber climber;
+boolean done, first;
+  public HookDown(Climber climber) {  
     // Use addRequirements() here to declare subsystem dependencies.
     this.climber = climber;
     addRequirements(this.climber);
-    
-
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() { 
-    done=false;
+    done=false;  
+    first = true; 
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(climber.mainPosition()<=ClimberConstants.ClimberMotionParameters.CLIMBER_TOP){
+    if(climber.mainPosition()>=ClimberConstants.ClimberMotionParameters.CLIMBER_BOTTOM){
       climber.setWinch(0);
-      done = true;
+      if(first){
+        first = false;
+      }
     }else{
-      climber.setWinch(-ClimberConstants.ClimberMotionParameters.CLIMBER_PERCENT_OUTPUT);
+      climber.setWinch(ClimberConstants.ClimberMotionParameters.CLIMBER_PERCENT_OUTPUT);
     }
   }
 

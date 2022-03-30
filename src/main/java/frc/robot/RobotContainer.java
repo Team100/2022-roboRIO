@@ -23,6 +23,9 @@ import frc.robot.commands.autonomous.*;
 import frc.robot.commands.autonomous.unusedFarAuto.AutonProcedureLHF;
 import frc.robot.commands.autonomous.unusedFarAuto.AutonProcedureLNF;
 import frc.robot.commands.climber.*;
+import frc.robot.commands.climber.simpleCommands.HookDown;
+import frc.robot.commands.climber.simpleCommands.HookUp;
+import frc.robot.commands.climber.simpleCommands.HookUpLow;
 import frc.robot.commands.shooter.*;
 
 /**
@@ -40,9 +43,9 @@ public class RobotContainer {
     private final Shooter shooter = new Shooter();
     private final Intake intake = new Intake();
     private final Indexer indexer = new Indexer();
-    private final Symphony symphony = new Symphony();
 
     // Auton DIP Switches
+
     private final DigitalInput firstBallOption = new DigitalInput(3);
     private final DigitalInput secondBallOption = new DigitalInput(4);
     private final DigitalInput thirdBallOption = new DigitalInput(5);
@@ -53,6 +56,7 @@ public class RobotContainer {
     // OI Devices
     private final Joystick leftJoystick = new Joystick(0);
     private final Joystick rightJoystick = new Joystick(1);
+    private final Joystick gamepad = new Joystick(2);
     private final Joystick buttonBoard = new Joystick(3);
     private final JoystickButton turboButton = new JoystickButton(rightJoystick, 1);
     private final JoystickButton slowButton = new JoystickButton(rightJoystick, 3);
@@ -63,15 +67,18 @@ public class RobotContainer {
     private final JoystickButton shootHighButton = new JoystickButton(buttonBoard, 14);
     private final JoystickButton shootLowButton = new JoystickButton(buttonBoard, 13);
 
+    // private final JoystickButton hookDownButton = new JoystickButton(buttonBoard, 1);
+    private final JoystickButton lockStationariesButton = new JoystickButton(buttonBoard, 1);
+    private final JoystickButton nextBarButton = new JoystickButton(buttonBoard, 16);
+    private final JoystickButton hookDownButton = new JoystickButton(rightJoystick, 9);
     private final JoystickButton rampLowButton = new JoystickButton(buttonBoard, 12);
 
-    private final JoystickButton hookDownButton = new JoystickButton(buttonBoard, 1);
-    private final JoystickButton hookUpButton = new JoystickButton(buttonBoard, 16);
-    private final JoystickButton hookUpLowButton = new JoystickButton(rightJoystick, 11);
-    private final JoystickButton hookDownLowButton = new JoystickButton(rightJoystick, 10);
+    private final JoystickButton hookUpMidButton = new JoystickButton(rightJoystick, 11);
+    private final JoystickButton hookUpLowButton = new JoystickButton(rightJoystick, 10);
 
     private final JoystickButton stopAll = new JoystickButton(buttonBoard, 4);
 
+    private final JoystickButton hookZeroButton = new JoystickButton(rightJoystick, 7);
     private final JoystickButton HHHButton = new JoystickButton(leftJoystick, 10);
     private final JoystickButton TurnButton = new JoystickButton(leftJoystick, 11);
 
@@ -79,11 +86,21 @@ public class RobotContainer {
     private final JoystickButton fixClimberButton = new JoystickButton(rightJoystick, 7);
     private final JoystickButton indexTwoButton = new JoystickButton(buttonBoard, gitforcepushorginmaster);
 
+    private final JoystickButton climberControlButton = new JoystickButton(leftJoystick, 3);
+    private final JoystickButton climberTiltZeroButton = new JoystickButton(rightJoystick, 8);
+
+    private final JoystickButton climberTiltCenterButton = new JoystickButton(rightJoystick, 6);
+
+    //private final JoystickButton lockStationariesButton = new JoystickButton(gamepad, 1);
+    //private final JoystickButton nextBarButton = new JoystickButton(gamepad, 2);
+
+
+
     // Commands
     private final Drive driveCommand = new Drive(drivetrain, leftJoystick, rightJoystick);
     private final DriveFurious driveFuriousCommand = new DriveFurious(drivetrain, leftJoystick, rightJoystick);
     private final DriveSlow driveSlowCommand = new DriveSlow(drivetrain, leftJoystick, rightJoystick);
-    private final AlignClimber alignCommand = new AlignClimber(drivetrain);
+    private final AlignClimber alignCommand = new AlignClimber(climber, drivetrain);
     private final IntakeIntake intakeIntakeCommand = new IntakeIntake(intake);
     private final IntakeEject intakeEjectCommand = new IntakeEject(intake);
     private final BetterIntakeStop intakeStopCommand = new BetterIntakeStop(intake);
@@ -96,10 +113,19 @@ public class RobotContainer {
     private final IndexerEject indexerEjectCommand = new IndexerEject(indexer);
     private final IndexerFeedHigh feedHighCommand = new IndexerFeedHigh(indexer, shooter);
     private final IndexerFeedLow feedLowCommand = new IndexerFeedLow(indexer, shooter);
-    private final ClimberStop climberStopCommand = new ClimberStop(climber);
-    private final HookUp hookUpCommand = new HookUp(climber);
-    private final HookDown hookDownCommand = new HookDown(climber, symphony);    
+    private final ClimberStop climberStopCommand = new ClimberStop(climber);   
     private final HookZero hookZeroCommand = new HookZero(climber);
+    private final ClimberControl climberControlCommand = new ClimberControl(climber, leftJoystick, rightJoystick, drivetrain);
+
+    private final HookUp hookUpCommand = new HookUp(climber);
+    private final HookUpLow hookUpLowCommand = new HookUpLow(climber);
+    private final HookDown hookDownCommand = new HookDown(climber); 
+    
+    private final HomeAlgorithm homeAlgorithmCommand = new HomeAlgorithm(climber); 
+
+    private final NextBar nextBarCommand = new NextBar(climber);
+    private final LockStationary lockStationariesCommand = new LockStationary(climber);
+    private final ClimberCenter centerClimberCommand = new ClimberCenter(climber);
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
@@ -110,9 +136,7 @@ public class RobotContainer {
         intake.setDefaultCommand(intakeStopCommand);
         shooter.setDefaultCommand(shootStopCommand);
 
-
-        //Sanjan.setDefaultCommand(STOP)
-
+        //sanjan.setDefaultCommand(STOP)
         // Configure the button bindings
         configureButtonBindings();
     }
@@ -125,11 +149,7 @@ public class RobotContainer {
     */
     private void configureButtonBindings() {
         turboButton.whileHeld(driveFuriousCommand);
-        alignButton.whileHeld(alignCommand);
-        hookDownButton.whenPressed(hookDownCommand);
-        hookUpButton.whenPressed(hookUpCommand);
-        hookUpLowButton.whenPressed(new HookUpLow(climber));
-        hookDownLowButton.whenPressed(hookDownCommand);
+        alignButton.whileHeld(alignCommand);//new SequentialCommandGroup(new ClimberCenter(climber), alignCommand));
         slowButton.whileHeld(driveSlowCommand);
         stopAll.whenPressed(new ParallelCommandGroup(new ClimberStop(climber), new IndexerStop(indexer), new BetterIntakeStop(intake), new ShootStop(shooter)));
         intakeButton.whenPressed(new SequentialCommandGroup(new ParallelDeadlineGroup(intakeCommand, intakeIntakeCommand), new WaitCommand(0.2)));
@@ -137,6 +157,25 @@ public class RobotContainer {
         shootHighButton.whileHeld(new ParallelCommandGroup(shootHighCommand, feedHighCommand));
         shootLowButton.whileHeld(new ParallelCommandGroup(shootLowCommand, feedLowCommand));
         ejectButton.whileHeld(new ParallelCommandGroup(intakeEjectCommand, indexerEjectCommand, shootEjectCommand));
+
+        hookZeroButton.whileHeld(hookZeroCommand);
+
+        // hookDownButton.whenPressed(hookDownCommand);
+        // hookUpButton.whenPressed(hookUpCommand);
+        // hookUpLowButton.whenPressed(new HookUpLow(climber));
+        hookUpMidButton.whenPressed(hookUpCommand);
+        hookUpLowButton.whenPressed(hookUpLowCommand);
+        hookDownButton.whenPressed(hookDownCommand);
+
+        climberTiltZeroButton.whenPressed(homeAlgorithmCommand);
+
+        climberTiltCenterButton.whenPressed(centerClimberCommand);
+
+        nextBarButton.whenPressed(nextBarCommand);
+        lockStationariesButton.whenPressed(lockStationariesCommand);
+        climberControlButton.whileHeld(climberControlCommand);
+
+
         TurnButton.whenPressed(new Turn(drivetrain, 90));
 
         rampLowButton.whileHeld(new ShootLow(shooter));

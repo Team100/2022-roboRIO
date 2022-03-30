@@ -1,4 +1,17 @@
-Pivot arm all the way up(low priority)
+To check before going to field:
 Climber hooks retracted(high priority)
-//Climber tilt centered(high priority)
-charge jetson battery backup(high priority)
+
+To do on code:
+
+early:
+tune intake pivot asap(probably off traversal climb branch b/c buttons bindings are correct)
+if have climber potentiometer, adjust code to use that, should just need to change the return in climber
+test climber again(first check climber max tilt negative(towards shooter) is <-28)
+tune hhh, left joystick 11 should turn 90 degrees, tune until it does, then its just a matter of running it a few times for distances and shoot way downtown
+relable auto switch, dio5 is now third ball high y/n(plugged = hhh)
+tune climber so clutch doesn't slip on unhooking
+move climber limit switch to winch so you can zero that instea
+
+later:
+Merge code and make sure climber calibrates during auto
+test as if playing a full game

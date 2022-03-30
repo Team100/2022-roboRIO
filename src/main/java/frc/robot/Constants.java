@@ -19,6 +19,13 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+    public static final class AutonomousConstants {
+        public static final class DipSwitches{
+            public static final int FIRST_BALL_OPTION_ID = 3;
+            public static final int SECOND_BALL_OPTION_ID = 4;
+            public static final int YEET_OR_LEAVE = 5;
+        }
+    }
     public static final class DrivetrainConstants {
         public static final class Autonomous {
             public static final class Turning {
@@ -48,16 +55,10 @@ public final class Constants {
             }
         }
         public static final class DrivetrainMotion{
-            public static final double ALIGN_SPEED = -0.15;
-            public static final double SLOW_SPEED = 0.3; //0.2
+            public static final double ALIGN_SPEED = -0.09;
+            public static final double SLOW_SPEED = 0.25;
         }
         public static final class DrivetrainSensors{
-            public static final class LeftSensor{
-                public static final int ID = 0;
-            }
-            public static final class RightSensor{
-                public static final int ID = 2;
-            }
         }
         public static final class DrivetrainMotors {
             public static final class LeftMaster {
@@ -321,26 +322,71 @@ public final class Constants {
     }
 
     public static final class ClimberConstants {
+        public static final class ClimberSensors{
+            public static final class MainHooks{
+                public static final class LeftSensor{
+                    public static final int ID = 0;
+                }
+                public static final class RightSensor{
+                    public static final int ID = 2;
+                }
+            }
+            public static final class StationaryHooks{
+                public static final class LeftSensor{
+                    public static final int ID = 1;
+                }
+                public static final class RightSensor{
+                    public static final int ID = 9;
+                }
+            }
+            public static final class Homing{
+                public static final int ID = 6;
+                public static final double HomingSpeed = -0.5;
+            }
+            public static final class Tilt{
+                public static final int ID = 2;
+                public static final double POT_ADJUSTMENT_FACTOR = -348.837209;//105;
+                public static final double POT_OFFSET = 106.5349;//274;
+            }
+        }
         public static final class ClimberMotionParameters {
-            public static final double CLIMBER_PERCENT_OUTPUT = 0.75;
-            public static final double CLIMBER_ZERO = 0;
+            public static final double CLIMBER_PERCENT_OUTPUT = 0.85;
+            public static final double CLIMBER_DESCEND_PERCENT_OUTPUT = 0.3;
+            // public static final double CLIMBER_ZERO = 0;
 
-            public static final double TILT_PERCENT_OUTPUT = 0.1;
+            public static final double TILT_PERCENT_OUTPUT = 0.85;
 
-            public static final int CLIMBER_TOP = -220000;
+            public static final int CLIMBER_TOP = -234000; //-243000;
             public static final int CLIMBER_LOW_BAR_TOP = -110000;
-            public static final int CLIMBER_BOTTOM = -10000;
+            public static final int CLIMBER_BOTTOM = 5000;
             public static final double TILT_START = 7000;
-            public static final double STATIONARY_LOCK_ANGLE = 10;
+            public static final double STATIONARY_LOCK_ANGLE = 21; //23.5; //22;
 
             public static final double EXTEND_START_ANGLE = 0;
-            public static final double NEXT_BAR_ANGLE = 10;
-            public static final double NEXT_BAR_DISTANCE = 9000;
+            public static final double NEXT_BAR_ANGLE = -5;
+            public static final double NEXT_BAR_DISTANCE = -278000;
+
+            public static final double NEXT_BAR_GRAB_ANGLE = 5;
+
+            public static final double BAR_HEIGHT_OFFSET = 10000;//I'd like to set off to a bar if you caatchmydrift
+            public static final double STATIONARY_REMOVAL_OFFSET = 10000;
+            public static final double CLIMBER_DESCEND_SAFTEY_SHUTOFF = -20000;
+            public static final double CLIMBER_MAX_EXTEND = -320000;
+            public static final double CLIMBER_TILT_BACK_ANGLE_DISTANCE_THING = -150000;
+            public static final double CLIMBER_CLUTCH_SAFTEY_SPEED = 0.35;
+            public static final double TILT_NEXT_BAR_HEIGHT_OFFSET = 500;
+            public static final double PIVOT_AROUND_NEXT_BAR_MAIN_POSITION = -105000;
+            public static final double SLOW_TILT_PERCENT_OUTPUT = 0.45;
+            public static final double SLOW_CLIMBER_PERCENT_OUTPUT = 0.45;
+            public static final double STATIONARIES_MISS_BAR_ANGLE = -5;
+            public static final double MAX_NEGATIVE_TILT = -28;
+            public static final double HOOK_ZERO_SPEED = -0.2;
+            public static final double CLIMBER_TILT_ZERO_SPEED = 0.3;
         }
 
         public static final class ClimberControls {
-            public static final int TILT_FORWARD_GAMEPAD_BUTTON = 1;
-            public static final int TILT_REVERSE_GAMEPAD_BUTTON = 2;
+            public static final double TILT_CONTROL_DEADZONE = 0.05;
+            public static final double WINCH_CONTROL_DEADZONE = 0.05;
         };
 
         public static final class ClimberMotors {
@@ -354,7 +400,7 @@ public final class Constants {
                 public static final int TIMEOUT = 10;
     
                 public static final boolean ENABLE_CURRENT_LIMIT = true;
-                public static final int CURRENT_LIMIT = 25;
+                public static final int CURRENT_LIMIT = 40;
                 public static final double OPEN_LOOP_RAMP = 0;
                 public static final double PEAK_OUTPUT_FORWARD = 1;
                 public static final double PEAK_OUTPUT_REVERSE = -1;
@@ -372,10 +418,10 @@ public final class Constants {
                 public static final int TIMEOUT = 10;
     
                 public static final boolean ENABLE_CURRENT_LIMIT = true;
-                public static final int CURRENT_LIMIT = 25;
-                public static final double OPEN_LOOP_RAMP = 0.1;
+                public static final int CURRENT_LIMIT = 40;
+                public static final double OPEN_LOOP_RAMP = 0;
                 public static final double PEAK_OUTPUT_FORWARD = 1;
-                public static final double PEAK_OUTPUT_REVERSE = 1;
+                public static final double PEAK_OUTPUT_REVERSE = -1;
                 public static final NeutralMode NEUTRAL_MODE = NeutralMode.Coast;
             }
         }

@@ -7,19 +7,15 @@ package frc.robot.commands.drivetrain;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj.Joystick;
 
 public class DriveSlow extends CommandBase {
     private final Drivetrain drivetrain;
-    // private final Intake intake;
-    private boolean enabled;
     private final Joystick leftJoystick;
     private final Joystick rightJoystick;
 
     public DriveSlow(Drivetrain dt, Joystick l, Joystick r) {
         drivetrain = dt;
-        // this.intake = intake;
         leftJoystick = l;
         rightJoystick = r;
         
@@ -33,6 +29,7 @@ public class DriveSlow extends CommandBase {
         // enabled = intake.isEnabled();
         // intake.disable();
         // intake.runPivot(-0.2);
+        drivetrain.setBrakeMode(true);
     }
 
     // Called every time the scheduler runs while the command is scheduled.

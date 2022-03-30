@@ -6,7 +6,6 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -15,14 +14,10 @@ import frc.robot.FRCLib.Motors.FRCTalonFX;
 
 public class Drivetrain extends SubsystemBase {
     private FRCTalonFX leftMaster, leftFollower, rightMaster, rightFollower;
-    private DigitalInput sensorLeft, sensorRight;
     private double leftSetpoint, rightSetpoint;
     
     /** Creates a new Drivetrain. */
     public Drivetrain() {
-        sensorLeft = new DigitalInput(Constants.DrivetrainConstants.DrivetrainSensors.LeftSensor.ID);
-        sensorRight = new DigitalInput(Constants.DrivetrainConstants.DrivetrainSensors.RightSensor.ID);
-
         leftMaster = new FRCTalonFX.FRCTalonFXBuilder(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.CAN_ID)
             .withKP(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.KP)
             .withKI(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.KI)
@@ -32,7 +27,8 @@ public class Drivetrain extends SubsystemBase {
             .withSensorPhase(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.SENSOR_PHASE)
             .withPeakOutputForward(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.PEAK_OUTPUT_FORWARD)
             .withPeakOutputReverse(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.PEAK_OUTPUT_REVERSE)
-            .withNeutralMode(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.NEUTRAL_MODE).build();
+            //.withNeutralMode(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.NEUTRAL_MODE)
+            .build();
 
         leftFollower = new FRCTalonFX.FRCTalonFXBuilder(Constants.DrivetrainConstants.DrivetrainMotors.LeftFollower.CAN_ID)
             .withKP(Constants.DrivetrainConstants.DrivetrainMotors.LeftFollower.KP)
@@ -43,7 +39,7 @@ public class Drivetrain extends SubsystemBase {
             .withSensorPhase(Constants.DrivetrainConstants.DrivetrainMotors.LeftFollower.SENSOR_PHASE)
             .withPeakOutputForward(Constants.DrivetrainConstants.DrivetrainMotors.LeftFollower.PEAK_OUTPUT_FORWARD)
             .withPeakOutputReverse(Constants.DrivetrainConstants.DrivetrainMotors.LeftFollower.PEAK_OUTPUT_REVERSE)
-            .withNeutralMode(Constants.DrivetrainConstants.DrivetrainMotors.LeftFollower.NEUTRAL_MODE)
+            //.withNeutralMode(Constants.DrivetrainConstants.DrivetrainMotors.LeftFollower.NEUTRAL_MODE)
             .withMaster(leftMaster).build();
 
         rightMaster = new FRCTalonFX.FRCTalonFXBuilder(Constants.DrivetrainConstants.DrivetrainMotors.RightMaster.CAN_ID)
@@ -55,7 +51,8 @@ public class Drivetrain extends SubsystemBase {
             .withSensorPhase(Constants.DrivetrainConstants.DrivetrainMotors.RightMaster.SENSOR_PHASE)
             .withPeakOutputForward(Constants.DrivetrainConstants.DrivetrainMotors.RightMaster.PEAK_OUTPUT_FORWARD)
             .withPeakOutputReverse(Constants.DrivetrainConstants.DrivetrainMotors.RightMaster.PEAK_OUTPUT_REVERSE)
-            .withNeutralMode(Constants.DrivetrainConstants.DrivetrainMotors.RightMaster.NEUTRAL_MODE).build();
+            //.withNeutralMode(Constants.DrivetrainConstants.DrivetrainMotors.RightMaster.NEUTRAL_MODE)
+            .build();
 
         rightFollower = new FRCTalonFX.FRCTalonFXBuilder(Constants.DrivetrainConstants.DrivetrainMotors.RightFollower.CAN_ID)
             .withKP(Constants.DrivetrainConstants.DrivetrainMotors.RightFollower.KP)
@@ -66,7 +63,7 @@ public class Drivetrain extends SubsystemBase {
             .withSensorPhase(Constants.DrivetrainConstants.DrivetrainMotors.RightFollower.SENSOR_PHASE)
             .withPeakOutputForward(Constants.DrivetrainConstants.DrivetrainMotors.RightFollower.PEAK_OUTPUT_FORWARD)
             .withPeakOutputReverse(Constants.DrivetrainConstants.DrivetrainMotors.RightFollower.PEAK_OUTPUT_REVERSE)
-            .withNeutralMode(Constants.DrivetrainConstants.DrivetrainMotors.RightFollower.NEUTRAL_MODE)
+            // .withNeutralMode(Constants.DrivetrainConstants.DrivetrainMotors.RightFollower.NEUTRAL_MODE)
             .withMaster(rightMaster).build();
 
         addChild("drivetrainLeftMaster", leftMaster);
@@ -129,14 +126,6 @@ public class Drivetrain extends SubsystemBase {
         return input;
     }
 
-    public boolean getSensorLeft() {
-        return !sensorLeft.get();
-      }
-    
-      public boolean getSensorRight() {
-        return !sensorRight.get();
-      }
-
       public double getCurrentEncoderPosition() {
         return (leftMaster.getSelectedSensorPosition()+rightMaster.getSelectedSensorPosition())/2;
     }
@@ -162,20 +151,20 @@ public class Drivetrain extends SubsystemBase {
             leftFollower.motor.setNeutralMode(NeutralMode.Brake);
             rightMaster.motor.setNeutralMode(NeutralMode.Brake);
             rightFollower.motor.setNeutralMode(NeutralMode.Brake);
+            System.out.println("brake");
         }else{
             leftMaster.motor.setNeutralMode(NeutralMode.Coast);
             leftFollower.motor.setNeutralMode(NeutralMode.Coast);
             rightMaster.motor.setNeutralMode(NeutralMode.Coast);
             rightFollower.motor.setNeutralMode(NeutralMode.Coast);
+            System.out.println("coast");
         }
     }
 
 
     @Override
     public void periodic() {
-        
-        SmartDashboard.putBoolean("sensorLeft", getSensorLeft());
-        SmartDashboard.putBoolean("sensorRight", getSensorRight());
+    
         SmartDashboard.putNumber("drivetrain average encoder value", getCurrentEncoderPosition());
         // This method will be called once per scheduler run
         // SmartDashboard.putBoolean("allign sensor starboard", getSensorRight());
