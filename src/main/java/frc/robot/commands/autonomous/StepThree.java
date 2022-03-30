@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
 //import frc.robot.commands.automatic.IntakeCargo;
 import frc.robot.commands.indexer.BetterIndexerIntake;
+import frc.robot.commands.indexer.FirstSensorIntake;
 import frc.robot.commands.intake.IntakeIntake;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Indexer;
@@ -21,19 +22,19 @@ import frc.robot.subsystems.Intake;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class StepOne extends ParallelRaceGroup {
+public class StepThree extends ParallelRaceGroup {
     // private int distanceBack;
     // private Drivetrain drivetrain;
     /** Creates a new StepOne. */
-    public StepOne(Intake intake, Indexer indexer, Drivetrain drivetrain) {
+    public StepThree(Intake intake, Indexer indexer, Drivetrain drivetrain) {
         // Add the deadline command in the super() call. Add other commands using
         // addCommands().
         //super(new StepOneEndCriteria(indexer));
-        super(new SequentialCommandGroup(new ParallelDeadlineGroup(new BetterIndexerIntake(indexer), new IntakeIntake(intake)), new WaitCommand(0.2))); //run the standerd intake command and stop step one once a ball has been intaken
+        super(new SequentialCommandGroup(new ParallelDeadlineGroup(new FirstSensorIntake(indexer), new IntakeIntake(intake)), new WaitCommand(0.2))); //run the standerd intake command and stop step one once a ball has been intaken
         
         // this.drivetrain = drivetrain;
     
-        addCommands(new RunCommand(() -> drivetrain.driveWithError(Constants.DrivetrainConstants.Autonomous.Speeds.DRIVE_REVERSE_SPEED, Constants.DrivetrainConstants.Autonomous.Speeds.DRIVE_REVERSE_SPEED, Constants.DrivetrainConstants.Autonomous.Distance.FIRST_BALL_EXPECTED_STOP_FROM_TARMACK_EDGE), drivetrain)
+        addCommands(new RunCommand(() -> drivetrain.driveWithError(Constants.DrivetrainConstants.Autonomous.Speeds.DRIVE_REVERSE_SPEED, Constants.DrivetrainConstants.Autonomous.Speeds.DRIVE_REVERSE_SPEED, Constants.DrivetrainConstants.Autonomous.Distance.THIRD_BALL_OFFSET_FROM_SHOOT_POSITION), drivetrain)
                     .until(drivetrain::getAutoEnd)
                     .andThen(new InstantCommand(() -> { drivetrain.driveWithoutRamp(0, 0); }, drivetrain))
         );

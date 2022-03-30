@@ -7,6 +7,7 @@ package frc.robot.commands.indexer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Indexer;
+import frc.robot.subsystems.Intake;
 
 public class BetterIndexerIntake extends CommandBase {
     private Indexer indexer;
@@ -14,11 +15,11 @@ public class BetterIndexerIntake extends CommandBase {
     private boolean done = false;
 
     /** Creates a new BetterIndexerIntake. */
-    public BetterIndexerIntake(Indexer indexer) {
-        this.indexer = indexer;
+    public BetterIndexerIntake(Indexer indexer2) {
+        this.indexer = indexer2;
 
         // Use addRequirements() here to declare subsystem dependencies.
-        addRequirements(indexer);
+        addRequirements(indexer2);
     }
 
     // Called when the command is initially scheduled.

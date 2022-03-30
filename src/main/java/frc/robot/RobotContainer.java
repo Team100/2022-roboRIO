@@ -20,6 +20,8 @@ import frc.robot.commands.drivetrain.*;
 import frc.robot.commands.intake.*;
 import frc.robot.commands.indexer.*;
 import frc.robot.commands.autonomous.*;
+import frc.robot.commands.autonomous.unusedFarAuto.AutonProcedureLHF;
+import frc.robot.commands.autonomous.unusedFarAuto.AutonProcedureLNF;
 import frc.robot.commands.climber.*;
 import frc.robot.commands.shooter.*;
 
@@ -43,7 +45,7 @@ public class RobotContainer {
     // Auton DIP Switches
     private final DigitalInput firstBallOption = new DigitalInput(3);
     private final DigitalInput secondBallOption = new DigitalInput(4);
-    private final DigitalInput yeetOrLeave = new DigitalInput(5);
+    private final DigitalInput thirdBallOption = new DigitalInput(5);
 
     //crucial variables
     int gitforcepushorginmaster = 2;
@@ -61,7 +63,7 @@ public class RobotContainer {
     private final JoystickButton shootHighButton = new JoystickButton(buttonBoard, 14);
     private final JoystickButton shootLowButton = new JoystickButton(buttonBoard, 13);
 
-    private final JoystickButton mediaControlButton = new JoystickButton(buttonBoard, 12);
+    private final JoystickButton rampLowButton = new JoystickButton(buttonBoard, 12);
 
     private final JoystickButton hookDownButton = new JoystickButton(buttonBoard, 1);
     private final JoystickButton hookUpButton = new JoystickButton(buttonBoard, 16);
@@ -69,6 +71,10 @@ public class RobotContainer {
     private final JoystickButton hookDownLowButton = new JoystickButton(rightJoystick, 10);
 
     private final JoystickButton stopAll = new JoystickButton(buttonBoard, 4);
+
+    private final JoystickButton HHHButton = new JoystickButton(leftJoystick, 10);
+    private final JoystickButton TurnButton = new JoystickButton(leftJoystick, 11);
+
 
     private final JoystickButton fixClimberButton = new JoystickButton(rightJoystick, 7);
     private final JoystickButton indexTwoButton = new JoystickButton(buttonBoard, gitforcepushorginmaster);
@@ -87,7 +93,7 @@ public class RobotContainer {
     private final ShootStop shootStopCommand = new ShootStop(shooter);
     private final IndexerStop indexerStopCommand = new IndexerStop(indexer);
     private final BetterIndexerIntake intakeCommand = new BetterIndexerIntake(indexer);
-    private final IndexerEject indexerEjectCommand = new IndexerEject(indexer, intake);
+    private final IndexerEject indexerEjectCommand = new IndexerEject(indexer);
     private final IndexerFeedHigh feedHighCommand = new IndexerFeedHigh(indexer, shooter);
     private final IndexerFeedLow feedLowCommand = new IndexerFeedLow(indexer, shooter);
     private final ClimberStop climberStopCommand = new ClimberStop(climber);
@@ -131,16 +137,20 @@ public class RobotContainer {
         shootHighButton.whileHeld(new ParallelCommandGroup(shootHighCommand, feedHighCommand));
         shootLowButton.whileHeld(new ParallelCommandGroup(shootLowCommand, feedLowCommand));
         ejectButton.whileHeld(new ParallelCommandGroup(intakeEjectCommand, indexerEjectCommand, shootEjectCommand));
+        TurnButton.whenPressed(new Turn(drivetrain, 90));
 
-        mediaControlButton.whenPressed(new InstantCommand(() -> { symphony.play();}, symphony));
+        rampLowButton.whileHeld(new ShootLow(shooter));
 
         fixClimberButton.whileHeld(hookZeroCommand);
+
+        HHHButton.whileHeld(new AutonProcedureHHH(drivetrain, intake, indexer, shooter));
         }
 
     public void onInit() {
         // intake.onInit();
-        climber.onInit();
-        drivetrain.setBrakeMode(false);
+        //climber.onInit();
+        //drivetrain.setBrakeMode(true);
+        //new InstantCommand(() -> { drivetrain.zeroCurrentPosition(); }, drivetrain);//zero the drivetrain
     }
 
     public void onAutoInit(){
@@ -151,11 +161,16 @@ public class RobotContainer {
         drivetrain.setBrakeMode(false);
     }
 
+    public boolean getThirdBallOption(){
+        return (!this.thirdBallOption.get());
+    }
+
     public int parseAutoSelector() {
         int selection = 0;
-        if (!this.firstBallOption.get()) selection += 4;
-        if (!this.secondBallOption.get()) selection += 2;
-        if (!this.yeetOrLeave.get()) selection += 1;
+        if (!this.firstBallOption.get()) selection += 2;//high if plugged, else low
+        if (!this.secondBallOption.get()) selection += 1;//high if plugged else none
+        
+        //if (!this.thirdBallOption.get()) selection += 1;//third ball or not
         return selection;
     }
 
@@ -164,23 +179,21 @@ public class RobotContainer {
      *
      * @return the command to run in autonomous
      */
-    public Command getAutonomousCommand() {
-        switch(parseAutoSelector()) {
-            default:
-            case 0: // Low close, none
-            return new AutonProcedureLN(drivetrain, intake, indexer, shooter);
-            case 1: // Low far, none
-            return new AutonProcedureLNF(drivetrain, intake, indexer, shooter);
-            case 2: // Low close, high
-            return new AutonProcedureLH(drivetrain, intake, indexer, shooter);
-            case 3: // Low far, high
-            return new AutonProcedureLHF(drivetrain, intake, indexer, shooter);
-            case 4: // High close, none
-            case 5: // High far, none
-            return new AutonProcedureHN(drivetrain, intake, indexer, shooter);
-            case 6: // High close, high
-            case 7: // High far, high
-            return new AutonProcedureHH(drivetrain, intake, indexer, shooter);
+    public Command getAutonomousCommand() {//add parallel command with climber calibration(if needed) to each of these
+        if(getThirdBallOption()){
+            return new AutonProcedureHHH(drivetrain, intake, indexer, shooter);//high high high
+        }else{
+            switch(parseAutoSelector()) {
+                default:
+                case 0://low none
+                    return new AutonProcedureLN(drivetrain, intake, indexer, shooter);
+                case 1://low high (the sfr classic)
+                    return new AutonProcedureLH(drivetrain, intake, indexer, shooter);
+                case 2://high none
+                    return new AutonProcedureHN(drivetrain, intake, indexer, shooter);
+                case 3://high high
+                    return new AutonProcedureHH(drivetrain, intake, indexer, shooter);
+            }
         }
     }
 }

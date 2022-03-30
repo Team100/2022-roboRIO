@@ -14,7 +14,7 @@ public class IndexerEject extends CommandBase {
     private Indexer indexer;
     // private Intake intake;
 
-    public IndexerEject(Indexer indexer, Intake intake) {
+    public IndexerEject(Indexer indexer) {
         // Use addRequirements() here to declare subsystem dependencies.
         this.indexer = indexer;
         // this.intake = intake;

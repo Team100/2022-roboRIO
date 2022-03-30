@@ -50,7 +50,7 @@ public class Climber extends SubsystemBase {
   }
 
   public void onInit(){
-     zeroWinch();
+     //zeroWinch();
   }
 
   public void zeroWinch(){

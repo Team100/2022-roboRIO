@@ -7,15 +7,17 @@ package frc.robot.commands.autonomous;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Indexer;
+import frc.robot.subsystems.Intake;
 
-public class StepTwo extends CommandBase {
+public class StepOneCommand extends CommandBase {
     private Drivetrain drivetrain;
-    private double stopPosition;
+    private double expectedPosition;
 
     /** Creates a new StepTwo. */
-    public StepTwo(Drivetrain drivetrain, double stopPosition) {
+    public StepOneCommand(Drivetrain drivetrain, double expectedPosition) {
         this.drivetrain = drivetrain;
-        this.stopPosition = stopPosition;
+        this.expectedPosition = expectedPosition;
         // Use addRequirements() here to declare subsystem dependencies.
         addRequirements(drivetrain);
     }
@@ -30,7 +32,7 @@ public class StepTwo extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        drivetrain.driveWithError(Constants.DrivetrainConstants.Autonomous.Speeds.DRIVE_FORWARD_SPEED, Constants.DrivetrainConstants.Autonomous.Speeds.DRIVE_FORWARD_SPEED, Constants.DrivetrainConstants.Autonomous.Offsets.STEP_TWO_RETURN_OFFSET);
+        drivetrain.driveWithError(Constants.DrivetrainConstants.Autonomous.Speeds.DRIVE_REVERSE_SPEED, Constants.DrivetrainConstants.Autonomous.Speeds.DRIVE_REVERSE_SPEED, expectedPosition);
     }
 
 
@@ -44,6 +46,6 @@ public class StepTwo extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return drivetrain.getCurrentEncoderPosition() >= stopPosition;
+        return false;//drivetrain.getCurrentEncoderPosition() >= stopPosition;
     }
 }

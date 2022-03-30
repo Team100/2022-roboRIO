@@ -4,21 +4,18 @@
 
 package frc.robot.commands.indexer;
 
-import static frc.robot.Constants.IndexerConstants.IndexerMotionParameters.*;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Indexer;
-import frc.robot.subsystems.Shooter;
 
-public class IndexerFeedLowFar extends CommandBase {
+public class FirstSensorIntake extends CommandBase {
     private Indexer indexer;
-    private Shooter shooter;
-    private boolean done = false;
+    // private boolean sensorOne = false;
+    // private boolean done = false;
 
-    /** Creates a new IndexerFeed. */
-    public IndexerFeedLowFar(Indexer indexer, Shooter shooter) {
+    /** Creates a new BetterIndexerIntake. */
+    public FirstSensorIntake(Indexer indexer) {
         this.indexer = indexer;
-        this.shooter = shooter;
 
         // Use addRequirements() here to declare subsystem dependencies.
         addRequirements(indexer);
@@ -27,36 +24,27 @@ public class IndexerFeedLowFar extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        done = false;
+        // done = false;
+        // sensorTwo = indexer.getSensorOne();
+        indexer.runMotorOne(Constants.IndexerConstants.IndexerMotionParameters.STAGE_ONE_PERCENT_OUTPUT_FORWARD);
+        // if (!sensorTwo) indexer.runMotorTwo(Constants.IndexerConstants.IndexerMotionParameters.STAGE_TWO_PERCENT_OUTPUT_FORWARD);
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        if (shooter.speed()>Constants.ShooterConstants.ShooterMotionParameters.NOMINAL_LOW_FAR_VELOCITY) {
-            indexer.runMotorOne(STAGE_ONE_PERCENT_OUTPUT_FORWARD);
-            indexer.runMotorTwo(STAGE_TWO_PERCENT_OUTPUT_FORWARD);
-        } else if(!indexer.getSensorTwo()) {
-            indexer.runMotorOne(STAGE_ONE_PERCENT_OUTPUT_FORWARD);
-            indexer.runMotorTwo(STAGE_TWO_PERCENT_OUTPUT_FORWARD);
-        } else {
-            indexer.runMotorOne(0);
-            indexer.runMotorTwo(0);
-        }
+
     }
-        
-    
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
         indexer.runMotorOne(0);
-        indexer.runMotorTwo(0);
     }
 
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return done;
+        return indexer.getSensorOne();
     }
 }
