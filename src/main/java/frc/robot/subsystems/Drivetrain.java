@@ -72,6 +72,27 @@ public class Drivetrain extends SubsystemBase {
         addChild("drivetrainRightFollower", rightFollower);
     }
 
+    public void driveWithError(double left, double right, double expectedStop) {
+        // expectedStop = Math.abs(getCurrentEncoderPosition())-expectedStop;
+        if(left>=0&&getCurrentEncoderPosition()<expectedStop){
+            left = left + Math.abs(((Math.abs(expectedStop)-(Math.abs(getCurrentEncoderPosition())))*Constants.DrivetrainConstants.DrivetrainControls.ERROR_ADJUSTMENT_DRIVE));
+            //System.out.println("da value    " + Math.abs(((Math.abs(expectedStop)-(Math.abs(getCurrentEncoderPosition())))*Constants.DrivetrainConstants.DrivetrainControls.ERROR_ADJUSTMENT_DRIVE)));
+        }
+        else if(left<0&&getCurrentEncoderPosition()>expectedStop){
+            left = left - Math.abs(((Math.abs(expectedStop)-(Math.abs(getCurrentEncoderPosition())))*Constants.DrivetrainConstants.DrivetrainControls.ERROR_ADJUSTMENT_DRIVE));
+            //System.out.println("da value    " + - Math.abs(((Math.abs(expectedStop)-(Math.abs(getCurrentEncoderPosition())))*Constants.DrivetrainConstants.DrivetrainControls.ERROR_ADJUSTMENT_DRIVE)));
+        }
+        if(right>=0&&getCurrentEncoderPosition()<expectedStop){
+            right = right + Math.abs(((Math.abs(expectedStop)-(Math.abs(getCurrentEncoderPosition())))*Constants.DrivetrainConstants.DrivetrainControls.ERROR_ADJUSTMENT_DRIVE));
+        }
+        else if(right<0&&getCurrentEncoderPosition()>expectedStop){
+            right = right - Math.abs(((Math.abs(expectedStop)-(Math.abs(getCurrentEncoderPosition())))*Constants.DrivetrainConstants.DrivetrainControls.ERROR_ADJUSTMENT_DRIVE));
+        }
+
+        driveWithoutRamp(left, right);
+        System.out.println("left:right    " + left + " : " + right);
+    }
+
     public void driveWithoutRamp(double left, double right) {
         this.leftMaster.drivePercentOutput(left);
         this.rightMaster.drivePercentOutput(right);
@@ -107,6 +128,14 @@ public class Drivetrain extends SubsystemBase {
 
       public double getCurrentEncoderPosition() {
         return (leftMaster.getSelectedSensorPosition()+rightMaster.getSelectedSensorPosition())/2;
+    }
+
+    public double getLeft(){
+        return leftMaster.getSelectedSensorPosition();
+    }
+
+    public double getRight(){
+        return rightMaster.getSelectedSensorPosition();
     }
 
       public void zeroCurrentPosition() {

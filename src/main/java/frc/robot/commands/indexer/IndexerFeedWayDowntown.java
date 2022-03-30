@@ -10,15 +10,15 @@ import frc.robot.Constants;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Shooter;
 
-public class IndexerFeedLow extends CommandBase {
+public class IndexerFeedWayDowntown extends CommandBase {
     private Indexer indexer;
     private Shooter shooter;
     // private boolean wasFalse;
     private boolean done = false;
     // private boolean shouldCheckRefill;
 
-    /** Creates a new IndexerFeed. */
-    public IndexerFeedLow(Indexer indexer, Shooter shooter) {
+    /** Creates a new IndexerFeedWayDowntown. */
+    public IndexerFeedWayDowntown(Indexer indexer, Shooter shooter) {
         this.indexer = indexer;
         this.shooter = shooter;
 
@@ -44,7 +44,7 @@ public class IndexerFeedLow extends CommandBase {
         //         done = true;
         //         return;
         //     }
-        if (shooter.speed()>Constants.ShooterConstants.ShooterMotionParameters.NOMINAL_LOW_VELOCITY) {
+        if (shooter.speed()>Constants.ShooterConstants.ShooterMotionParameters.SHOOTER_VELOCITY_HIGH_FAR) {
             indexer.runMotorOne(STAGE_ONE_PERCENT_OUTPUT_FORWARD);
             indexer.runMotorTwo(STAGE_TWO_PERCENT_OUTPUT_FORWARD);
         } else if(!indexer.getSensorTwo()) {
