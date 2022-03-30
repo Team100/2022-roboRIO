@@ -152,9 +152,9 @@ public final class Constants {
             // public static final double INTAKE_ZERO = 0;
             // public static final double INITIAL_POSITION = 0;
 
-            public static final double KP = 0.26;//0.2
-            public static final double KI = 0.0;
-            public static final double KD = 0.015;
+            public static final double KP = 0.28;//0.2
+            public static final double KI = 0.03;
+            public static final double KD = 0.017;
             public static final double KF = 0;
             public static final double PP_ADJUSTMENT_CONSTANT = 16;
         }
