@@ -34,7 +34,7 @@ public class AutonProcedureHH extends SequentialCommandGroup {
         addCommands(new ParallelDeadlineGroup(new WaitCommand(0.6), new IntakeIntake(intake)));//drop the intake
         addCommands(new StepOne(intake, indexer, drivetrain)); //drive back and grab another ball
         addCommands(new ParallelDeadlineGroup(new StepTwo(drivetrain, Constants.DrivetrainConstants.Autonomous.Offsets.AUTO_H_H_OFFSET), new BetterIntakeStop(intake), new IndexerStop(indexer), new ShootHigh(shooter))); //drive back to correct point to sink two high shots
-        addCommands(new ParallelDeadlineGroup(new WaitCommand(6), new ShootHigh(shooter),  new IndexerFeedHigh(indexer, shooter))); //hold down the shoot high button for the same number of seconds as the wait command
+        addCommands(new ParallelDeadlineGroup(new WaitCommand(4), new ShootHigh(shooter),  new IndexerFeedHigh(indexer, shooter))); //hold down the shoot high button for the same number of seconds as the wait command
         addCommands(new ParallelCommandGroup(new IndexerStop(indexer), new ShootStop(shooter))); //stop everything
     }
 }

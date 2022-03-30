@@ -29,14 +29,14 @@ public final class Constants {
     public static final class DrivetrainConstants {
         public static final class Autonomous {
             public static final class Turning {
-                public static final double TURN_SPEED = 0.15;
-                public static final double TURN_ADJUSMENT =220;
+                public static final double TURN_SPEED = 0.25;
+                public static final double TURN_ADJUSMENT =237;
 
-                public static final int HHH_TURN = 86;
+                public static final int HHH_TURN = 72;
                 // public static final int SECOND_HHH_TURN = -70;
                 //public static final int SECOND_HHH_OFFSET = 46;
                 public static final double TURNING_PP = 0.0006;
-                public static final int SECOND_HHH_TURN = -30;
+                public static final int SECOND_HHH_TURN = 40;
             }
             public static final class Distance {
                 public static final int HIGH_GOAL_SHOT = -40000;
@@ -45,7 +45,7 @@ public final class Constants {
             }
             public static final class Offsets {
                 public static final int AUTO_H_H_OFFSET = 0;//-56000;
-                public static final int AUTO_L_H_OFFSET = -56000;
+                public static final int AUTO_L_H_OFFSET = -41000;
                 public static final int AUTO_LF_H_OFFSET = -40000;
                 public static final double STEP_TWO_RETURN_OFFSET = -10000;
             }
@@ -216,11 +216,11 @@ public final class Constants {
             public static final double SHOOTER_VELOCITY_HIGH = -4100; //0.17 //0.175
             public static final double NOMINAL_HIGH_VELOCITY = 4080;
 
-            public static final double SHOOTER_VELOCITY_HIGH_FAR = -4900; //0.17 //0.175
-            public static final double NOMINAL_HIGH_VELOCITY_FAR = 4880;
+            public static final double SHOOTER_VELOCITY_HIGH_FAR = -5520; //0.17 //0.175
+            public static final double NOMINAL_HIGH_VELOCITY_FAR = 5500;
 
             
-            public static final double KP = 0.00011;
+            public static final double KP = 0.00012;
             public static final double KI = 0;
             public static final double KD = 0;
             public static final double KF = 0.00008947; // 0.17/1900

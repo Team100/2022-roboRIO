@@ -21,7 +21,6 @@ public class ClimberCenter extends CommandBase {
 
     public ClimberCenter(Climber climber) {
         this.climber = climber;
-        done = false;
 
         // Use addRequirements() here to declare subsystem dependencies.
         addRequirements(climber);
@@ -30,6 +29,13 @@ public class ClimberCenter extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
+        done = false;
+
+    }
+
+    // Called every time the scheduler runs while the command is scheduled.
+    @Override
+    public void execute() {
         if(climber.tiltAngle()>0){
             climber.setTilt(-ClimberConstants.ClimberMotionParameters.CLIMBER_TILT_ZERO_SPEED);
         }else if(climber.tiltAngle()<0){
@@ -38,12 +44,6 @@ public class ClimberCenter extends CommandBase {
             climber.setTilt(0);
             done = true;
         }
-    }
-
-    // Called every time the scheduler runs while the command is scheduled.
-    @Override
-    public void execute() {
-
     }
 
     // Called once the command ends or is interrupted.

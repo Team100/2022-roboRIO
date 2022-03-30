@@ -78,7 +78,7 @@ public class RobotContainer {
 
     private final JoystickButton stopAll = new JoystickButton(buttonBoard, 4);
 
-    private final JoystickButton hookZeroButton = new JoystickButton(rightJoystick, 7);
+    //private final JoystickButton hookZeroButton = new JoystickButton(rightJoystick, 7);
     private final JoystickButton HHHButton = new JoystickButton(leftJoystick, 10);
     private final JoystickButton TurnButton = new JoystickButton(leftJoystick, 11);
 
@@ -87,9 +87,11 @@ public class RobotContainer {
     private final JoystickButton indexTwoButton = new JoystickButton(buttonBoard, gitforcepushorginmaster);
 
     private final JoystickButton climberControlButton = new JoystickButton(leftJoystick, 3);
-    private final JoystickButton climberTiltZeroButton = new JoystickButton(rightJoystick, 8);
+    //private final JoystickButton climberTiltZeroButton = new JoystickButton(rightJoystick, 8);
 
     private final JoystickButton climberTiltCenterButton = new JoystickButton(rightJoystick, 6);
+    private final JoystickButton shootWayDowntownButton = new JoystickButton(leftJoystick, 6);
+
 
     //private final JoystickButton lockStationariesButton = new JoystickButton(gamepad, 1);
     //private final JoystickButton nextBarButton = new JoystickButton(gamepad, 2);
@@ -104,6 +106,8 @@ public class RobotContainer {
     private final IntakeIntake intakeIntakeCommand = new IntakeIntake(intake);
     private final IntakeEject intakeEjectCommand = new IntakeEject(intake);
     private final BetterIntakeStop intakeStopCommand = new BetterIntakeStop(intake);
+    private final ShootWayDowntown shootWayDowntownCommand = new ShootWayDowntown(shooter);
+    private final IndexerFeedWayDowntown indexWayDowntownCommand = new IndexerFeedWayDowntown(indexer, shooter);
     private final ShootHigh shootHighCommand = new ShootHigh(shooter);
     private final ShootLow shootLowCommand = new ShootLow(shooter);
     private final ShootEject shootEjectCommand = new ShootEject(shooter);
@@ -121,7 +125,7 @@ public class RobotContainer {
     private final HookUpLow hookUpLowCommand = new HookUpLow(climber);
     private final HookDown hookDownCommand = new HookDown(climber); 
     
-    private final HomeAlgorithm homeAlgorithmCommand = new HomeAlgorithm(climber); 
+    // private final HomeAlgorithm homeAlgorithmCommand = new HomeAlgorithm(climber); 
 
     private final NextBar nextBarCommand = new NextBar(climber);
     private final LockStationary lockStationariesCommand = new LockStationary(climber);
@@ -158,7 +162,8 @@ public class RobotContainer {
         shootLowButton.whileHeld(new ParallelCommandGroup(shootLowCommand, feedLowCommand));
         ejectButton.whileHeld(new ParallelCommandGroup(intakeEjectCommand, indexerEjectCommand, shootEjectCommand));
 
-        hookZeroButton.whileHeld(hookZeroCommand);
+        shootWayDowntownButton.whileHeld(new ParallelCommandGroup(shootWayDowntownCommand, indexWayDowntownCommand));
+        //hookZeroButton.whileHeld(hookZeroCommand);
 
         // hookDownButton.whenPressed(hookDownCommand);
         // hookUpButton.whenPressed(hookUpCommand);
@@ -167,9 +172,9 @@ public class RobotContainer {
         hookUpLowButton.whenPressed(hookUpLowCommand);
         hookDownButton.whenPressed(hookDownCommand);
 
-        climberTiltZeroButton.whenPressed(homeAlgorithmCommand);
+        //climberTiltZeroButton.whenPressed(homeAlgorithmCommand);
 
-        climberTiltCenterButton.whenPressed(centerClimberCommand);
+        climberTiltCenterButton.whileHeld(centerClimberCommand);
 
         nextBarButton.whenPressed(nextBarCommand);
         lockStationariesButton.whenPressed(lockStationariesCommand);
