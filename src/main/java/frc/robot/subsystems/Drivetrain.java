@@ -165,13 +165,13 @@ public class Drivetrain extends SubsystemBase {
     @Override
     public void periodic() {
     
-        SmartDashboard.putNumber("drivetrain average encoder value", getCurrentEncoderPosition());
+        // SmartDashboard.putNumber("drivetrain average encoder value", getCurrentEncoderPosition());
         // This method will be called once per scheduler run
         // SmartDashboard.putBoolean("allign sensor starboard", getSensorRight());
         // SmartDashboard.putBoolean("allign sensor port", getSensorLeft());
         // if(this.getCurrentCommand()!=null)SmartDashboard.putString("drivetrain command", this.getCurrentCommand().getName());
         // SmartDashboard.putNumber("drivetrain average encoder value", getCurrentEncoderPosition());
-        SmartDashboard.putString("drivetrain brake mode", rightFollower.getNeutralMode().toString());
+        // SmartDashboard.putString("drivetrain brake mode", rightFollower.getNeutralMode().toString());
         //SmartDashboard.putNumber("left motor", leftMaster.get)
     }
 

@@ -67,7 +67,7 @@ public class Shooter extends SubsystemBase {
     public void periodic() {
         // This method will be called once per scheduler run
         // SmartDashboard.putNumber("shooter offset", value)
-        SmartDashboard.putNumber("shooter current", shootMotor.motor.getOutputCurrent());
+        // SmartDashboard.putNumber("shooter current", shootMotor.motor.getOutputCurrent());
         SmartDashboard.putNumber("shooter velocity", (shootMotor.getSensorVelocity()));        
     }
 }

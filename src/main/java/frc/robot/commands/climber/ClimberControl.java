@@ -53,7 +53,7 @@ public class ClimberControl extends CommandBase {
         } else {
             climber.setWinch(0);
         }
-        SmartDashboard.putBoolean("Climber Manual?", true);
+        // SmartDashboard.putBoolean("Climber Manual?", true);
     }
 
     // Called once the command ends or is interrupted.
@@ -62,7 +62,7 @@ public class ClimberControl extends CommandBase {
         climber.setTilt(0);
         climber.setWinch(0);
         drivetrain.driveWithoutRamp(0, 0);
-        SmartDashboard.putBoolean("Climber Manual?", false);
+        // SmartDashboard.putBoolean("Climber Manual?", false);
 
     }
 

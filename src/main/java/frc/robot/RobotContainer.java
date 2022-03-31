@@ -60,7 +60,7 @@ public class RobotContainer {
     private final Joystick buttonBoard = new Joystick(3);
     private final JoystickButton turboButton = new JoystickButton(rightJoystick, 1);
     private final JoystickButton slowButton = new JoystickButton(rightJoystick, 3);
-    private final JoystickButton intakeButton = new JoystickButton(buttonBoard, 15);
+    // private final JoystickButton intakeButton = new JoystickButton(buttonBoard, 15);
     private final JoystickButton ejectButton = new JoystickButton(buttonBoard, 5);
 
     private final JoystickButton alignButton = new JoystickButton(leftJoystick, 1);
@@ -70,7 +70,7 @@ public class RobotContainer {
     // private final JoystickButton hookDownButton = new JoystickButton(buttonBoard, 1);
     private final JoystickButton lockStationariesButton = new JoystickButton(buttonBoard, 1);
     private final JoystickButton nextBarButton = new JoystickButton(buttonBoard, 16);
-    private final JoystickButton hookDownButton = new JoystickButton(rightJoystick, 9);
+    private final JoystickButton hookDownButton = new JoystickButton(buttonBoard, 15);
     private final JoystickButton rampLowButton = new JoystickButton(buttonBoard, 12);
 
     private final JoystickButton hookUpMidButton = new JoystickButton(rightJoystick, 11);
@@ -79,8 +79,8 @@ public class RobotContainer {
     private final JoystickButton stopAll = new JoystickButton(buttonBoard, 4);
 
     //private final JoystickButton hookZeroButton = new JoystickButton(rightJoystick, 7);
-    private final JoystickButton HHHButton = new JoystickButton(leftJoystick, 10);
-    private final JoystickButton TurnButton = new JoystickButton(leftJoystick, 11);
+    // private final JoystickButton HHHButton = new JoystickButton(leftJoystick, 10);
+    // private final JoystickButton TurnButton = new JoystickButton(leftJoystick, 11);
 
 
     private final JoystickButton fixClimberButton = new JoystickButton(rightJoystick, 7);
@@ -89,7 +89,7 @@ public class RobotContainer {
     private final JoystickButton climberControlButton = new JoystickButton(leftJoystick, 3);
     //private final JoystickButton climberTiltZeroButton = new JoystickButton(rightJoystick, 8);
 
-    private final JoystickButton climberTiltCenterButton = new JoystickButton(rightJoystick, 6);
+    //private final JoystickButton climberTiltCenterButton = new JoystickButton(rightJoystick, 6);
     private final JoystickButton shootWayDowntownButton = new JoystickButton(leftJoystick, 6);
 
 
@@ -156,7 +156,7 @@ public class RobotContainer {
         alignButton.whileHeld(alignCommand);//new SequentialCommandGroup(new ClimberCenter(climber), alignCommand));
         slowButton.whileHeld(driveSlowCommand);
         stopAll.whenPressed(new ParallelCommandGroup(new ClimberStop(climber), new IndexerStop(indexer), new BetterIntakeStop(intake), new ShootStop(shooter)));
-        intakeButton.whenPressed(new SequentialCommandGroup(new ParallelDeadlineGroup(intakeCommand, intakeIntakeCommand), new WaitCommand(0.2)));
+        //intakeButton.whenPressed(new SequentialCommandGroup(new ParallelDeadlineGroup(intakeCommand, intakeIntakeCommand), new WaitCommand(0.2)));
         indexTwoButton.whenPressed(new SequentialCommandGroup(new ParallelDeadlineGroup(new BetterIndexerIntake(indexer), new IntakeIntake(intake)), new WaitCommand(0.2), new ParallelDeadlineGroup(new BetterIndexerIntake(indexer), new IntakeIntake(intake)), new WaitCommand(0.2)));
         shootHighButton.whileHeld(new ParallelCommandGroup(shootHighCommand, feedHighCommand));
         shootLowButton.whileHeld(new ParallelCommandGroup(shootLowCommand, feedLowCommand));
@@ -174,20 +174,20 @@ public class RobotContainer {
 
         //climberTiltZeroButton.whenPressed(homeAlgorithmCommand);
 
-        climberTiltCenterButton.whileHeld(centerClimberCommand);
+        //climberTiltCenterButton.whileHeld(centerClimberCommand);
 
         nextBarButton.whenPressed(nextBarCommand);
         lockStationariesButton.whenPressed(lockStationariesCommand);
         climberControlButton.whileHeld(climberControlCommand);
 
 
-        TurnButton.whenPressed(new Turn(drivetrain, 90));
+        //TurnButton.whenPressed(new Turn(drivetrain, 90));
 
         rampLowButton.whileHeld(new ShootLow(shooter));
 
         fixClimberButton.whileHeld(hookZeroCommand);
 
-        HHHButton.whileHeld(new AutonProcedureHHH(drivetrain, intake, indexer, shooter));
+        //HHHButton.whileHeld(new AutonProcedureHHH(drivetrain, intake, indexer, shooter));
         }
 
     public void onInit() {

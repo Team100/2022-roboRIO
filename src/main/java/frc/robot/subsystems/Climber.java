@@ -121,7 +121,7 @@ public class Climber extends SubsystemBase {
     public void periodic() {
         SmartDashboard.putNumber("main hooks position", mainPosition());
         SmartDashboard.putNumber("TiltAngle", tiltAngle());
-        SmartDashboard.putNumber("Legacy TiltAngle", legacyTiltAngle());
+        // SmartDashboard.putNumber("Legacy TiltAngle", legacyTiltAngle());
 
         //SmartDashboard.putNumber("Old value testing", ((tiltAngle() - 0.082) * -340) +256 - 10.8);
 
@@ -134,8 +134,8 @@ public class Climber extends SubsystemBase {
         SmartDashboard.putBoolean("leftSationary", !leftStationaryHook.get());
         SmartDashboard.putBoolean("rightSatioanrj", !rightStationaryHook.get());
 
-        SmartDashboard.putBoolean("allingment switch", getHomeSwitch());
+        // SmartDashboard.putBoolean("allingment switch", getHomeSwitch());
 
-        SmartDashboard.putNumber("Winch", winch.getSelectedSensorPosition());
+        // SmartDashboard.putNumber("Winch", winch.getSelectedSensorPosition());
     }
 }
