@@ -32,11 +32,11 @@ public final class Constants {
                 public static final double TURN_SPEED = 0.25;
                 public static final double TURN_ADJUSMENT =237;
 
-                public static final int HHH_TURN = 72;
+                public static final int HHH_TURN = 80;
                 // public static final int SECOND_HHH_TURN = -70;
                 //public static final int SECOND_HHH_OFFSET = 46;
                 public static final double TURNING_PP = 0.0006;
-                public static final int SECOND_HHH_TURN = 40;
+                public static final int SECOND_HHH_TURN = 42;
             }
             public static final class Distance {
                 public static final int HIGH_GOAL_SHOT = -40000;
@@ -216,8 +216,8 @@ public final class Constants {
             public static final double SHOOTER_VELOCITY_HIGH = -4100; //0.17 //0.175
             public static final double NOMINAL_HIGH_VELOCITY = 4080;
 
-            public static final double SHOOTER_VELOCITY_HIGH_FAR = -5520; //0.17 //0.175
-            public static final double NOMINAL_HIGH_VELOCITY_FAR = 5500;
+            public static final double SHOOTER_VELOCITY_HIGH_FAR = -5720; //0.17 //0.175
+            public static final double NOMINAL_HIGH_VELOCITY_FAR = 5700;
 
             
             public static final double KP = 0.00012;
