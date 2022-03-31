@@ -29,7 +29,7 @@ public class HookUp extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(climber.mainPosition()<=ClimberConstants.ClimberMotionParameters.CLIMBER_TOP){
+    if(climber.mainPosition()<=ClimberConstants.ClimberMotionParameters.CLIMBER_MID_BAR){
       climber.setWinch(0);
       done = true;
     }else{

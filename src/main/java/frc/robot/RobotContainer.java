@@ -89,7 +89,7 @@ public class RobotContainer {
     private final JoystickButton climberControlButton = new JoystickButton(leftJoystick, 3);
     //private final JoystickButton climberTiltZeroButton = new JoystickButton(rightJoystick, 8);
 
-    //private final JoystickButton climberTiltCenterButton = new JoystickButton(rightJoystick, 6);
+    private final JoystickButton climberTiltCenterButton = new JoystickButton(rightJoystick, 6);
     private final JoystickButton shootWayDowntownButton = new JoystickButton(leftJoystick, 6);
 
 
@@ -174,7 +174,7 @@ public class RobotContainer {
 
         //climberTiltZeroButton.whenPressed(homeAlgorithmCommand);
 
-        //climberTiltCenterButton.whileHeld(centerClimberCommand);
+        climberTiltCenterButton.whileHeld(centerClimberCommand);
 
         nextBarButton.whenPressed(nextBarCommand);
         lockStationariesButton.whenPressed(lockStationariesCommand);
