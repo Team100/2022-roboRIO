@@ -83,10 +83,10 @@ public class LockStationary extends CommandBase {
 
 
         //safties to prevent exiting frame permiter or incurring death by rohan
-        if (climber.mainPosition() < ClimberConstants.ClimberMotionParameters.CLIMBER_TOP-20000){
-            climber.setWinch(0);
-            SmartDashboard.putString("Climber Command", "stopped climbing b/c climber too tall");
-        }
+        // if (climber.mainPosition() < ClimberConstants.ClimberMotionParameters.CLIMBER_TOP-20000){
+        //     climber.setWinch(0);
+        //     SmartDashboard.putString("Climber Command", "stopped climbing b/c climber too tall");
+        // }
         if (climber.tiltAngle() > ClimberConstants.ClimberMotionParameters.STATIONARY_LOCK_ANGLE + 3){
             climber.setTilt(0);
             SmartDashboard.putString("Climber Command", "stopped climbing b/c tilt too tilty");

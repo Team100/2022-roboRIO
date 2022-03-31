@@ -32,11 +32,11 @@ public final class Constants {
                 public static final double TURN_SPEED = 0.25;
                 public static final double TURN_ADJUSMENT =237;
 
-                public static final int HHH_TURN = 80;
+                public static final int HHH_TURN = 74;
                 // public static final int SECOND_HHH_TURN = -70;
                 //public static final int SECOND_HHH_OFFSET = 46;
                 public static final double TURNING_PP = 0.0006;
-                public static final int SECOND_HHH_TURN = 42;
+                public static final int SECOND_HHH_TURN = 40;
             }
             public static final class Distance {
                 public static final int HIGH_GOAL_SHOT = -40000;
@@ -149,7 +149,7 @@ public final class Constants {
             public static final double INTAKE_UP_TIME_TO_RESTART = 2;
             public static final double INTAKE_SPINNER_PERCENT_OUTPUT = -0.45;
             public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN = -0.22;
-            public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN_DECEL = 0.1;
+            public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN_DECEL = 0.06;
             // public static final double INTAKE_ZERO = 0;
             // public static final double INITIAL_POSITION = 0;
 
@@ -236,8 +236,8 @@ public final class Constants {
     
                 public static final int TIMEOUT = 10;
     
-                public static final boolean ENABLE_CURRENT_LIMIT = false;
-                public static final int CURRENT_LIMIT = 80;
+                public static final boolean ENABLE_CURRENT_LIMIT = true;
+                public static final int CURRENT_LIMIT = 55;
                 public static final double OPEN_LOOP_RAMP = 0;
                 public static final double PEAK_OUTPUT_FORWARD = 1;
                 public static final double PEAK_OUTPUT_REVERSE = -1;
@@ -245,7 +245,7 @@ public final class Constants {
                 public static final IdleMode NEUTRAL_MODE = IdleMode.kCoast;
             }
             public static final class ShooterFollower {
-                public static final int CAN_ID = 7;
+                public static final int CAN_ID = 8;
     
                 public static final boolean INVERT = true;
                 public static final int FEEDBACK_PORT = 0;
@@ -253,8 +253,8 @@ public final class Constants {
     
                 public static final int TIMEOUT = 10;
     
-                public static final boolean ENABLE_CURRENT_LIMIT = false;
-                public static final int CURRENT_LIMIT = 80;
+                public static final boolean ENABLE_CURRENT_LIMIT = true;
+                public static final int CURRENT_LIMIT = 55;
                 public static final double OPEN_LOOP_RAMP = 0;
                 public static final double PEAK_OUTPUT_FORWARD = 1;
                 public static final double PEAK_OUTPUT_REVERSE = -1;
@@ -333,7 +333,7 @@ public final class Constants {
             }
             public static final class StationaryHooks{
                 public static final class LeftSensor{
-                    public static final int ID = 1;
+                    public static final int ID = 6;
                 }
                 public static final class RightSensor{
                     public static final int ID = 9;
@@ -356,7 +356,7 @@ public final class Constants {
 
             public static final double TILT_PERCENT_OUTPUT = 0.85;
 
-            public static final int CLIMBER_MID_BAR = -239000; //-243000;
+            public static final int CLIMBER_MID_BAR = -250000; //-243000;
             public static final int CLIMBER_TOP = -234000; //-243000;
             public static final int CLIMBER_LOW_BAR_TOP = -110000;
             public static final int CLIMBER_BOTTOM = 5000;
@@ -365,7 +365,7 @@ public final class Constants {
 
             public static final double EXTEND_START_ANGLE = 0;
             public static final double NEXT_BAR_ANGLE = -5;
-            public static final double NEXT_BAR_DISTANCE = -278000;
+            public static final double NEXT_BAR_DISTANCE = -293000;
 
             public static final double NEXT_BAR_GRAB_ANGLE = 5;
 

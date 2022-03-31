@@ -38,7 +38,7 @@ public class AutonProcedureHHH extends SequentialCommandGroup {
         addCommands(new InstantCommand(() -> { drivetrain.setBrakeMode(true); }, drivetrain));//brake mode the drivetrain
 
         addCommands(new ParallelDeadlineGroup(
-            new SequentialCommandGroup(new ParallelDeadlineGroup(new BetterIndexerIntake(indexer), new IntakeIntake(intake)), new WaitCommand(0.2)), //could save 0.3 or so seconds by moving it to keep intaking well driving
+            new SequentialCommandGroup(new ParallelDeadlineGroup(new BetterIndexerIntake(indexer), new IntakeIntake(intake)), new WaitCommand(0.5)), //could save 0.3 or so seconds by moving it to keep intaking well driving
             new StepOneCommand(drivetrain, Constants.DrivetrainConstants.Autonomous.Distance.FIRST_BALL_EXPECTED_STOP_FROM_TARMACK_EDGE)));//(new StepOneCommand(intake, indexer, drivetrain, Constants.DrivetrainConstants.Autonomous.Distance.FIRST_BALL_EXPECTED_STOP_FROM_TARMACK_EDGE)));//optimized
 
 

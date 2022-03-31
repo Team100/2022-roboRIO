@@ -15,14 +15,14 @@ public class Climber extends SubsystemBase {
     private FRCTalonFX tilt, winch;
     private AnalogPotentiometer pot;
 
-    private DigitalInput leftStationaryHook, rightStationaryHook, leftMainHook, rightMainHook, homeSwitch;
+    private DigitalInput leftStationaryHook, rightStationaryHook, leftMainHook, rightMainHook;
     /** Creates a new Climber. */
     public Climber() {
         leftStationaryHook = new DigitalInput(Constants.ClimberConstants.ClimberSensors.StationaryHooks.LeftSensor.ID);
         rightStationaryHook = new DigitalInput(Constants.ClimberConstants.ClimberSensors.StationaryHooks.RightSensor.ID);
         leftMainHook = new DigitalInput(Constants.ClimberConstants.ClimberSensors.MainHooks.LeftSensor.ID);
         rightMainHook = new DigitalInput(Constants.ClimberConstants.ClimberSensors.MainHooks.RightSensor.ID);
-        homeSwitch = new DigitalInput(Constants.ClimberConstants.ClimberSensors.Homing.ID);
+        // homeSwitch = new DigitalInput(Constants.ClimberConstants.ClimberSensors.Homing.ID);
 
         pot = new AnalogPotentiometer(Constants.ClimberConstants.ClimberSensors.Tilt.ID,Constants.ClimberConstants.ClimberSensors.Tilt.POT_ADJUSTMENT_FACTOR,Constants.ClimberConstants.ClimberSensors.Tilt.POT_OFFSET);
 
@@ -67,10 +67,10 @@ public class Climber extends SubsystemBase {
         //return SmartDashboard.getBoolean("Stationaries Locked?", false);
     }
 
-    public boolean getHomeSwitch(){
-        return !homeSwitch.get();
-        //return SmartDashboard.getBoolean("Stationaries Locked?", false);
-    }
+    // public boolean getHomeSwitch(){
+    //     return !homeSwitch.get();
+    //     //return SmartDashboard.getBoolean("Stationaries Locked?", false);
+    // }
 
     public boolean mainLocked(){
         return !leftMainHook.get()||!rightMainHook.get();

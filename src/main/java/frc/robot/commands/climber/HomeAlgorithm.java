@@ -33,24 +33,24 @@ public class HomeAlgorithm extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(!climber.getHomeSwitch()){
-      climber.setTilt(-Constants.ClimberConstants.ClimberSensors.Homing.HomingSpeed);
-    }else{
-      climber.setTilt(0);
-      zeroed = true;
-      climber.zeroTilt();
+    // if(!climber.getHomeSwitch()){
+    //   climber.setTilt(-Constants.ClimberConstants.ClimberSensors.Homing.HomingSpeed);
+    // }else{
+    //   climber.setTilt(0);
+    //   zeroed = true;
+    //   climber.zeroTilt();
 
-    }
+    // }
 
-    if(zeroed){
-      if(climber.legacyTiltAngle() > -21.8){
-        climber.setTilt(Constants.ClimberConstants.ClimberSensors.Homing.HomingSpeed);
-      }else{
-        climber.setTilt(0);
-        climber.zeroTilt();
-        done = true;
-      }
-    }
+    // if(zeroed){
+    //   if(climber.legacyTiltAngle() > -21.8){
+    //     climber.setTilt(Constants.ClimberConstants.ClimberSensors.Homing.HomingSpeed);
+    //   }else{
+    //     climber.setTilt(0);
+    //     climber.zeroTilt();
+    //     done = true;
+    //   }
+    // }
   }
 
   // Called once the command ends or is interrupted.
