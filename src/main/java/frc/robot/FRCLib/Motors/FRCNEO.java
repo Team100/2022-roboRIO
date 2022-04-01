@@ -439,6 +439,8 @@ public class FRCNEO implements Sendable {
             motor.follow(master.motor, this.getInverted());
         }
 
+        // this.motor.setControlFramePeriodMs(100);
+
         return this;
     }
 

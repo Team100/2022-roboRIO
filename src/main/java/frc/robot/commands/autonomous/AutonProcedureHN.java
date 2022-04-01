@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
 import frc.robot.commands.indexer.IndexerFeedHigh;
 import frc.robot.commands.indexer.IndexerStop;
+import frc.robot.commands.intake.BetterIntakeStop;
 import frc.robot.commands.intake.IntakeIntake;
 import frc.robot.commands.intake.IntakeStop;
 import frc.robot.commands.shooter.ShootHigh;
@@ -33,10 +34,7 @@ public class AutonProcedureHN extends SequentialCommandGroup {
         addCommands(new InstantCommand(() -> { drivetrain.zeroCurrentPosition(); }, drivetrain));//zero the drivetrain
         addCommands(new ParallelDeadlineGroup(new WaitCommand(3), new ShootHigh(shooter),  new IndexerFeedHigh(indexer, shooter), new IntakeIntake(intake))); //shoot one loaded ball into high goal
         addCommands(new ParallelCommandGroup(new IndexerStop(indexer), new IntakeStop(intake), new ShootStop(shooter))); //stop everything
-        addCommands(new RunCommand(() -> 
-                drivetrain.driveWithRamp(Constants.DrivetrainConstants.Autonomous.Speeds.DRIVE_REVERSE_SPEED, Constants.DrivetrainConstants.Autonomous.Speeds.DRIVE_REVERSE_SPEED), drivetrain)
-                    .until(drivetrain::getAutoEnd)
-                    .andThen(new InstantCommand(() -> { drivetrain.driveWithoutRamp(0, 0); }, drivetrain)));
+        addCommands(new StepOne(intake, indexer, drivetrain)); //drive back and grab another ball
         addCommands(new ParallelCommandGroup(new IndexerStop(indexer), new IntakeStop(intake), new ShootStop(shooter))); //stop everything
 
         }

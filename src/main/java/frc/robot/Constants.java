@@ -40,7 +40,7 @@ public final class Constants {
             }
             public static final class Distance {
                 public static final int HIGH_GOAL_SHOT = -40000;
-                public static final double FIRST_BALL_EXPECTED_STOP_FROM_TARMACK_EDGE = -60000;
+                public static final double FIRST_BALL_EXPECTED_STOP_FROM_TARMACK_EDGE = -50000;
                 public static final double THIRD_BALL_OFFSET_FROM_SHOOT_POSITION = -85000;
             }
             public static final class Offsets {
@@ -50,8 +50,8 @@ public final class Constants {
                 public static final double STEP_TWO_RETURN_OFFSET = -10000;
             }
             public static final class Speeds {
-                public static final double DRIVE_REVERSE_SPEED = -0.16;
-                public static final double DRIVE_FORWARD_SPEED = 0.16;
+                public static final double DRIVE_REVERSE_SPEED = -0.15;
+                public static final double DRIVE_FORWARD_SPEED = 0.15;
             }
         }
         public static final class DrivetrainMotion{
@@ -147,7 +147,7 @@ public final class Constants {
             public static final double PID_TOLERANCE = 0.1;
             public static final double INTAKE_UP_TIMEOUT = 2;
             public static final double INTAKE_UP_TIME_TO_RESTART = 2;
-            public static final double INTAKE_SPINNER_PERCENT_OUTPUT = -0.45;
+            public static final double INTAKE_SPINNER_PERCENT_OUTPUT = -0.50; //-0.45
             public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN = -0.22;
             public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN_DECEL = 0.06;
             // public static final double INTAKE_ZERO = 0;
@@ -275,7 +275,7 @@ public final class Constants {
         }
 
         public static final class IndexerMotionParameters {
-            public static final double STAGE_ONE_PERCENT_OUTPUT_FORWARD = 0.8;
+            public static final double STAGE_ONE_PERCENT_OUTPUT_FORWARD = 0.8; //
             public static final double STAGE_TWO_PERCENT_OUTPUT_FORWARD = 0.8;
 
             public static final double STAGE_ONE_PERCENT_OUTPUT_BACKWARD = -0.8;
@@ -382,7 +382,7 @@ public final class Constants {
             public static final double STATIONARIES_MISS_BAR_ANGLE = -5;
             public static final double MAX_NEGATIVE_TILT = -28;
             public static final double HOOK_ZERO_SPEED = -0.2;
-            public static final double CLIMBER_TILT_ZERO_SPEED = 0.3;
+            public static final double CLIMBER_TILT_ZERO_SPEED = 0.45;
         }
 
         public static final class ClimberControls {

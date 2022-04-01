@@ -36,6 +36,9 @@ public class AutonProcedureHHH extends SequentialCommandGroup {
         // addCommands(new FooCommand(), new BarCommand());
         addCommands(new InstantCommand(() -> { drivetrain.zeroCurrentPosition(); }, drivetrain));//zero the drivetrain
         addCommands(new InstantCommand(() -> { drivetrain.setBrakeMode(true); }, drivetrain));//brake mode the drivetrain
+        addCommands(new ParallelDeadlineGroup(new WaitCommand(1.5), new ShootHigh(shooter),  new IndexerFeedHigh(indexer, shooter))); //hold down the shoot high button for the same number of seconds as the wait command
+
+        
 
         addCommands(new ParallelDeadlineGroup(
             new SequentialCommandGroup(new ParallelDeadlineGroup(new BetterIndexerIntake(indexer), new IntakeIntake(intake)), new WaitCommand(0.5)), //could save 0.3 or so seconds by moving it to keep intaking well driving
@@ -45,9 +48,9 @@ public class AutonProcedureHHH extends SequentialCommandGroup {
         // addCommands(new ParallelDeadlineGroup(new WaitCommand(0.1), new IntakeIntake(intake)));//drop the intake
         // addCommands(new StepOne(intake, indexer, drivetrain)); //drive back and grab another ball
         addCommands(new ParallelDeadlineGroup(new StepTwo(drivetrain, Constants.DrivetrainConstants.Autonomous.Offsets.AUTO_H_H_OFFSET), new BetterIntakeStop(intake), new IndexerStop(indexer), new ShootHigh(shooter))); //drive back to correct point to sink two high shots
-        addCommands(new Turn(drivetrain, 10));//turn to be pointed the right way
-        addCommands(new ParallelDeadlineGroup(new WaitCommand(1.4), new ShootHigh(shooter),  new IndexerFeedHigh(indexer, shooter))); //hold down the shoot high button for the same number of seconds as the wait command
         addCommands(new Turn(drivetrain, -10));//turn to be pointed the right way
+        addCommands(new ParallelDeadlineGroup(new WaitCommand(1), new ShootHigh(shooter),  new IndexerFeedHigh(indexer, shooter))); //hold down the shoot high button for the same number of seconds as the wait command
+        addCommands(new Turn(drivetrain, 10));//turn to be pointed the right way
 
 
         //addCommands(new ParallelDeadlineGroup(new WaitCommand(6), new IntakeEject(intake), new IndexerEject(indexer)));

@@ -40,7 +40,7 @@ public class Robot extends TimedRobot {
 
     secondCamera = CameraServer.startAutomaticCapture(1);
     secondCamera.setResolution(240, 160);
-    secondCamera.setFPS(15);
+    secondCamera.setFPS(10);
     
     m_robotContainer = new RobotContainer();
   }
