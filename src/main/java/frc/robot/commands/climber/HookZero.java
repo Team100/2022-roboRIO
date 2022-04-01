@@ -27,7 +27,7 @@ boolean done;
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    System.out.println("zeroing");
+    // System.out.println("zeroing");
       //climber.setWinch(-Constants.ClimberConstants.ClimberMotionParameters.HOOK_ZERO_SPEED);
       climber.zeroWinch();
   }

@@ -22,12 +22,14 @@ public class ShootEject extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
+        shooter.set(-Constants.ShooterConstants.ShooterMotionParameters.SHOOTER_PERCENT_OUTPUT);
+
     }
+
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        shooter.set(-Constants.ShooterConstants.ShooterMotionParameters.SHOOTER_PERCENT_OUTPUT);
         // shooter.setVelocity(0);
     }
 

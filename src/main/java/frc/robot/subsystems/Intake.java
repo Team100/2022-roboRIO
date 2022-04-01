@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj2.command.ProfiledPIDSubsystem;
 import frc.robot.Constants;
 import frc.robot.FRCLib.Motors.FRCNEO;
 import frc.robot.FRCLib.Motors.FRCTalonFX;
-import frc.robot.FRCLib.Motors.FRCTalonSRX;
 
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
@@ -21,6 +20,7 @@ public class Intake extends ProfiledPIDSubsystem {
     private FRCTalonFX pivot;
     private AnalogPotentiometer pot;
     private int cycleCount;
+    private double spinnerSetpoint;
 
     /**
      * Creates a new Intake.
@@ -135,7 +135,10 @@ public class Intake extends ProfiledPIDSubsystem {
     }
 
     public void runSpinner(double percentOutput) {
-        spin.drivePercentOutput(percentOutput);
+        if (this.spinnerSetpoint != percentOutput) {
+            spin.drivePercentOutput(percentOutput);
+            this.spinnerSetpoint = percentOutput;
+        }
     }
 }
     

@@ -10,7 +10,9 @@ import frc.robot.FRCLib.Motors.FRCNEO;
 
 
 public class Shooter extends SubsystemBase {
-    private FRCNEO shootMotor,shootMotorFollower;
+    private FRCNEO shootMotor, shootMotorFollower;
+    private double shooterSetpoint;
+    private boolean velocityControl;
 
     // private boolean atSpeed = false;
     public int speed() { 
@@ -56,11 +58,19 @@ public class Shooter extends SubsystemBase {
     }
 
     public void set(double speed) {
-        this.shootMotor.drivePercentOutput(-speed);
+        if (this.shooterSetpoint != speed || velocityControl) {
+            this.shootMotor.drivePercentOutput(-speed);
+            this.shooterSetpoint = speed;
+            this.velocityControl = false;
+        }
     }
 
     public void setVelocity(double velocity){
-        this.shootMotor.driveVelocity(velocity);
+        if (this.shooterSetpoint != velocity || !this.velocityControl) {
+            this.shootMotor.driveVelocity(velocity);
+            this.shooterSetpoint = velocity;
+            this.velocityControl = true;
+        }
     }
     
     @Override

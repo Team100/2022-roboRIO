@@ -13,7 +13,7 @@ import frc.robot.FRCLib.Motors.FRCNEO;
 public class Indexer extends SubsystemBase {
     public FRCNEO stageOneMotor, stageTwoMotor;
     public DigitalInput sensor1, sensor2;
-    public double stageOneSetpoint, stageTwoSetpoint;
+    private double stageOneSetpoint, stageTwoSetpoint;
 
     /**
     * Creates a new Indexer.
@@ -62,12 +62,18 @@ public class Indexer extends SubsystemBase {
 
     public void runMotorOne(double percentOutput) {
         // SmartDashboard.putNumber("motor one output", percentOutput);
-        stageOneMotor.drivePercentOutput(percentOutput);
+        if (stageOneSetpoint != percentOutput) {
+            stageOneMotor.drivePercentOutput(percentOutput);
+            stageOneSetpoint = percentOutput;
+        }
     }
 
     public void runMotorTwo(double percentOutput) {
         // SmartDashboard.putNumber("motor two output", percentOutput);
-        stageTwoMotor.drivePercentOutput(percentOutput);
+        if (stageTwoSetpoint != percentOutput) {
+            stageTwoMotor.drivePercentOutput(percentOutput);
+            stageTwoSetpoint = percentOutput;
+        }
     }
     
     @Override

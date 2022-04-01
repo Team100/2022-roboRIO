@@ -99,24 +99,33 @@ public class Drivetrain extends SubsystemBase {
         }
 
         driveWithoutRamp(left, right);
-        System.out.println("left:right    " + left + " : " + right);
+        // System.out.println("left:right    " + left + " : " + right);
     }
 
     public void driveWithoutRamp(double left, double right) {
-        this.leftMaster.drivePercentOutput(left);
-        this.rightMaster.drivePercentOutput(right);
-        this.leftSetpoint = left;
-        this.rightSetpoint = right;
+        if (this.leftSetpoint != left) {
+            this.leftMaster.drivePercentOutput(left);
+            this.leftSetpoint = left;
+        }
+        
+        if (this.rightSetpoint != right) {
+            this.rightMaster.drivePercentOutput(right);
+            this.rightSetpoint = right;
+        }
     }
 
     public void driveWithRamp(double left, double right) {
         double rampLeft = ramp(left, leftSetpoint);
         double rampRight = ramp(right, rightSetpoint);
 
-        this.leftMaster.drivePercentOutput(rampLeft);
-        this.rightMaster.drivePercentOutput(rampRight);
-        this.leftSetpoint = rampLeft;
-        this.rightSetpoint = rampRight;
+        if (this.leftSetpoint != left) {
+            this.leftMaster.drivePercentOutput(rampLeft);
+            this.leftSetpoint = rampLeft;
+        }
+        if (this.rightSetpoint != right) {
+            this.rightMaster.drivePercentOutput(rampRight);
+            this.rightSetpoint = rampRight;
+        }
     }
 
     private double ramp(double input, double currentSpeed) {

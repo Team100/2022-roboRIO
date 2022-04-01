@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.StartEndCommand;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.*;
@@ -193,7 +194,10 @@ public class RobotContainer {
         fixClimberButton.whileHeld(hookZeroCommand);
 
         //HHHButton.whileHeld(new AutonProcedureHHH(drivetrain, intake, indexer, shooter));
-        }
+
+        overrideMainsButton.whileHeld(new StartEndCommand(() -> climber.setMainLockedOverride(true), () -> climber.setMainLockedOverride(false), climber));
+        overrideStationariesButton.whileHeld(new StartEndCommand(() -> climber.setStationaryLockedOverride(true), () -> climber.setStationaryLockedOverride(false), climber));
+    }
 
     public void onInit() {
         // intake.onInit();

@@ -77,7 +77,7 @@ public class LockStationary extends CommandBase {
         climber.mainPosition() < ClimberConstants.ClimberMotionParameters.CLIMBER_DESCEND_SAFTEY_SHUTOFF) {
             climber.setTilt(0);
             climber.setWinch(0);
-            System.out.println("climb aborted due to climber descend saftey shuttoff");
+            // System.out.println("climb aborted due to climber descend saftey shuttoff");
         }
 
 

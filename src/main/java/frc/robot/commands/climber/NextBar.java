@@ -55,7 +55,7 @@ public class NextBar extends CommandBase {
             SmartDashboard.putString("Climber Command", "preparing to tilt back for next bar case 2");
             if(encoderTicks==17){
                 encoderTicks=climber.mainPosition();
-                System.out.println("set encoder tics to " + encoderTicks);
+                // System.out.println("set encoder tics to " + encoderTicks);
                 climber.setWinch(-ClimberConstants.ClimberMotionParameters.CLIMBER_PERCENT_OUTPUT);
             }else if(Math.abs(climber.mainPosition())>(Math.abs(encoderTicks)+ClimberConstants.ClimberMotionParameters.BAR_HEIGHT_OFFSET)  && (finalManuver==0)){
                 climber.setTilt(0);
@@ -78,12 +78,12 @@ public class NextBar extends CommandBase {
             // if (climber.tiltAngle() > ClimberConstants.ClimberMotionParameters.EXTEND_START_ANGLE && climber.mainPosition() > ClimberConstants.ClimberMotionParameters.NEXT_BAR_DISTANCE) { //if you are sufficiently tilted that you can start reaching back and still end up behind the next bar and you haven't reached back enough
             //   climber.setWinch(-ClimberConstants.ClimberMotionParameters.CLIMBER_PERCENT_OUTPUT); //extend main hooks
             // }
-            System.out.println("tiltiltiltiltiltbackkkkk");
+            // System.out.println("tiltiltiltiltiltbackkkkk");
             SmartDashboard.putString("Climber Command", "tilting back to get behind next bar");
         } else if (!behindBar &&
                    climber.stationaryLocked() &&
                    climber.tiltAngle() <= ClimberConstants.ClimberMotionParameters.NEXT_BAR_ANGLE  && (finalManuver==0)) {
-                        System.out.println("stopping tikt");
+            // System.out.println("stopping tikt");
             climber.setTilt(0);
             climber.setWinch(-ClimberConstants.ClimberMotionParameters.CLIMBER_PERCENT_OUTPUT); //extend main hooks
             SmartDashboard.putString("Climber Command", "tilted back sufficently to reach next bar, extedning hooks");
@@ -92,7 +92,7 @@ public class NextBar extends CommandBase {
         if (!behindBar &&
             climber.mainPosition() < ClimberConstants.ClimberMotionParameters.NEXT_BAR_DISTANCE && (finalManuver==0)) { //if main hooks are far back enough
             climber.setWinch(0); //stop extending
-            System.out.println("extending seen to be finished");
+            // System.out.println("extending seen to be finished");
             behindBar = true; //you are now behind the bar
             SmartDashboard.putString("Climber Command", "finished extending to grab next bar");
         }
@@ -157,7 +157,7 @@ public class NextBar extends CommandBase {
 
             if(climber.stationaryLocked()){
                 SmartDashboard.putString("Climber Command", "stationaries still locked");
-                System.out.println("stationaries locked");
+                // System.out.println("stationaries locked");
             }else{
 
 
@@ -207,18 +207,18 @@ public class NextBar extends CommandBase {
 
             if(climber.mainPosition() > ClimberConstants.ClimberMotionParameters.PIVOT_AROUND_NEXT_BAR_MAIN_POSITION && finalManuver==1){
                 climber.setWinch(-ClimberConstants.ClimberMotionParameters.CLIMBER_DESCEND_PERCENT_OUTPUT);
-                System.out.println("main with the fur");
+                // System.out.println("main with the fur");
                 if(climber.tiltAngle()>ClimberMotionParameters.MAX_NEGATIVE_TILT){
                     climber.setTilt(-ClimberConstants.ClimberMotionParameters.TILT_PERCENT_OUTPUT);
                 } else{
                     climber.setTilt(0);
                 }
             } else if(climber.mainPosition() < ClimberConstants.ClimberMotionParameters.PIVOT_AROUND_NEXT_BAR_MAIN_POSITION){
-                System.out.println("kentucky fried jeanas");
+                // System.out.println("kentucky fried jeanas");
 
                 if(climber.mainPosition() <= ClimberConstants.ClimberMotionParameters.CLIMBER_BOTTOM-20000&&finalManuver==1&&climber.tiltAngle()>ClimberConstants.ClimberMotionParameters.STATIONARIES_MISS_BAR_ANGLE){//if ok to start winching up
                     climber.setWinch(ClimberConstants.ClimberMotionParameters.CLIMBER_PERCENT_OUTPUT);             //retract the hooks
-                    System.out.println("kentucky fried jeanas with a j");
+                    // System.out.println("kentucky fried jeanas with a j");
                 }else{
                     climber.setWinch(0);
                     finalManuver=2;
@@ -233,7 +233,7 @@ public class NextBar extends CommandBase {
                 } 
             }else{
                 climber.setTilt(0);
-                System.out.println("kentucky fried genes");
+                // System.out.println("kentucky fried genes");
 
                 climber.setWinch(0);
                 SmartDashboard.putString("Climber Command","finished the thing");

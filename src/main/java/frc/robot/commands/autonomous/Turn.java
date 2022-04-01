@@ -35,7 +35,7 @@ public class Turn extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    degreesError = degrees-(((drivetrain.getRight()-drivetrain.getLeft())/2)/DrivetrainConstants.Autonomous.Turning.TURN_ADJUSMENT);
+    //degreesError = degrees-(((drivetrain.getRight()-drivetrain.getLeft())/2)/DrivetrainConstants.Autonomous.Turning.TURN_ADJUSMENT);
     turnSpeed = DrivetrainConstants.Autonomous.Turning.TURN_SPEED;//+Math.abs(degreesError*DrivetrainConstants.Autonomous.Turning.TURNING_PP);
 
      System.out.println("turn speed............... " + turnSpeed);

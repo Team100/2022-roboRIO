@@ -15,7 +15,7 @@ public class Climber extends SubsystemBase {
     private boolean stationaryLockOverride = false;
     private boolean mainLockOverride = false;
 
-
+    private double tiltSetpoint, winchSetpoint;
 
 
     private FRCTalonFX tilt, winch;
@@ -61,11 +61,17 @@ public class Climber extends SubsystemBase {
     }
 
     public void setTilt(double percentOutput) {
-        tilt.drivePercentOutput(percentOutput);
+        if (this.tiltSetpoint != percentOutput) {
+            tilt.drivePercentOutput(percentOutput);
+            this.tiltSetpoint = percentOutput;
+        }
     }
 
     public void setWinch(double percentOutput) {
-        winch.drivePercentOutput(percentOutput);
+        if (this.winchSetpoint != percentOutput) {
+            winch.drivePercentOutput(percentOutput);
+            this.winchSetpoint = percentOutput;
+        }
     }
 
     public boolean stationaryLocked(){
