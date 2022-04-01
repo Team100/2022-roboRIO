@@ -38,7 +38,7 @@ public class Turn extends CommandBase {
     //degreesError = degrees-(((drivetrain.getRight()-drivetrain.getLeft())/2)/DrivetrainConstants.Autonomous.Turning.TURN_ADJUSMENT);
     turnSpeed = DrivetrainConstants.Autonomous.Turning.TURN_SPEED;//+Math.abs(degreesError*DrivetrainConstants.Autonomous.Turning.TURNING_PP);
 
-     System.out.println("turn speed............... " + turnSpeed);
+    //  System.out.println("turn speed............... " + turnSpeed);
         if(degrees>0){
           if(-((drivetrain.getRight()-drivetrain.getLeft())/2)<(degrees*DrivetrainConstants.Autonomous.Turning.TURN_ADJUSMENT)){
             drivetrain.driveWithoutRamp(turnSpeed,-turnSpeed);
