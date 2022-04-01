@@ -63,7 +63,7 @@ public class Climber extends SubsystemBase {
     }
 
     public boolean stationaryLocked(){
-        return !leftStationaryHook.get()||!rightStationaryHook.get();
+        return !rightStationaryHook.get()||!leftStationaryHook.get();
         //return SmartDashboard.getBoolean("Stationaries Locked?", false);
     }
 
@@ -80,6 +80,13 @@ public class Climber extends SubsystemBase {
     public boolean getMainSensorLeft(){
         return !leftMainHook.get();
     }
+    
+    // public boolean stationaryLeft(){
+    //     // SmartDashboard.putBoolean("6", leftStationaryHook1.get());
+    //     // SmartDashboard.putBoolean("9", leftStationaryHook2.get());
+
+    //     return (!leftStationaryHook1.get()&&leftStationaryHook2.get());
+    // }
 
     public boolean getMainSensorRight(){
         return !rightMainHook.get();

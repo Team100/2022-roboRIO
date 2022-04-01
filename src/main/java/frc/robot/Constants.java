@@ -36,7 +36,7 @@ public final class Constants {
                 // public static final int SECOND_HHH_TURN = -70;
                 //public static final int SECOND_HHH_OFFSET = 46;
                 public static final double TURNING_PP = 0.0006;
-                public static final int SECOND_HHH_TURN = 40;
+                public static final int SECOND_HHH_TURN = 34;
             }
             public static final class Distance {
                 public static final int HIGH_GOAL_SHOT = -40000;
@@ -172,7 +172,7 @@ public final class Constants {
 
                 public static final boolean ENABLE_CURRENT_LIMIT = false;
                 public static final int CURRENT_LIMIT = 35;
-                public static final double OPEN_LOOP_RAMP = 0.1;
+                public static final double OPEN_LOOP_RAMP = 0;
                 public static final double PEAK_OUTPUT_FORWARD = 1;
                 public static final double PEAK_OUTPUT_REVERSE = -1;
 
@@ -213,11 +213,11 @@ public final class Constants {
             public static final double SHOOTER_VELOCITY_LOW_FAR = -2500;
 			public static final double NOMINAL_LOW_FAR_VELOCITY = 2480;
 
-            public static final double SHOOTER_VELOCITY_HIGH = -4100; //0.17 //0.175
-            public static final double NOMINAL_HIGH_VELOCITY = 4080;
+            public static final double SHOOTER_VELOCITY_HIGH = -3950; //0.17 //0.175
+            public static final double NOMINAL_HIGH_VELOCITY = 3930;
 
-            public static final double SHOOTER_VELOCITY_HIGH_FAR = -5720; //0.17 //0.175
-            public static final double NOMINAL_HIGH_VELOCITY_FAR = 5700;
+            public static final double SHOOTER_VELOCITY_HIGH_FAR = -5320; //0.17 //0.175
+            public static final double NOMINAL_HIGH_VELOCITY_FAR = 5300;
 
             
             public static final double KP = 0.00012;
@@ -336,7 +336,7 @@ public final class Constants {
                     public static final int ID = 6;
                 }
                 public static final class RightSensor{
-                    public static final int ID = 9;
+                    public static final int ID = 1;
                 }
             }
             public static final class Homing{

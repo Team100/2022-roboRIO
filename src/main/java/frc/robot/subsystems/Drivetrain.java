@@ -5,6 +5,8 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.StatusFrame;
+import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -23,6 +25,7 @@ public class Drivetrain extends SubsystemBase {
             .withKI(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.KI)
             .withKD(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.KD)
             .withKF(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.KF)
+            // .withStatusFrameType(StatusFrameEnhanced.Status_2_Feedback0)
             .withInverted(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.INVERTED)
             .withSensorPhase(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.SENSOR_PHASE)
             .withPeakOutputForward(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.PEAK_OUTPUT_FORWARD)
@@ -65,6 +68,12 @@ public class Drivetrain extends SubsystemBase {
             .withPeakOutputReverse(Constants.DrivetrainConstants.DrivetrainMotors.RightFollower.PEAK_OUTPUT_REVERSE)
             // .withNeutralMode(Constants.DrivetrainConstants.DrivetrainMotors.RightFollower.NEUTRAL_MODE)
             .withMaster(rightMaster).build();
+
+
+            // leftMaster.motor.setStatusFramePeriod(StatusFrame.Status_2_Feedback0, 100);
+            // leftFollower.motor.setStatusFramePeriod(StatusFrame.Status_2_Feedback0, 200);
+            // rightMaster.motor.setStatusFramePeriod(StatusFrame.Status_2_Feedback0, 100);
+            // rightFollower.motor.setStatusFramePeriod(StatusFrame.Status_2_Feedback0, 200);
 
         addChild("drivetrainLeftMaster", leftMaster);
         addChild("drivetrainRightMaster", rightMaster);

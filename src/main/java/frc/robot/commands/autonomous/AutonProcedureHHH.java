@@ -45,7 +45,11 @@ public class AutonProcedureHHH extends SequentialCommandGroup {
         // addCommands(new ParallelDeadlineGroup(new WaitCommand(0.1), new IntakeIntake(intake)));//drop the intake
         // addCommands(new StepOne(intake, indexer, drivetrain)); //drive back and grab another ball
         addCommands(new ParallelDeadlineGroup(new StepTwo(drivetrain, Constants.DrivetrainConstants.Autonomous.Offsets.AUTO_H_H_OFFSET), new BetterIntakeStop(intake), new IndexerStop(indexer), new ShootHigh(shooter))); //drive back to correct point to sink two high shots
+        addCommands(new Turn(drivetrain, 10));//turn to be pointed the right way
         addCommands(new ParallelDeadlineGroup(new WaitCommand(1.4), new ShootHigh(shooter),  new IndexerFeedHigh(indexer, shooter))); //hold down the shoot high button for the same number of seconds as the wait command
+        addCommands(new Turn(drivetrain, -10));//turn to be pointed the right way
+
+
         //addCommands(new ParallelDeadlineGroup(new WaitCommand(6), new IntakeEject(intake), new IndexerEject(indexer)));
 
         addCommands(new ParallelDeadlineGroup(new WaitCommand(0.05), new IndexerStop(indexer), new ShootStop(shooter))); //stop everything
@@ -53,6 +57,7 @@ public class AutonProcedureHHH extends SequentialCommandGroup {
 
         //addCommands(new ParallelDeadlineGroup(new WaitCommand(0.6), new IntakeIntake(intake)));//drop the intake
         addCommands(new StepThree(intake, indexer, drivetrain)); //drive back and grab another ball
+
         
         
         //method for drive back and shoot
@@ -75,6 +80,7 @@ public class AutonProcedureHHH extends SequentialCommandGroup {
         
         
         addCommands(new ParallelDeadlineGroup(new Turn(drivetrain, Constants.DrivetrainConstants.Autonomous.Turning.SECOND_HHH_TURN),new ShootWayDowntown(shooter)));//turn to be pointed the right way
+        // addCommands(new Turn(drivetrain, 10));//turn to be pointed the right way
         addCommands(new ParallelDeadlineGroup(new WaitCommand(2), new ShootWayDowntown(shooter),  new IndexerFeedWayDowntown(indexer, shooter))); //hold down the shoot high button for the same number of seconds as the wait command
         addCommands(new ParallelCommandGroup(new IndexerStop(indexer), new ShootStop(shooter))); //stop everything
 

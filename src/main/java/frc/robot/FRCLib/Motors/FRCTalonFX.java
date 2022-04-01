@@ -465,6 +465,7 @@ public class FRCTalonFX implements Sendable {
         if (this.master != null) {
             motor.follow(master.motor);
         }
+
         return this;
     }
 
