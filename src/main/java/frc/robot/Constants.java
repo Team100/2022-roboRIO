@@ -236,7 +236,7 @@ public final class Constants {
     
                 public static final int TIMEOUT = 10;
     
-                public static final boolean ENABLE_CURRENT_LIMIT = true;
+                public static final boolean ENABLE_CURRENT_LIMIT = false;
                 public static final int CURRENT_LIMIT = 55;
                 public static final double OPEN_LOOP_RAMP = 0;
                 public static final double PEAK_OUTPUT_FORWARD = 1;
@@ -253,7 +253,7 @@ public final class Constants {
     
                 public static final int TIMEOUT = 10;
     
-                public static final boolean ENABLE_CURRENT_LIMIT = true;
+                public static final boolean ENABLE_CURRENT_LIMIT = false;
                 public static final int CURRENT_LIMIT = 55;
                 public static final double OPEN_LOOP_RAMP = 0;
                 public static final double PEAK_OUTPUT_FORWARD = 1;

@@ -12,6 +12,12 @@ import frc.robot.Constants;
 import frc.robot.FRCLib.Motors.FRCTalonFX;
 
 public class Climber extends SubsystemBase {
+    private boolean stationaryLockOverride = false;
+    private boolean mainLockOverride = false;
+
+
+
+
     private FRCTalonFX tilt, winch;
     private AnalogPotentiometer pot;
 
@@ -63,7 +69,7 @@ public class Climber extends SubsystemBase {
     }
 
     public boolean stationaryLocked(){
-        return !rightStationaryHook.get()||!leftStationaryHook.get();
+        return (!rightStationaryHook.get()||!leftStationaryHook.get())||stationaryLockOverride;
         //return SmartDashboard.getBoolean("Stationaries Locked?", false);
     }
 
@@ -73,8 +79,16 @@ public class Climber extends SubsystemBase {
     // }
 
     public boolean mainLocked(){
-        return !leftMainHook.get()||!rightMainHook.get();
+        return (!leftMainHook.get()||!rightMainHook.get())||mainLockOverride;
         //return SmartDashboard.getBoolean("Main Hooks Locked?", false);
+    }
+
+    public void setMainLockedOverride(boolean set){
+        mainLockOverride = set;
+    }
+
+    public void setStationaryLockedOverride(boolean set){
+        stationaryLockOverride = set;
     }
 
     public boolean getMainSensorLeft(){

@@ -93,6 +93,11 @@ public class RobotContainer {
     private final JoystickButton shootWayDowntownButton = new JoystickButton(leftJoystick, 6);
 
 
+    private final JoystickButton overrideStationariesButton = new JoystickButton(leftJoystick, 8);
+    private final JoystickButton overrideMainsButton = new JoystickButton(leftJoystick, 9);
+
+
+
     //private final JoystickButton lockStationariesButton = new JoystickButton(gamepad, 1);
     //private final JoystickButton nextBarButton = new JoystickButton(gamepad, 2);
 
