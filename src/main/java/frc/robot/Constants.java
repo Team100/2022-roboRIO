@@ -148,6 +148,7 @@ public final class Constants {
             public static final double INTAKE_UP_TIMEOUT = 2;
             public static final double INTAKE_UP_TIME_TO_RESTART = 2;
             public static final double INTAKE_SPINNER_PERCENT_OUTPUT = -0.35; //-0.30
+            public static final double INTAKE_SPINNER_SLOW_PERCENT_OUTPUT = -0.15; //-0.30
             public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN = -0.22;
             public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN_DECEL = 0.06;
             // public static final double INTAKE_ZERO = 0;

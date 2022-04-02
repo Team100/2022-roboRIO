@@ -86,7 +86,7 @@ public class RobotContainer {
 
     private final JoystickButton fixClimberButton = new JoystickButton(rightJoystick, 7);
     private final JoystickButton indexTwoButton = new JoystickButton(buttonBoard, gitforcepushorginmaster);
-
+    private final JoystickButton intakeSlowButton = new JoystickButton(buttonBoard, gitforcepushorginmaster);
     private final JoystickButton climberControlButton = new JoystickButton(leftJoystick, 3);
     //private final JoystickButton climberTiltZeroButton = new JoystickButton(rightJoystick, 8);
 
@@ -163,6 +163,8 @@ public class RobotContainer {
         slowButton.whileHeld(driveSlowCommand);
         stopAll.whenPressed(new ParallelCommandGroup(new ClimberStop(climber), new IndexerStop(indexer), new BetterIntakeStop(intake), new ShootStop(shooter)));
         //intakeButton.whenPressed(new SequentialCommandGroup(new ParallelDeadlineGroup(intakeCommand, intakeIntakeCommand), new WaitCommand(0.2)));
+        
+        intakeSlowButton.whileHeld(new IntakeIntakeSlow(intake));
         indexTwoButton.whenPressed(new SequentialCommandGroup(new ParallelDeadlineGroup(new BetterIndexerIntake(indexer), new IntakeIntake(intake)), new WaitCommand(0.2), new ParallelDeadlineGroup(new BetterIndexerIntake(indexer), new IntakeIntake(intake)), new WaitCommand(0.2)));
         shootHighButton.whileHeld(new ParallelCommandGroup(shootHighCommand, feedHighCommand));
         shootLowButton.whileHeld(new ParallelCommandGroup(shootLowCommand, feedLowCommand));
