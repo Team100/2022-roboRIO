@@ -22,12 +22,13 @@ public class ShootLow extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        shooter.setVelocity(Constants.ShooterConstants.ShooterMotionParameters.SHOOTER_VELOCITY_LOW);
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
+        shooter.setVelocity(Constants.ShooterConstants.ShooterMotionParameters.SHOOTER_VELOCITY_LOW);
+
     }
 
     // Called once the command ends or is interrupted.

@@ -17,6 +17,7 @@ public class NextBar extends CommandBase {
     public boolean done, behindBar, aboveBar, finishedUnhooking;
     public double encoderTicks=17;
     public double encoderTicks2=17;
+    public double encoderTicks3 = 17;
     public double finalManuver = 0;
     public Climber climber;
     
@@ -37,6 +38,7 @@ public class NextBar extends CommandBase {
         finalManuver = 0;
         encoderTicks = 17;
         encoderTicks2 = 17;
+        encoderTicks3 = 17;
         SmartDashboard.putString("Climber Command","Initialized grabbing Next Bar");
     }
 
@@ -160,16 +162,21 @@ public class NextBar extends CommandBase {
                 // System.out.println("stationaries locked");
             }else{
 
-
-
-
-                climber.setTilt(0);
+                if (encoderTicks3 == 17) {
+                    encoderTicks3 = Math.min(
+                        climber.mainPosition() + ClimberConstants.ClimberMotionParameters.STATIONARY_REMOVAL_OFFSET,
+                        ClimberConstants.ClimberMotionParameters.CLIMBER_BOTTOM - 10
+                    );
+                }
+                if (climber.mainPosition() >= encoderTicks3) {
+                    climber.setTilt(0);
                     climber.setWinch(0);
                     SmartDashboard.putString("Climber Command", "finished unhooking stationaries");
                     if((finalManuver==0)){
                         finalManuver = 1;
                     }
                     finishedUnhooking=true;
+                }
 
 
 

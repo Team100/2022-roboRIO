@@ -147,7 +147,7 @@ public final class Constants {
             public static final double PID_TOLERANCE = 0.1;
             public static final double INTAKE_UP_TIMEOUT = 2;
             public static final double INTAKE_UP_TIME_TO_RESTART = 2;
-            public static final double INTAKE_SPINNER_PERCENT_OUTPUT = -0.50; //-0.45
+            public static final double INTAKE_SPINNER_PERCENT_OUTPUT = -0.35; //-0.30
             public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN = -0.22;
             public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN_DECEL = 0.06;
             // public static final double INTAKE_ZERO = 0;
@@ -199,7 +199,7 @@ public final class Constants {
 
                 public static final SparkMaxAnalogSensor.Mode ANALOG_MODE = SparkMaxAnalogSensor.Mode.kAbsolute;
 
-                public static final NeutralMode NEUTRAL_MODE = NeutralMode.Coast;
+                public static final NeutralMode NEUTRAL_MODE = NeutralMode.Brake;
             }
         }
     }
@@ -207,8 +207,8 @@ public final class Constants {
         public static final class ShooterMotionParameters {
             public static final double SHOOTER_PERCENT_OUTPUT = 0.2; //0.17 //0.175
 
-            public static final double SHOOTER_VELOCITY_LOW = -2200; //0.17 //0.175 //-2500
-			public static final double NOMINAL_LOW_VELOCITY = 2180;
+            public static final double SHOOTER_VELOCITY_LOW = -2350; //0.17 //0.175 //-2500
+			public static final double NOMINAL_LOW_VELOCITY = 2330;
 
             public static final double SHOOTER_VELOCITY_LOW_FAR = -2500;
 			public static final double NOMINAL_LOW_FAR_VELOCITY = 2480;
@@ -245,7 +245,7 @@ public final class Constants {
                 public static final IdleMode NEUTRAL_MODE = IdleMode.kCoast;
             }
             public static final class ShooterFollower {
-                public static final int CAN_ID = 8;
+                public static final int CAN_ID = 28;
     
                 public static final boolean INVERT = true;
                 public static final int FEEDBACK_PORT = 0;
@@ -382,7 +382,7 @@ public final class Constants {
             public static final double STATIONARIES_MISS_BAR_ANGLE = -5;
             public static final double MAX_NEGATIVE_TILT = -28;
             public static final double HOOK_ZERO_SPEED = -0.2;
-            public static final double CLIMBER_TILT_ZERO_SPEED = 0.45;
+            public static final double CLIMBER_TILT_ZERO_SPEED = 0.3;
         }
 
         public static final class ClimberControls {

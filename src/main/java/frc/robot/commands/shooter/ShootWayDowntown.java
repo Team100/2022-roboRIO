@@ -21,13 +21,13 @@ public class ShootWayDowntown extends CommandBase {
 
     // Called when the command is initially scheduled.
     @Override
-    public void initialize() {
-        shooter.setVelocity(Constants.ShooterConstants.ShooterMotionParameters.SHOOTER_VELOCITY_HIGH_FAR);
-    }
+    public void initialize() {    }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
+        shooter.setVelocity(Constants.ShooterConstants.ShooterMotionParameters.SHOOTER_VELOCITY_HIGH_FAR);
+
     }
 
     // Called once the command ends or is interrupted.
