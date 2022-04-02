@@ -5,16 +5,18 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants;
 import frc.robot.subsystems.Intake;
 
-public class IntakeIntake extends CommandBase {
+public class BetterIntakeIntake extends CommandBase {
     private boolean done;
     private Intake intake;
+    private JoystickButton slowButton;
 
     /**
      * Creates a new IntakeIntake.
      */
-    public IntakeIntake(Intake intake) {
+    public BetterIntakeIntake(Intake intake, JoystickButton button) {
         // Use addRequirements() here to declare subsystem dependencies.
         this.intake = intake;
+        this.slowButton = button;
         addRequirements(this.intake);
     }
 
@@ -37,6 +39,7 @@ public class IntakeIntake extends CommandBase {
         } else {
             intake.runPivot(0);
             intake.runSpinner(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_SPINNER_PERCENT_OUTPUT);
+            //intake.runSpinner(slowButton.get() ? Constants.IntakeConstants.IntakeMotionParameters.INTAKE_SPINNER_SLOW_PERCENT_OUTPUT : Constants.IntakeConstants.IntakeMotionParameters.INTAKE_SPINNER_PERCENT_OUTPUT);
         }
     }
 

@@ -15,6 +15,7 @@ import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMax.SoftLimitDirection;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.CANSparkMaxLowLevel.PeriodicFrame;
 
 import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.util.sendable.SendableBuilder;
@@ -440,6 +441,7 @@ public class FRCNEO implements Sendable {
         }
 
         // this.motor.setControlFramePeriodMs(100);
+        // this.motor.setPeriodicFramePeriod(PeriodicFrame.kStatus1, 100);
 
         return this;
     }

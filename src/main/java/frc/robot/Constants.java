@@ -147,7 +147,7 @@ public final class Constants {
             public static final double PID_TOLERANCE = 0.1;
             public static final double INTAKE_UP_TIMEOUT = 2;
             public static final double INTAKE_UP_TIME_TO_RESTART = 2;
-            public static final double INTAKE_SPINNER_PERCENT_OUTPUT = -0.35; //-0.30
+            public static final double INTAKE_SPINNER_PERCENT_OUTPUT = -0.375; //-0.30
             public static final double INTAKE_SPINNER_SLOW_PERCENT_OUTPUT = -0.15; //-0.30
             public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN = -0.22;
             public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN_DECEL = 0.06;
@@ -246,7 +246,7 @@ public final class Constants {
                 public static final IdleMode NEUTRAL_MODE = IdleMode.kCoast;
             }
             public static final class ShooterFollower {
-                public static final int CAN_ID = 28;
+                public static final int CAN_ID = 27;
     
                 public static final boolean INVERT = true;
                 public static final int FEEDBACK_PORT = 0;
@@ -276,11 +276,11 @@ public final class Constants {
         }
 
         public static final class IndexerMotionParameters {
-            public static final double STAGE_ONE_PERCENT_OUTPUT_FORWARD = 0.8; //
-            public static final double STAGE_TWO_PERCENT_OUTPUT_FORWARD = 0.8;
+            public static final double STAGE_ONE_PERCENT_OUTPUT_FORWARD = 0.9; //
+            public static final double STAGE_TWO_PERCENT_OUTPUT_FORWARD = 0.7;
 
-            public static final double STAGE_ONE_PERCENT_OUTPUT_BACKWARD = -0.8;
-            public static final double STAGE_TWO_PERCENT_OUTPUT_BACKWARD = -0.8;
+            public static final double STAGE_ONE_PERCENT_OUTPUT_BACKWARD = -0.9;
+            public static final double STAGE_TWO_PERCENT_OUTPUT_BACKWARD = -0.7;
         }
 
         public static final class IndexerMotors {
