@@ -141,7 +141,7 @@ public class Climber extends SubsystemBase {
         // double p = pot.get();
         // return p;//((p - 0.082) * -345) +256 - 9.3;
         double p = pot.get();
-        return Math.round(1000*p)/1000;
+        return (Math.round(1000*p)/1000)+1;
     }
 
     @Override

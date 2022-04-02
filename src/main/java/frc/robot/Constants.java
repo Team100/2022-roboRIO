@@ -377,7 +377,7 @@ public final class Constants {
             public static final double CLIMBER_TILT_BACK_ANGLE_DISTANCE_THING = -150000;
             public static final double CLIMBER_CLUTCH_SAFTEY_SPEED = 0.35;
             public static final double TILT_NEXT_BAR_HEIGHT_OFFSET = 500;
-            public static final double PIVOT_AROUND_NEXT_BAR_MAIN_POSITION = -105000;
+            public static final double PIVOT_AROUND_NEXT_BAR_MAIN_POSITION = -125000;
             public static final double SLOW_TILT_PERCENT_OUTPUT = 0.45;
             public static final double SLOW_CLIMBER_PERCENT_OUTPUT = 0.45;
             public static final double STATIONARIES_MISS_BAR_ANGLE = -5;
