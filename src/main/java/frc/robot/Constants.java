@@ -214,8 +214,8 @@ public final class Constants {
             public static final double SHOOTER_VELOCITY_LOW_FAR = -2500;
 			public static final double NOMINAL_LOW_FAR_VELOCITY = 2480;
 
-            public static final double SHOOTER_VELOCITY_HIGH = -8000; //-3950
-            public static final double NOMINAL_HIGH_VELOCITY = 7500;
+            public static final double SHOOTER_VELOCITY_HIGH = -9000; //-3950
+            public static final double NOMINAL_HIGH_VELOCITY = 8900;
 
             public static final double SHOOTER_VELOCITY_HIGH_FAR = -5320; //0.17 //0.175
             public static final double NOMINAL_HIGH_VELOCITY_FAR = 5300;
@@ -357,16 +357,16 @@ public final class Constants {
 
             public static final double TILT_PERCENT_OUTPUT = 0.85;
 
-            public static final int CLIMBER_MID_BAR = -250000; //-243000;
-            public static final int CLIMBER_TOP = -234000; //-243000;
+            public static final int CLIMBER_MID_BAR = -235000; //-243000;
+            public static final int CLIMBER_TOP = -222000; //-243000;
             public static final int CLIMBER_LOW_BAR_TOP = -110000;
             public static final int CLIMBER_BOTTOM = 5000;
             public static final double TILT_START = 7000;
-            public static final double STATIONARY_LOCK_ANGLE = 21; //23.5; //22;
+            public static final double STATIONARY_LOCK_ANGLE = 20; //23.5; //22;
 
             public static final double EXTEND_START_ANGLE = 0;
-            public static final double NEXT_BAR_ANGLE = -5;
-            public static final double NEXT_BAR_DISTANCE = -293000;
+            public static final double NEXT_BAR_ANGLE = -3;
+            public static final double NEXT_BAR_DISTANCE = -288000;
 
             public static final double NEXT_BAR_GRAB_ANGLE = 5;
 
