@@ -55,6 +55,10 @@ public class Shooter extends SubsystemBase {
             
         addChild("Shooter", shootMotor); 
         addChild("ShooterFollower", shootMotorFollower); 
+
+        shootMotor.motor.setControlFramePeriodMs(100);
+        shootMotorFollower.motor.setControlFramePeriodMs(400);
+        
     }
 
     public void set(double speed) {
