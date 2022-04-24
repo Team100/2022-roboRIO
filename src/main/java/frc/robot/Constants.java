@@ -329,15 +329,15 @@ public final class Constants {
                     public static final int ID = 0;
                 }
                 public static final class RightSensor{
-                    public static final int ID = 2;
+                    public static final int ID = 1;
                 }
             }
             public static final class StationaryHooks{
                 public static final class LeftSensor{
-                    public static final int ID = 6;
+                    public static final int ID = 2;
                 }
                 public static final class RightSensor{
-                    public static final int ID = 1;
+                    public static final int ID = 6;
                 }
             }
             public static final class Homing{
