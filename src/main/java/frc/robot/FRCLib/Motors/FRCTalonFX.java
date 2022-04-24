@@ -443,7 +443,7 @@ public class FRCTalonFX implements Sendable {
 
         }
         if (this.getStatusFrame() != 0) {
-            motor.setStatusFramePeriod(this.getStatusFrameType(), this.getStatusFrame());
+            // motor.setStatusFramePeriod(this.getStatusFrameType(), this.getStatusFrame());
             System.out.println("Setting Frame Period");
 
         }

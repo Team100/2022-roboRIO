@@ -67,7 +67,7 @@ public class Intake extends ProfiledPIDSubsystem {
 
         setGoal(Constants.IntakeConstants.PivotConstants.UP_POSITION);
 
-        spin.motor.setControlFramePeriodMs(400);
+        spin.motor.setControlFramePeriodMs(500);
     }
 
     @Override

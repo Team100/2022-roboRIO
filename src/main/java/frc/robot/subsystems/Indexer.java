@@ -51,8 +51,8 @@ public class Indexer extends SubsystemBase {
         addChild("stageOneMotor", stageOneMotor);
         addChild("stageTwoMotor", stageTwoMotor);
 
-        stageOneMotor.motor.setControlFramePeriodMs(400);
-        stageTwoMotor.motor.setControlFramePeriodMs(400);
+        stageOneMotor.motor.setControlFramePeriodMs(500);
+        stageTwoMotor.motor.setControlFramePeriodMs(500);
     }
 
     public boolean getSensorOne() {
