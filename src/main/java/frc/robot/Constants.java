@@ -214,8 +214,8 @@ public final class Constants {
             public static final double SHOOTER_VELOCITY_LOW_FAR = -2500;
 			public static final double NOMINAL_LOW_FAR_VELOCITY = 2480;
 
-            public static final double SHOOTER_VELOCITY_HIGH = -9000; //-3950
-            public static final double NOMINAL_HIGH_VELOCITY = 8900;
+            public static final double SHOOTER_VELOCITY_HIGH = -3950; //-3950
+            public static final double NOMINAL_HIGH_VELOCITY = 3930;
 
             public static final double SHOOTER_VELOCITY_HIGH_FAR = -5320; //0.17 //0.175
             public static final double NOMINAL_HIGH_VELOCITY_FAR = 5300;
