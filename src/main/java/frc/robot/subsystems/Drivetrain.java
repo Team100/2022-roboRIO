@@ -17,6 +17,7 @@ import frc.robot.FRCLib.Motors.FRCTalonFX;
 public class Drivetrain extends SubsystemBase {
     private FRCTalonFX leftMaster, leftFollower, rightMaster, rightFollower;
     private double leftSetpoint, rightSetpoint;
+    public double leftOutput, rightOutput;
     
     /** Creates a new Drivetrain. */
     public Drivetrain() {
@@ -110,6 +111,10 @@ public class Drivetrain extends SubsystemBase {
     }
 
     public void driveWithoutRamp(double left, double right) {
+
+        leftOutput = left;
+        rightOutput = right;
+
         if (this.leftSetpoint != left) {
             this.leftMaster.drivePercentOutput(left);
             this.leftSetpoint = left;
@@ -119,6 +124,8 @@ public class Drivetrain extends SubsystemBase {
             this.rightMaster.drivePercentOutput(right);
             this.rightSetpoint = right;
         }
+
+
     }
 
     public void driveWithRamp(double left, double right) {
@@ -198,6 +205,9 @@ public class Drivetrain extends SubsystemBase {
         // SmartDashboard.putNumber("drivetrain average encoder value", getCurrentEncoderPosition());
         // SmartDashboard.putString("drivetrain brake mode", rightFollower.getNeutralMode().toString());
         //SmartDashboard.putNumber("left motor", leftMaster.get)
+        SmartDashboard.putNumber("left output", leftOutput);
+        SmartDashboard.putNumber("right output", rightOutput);
+        
     }
 
     public boolean getAutoEnd(int distance) {
