@@ -130,9 +130,9 @@ public final class Constants {
         public static final class IntakeSensors{
             public static final class IntakePot{
                 public static final int ID = 3;
-                public static final int POT_OFFSET = 0;
+                public static final int POT_OFFSET = -49;   
                 public static final int POT_ADJUSTMENT_FACTOR = 100;
-            }
+            }   
         }
         public static final class PivotConstants {
             public static final double UP_POSITION = 26.5;
