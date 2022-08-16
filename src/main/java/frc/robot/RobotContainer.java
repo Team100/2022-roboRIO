@@ -161,7 +161,6 @@ public class RobotContainer {
         shootHighButton.whileHeld(new ParallelCommandGroup(shootHighCommand, feedHighCommand));
         shootLowButton.whileHeld(new ParallelCommandGroup(shootLowCommand, feedLowCommand));
         ejectButton.whileHeld(new ParallelCommandGroup(intakeEjectCommand, indexerEjectCommand, shootEjectCommand));
-
         shootWayDowntownButton.whileHeld(new ParallelCommandGroup(shootWayDowntownCommand, indexWayDowntownCommand));
         //hookZeroButton.whileHeld(hookZeroCommand);
 
