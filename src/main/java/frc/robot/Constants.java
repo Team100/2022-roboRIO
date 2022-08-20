@@ -135,29 +135,50 @@ public final class Constants {
             }   
         }
         public static final class PivotConstants {
-            public static final double UP_POSITION = 26.5;
-            public static final double DOWN_POSITION = 2.5;
-            public static final double UP_SETPOINT = 25;
+            public static final class Analog {
+                public static final double UP_POSITION = 26.5;
+                public static final double DOWN_POSITION = 2.5;
+                public static final double UP_SETPOINT = 25;
+            }
+
+            public static final boolean USE_PIVOT_MOTOR_ENCODER = true;
+            public static final class Falcon {
+                public static final double UP_POSITION = 5400;
+                public static final double DOWN_POSITION = 0;
+                public static final double UP_SETPOINT = 5200;
+            }
 
             public static final double CYCLE_COUNT = 30;
         }
         public static final class IntakeMotionParameters {
-            public static final double TRAPAZOID_PROFILE_MAX_VEL = 192;
-            public static final double TRAPAZOID_PROFILE_MAX_ACL = 105;
-            public static final double PID_TOLERANCE = 0.1;
-            public static final double INTAKE_UP_TIMEOUT = 2;
-            public static final double INTAKE_UP_TIME_TO_RESTART = 2;
             public static final double INTAKE_SPINNER_PERCENT_OUTPUT = -0.45;
             public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN = -0.22;
             public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN_DECEL = 0.1;
-            // public static final double INTAKE_ZERO = 0;
-            // public static final double INITIAL_POSITION = 0;
+            public static final double INTAKE_UP_TIMEOUT = 2;
+            public static final double INTAKE_UP_TIME_TO_RESTART = 2;
 
-            public static final double KP = 0.28;//0.2
-            public static final double KI = 0.03;
-            public static final double KD = 0.017;
-            public static final double KF = 0;
-            public static final double PP_ADJUSTMENT_CONSTANT = 16;
+            public static final class Analog {
+                public static final double TRAPAZOID_PROFILE_MAX_VEL = 192;
+                public static final double TRAPAZOID_PROFILE_MAX_ACL = 105;
+                public static final double PID_TOLERANCE = 0.1;
+
+                public static final double KP = 0.28;//0.2
+                public static final double KI = 0.03;
+                public static final double KD = 0.017;
+                public static final double KF = 0;
+                public static final double PP_ADJUSTMENT_CONSTANT = 16;
+            }
+
+            public static final class Falcon {
+                public static final double TRAPAZOID_PROFILE_MAX_VEL = 30000;
+                public static final double TRAPAZOID_PROFILE_MAX_ACL = 19800;
+                public static final double PID_TOLERANCE = 50;
+                
+                public static final double KP = 0.0025;
+                public static final double KI = 0;
+                public static final double KD = 0;
+                public static final double KF = 0;
+            }
         }
 
         public static final class IntakeMotors {

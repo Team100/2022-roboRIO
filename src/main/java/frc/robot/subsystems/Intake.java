@@ -27,14 +27,28 @@ public class Intake extends ProfiledPIDSubsystem {
      */
     public Intake() {
         super(new ProfiledPIDController(
-            Constants.IntakeConstants.IntakeMotionParameters.KP,
-            Constants.IntakeConstants.IntakeMotionParameters.KI,
-            Constants.IntakeConstants.IntakeMotionParameters.KD,
+            Constants.IntakeConstants.PivotConstants.USE_PIVOT_MOTOR_ENCODER
+                ? Constants.IntakeConstants.IntakeMotionParameters.Falcon.KP
+                : Constants.IntakeConstants.IntakeMotionParameters.Analog.KP,
+            Constants.IntakeConstants.PivotConstants.USE_PIVOT_MOTOR_ENCODER
+                ? Constants.IntakeConstants.IntakeMotionParameters.Falcon.KI
+                : Constants.IntakeConstants.IntakeMotionParameters.Analog.KI,
+            Constants.IntakeConstants.PivotConstants.USE_PIVOT_MOTOR_ENCODER
+                ? Constants.IntakeConstants.IntakeMotionParameters.Falcon.KD
+                : Constants.IntakeConstants.IntakeMotionParameters.Analog.KD,
             new TrapezoidProfile.Constraints(
-                Constants.IntakeConstants.IntakeMotionParameters.TRAPAZOID_PROFILE_MAX_VEL,
-                Constants.IntakeConstants.IntakeMotionParameters.TRAPAZOID_PROFILE_MAX_ACL)),
-            Constants.IntakeConstants.PivotConstants.UP_POSITION);
-        getController().setTolerance(Constants.IntakeConstants.IntakeMotionParameters.PID_TOLERANCE);
+                Constants.IntakeConstants.PivotConstants.USE_PIVOT_MOTOR_ENCODER
+                    ? Constants.IntakeConstants.IntakeMotionParameters.Falcon.TRAPAZOID_PROFILE_MAX_ACL
+                    : Constants.IntakeConstants.IntakeMotionParameters.Analog.TRAPAZOID_PROFILE_MAX_VEL,
+                    Constants.IntakeConstants.PivotConstants.USE_PIVOT_MOTOR_ENCODER
+                    ? Constants.IntakeConstants.IntakeMotionParameters.Falcon.TRAPAZOID_PROFILE_MAX_ACL
+                    : Constants.IntakeConstants.IntakeMotionParameters.Analog.TRAPAZOID_PROFILE_MAX_ACL)),
+            Constants.IntakeConstants.PivotConstants.USE_PIVOT_MOTOR_ENCODER
+                ? Constants.IntakeConstants.PivotConstants.Falcon.UP_POSITION
+                : Constants.IntakeConstants.PivotConstants.Analog.UP_POSITION);
+        getController().setTolerance(Constants.IntakeConstants.PivotConstants.USE_PIVOT_MOTOR_ENCODER
+                                        ? Constants.IntakeConstants.IntakeMotionParameters.Falcon.PID_TOLERANCE
+                                        : Constants.IntakeConstants.IntakeMotionParameters.Analog.PID_TOLERANCE);
 
         pot = new AnalogPotentiometer(Constants.IntakeConstants.IntakeSensors.IntakePot.ID,Constants.IntakeConstants.IntakeSensors.IntakePot.POT_ADJUSTMENT_FACTOR,Constants.IntakeConstants.IntakeSensors.IntakePot.POT_OFFSET);
 
@@ -65,12 +79,17 @@ public class Intake extends ProfiledPIDSubsystem {
         addChild("intakeSpin", spin);
         addChild("intakePivot", pivot);
 
-        setGoal(Constants.IntakeConstants.PivotConstants.UP_POSITION);
+        setGoal(Constants.IntakeConstants.PivotConstants.USE_PIVOT_MOTOR_ENCODER
+                    ? Constants.IntakeConstants.PivotConstants.Falcon.UP_POSITION
+                    : Constants.IntakeConstants.PivotConstants.Analog.UP_POSITION);
     }
 
     @Override
     public void useOutput(double output, State setpoint) {
-        if(pot.get() < Constants.IntakeConstants.PivotConstants.UP_SETPOINT){
+        if (Constants.IntakeConstants.PivotConstants.USE_PIVOT_MOTOR_ENCODER
+                ? pivot.getSelectedSensorPosition() < Constants.IntakeConstants.PivotConstants.Falcon.UP_SETPOINT
+                : pot.get() < Constants.IntakeConstants.PivotConstants.Analog.UP_SETPOINT
+        ){
             pivot.motor.setVoltage(output);
         } else {
             cycleCount++;
@@ -89,7 +108,7 @@ public class Intake extends ProfiledPIDSubsystem {
 
     @Override
     public double getMeasurement() {
-        double p = pot.get();
+        double p = Constants.IntakeConstants.PivotConstants.USE_PIVOT_MOTOR_ENCODER ? pivot.getSelectedSensorPosition() : pot.get();
         return Math.round(1000*p)/1000;
     }
 
@@ -98,18 +117,23 @@ public class Intake extends ProfiledPIDSubsystem {
     }
 
     public void pivotUp() {
-        getController().setGoal(Constants.IntakeConstants.PivotConstants.UP_POSITION);
+        getController().setGoal(Constants.IntakeConstants.PivotConstants.USE_PIVOT_MOTOR_ENCODER
+                                    ? Constants.IntakeConstants.PivotConstants.Falcon.UP_POSITION
+                                    : Constants.IntakeConstants.PivotConstants.Analog.UP_POSITION);
         super.enable();
     }
 
     public void pivotDown() {
-        getController().setGoal(Constants.IntakeConstants.PivotConstants.DOWN_POSITION);
+        getController().setGoal(Constants.IntakeConstants.PivotConstants.USE_PIVOT_MOTOR_ENCODER
+                                    ? Constants.IntakeConstants.PivotConstants.Falcon.DOWN_POSITION
+                                    : Constants.IntakeConstants.PivotConstants.Analog.DOWN_POSITION);
         super.enable();
     }
 
     @Override
     public void periodic() {
         if (m_enabled) {
+            // weird fix since the PID controller was not correctly sending signals to the motor
             useOutput(m_controller.calculate(getMeasurement(), getController().getGoal()), m_controller.getSetpoint());
         }
         // if (isEnabled()) pivot.motor.setVoltage(getController().calculate(getMeasurement()));
