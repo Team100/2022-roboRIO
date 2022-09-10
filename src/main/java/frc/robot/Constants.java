@@ -361,7 +361,7 @@ public final class Constants {
             public static final int CLIMBER_LOW_BAR_TOP = -110000;
             public static final int CLIMBER_BOTTOM = 5000;
             public static final double TILT_START = 7000;
-            public static final double STATIONARY_LOCK_ANGLE = 21; //23.5; //22;
+            public static final double STATIONARY_LOCK_ANGLE = 20;//21; //23.5; //22;
 
             public static final double EXTEND_START_ANGLE = 0;
             public static final double NEXT_BAR_ANGLE = -5;

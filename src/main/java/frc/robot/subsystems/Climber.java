@@ -134,6 +134,8 @@ public class Climber extends SubsystemBase {
         SmartDashboard.putBoolean("leftSationary", !leftStationaryHook.get());
         SmartDashboard.putBoolean("rightSatioanrj", !rightStationaryHook.get());
 
+        SmartDashboard.putNumber("Winch", winch.motor.getMotorOutputPercent());
+
         // SmartDashboard.putBoolean("allingment switch", getHomeSwitch());
 
         // SmartDashboard.putNumber("Winch", winch.getSelectedSensorPosition());
