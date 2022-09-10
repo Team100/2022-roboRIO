@@ -143,9 +143,9 @@ public final class Constants {
 
             public static final boolean USE_PIVOT_MOTOR_ENCODER = true;
             public static final class Falcon {
-                public static final double UP_POSITION = 5400;
-                public static final double DOWN_POSITION = 0;
-                public static final double UP_SETPOINT = 5200;
+                public static final double UP_POSITION = 16.55; //5400;
+                public static final double DOWN_POSITION = 0.0030664062 * 503;
+                public static final double UP_SETPOINT = 15.94; //5200;
             }
 
             public static final double CYCLE_COUNT = 30;
@@ -170,11 +170,11 @@ public final class Constants {
             }
 
             public static final class Falcon {
-                public static final double TRAPAZOID_PROFILE_MAX_VEL = 30000;
-                public static final double TRAPAZOID_PROFILE_MAX_ACL = 19800;
-                public static final double PID_TOLERANCE = 50;
+                public static final double TRAPAZOID_PROFILE_MAX_VEL = 45;//30000;
+                public static final double TRAPAZOID_PROFILE_MAX_ACL = 45;//19800;
+                public static final double PID_TOLERANCE = 0.01;
                 
-                public static final double KP = 0.0025;
+                public static final double KP = 5;
                 public static final double KI = 0;
                 public static final double KD = 0;
                 public static final double KF = 0;
@@ -408,7 +408,7 @@ public final class Constants {
 
         public static final class ClimberControls {
             public static final double TILT_CONTROL_DEADZONE = 0.05;
-            public static final double WINCH_CONTROL_DEADZONE = 0.05;
+            public static final double WINCH_CONTROL_DEADZONE = 0.5;
         };
 
         public static final class ClimberMotors {
