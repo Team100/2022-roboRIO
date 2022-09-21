@@ -108,7 +108,7 @@ public class Intake extends ProfiledPIDSubsystem {
 
     @Override
     public double getMeasurement() {
-        double p = Constants.IntakeConstants.PivotConstants.USE_PIVOT_MOTOR_ENCODER ? pivot.getSelectedSensorPosition() * 0.00306640625 : pot.get();
+        double p = Constants.IntakeConstants.PivotConstants.USE_PIVOT_MOTOR_ENCODER ? pivot.getSelectedSensorPosition() : pot.get();
         return Math.round(1000*p)/1000;
     }
 
@@ -135,25 +135,17 @@ public class Intake extends ProfiledPIDSubsystem {
         if (m_enabled) {
             // weird fix since the PID controller was not correctly sending signals to the motor
             useOutput(m_controller.calculate(getMeasurement(), getController().getGoal()), m_controller.getSetpoint());
-
         }
         // if (isEnabled()) pivot.motor.setVoltage(getController().calculate(getMeasurement()));
         //onInit(); // Oh no no no no no
         
         // SmartDashboard.putNumber("Intake Cycle Count", cycleCount);
         SmartDashboard.putNumber("Intake Pivot Angle", getMeasurement());
-        SmartDashboard.putNumber("Intake Pivot Angle Ticks", getMeasurement() / 0.00306640625);
-
-        SmartDashboard.putNumber("Intake Pivot Motor Output", pivot.motor.get());
-        SmartDashboard.putNumber("Intake Pivot Applied Output", pivot.motor.getMotorOutputPercent());
-        SmartDashboard.putNumber("Errorrororor", getController().getPositionError());
-        SmartDashboard.putNumber("setpointtttttttttt", getController().getGoal().position);
-        SmartDashboard.putNumber("actual setpoint", getController().getSetpoint().position);
-
-
-        //System.out.println(pivot.motor.getMotorOutputPercent());
-
-        // SmartDashboard.putBoolean("At Setpsoint", atSetpoint());
+        // SmartDashboard.putNumber("Intake Pivot Motor Output", pivot.motor.get());
+        // SmartDashboard.putNumber("Intake Pivot Applied Output", pivot.motor.getMotorOutputPercent());
+        // SmartDashboard.putNumber("Errorrororor", getController().getPositionError());
+        // SmartDashboard.putNumber("setpointtttttttttt", getController().getGoal().position);
+        // SmartDashboard.putBoolean("At Setpoint", atSetpoint());
         // SmartDashboard.putBoolean("enabled", super.isEnabled());
         // SmartDashboard.putNumber("current current current", pivot.motor.getStatorCurrent());
         // SmartDashboard.putNumber("wattage wattege wattege", (pivot.motor.getStatorCurrent()*pivot.motor.getMotorOutputVoltage()));
@@ -170,4 +162,3 @@ public class Intake extends ProfiledPIDSubsystem {
         spin.drivePercentOutput(percentOutput);
     }
 }
-    
