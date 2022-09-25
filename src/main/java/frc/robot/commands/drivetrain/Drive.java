@@ -38,7 +38,7 @@ public class Drive extends CommandBase {
         double limiter = (-rightJoystick.getRawAxis(2)+1)/2;
         drivetrain.driveWithRamp((left*limiter), (right*limiter));
         SmartDashboard.putNumber("rightJoystick", rightJoystick.getX());
-        System.out.println(rightJoystick.getX());
+        //System.out.println(rightJoystick.getX());
     }
 
     // Called once the command ends or is interrupted.

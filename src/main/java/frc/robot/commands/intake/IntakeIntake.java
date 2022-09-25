@@ -1,5 +1,6 @@
 package frc.robot.commands.intake;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Intake;
@@ -23,22 +24,31 @@ public class IntakeIntake extends CommandBase {
     public void initialize() {
         done = false;
         intake.disable();
+        //SmartDashboard.putNumber("MOVED", 0);
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        // if (intake.getMeasurement() >= 20) {
-        //     intake.runPivot(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_PIVOT_PERCENT_OUTPUT_DOWN);
-        //     intake.runSpinner(0);
-        // } else if (intake.getMeasurement() >= 10) {
-        //     intake.runPivot(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_PIVOT_PERCENT_OUTPUT_DOWN_DECEL);
-        //     intake.runSpinner(0);
-        // } else {
-        //     intake.runPivot(0);
-        //     intake.runSpinner(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_SPINNER_PERCENT_OUTPUT);
-        // }
-        intake.runSpinner(-0.35);
+        
+
+        if(intake.getMeasurement() <= 0){
+            intake.runPivot(0.1);
+            //SmartDashboard.putNumber("MOVED", 1);
+            System.out.println("trueeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+        }
+
+        if (intake.getMeasurement() >= 4000) {
+            intake.runPivot(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_PIVOT_PERCENT_OUTPUT_DOWN);
+            intake.runSpinner(0);
+        } else if (intake.getMeasurement() >= 2000) {
+            intake.runPivot(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_PIVOT_PERCENT_OUTPUT_DOWN_DECEL);
+            intake.runSpinner(0);
+        }else{
+            intake.runPivot(0);
+            intake.runSpinner(Constants.IntakeConstants.IntakeMotionParameters.INTAKE_SPINNER_PERCENT_OUTPUT);
+        }
+        // intake.runSpinner(-0.35);
     }
 
     // Called once the command ends or is interrupted.

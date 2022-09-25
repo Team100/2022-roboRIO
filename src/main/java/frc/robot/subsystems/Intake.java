@@ -76,6 +76,9 @@ public class Intake extends ProfiledPIDSubsystem {
             .withPeakOutputReverse(Constants.IntakeConstants.IntakeMotors.IntakePivot.PEAK_OUTPUT_REVERSE)
             .withNeutralMode(Constants.IntakeConstants.IntakeMotors.IntakePivot.NEUTRAL_MODE)
             .build();
+
+        pivot.setSensorPosition(0);
+
         addChild("intakeSpin", spin);
         addChild("intakePivot", pivot);
 
@@ -143,8 +146,11 @@ public class Intake extends ProfiledPIDSubsystem {
         SmartDashboard.putNumber("Intake Pivot Angle", getMeasurement());
         // SmartDashboard.putNumber("Intake Pivot Motor Output", pivot.motor.get());
         // SmartDashboard.putNumber("Intake Pivot Applied Output", pivot.motor.getMotorOutputPercent());
-        // SmartDashboard.putNumber("Errorrororor", getController().getPositionError());
-        // SmartDashboard.putNumber("setpointtttttttttt", getController().getGoal().position);
+        SmartDashboard.putNumber("Errorrororor", getController().getPositionError());
+        SmartDashboard.putNumber("setpointtttttttttt", getController().getSetpoint().position);
+        SmartDashboard.putNumber("MEAASSSURRMENNTTTT", getMeasurement());
+        //SmartDashboard.putBoolean("MOVED", 30000);
+
         // SmartDashboard.putBoolean("At Setpoint", atSetpoint());
         // SmartDashboard.putBoolean("enabled", super.isEnabled());
         // SmartDashboard.putNumber("current current current", pivot.motor.getStatorCurrent());

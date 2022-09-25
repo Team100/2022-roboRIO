@@ -151,9 +151,9 @@ public final class Constants {
             public static final double CYCLE_COUNT = 30;
         }
         public static final class IntakeMotionParameters {
-            public static final double INTAKE_SPINNER_PERCENT_OUTPUT = -0.45;
+            public static final double INTAKE_SPINNER_PERCENT_OUTPUT = -0.35;
             public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN = -0.22;
-            public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN_DECEL = 0.1;
+            public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN_DECEL = 0.09;
             public static final double INTAKE_UP_TIMEOUT = 2;
             public static final double INTAKE_UP_TIME_TO_RESTART = 2;
 
@@ -170,12 +170,12 @@ public final class Constants {
             }
 
             public static final class Falcon {
-                public static final double TRAPAZOID_PROFILE_MAX_VEL = 30000;
-                public static final double TRAPAZOID_PROFILE_MAX_ACL = 19800;
+                public static final double TRAPAZOID_PROFILE_MAX_VEL = 30000; //30000
+                public static final double TRAPAZOID_PROFILE_MAX_ACL = 24800; //19800
                 public static final double PID_TOLERANCE = 50;
                 
-                public static final double KP = 0.0040;
-                public static final double KI = 0;
+                public static final double KP = 0.006;
+                public static final double KI = 0.0;
                 public static final double KD = 0;
                 public static final double KF = 0;
             }
@@ -349,12 +349,12 @@ public final class Constants {
                     public static final int ID = 0;
                 }
                 public static final class RightSensor{
-                    public static final int ID = 2;
+                    public static final int ID = 1;
                 }
             }
             public static final class StationaryHooks{
                 public static final class LeftSensor{
-                    public static final int ID = 1;
+                    public static final int ID = 2;
                 }
                 public static final class RightSensor{
                     public static final int ID = 9;
@@ -377,7 +377,7 @@ public final class Constants {
 
             public static final double TILT_PERCENT_OUTPUT = 0.85;
 
-            public static final int CLIMBER_MID_BAR = -239000; //-243000;
+            public static final int CLIMBER_MID_BAR = -174609; //-243000;
             public static final int CLIMBER_TOP = -234000; //-243000;
             public static final int CLIMBER_LOW_BAR_TOP = -110000;
             public static final int CLIMBER_BOTTOM = 5000;

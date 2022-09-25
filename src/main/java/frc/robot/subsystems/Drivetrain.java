@@ -90,7 +90,7 @@ public class Drivetrain extends SubsystemBase {
         }
 
         driveWithoutRamp(left, right);
-        System.out.println("left:right    " + left + " : " + right);
+        //System.out.println("left:right    " + left + " : " + right);
     }
 
     public void driveWithoutRamp(double left, double right) {
