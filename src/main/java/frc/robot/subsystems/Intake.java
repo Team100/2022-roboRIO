@@ -11,7 +11,7 @@ import frc.robot.Constants;
 import frc.robot.FRCLib.Motors.FRCNEO;
 import frc.robot.FRCLib.Motors.FRCTalonFX;
 import frc.robot.FRCLib.Motors.FRCTalonSRX;
-
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.math.trajectory.TrapezoidProfile.State;
@@ -93,7 +93,7 @@ public class Intake extends ProfiledPIDSubsystem {
                 ? pivot.getSelectedSensorPosition() < Constants.IntakeConstants.PivotConstants.Falcon.UP_SETPOINT
                 : pot.get() < Constants.IntakeConstants.PivotConstants.Analog.UP_SETPOINT
         ){
-            pivot.motor.setVoltage(output);
+            pivot.motor.setVoltage(MathUtil.clamp(output, -14, 14));
         } else {
             cycleCount++;
             if (cycleCount >= Constants.IntakeConstants.PivotConstants.CYCLE_COUNT) {
@@ -101,6 +101,11 @@ public class Intake extends ProfiledPIDSubsystem {
                 cycleCount = 0;
             }
         }
+    }
+
+    private double feedForward(double currentPos) {
+        double rad = currentPos / 5400 * Math.PI / 2;
+        return Math.cos(rad) * Constants.IntakeConstants.PivotConstants.GRAVITY_VOLTAGE;
     }
 
     @Override
@@ -137,7 +142,7 @@ public class Intake extends ProfiledPIDSubsystem {
     public void periodic() {
         if (m_enabled) {
             // weird fix since the PID controller was not correctly sending signals to the motor
-            useOutput(m_controller.calculate(getMeasurement(), getController().getGoal()), m_controller.getSetpoint());
+            useOutput(m_controller.calculate(getMeasurement(), getController().getGoal()) + feedForward(getMeasurement()), m_controller.getSetpoint());
         }
         // if (isEnabled()) pivot.motor.setVoltage(getController().calculate(getMeasurement()));
         //onInit(); // Oh no no no no no

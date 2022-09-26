@@ -149,6 +149,7 @@ public final class Constants {
             }
 
             public static final double CYCLE_COUNT = 30;
+            public static final double GRAVITY_VOLTAGE = 3; // Voltage needed to counteract gravity when arm is fully extended
         }
         public static final class IntakeMotionParameters {
             public static final double INTAKE_SPINNER_PERCENT_OUTPUT = -0.35;
