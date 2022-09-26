@@ -343,6 +343,10 @@ public final class Constants {
     }
 
     public static final class ClimberConstants {
+        public static final boolean VALIDATE_PID = true; // if true, PID loop will calculate and print on Shuffleboard, but motor will be controlled by open-loop
+        public static final boolean WINCH_VEL_PID = false; // run once without PID, printing rpm at setPO(1.0) to get target max vel. Then enable this
+        public static final int WINCH_MAX_VEL = 21777; // ticks per 100ms, 21777 is free speed (6380 RPM) - this will most likely change
+
         public static final class ClimberSensors{
             public static final class MainHooks{
                 public static final class LeftSensor{

@@ -4,6 +4,8 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.math.MathUtil;
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -14,6 +16,8 @@ import frc.robot.FRCLib.Motors.FRCTalonFX;
 public class Climber extends SubsystemBase {
     private FRCTalonFX tilt, winch;
     private AnalogPotentiometer pot;
+
+    private PIDController pid;
 
     private DigitalInput leftStationaryHook, rightStationaryHook, leftMainHook, rightMainHook, homeSwitch;
     /** Creates a new Climber. */
@@ -52,6 +56,13 @@ public class Climber extends SubsystemBase {
 
         addChild("tilt", tilt);
         addChild("winch", winch);
+
+        if (Constants.ClimberConstants.WINCH_VEL_PID) {
+            double kP = 1 / Constants.ClimberConstants.WINCH_MAX_VEL;
+            double kI = 0;
+            double kD = 0;
+            pid = new PIDController(kP, kI, kD);
+        }
     }
 
     public void setTilt(double percentOutput) {
@@ -59,7 +70,15 @@ public class Climber extends SubsystemBase {
     }
 
     public void setWinch(double percentOutput) {
-        winch.drivePercentOutput(percentOutput);
+        if (!Constants.ClimberConstants.WINCH_VEL_PID) {
+            winch.drivePercentOutput(percentOutput);
+            return;
+        }
+        
+        if (Constants.ClimberConstants.VALIDATE_PID) {
+            winch.drivePercentOutput(percentOutput);
+        }
+        pid.setSetpoint(percentOutput * Constants.ClimberConstants.WINCH_MAX_VEL);
     }
 
     public boolean stationaryLocked(){
@@ -121,6 +140,13 @@ public class Climber extends SubsystemBase {
 
     @Override
     public void periodic() {
+        SmartDashboard.putNumber("Winch Velocity", winch.getMotor().getSelectedSensorVelocity());
+        if (Constants.ClimberConstants.WINCH_VEL_PID) {
+            double percentOutput = MathUtil.clamp(pid.calculate(winch.getMotor().getSelectedSensorVelocity()), -1, 1);
+            SmartDashboard.putNumber("Winch PID Output", percentOutput);
+            if (!Constants.ClimberConstants.VALIDATE_PID) winch.drivePercentOutput(percentOutput);
+        }
+
         SmartDashboard.putNumber("main hooks position", mainPosition());
         SmartDashboard.putNumber("TiltAngle", tiltAngle());
         // SmartDashboard.putNumber("Legacy TiltAngle", legacyTiltAngle());
