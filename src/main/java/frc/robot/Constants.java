@@ -143,13 +143,13 @@ public final class Constants {
 
             public static final boolean USE_PIVOT_MOTOR_ENCODER = true;
             public static final class Falcon {
-                public static final double UP_POSITION = 5400;
+                public static final double UP_POSITION = 5000;
                 public static final double DOWN_POSITION = 0;
-                public static final double UP_SETPOINT = 5200;
+                public static final double UP_SETPOINT = 5000;
             }
 
             public static final double CYCLE_COUNT = 30;
-            public static final double GRAVITY_VOLTAGE = 3; // Voltage needed to counteract gravity when arm is fully extended
+            public static final double GRAVITY_VOLTAGE = 1.8; // Voltage needed to counteract gravity when arm is fully extended
         }
         public static final class IntakeMotionParameters {
             public static final double INTAKE_SPINNER_PERCENT_OUTPUT = -0.35;
@@ -172,11 +172,11 @@ public final class Constants {
 
             public static final class Falcon {
                 public static final double TRAPAZOID_PROFILE_MAX_VEL = 30000; //30000
-                public static final double TRAPAZOID_PROFILE_MAX_ACL = 24800; //19800
+                public static final double TRAPAZOID_PROFILE_MAX_ACL = 50000; //19800
                 public static final double PID_TOLERANCE = 50;
                 
-                public static final double KP = 0.006;
-                public static final double KI = 0.0;
+                public static final double KP = 0.0015;
+                public static final double KI = 0;
                 public static final double KD = 0;
                 public static final double KF = 0;
             }
@@ -385,7 +385,7 @@ public final class Constants {
             public static final int CLIMBER_MID_BAR = -174609; //-243000;
             public static final int CLIMBER_TOP = -234000; //-243000;
             public static final int CLIMBER_LOW_BAR_TOP = -110000;
-            public static final int CLIMBER_BOTTOM = 5000;
+            public static final int CLIMBER_BOTTOM = 2000; //5000;
             public static final double TILT_START = 7000;
             public static final double STATIONARY_LOCK_ANGLE = 21; //23.5; //22;
 

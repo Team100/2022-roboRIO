@@ -82,6 +82,8 @@ public class Intake extends ProfiledPIDSubsystem {
         addChild("intakeSpin", spin);
         addChild("intakePivot", pivot);
 
+        SmartDashboard.setDefaultBoolean("ZERO PIVOT", false);
+
         setGoal(Constants.IntakeConstants.PivotConstants.USE_PIVOT_MOTOR_ENCODER
                     ? Constants.IntakeConstants.PivotConstants.Falcon.UP_POSITION
                     : Constants.IntakeConstants.PivotConstants.Analog.UP_POSITION);
@@ -89,6 +91,7 @@ public class Intake extends ProfiledPIDSubsystem {
 
     @Override
     public void useOutput(double output, State setpoint) {
+        SmartDashboard.putNumber("OUTPUT", output);
         if (Constants.IntakeConstants.PivotConstants.USE_PIVOT_MOTOR_ENCODER
                 ? pivot.getSelectedSensorPosition() < Constants.IntakeConstants.PivotConstants.Falcon.UP_SETPOINT
                 : pot.get() < Constants.IntakeConstants.PivotConstants.Analog.UP_SETPOINT
@@ -104,7 +107,7 @@ public class Intake extends ProfiledPIDSubsystem {
     }
 
     private double feedForward(double currentPos) {
-        double rad = currentPos / 5400 * Math.PI / 2;
+        double rad = currentPos / Constants.IntakeConstants.PivotConstants.Falcon.UP_POSITION * Math.PI / 2;
         return Math.cos(rad) * Constants.IntakeConstants.PivotConstants.GRAVITY_VOLTAGE;
     }
 
@@ -147,12 +150,17 @@ public class Intake extends ProfiledPIDSubsystem {
         // if (isEnabled()) pivot.motor.setVoltage(getController().calculate(getMeasurement()));
         //onInit(); // Oh no no no no no
         
+        if (SmartDashboard.getBoolean("ZERO PIVOT", false)) {
+            pivot.motor.setSelectedSensorPosition(0);
+            SmartDashboard.putBoolean("ZERO PIVOT", false);
+        }
+
         // SmartDashboard.putNumber("Intake Cycle Count", cycleCount);
         SmartDashboard.putNumber("Intake Pivot Angle", getMeasurement());
         // SmartDashboard.putNumber("Intake Pivot Motor Output", pivot.motor.get());
         // SmartDashboard.putNumber("Intake Pivot Applied Output", pivot.motor.getMotorOutputPercent());
         SmartDashboard.putNumber("Errorrororor", getController().getPositionError());
-        SmartDashboard.putNumber("setpointtttttttttt", getController().getSetpoint().position);
+        SmartDashboard.putNumber("setpointtttttttttt", getController().getSetpoint().position );
         SmartDashboard.putNumber("MEAASSSURRMENNTTTT", getMeasurement());
         //SmartDashboard.putBoolean("MOVED", 30000);
 

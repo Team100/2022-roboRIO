@@ -45,7 +45,7 @@ public class LockStationary extends CommandBase {
         }
     
         if (climber.mainLocked() &&
-            climber.mainPosition() <= ClimberConstants.ClimberMotionParameters.CLIMBER_BOTTOM + 3000 && 
+            climber.mainPosition() <= ClimberConstants.ClimberMotionParameters.CLIMBER_BOTTOM + 7000 && 
             !dropping
             ) {           //if climber is not all the way retracted the hooks are locked on
             climber.setWinch(ClimberConstants.ClimberMotionParameters.CLIMBER_PERCENT_OUTPUT);             //retract the hooks
