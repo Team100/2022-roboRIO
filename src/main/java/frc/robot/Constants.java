@@ -145,10 +145,10 @@ public final class Constants {
             public static final class Falcon {
                 public static final double UP_POSITION = 5000;
                 public static final double DOWN_POSITION = 0;
-                public static final double UP_SETPOINT = 5000;
+                public static final double UP_SETPOINT = 4900;
             }
 
-            public static final double CYCLE_COUNT = 30;
+            public static final double CYCLE_COUNT = 1;
             public static final double GRAVITY_VOLTAGE = 1.8; // Voltage needed to counteract gravity when arm is fully extended
         }
         public static final class IntakeMotionParameters {
@@ -175,7 +175,7 @@ public final class Constants {
                 public static final double TRAPAZOID_PROFILE_MAX_ACL = 50000; //19800
                 public static final double PID_TOLERANCE = 50;
                 
-                public static final double KP = 0.0015;
+                public static final double KP = 0; // 0.02;
                 public static final double KI = 0;
                 public static final double KD = 0;
                 public static final double KF = 0;
@@ -216,8 +216,8 @@ public final class Constants {
                 public static final boolean ENABLE_CURRENT_LIMIT = true;
                 public static final int CURRENT_LIMIT = 25;
                 public static final double OPEN_LOOP_RAMP = 0.1;
-                public static final double PEAK_OUTPUT_FORWARD = 1;
-                public static final double PEAK_OUTPUT_REVERSE = -1;
+                public static final double PEAK_OUTPUT_FORWARD = .5;
+                public static final double PEAK_OUTPUT_REVERSE = -.5;
 
                 public static final SparkMaxAnalogSensor.Mode ANALOG_MODE = SparkMaxAnalogSensor.Mode.kAbsolute;
 

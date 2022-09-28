@@ -72,6 +72,7 @@ public class Intake extends ProfiledPIDSubsystem {
             .withTimeout(Constants.IntakeConstants.IntakeMotors.IntakePivot.TIMEOUT)
             .withCurrentLimitEnabled(Constants.IntakeConstants.IntakeMotors.IntakePivot.ENABLE_CURRENT_LIMIT)
             .withCurrentLimit(Constants.IntakeConstants.IntakeMotors.IntakePivot.CURRENT_LIMIT)
+            .withNominalOutputForward(0.01)
             .withPeakOutputForward(Constants.IntakeConstants.IntakeMotors.IntakePivot.PEAK_OUTPUT_FORWARD)
             .withPeakOutputReverse(Constants.IntakeConstants.IntakeMotors.IntakePivot.PEAK_OUTPUT_REVERSE)
             .withNeutralMode(Constants.IntakeConstants.IntakeMotors.IntakePivot.NEUTRAL_MODE)
@@ -91,16 +92,16 @@ public class Intake extends ProfiledPIDSubsystem {
 
     @Override
     public void useOutput(double output, State setpoint) {
-        SmartDashboard.putNumber("OUTPUT", output);
+        SmartDashboard.putNumber("OUTPUT", MathUtil.clamp(output, -2.5, 2.5));
         if (Constants.IntakeConstants.PivotConstants.USE_PIVOT_MOTOR_ENCODER
                 ? pivot.getSelectedSensorPosition() < Constants.IntakeConstants.PivotConstants.Falcon.UP_SETPOINT
                 : pot.get() < Constants.IntakeConstants.PivotConstants.Analog.UP_SETPOINT
         ){
-            pivot.motor.setVoltage(MathUtil.clamp(output, -14, 14));
+            pivot.drivePercentOutput(MathUtil.clamp(output, -2.5, 2.5)/12.0);
         } else {
             cycleCount++;
             if (cycleCount >= Constants.IntakeConstants.PivotConstants.CYCLE_COUNT) {
-                pivot.motor.setVoltage(0);
+                pivot.drivePercentOutput(0);
                 cycleCount = 0;
             }
         }
@@ -108,7 +109,7 @@ public class Intake extends ProfiledPIDSubsystem {
 
     private double feedForward(double currentPos) {
         double rad = currentPos / Constants.IntakeConstants.PivotConstants.Falcon.UP_POSITION * Math.PI / 2;
-        return Math.cos(rad) * Constants.IntakeConstants.PivotConstants.GRAVITY_VOLTAGE;
+        return Math.cos(rad) * Constants.IntakeConstants.PivotConstants.GRAVITY_VOLTAGE + 1;
     }
 
     @Override
