@@ -69,9 +69,11 @@ public class RobotContainer {
 
     // private final JoystickButton hookDownButton = new JoystickButton(buttonBoard, 1);
     private final JoystickButton lockStationariesButton = new JoystickButton(buttonBoard, 1);
-    private final JoystickButton nextBarButton = new JoystickButton(buttonBoard, 16);
+    //private final JoystickButton nextBarButton = new JoystickButton(buttonBoard, 16);
+    private final JoystickButton tiltUntilBUtton = new JoystickButton(buttonBoard, 16);
+
     private final JoystickButton hookDownButton = new JoystickButton(buttonBoard, 15);
-    private final JoystickButton rampLowButton = new JoystickButton(buttonBoard, 12);
+    private final JoystickButton climberCenterButton = new JoystickButton(buttonBoard, 12);
 
     private final JoystickButton hookUpMidButton = new JoystickButton(rightJoystick, 11);
     private final JoystickButton hookUpLowButton = new JoystickButton(rightJoystick, 10);
@@ -127,7 +129,8 @@ public class RobotContainer {
     
     // private final HomeAlgorithm homeAlgorithmCommand = new HomeAlgorithm(climber); 
 
-    private final NextBar nextBarCommand = new NextBar(climber);
+    // private final NextBar nextBarCommand = new NextBar(climber);
+    private final nextnextBar tiltUntilCommand = new nextnextBar(climber);
     private final LockStationary lockStationariesCommand = new LockStationary(climber);
     private final ClimberCenter centerClimberCommand = new ClimberCenter(climber);
 
@@ -171,19 +174,20 @@ public class RobotContainer {
         hookUpMidButton.whenPressed(hookUpCommand);
         hookUpLowButton.whenPressed(hookUpLowCommand);
         hookDownButton.whenPressed(hookDownCommand);
+        tiltUntilBUtton.whenPressed(tiltUntilCommand);
 
         //climberTiltZeroButton.whenPressed(homeAlgorithmCommand);
 
         climberTiltCenterButton.whileHeld(centerClimberCommand);
 
-        nextBarButton.whenPressed(nextBarCommand);
+        // nextBarButton.whenPressed(nextBarCommand);
         lockStationariesButton.whenPressed(lockStationariesCommand);
         climberControlButton.whileHeld(climberControlCommand);
 
 
         //TurnButton.whenPressed(new Turn(drivetrain, 90));
 
-        rampLowButton.whileHeld(new ShootLow(shooter));
+        climberCenterButton.whileHeld(centerClimberCommand);
 
         fixClimberButton.whileHeld(hookZeroCommand);
 

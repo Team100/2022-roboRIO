@@ -162,6 +162,9 @@ public class Climber extends SubsystemBase {
         SmartDashboard.putBoolean("leftSationary", !leftStationaryHook.get());
         SmartDashboard.putBoolean("rightSatioanrj", !rightStationaryHook.get());
 
+        SmartDashboard.putBoolean("tilt", tiltAngle()<=-6);
+
+
         // SmartDashboard.putBoolean("allingment switch", getHomeSwitch());
 
         // SmartDashboard.putNumber("Winch", winch.getSelectedSensorPosition());

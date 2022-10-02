@@ -55,7 +55,7 @@ public final class Constants {
             }
         }
         public static final class DrivetrainMotion{
-            public static final double ALIGN_SPEED = -0.1;
+            public static final double ALIGN_SPEED = -0.2;
             public static final double SLOW_SPEED = 0.25;
         }
         public static final class DrivetrainSensors{
@@ -145,14 +145,14 @@ public final class Constants {
             public static final class Falcon {
                 public static final double UP_POSITION = 5000;
                 public static final double DOWN_POSITION = 0;
-                public static final double UP_SETPOINT = 4900;
+                public static final double UP_SETPOINT = 4800;
             }
 
             public static final double CYCLE_COUNT = 1;
             public static final double GRAVITY_VOLTAGE = 1.8; // Voltage needed to counteract gravity when arm is fully extended
         }
         public static final class IntakeMotionParameters {
-            public static final double INTAKE_SPINNER_PERCENT_OUTPUT = -0.35;
+            public static final double INTAKE_SPINNER_PERCENT_OUTPUT = -0.37; //-0.35;
             public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN = -0.22;
             public static final double INTAKE_PIVOT_PERCENT_OUTPUT_DOWN_DECEL = 0.09;
             public static final double INTAKE_UP_TIMEOUT = 2;
@@ -376,18 +376,18 @@ public final class Constants {
             }
         }
         public static final class ClimberMotionParameters {
-            public static final double CLIMBER_PERCENT_OUTPUT = 0.85;
+            public static final double CLIMBER_PERCENT_OUTPUT = 0.5;
             public static final double CLIMBER_DESCEND_PERCENT_OUTPUT = 0.3;
             // public static final double CLIMBER_ZERO = 0;
 
             public static final double TILT_PERCENT_OUTPUT = 0.85;
 
-            public static final int CLIMBER_MID_BAR = -174609; //-243000;
+            public static final int CLIMBER_MID_BAR = -165000; //-243000;
             public static final int CLIMBER_TOP = -234000; //-243000;
             public static final int CLIMBER_LOW_BAR_TOP = -110000;
             public static final int CLIMBER_BOTTOM = 2000; //5000;
             public static final double TILT_START = 7000;
-            public static final double STATIONARY_LOCK_ANGLE = 21; //23.5; //22;
+            public static final double STATIONARY_LOCK_ANGLE = 19; //21; //23.5; //22;
 
             public static final double EXTEND_START_ANGLE = 0;
             public static final double NEXT_BAR_ANGLE = -5;
