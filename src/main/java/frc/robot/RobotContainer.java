@@ -94,6 +94,8 @@ public class RobotContainer {
     private final JoystickButton climberTiltCenterButton = new JoystickButton(rightJoystick, 6);
     private final JoystickButton shootWayDowntownButton = new JoystickButton(leftJoystick, 6);
 
+    private final JoystickButton unpausePivotButton = new JoystickButton(rightJoystick, 9);
+
 
     //private final JoystickButton lockStationariesButton = new JoystickButton(gamepad, 1);
     //private final JoystickButton nextBarButton = new JoystickButton(gamepad, 2);
@@ -131,7 +133,7 @@ public class RobotContainer {
 
     // private final NextBar nextBarCommand = new NextBar(climber);
     private final nextnextBar tiltUntilCommand = new nextnextBar(climber);
-    private final LockStationary lockStationariesCommand = new LockStationary(climber);
+    private final LockStationary lockStationariesCommand = new LockStationary(climber, intake);
     private final ClimberCenter centerClimberCommand = new ClimberCenter(climber);
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -184,6 +186,7 @@ public class RobotContainer {
         lockStationariesButton.whenPressed(lockStationariesCommand);
         climberControlButton.whileHeld(climberControlCommand);
 
+        unpausePivotButton.whenPressed(new InstantCommand(() -> { intake.unpausePivot(); }));
 
         //TurnButton.whenPressed(new Turn(drivetrain, 90));
 

@@ -7,6 +7,7 @@ package frc.robot.commands.climber;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.Intake;
 import frc.robot.Constants.ClimberConstants;
 //import frc.robot.Constants.ClimberConstants.*;
 
@@ -16,16 +17,19 @@ public class LockStationary extends CommandBase {
     public boolean mainLocked, dropping;
 
     public Climber climber;
+    public Intake intake;
     /** Creates a new LockStationary. */
-    public LockStationary(Climber climber) {
+    public LockStationary(Climber climber, Intake intake) {
         // Use addRequirements() here to declare subsystem dependencies.
         this.climber = climber;
+        this.intake = intake;
         addRequirements(this.climber);
     }
 
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
+        intake.pausePivot();
         SmartDashboard.putString("Climber Command","Locking Stationaries");
         mainLocked = climber.mainLocked();
         dropping = false;

@@ -142,6 +142,16 @@ public class Intake extends ProfiledPIDSubsystem {
         super.enable();
     }
 
+    public void pausePivot() {
+        pivot.setPeakOutputForward(0);
+        pivot.setPeakOutputReverse(0);
+    }
+
+    public void unpausePivot() {
+        pivot.setPeakOutputForward(Constants.IntakeConstants.IntakeMotors.IntakePivot.PEAK_OUTPUT_FORWARD);
+        pivot.setPeakOutputReverse(Constants.IntakeConstants.IntakeMotors.IntakePivot.PEAK_OUTPUT_REVERSE);
+    }
+
     @Override
     public void periodic() {
         if (m_enabled) {
