@@ -41,7 +41,7 @@ public class ClimberControl extends CommandBase {
     @Override
     public void execute() {
         drivetrain.driveWithoutRamp(0, 0);
-        limiter = (-leftJoystick.getZ()+1)/2;
+        limiter = 0.7; //-leftJoystick.getZ()+1)/2;
         if (Math.abs(leftJoystick.getY()) > Constants.ClimberConstants.ClimberControls.TILT_CONTROL_DEADZONE) {
             climber.setTilt(-leftJoystick.getY()*limiter);
         } else {

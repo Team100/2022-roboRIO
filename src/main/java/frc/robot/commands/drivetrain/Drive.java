@@ -35,7 +35,7 @@ public class Drive extends CommandBase {
     public void execute() {
         double left = -leftJoystick.getY() - rightJoystick.getX();
         double right = -leftJoystick.getY() + rightJoystick.getX();
-        double limiter = (-rightJoystick.getRawAxis(2)+1)/2;
+        double limiter = (-leftJoystick.getRawAxis(2)+1)/2;
         drivetrain.driveWithRamp((left*limiter), (right*limiter));
         SmartDashboard.putNumber("rightJoystick", rightJoystick.getX());
         //System.out.println(rightJoystick.getX());
