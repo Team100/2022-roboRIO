@@ -20,7 +20,7 @@ boolean done, first;
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() { 
+  public void initialize() {                                          
     done=false;  
     first = true; 
   }

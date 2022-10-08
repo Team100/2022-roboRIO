@@ -78,7 +78,7 @@ public class Intake extends ProfiledPIDSubsystem {
             .withNeutralMode(Constants.IntakeConstants.IntakeMotors.IntakePivot.NEUTRAL_MODE)
             .build();
 
-        pivot.setSensorPosition(0);
+        //pivot.setSensorPosition(0);
 
         addChild("intakeSpin", spin);
         addChild("intakePivot", pivot);

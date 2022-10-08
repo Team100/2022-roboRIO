@@ -124,6 +124,7 @@ public final class Constants {
         public static final class DrivetrainControls {
             public static final double RAMP_LIMIT = 0.2;
             public static final double ERROR_ADJUSTMENT_DRIVE = 0.0000025;
+            public static final double JOYSTICK_DEADZONE = 0.05;
         }
     }
     public static final class IntakeConstants {
@@ -235,8 +236,8 @@ public final class Constants {
             public static final double SHOOTER_VELOCITY_LOW_FAR = -2500;
 			public static final double NOMINAL_LOW_FAR_VELOCITY = 2480;
 
-            public static final double SHOOTER_VELOCITY_HIGH = -4100; //0.17 //0.175
-            public static final double NOMINAL_HIGH_VELOCITY = 4080;
+            public static final double SHOOTER_VELOCITY_HIGH = -3900; //0.17 //0.175
+            public static final double NOMINAL_HIGH_VELOCITY = 3800;
 
             public static final double SHOOTER_VELOCITY_HIGH_FAR = -5720; //0.17 //0.175
             public static final double NOMINAL_HIGH_VELOCITY_FAR = 5700;
@@ -414,6 +415,7 @@ public final class Constants {
         public static final class ClimberControls {
             public static final double TILT_CONTROL_DEADZONE = 0.05;
             public static final double WINCH_CONTROL_DEADZONE = 0.05;
+            public static final double LIMITER = 0.5;
         };
 
         public static final class ClimberMotors {

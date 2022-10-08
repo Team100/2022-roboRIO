@@ -4,6 +4,8 @@
 
 package frc.robot.subsystems;
 
+import java.time.Clock;
+
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
@@ -163,6 +165,8 @@ public class Climber extends SubsystemBase {
         SmartDashboard.putBoolean("rightSatioanrj", !rightStationaryHook.get());
 
         SmartDashboard.putBoolean("tilt", tiltAngle()<=-6);
+
+        // SmartDashboard.putNumber("Clock", Clock);
 
 
         // SmartDashboard.putBoolean("allingment switch", getHomeSwitch());

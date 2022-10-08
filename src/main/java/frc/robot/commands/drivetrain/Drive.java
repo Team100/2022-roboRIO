@@ -5,6 +5,7 @@
 package frc.robot.commands.drivetrain;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -35,6 +36,9 @@ public class Drive extends CommandBase {
     public void execute() {
         double left = -leftJoystick.getY() - rightJoystick.getX();
         double right = -leftJoystick.getY() + rightJoystick.getX();
+        if(Math.abs(leftJoystick.getY()) <= Constants.DrivetrainConstants.DrivetrainControls.JOYSTICK_DEADZONE || Math.abs(rightJoystick.getX()) <= Constants.DrivetrainConstants.DrivetrainControls.JOYSTICK_DEADZONE){
+            return;
+        }
         double limiter = (-leftJoystick.getRawAxis(2)+1)/2;
         drivetrain.driveWithRamp((left*limiter), (right*limiter));
         SmartDashboard.putNumber("rightJoystick", rightJoystick.getX());
