@@ -76,7 +76,8 @@ public class RobotContainer {
     private final JoystickButton hookUpMidButton = new JoystickButton(rightJoystick, 11);
     private final JoystickButton hookUpLowButton = new JoystickButton(rightJoystick, 10);
 
-    private final JoystickButton stopAll = new JoystickButton(buttonBoard, 4);
+    //private final JoystickButton stopAll = new JoystickButton(buttonBoard, 4);
+    private final JoystickButton levelButton = new JoystickButton(buttonBoard, 4);
 
     //private final JoystickButton hookZeroButton = new JoystickButton(rightJoystick, 7);
     // private final JoystickButton HHHButton = new JoystickButton(leftJoystick, 10);
@@ -101,6 +102,7 @@ public class RobotContainer {
     // Commands
     private final Drive driveCommand = new Drive(drivetrain, leftJoystick, rightJoystick);
     private final DriveFurious driveFuriousCommand = new DriveFurious(drivetrain, leftJoystick, rightJoystick);
+    private final autoLevel autoLevel = new autoLevel(drivetrain);
     private final DriveSlow driveSlowCommand = new DriveSlow(drivetrain, leftJoystick, rightJoystick);
     private final AlignClimber alignCommand = new AlignClimber(climber, drivetrain);
     private final IntakeIntake intakeIntakeCommand = new IntakeIntake(intake);
@@ -153,9 +155,10 @@ public class RobotContainer {
     */
     private void configureButtonBindings() {
         turboButton.whileHeld(driveFuriousCommand);
+        levelButton.whileHeld(autoLevel);
         alignButton.whileHeld(alignCommand);//new SequentialCommandGroup(new ClimberCenter(climber), alignCommand));
         slowButton.whileHeld(driveSlowCommand);
-        stopAll.whenPressed(new ParallelCommandGroup(new ClimberStop(climber), new IndexerStop(indexer), new BetterIntakeStop(intake), new ShootStop(shooter)));
+        //  stop  All.whenPressed(new ParallelCommandGroup(new ClimberStop(climber), new IndexerStop(indexer), new BetterIntakeStop(intake), new ShootStop(shooter)));
         //intakeButton.whenPressed(new SequentialCommandGroup(new ParallelDeadlineGroup(intakeCommand, intakeIntakeCommand), new WaitCommand(0.2)));
         indexTwoButton.whenPressed(new SequentialCommandGroup(new ParallelDeadlineGroup(new BetterIndexerIntake(indexer), new IntakeIntake(intake)), new WaitCommand(0.2), new ParallelDeadlineGroup(new BetterIndexerIntake(indexer), new IntakeIntake(intake)), new WaitCommand(0.1)));
         shootHighButton.whileHeld(new ParallelCommandGroup(shootHighCommand, feedHighCommand));

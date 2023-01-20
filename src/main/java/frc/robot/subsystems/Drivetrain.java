@@ -5,19 +5,23 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.FRCLib.Motors.FRCTalonFX;
-
+import  edu.wpi.first.wpilibj.SerialPort;
 
 public class Drivetrain extends SubsystemBase {
     private FRCTalonFX leftMaster, leftFollower, rightMaster, rightFollower;
     private double leftSetpoint, rightSetpoint;
+    private AHRS m_gyro;
+
     
     /** Creates a new Drivetrain. */
     public Drivetrain() {
+        m_gyro = new AHRS(SerialPort.Port.kUSB);
         leftMaster = new FRCTalonFX.FRCTalonFXBuilder(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.CAN_ID)
             .withKP(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.KP)
             .withKI(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.KI)
@@ -164,7 +168,12 @@ public class Drivetrain extends SubsystemBase {
 
     @Override
     public void periodic() {
-    
+        System.out.println(m_gyro.getRoll());
+        System.out.println(rightFollower.motor.getMotorOutputPercent());
+        System.out.println(rightMaster.motor.getMotorOutputPercent());
+        System.out.println(rightFollower.motor.getMotorOutputPercent());
+        System.out.println(rightFollower.motor.getMotorOutputPercent());
+
         // SmartDashboard.putNumber("drivetrain average encoder value", getCurrentEncoderPosition());
         // This method will be called once per scheduler run
         // SmartDashboard.putBoolean("allign sensor starboard", getSensorRight());
@@ -185,5 +194,10 @@ public class Drivetrain extends SubsystemBase {
 
     public boolean getAutoEndHighReverse() {
         return getCurrentEncoderPosition() <= Constants.DrivetrainConstants.Autonomous.Distance.HIGH_GOAL_SHOT;
+    }
+
+    public double getRoll(){
+       return m_gyro.getRoll();
+
     }
 }
