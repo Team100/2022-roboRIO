@@ -4,10 +4,15 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.SerialPort;
+
+import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
@@ -28,6 +33,7 @@ import frc.robot.commands.climber.simpleCommands.HookUp;
 import frc.robot.commands.climber.simpleCommands.HookUpLow;
 import frc.robot.commands.shooter.*;
 
+
 /**
 * This class is where the bulk of the robot should be declared. Since Command-based is a
 * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -38,12 +44,13 @@ public class RobotContainer {
     // The robot's subsystems and commands are defined here...
 
     // Subsystems
-    private final Drivetrain drivetrain = new Drivetrain();
+    private final AHRS m_gyro = new AHRS(SerialPort.Port.kUSB);
+    private final Drivetrain drivetrain = new Drivetrain(m_gyro);
     private final Climber climber = new Climber();
     private final Shooter shooter = new Shooter();
     private final Intake intake = new Intake();
     private final Indexer indexer = new Indexer();
-
+    
     // Auton DIP Switches
 
     private final DigitalInput firstBallOption = new DigitalInput(3);
@@ -102,7 +109,7 @@ public class RobotContainer {
     // Commands
     private final Drive driveCommand = new Drive(drivetrain, leftJoystick, rightJoystick);
     private final DriveFurious driveFuriousCommand = new DriveFurious(drivetrain, leftJoystick, rightJoystick);
-    private final autoLevel autoLevel = new autoLevel(drivetrain);
+    private final autoLevel autoLevelCommand = new autoLevel(m_gyro, drivetrain);
     private final DriveSlow driveSlowCommand = new DriveSlow(drivetrain, leftJoystick, rightJoystick);
     private final AlignClimber alignCommand = new AlignClimber(climber, drivetrain);
     private final IntakeIntake intakeIntakeCommand = new IntakeIntake(intake);
@@ -155,7 +162,7 @@ public class RobotContainer {
     */
     private void configureButtonBindings() {
         turboButton.whileHeld(driveFuriousCommand);
-        levelButton.whileHeld(autoLevel);
+        levelButton.whileHeld(autoLevelCommand);
         alignButton.whileHeld(alignCommand);//new SequentialCommandGroup(new ClimberCenter(climber), alignCommand));
         slowButton.whileHeld(driveSlowCommand);
         //  stop  All.whenPressed(new ParallelCommandGroup(new ClimberStop(climber), new IndexerStop(indexer), new BetterIntakeStop(intake), new ShootStop(shooter)));
@@ -165,7 +172,7 @@ public class RobotContainer {
         shootLowButton.whileHeld(new ParallelCommandGroup(shootLowCommand, feedLowCommand));
         ejectButton.whileHeld(new ParallelCommandGroup(intakeEjectCommand, indexerEjectCommand, shootEjectCommand));
         shootWayDowntownButton.whileHeld(new ParallelCommandGroup(shootWayDowntownCommand, indexWayDowntownCommand));
-        //hookZeroButton.whileHeld(hookZeroCommand);
+        //hookZeroB+++++++utton.whileHeld(hookZeroCommand);
 
         // hookDownButton.whenPressed(hookDownCommand);
         // hookUpButton.whenPressed(hookUpCommand);

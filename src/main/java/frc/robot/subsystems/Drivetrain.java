@@ -17,11 +17,12 @@ public class Drivetrain extends SubsystemBase {
     private FRCTalonFX leftMaster, leftFollower, rightMaster, rightFollower;
     private double leftSetpoint, rightSetpoint;
     private AHRS m_gyro;
-
     
+
     /** Creates a new Drivetrain. */
-    public Drivetrain() {
-        m_gyro = new AHRS(SerialPort.Port.kUSB);
+    public Drivetrain(AHRS gyro) {
+        m_gyro = gyro;
+        //m_gyro = new AHRS(SerialPort.Port.kUSB);
         leftMaster = new FRCTalonFX.FRCTalonFXBuilder(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.CAN_ID)
             .withKP(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.KP)
             .withKI(Constants.DrivetrainConstants.DrivetrainMotors.LeftMaster.KI)
@@ -94,12 +95,19 @@ public class Drivetrain extends SubsystemBase {
         }
 
         driveWithoutRamp(left, right);
-        System.out.println("left:right    " + left + " : " + right);
+        //System.out.println("left:right    " + left + " : " + right);
     }
 
     public void driveWithoutRamp(double left, double right) {
         this.leftMaster.drivePercentOutput(left);
         this.rightMaster.drivePercentOutput(right);
+        this.leftSetpoint = left;
+        this.rightSetpoint = right;
+    }
+
+    public void driveVelocity(double left, double right) {
+        this.leftMaster.driveVelocity(left);
+        this.rightMaster.driveVelocity(right);
         this.leftSetpoint = left;
         this.rightSetpoint = right;
     }
@@ -113,6 +121,7 @@ public class Drivetrain extends SubsystemBase {
         this.leftSetpoint = rampLeft;
         this.rightSetpoint = rampRight;
     }
+    
 
     private double ramp(double input, double currentSpeed) {
         double dv = input - currentSpeed;
@@ -161,18 +170,18 @@ public class Drivetrain extends SubsystemBase {
             leftFollower.motor.setNeutralMode(NeutralMode.Coast);
             rightMaster.motor.setNeutralMode(NeutralMode.Coast);
             rightFollower.motor.setNeutralMode(NeutralMode.Coast);
-            System.out.println("coast");
+            //System.out.println("coast");
         }
     }
 
 
     @Override
     public void periodic() {
-        System.out.println(m_gyro.getRoll());
-        System.out.println(rightFollower.motor.getMotorOutputPercent());
-        System.out.println(rightMaster.motor.getMotorOutputPercent());
-        System.out.println(rightFollower.motor.getMotorOutputPercent());
-        System.out.println(rightFollower.motor.getMotorOutputPercent());
+        //System.out.println(m_gyro.getPitch());
+        //System.out.println(rightFollower.motor.getMotorOutputPercent());
+        //System.out.println(rightMaster.motor.getMotorOutputPercent());
+        //System.out.println(rightFollower.motor.getMotorOutputPercent());
+        //System.out.println(rightFollower.motor.getMotorOutputPercent());
 
         // SmartDashboard.putNumber("drivetrain average encoder value", getCurrentEncoderPosition());
         // This method will be called once per scheduler run
